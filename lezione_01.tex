@@ -87,3 +87,51 @@ Il concetto di ``orientato'' fa nascere un'idea discriminante nell'ambito delle 
 nel modello, dividendole in due grandi \textit{famiglie}, ossia
 \textbf{ingresso} o \textbf{uscita}.
 
+Si identificano con \textit{u} le variabili di ingresso e con \textit{y} quelle di uscita.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{modello_matematico.png}
+ % modello_matematico.png: 341x119 px, 96dpi, 9.02x3.15 cm, bb=0 0 256 89
+ \label{Fig.:modello_matematico}
+\end{figure}
+
+\subsection{Esempio di una rete RLC}
+Si considera il seguente sistema
+ \begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{rete_RLC_esempio1.png}
+ % rete_RLC_esempio1.png: 190x214 px, 96dpi, 5.03x5.66 cm, bb=0 0 142 160
+ \label{Fig.:circuito_RLC}
+\end{figure}
+Si scrive l'equazione alla maglia
+\begin{equation}
+ e = R \dot{q} + L\ddot{q} + \frac{q}{C}
+\end{equation}
+con $q$ la carica elettrica e la notazione $\dot{q}$ per indicare la derivata prima nel tempo,
+$\ddot{q}$ la seconda e così via.
+
+Sono presenti due variabili nell'equazione, una di ingresso e una di uscita, un oggetto astratto
+orientato che soddisfa la proprietà di casualità (generatore $\rightarrow$ carica)
+
+\newpage
+\subsection{Esempio di una sospensione di un'autovettura}
+Il seguente sistema può essere schematizzato come una massa collegata ad una molla in
+\textit{parallelo} ad uno smorzatore idraulico (pistone).
+\begin{figure}[h]
+ \centering \includegraphics[width=\picwid]{massa_molla_smorzatore.png}
+ % massa_molla_smorzatore.png: 133x166 px, 96dpi, 3.52x4.39 cm, bb=0 0 100 124
+ \label{Fig.:massa_molla_smorzatore}
+\end{figure}
+
+È possibile costruire il modello matematico del sistema applicando il secondo principio della
+dinamica a ciascuna massa in gioco e per ciascun grado di libertà della stessa.
+Si suppone che la massa possa muoversi solo lungo la direzione verticale e si indica con $s$ la sua
+posizione, di conseguenza $\dot{s}$ sarà la velocità e $\ddot{s}$ l'accelerazione.
+\begin{equation}
+ m\ddot{s} = f - ks - b\dot{s}
+\end{equation}
+dove $k$ è la rigidezza della molla e $b$ la viscosità dello smorzatore riferita alla velocità.
+
+I due sistemi sono eterogenei tra loro,
+1:09:09
+
