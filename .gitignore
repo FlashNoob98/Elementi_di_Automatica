@@ -274,3 +274,9 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# Kate (swap?) file
+*.kate-swp
+
+# Pdf output (manually add to releases)
+*.pdf
