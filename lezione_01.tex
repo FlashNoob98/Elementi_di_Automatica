@@ -45,4 +45,45 @@ che hanno ossia la possibilità di variare nel tempo alcune grandezze che li car
 L'unica variabile indipendente considerata nell'intero corso sarà il tempo, anche i sistemi
 astratti saranno comunque sistemi ``esistenti''.
 
-33:04
+Dato un certo sistema si dovrà astrarre dal sistema un modello che lo rappresenta,
+operazione denominata modellistica, il modello prende il nome di \textbf{oggetto astratto
+orientato}.
+
+Con ``identificazione dei sistemi dinamici'' si intende la scienza che permette la costruzione di
+modelli matematici anche quando i sistemi in esame e le loro proprietà fisiche non sono note.
+
+Costruito il modello è poi possibile analizzare le caratteristiche dell'oggetto, attraverso la
+quale si possono conoscere le caratteristiche comportamentali del modello.
+
+Le previsioni meteorologiche sono un classico esempio di analisi in un sistema dinamico, va
+modellato il pianeta in funzione del fenomeno da studiare, vanno quindi determinate le variabili
+inerenti il fenomeno. Esiste un modello matematico del pianeta che permette di prevedere le
+grandezze future del sistema dato lo stato attuale dello stesso.
+
+Se si esegue ad esempio l'analisi del modello termico di una stanza si ottiene un valore di
+temperatura diverso da quello desiderato e corrispondente al comportamento naturale del sistema.
+Se si desidera un valore di temperatura differente, va costruito un sistema di condizionamento e
+controllo che con un attuatore modifichi l'evoluzione del sistema.
+
+\section{Oggetto astratto orientato}
+È un'astrazione di un oggetto reale, dal quale si ricavano un insieme di equazioni e variabili che
+ne descrivano le grandezze di interesse.
+È un modello \textit{parziale} della realtà, sia perché analizza solo uno o una parte di fenomeno,
+sia perché, anche nella grandezza di interesse, non sarà mai identico alla realtà a causa delle
+varie approssimazioni.
+
+L'accuratezza di un modello solitamente aumenta all'aumentare della complessità del modello, va
+determinato il grado di complessità in funzione dell'accuratezza richiesta al risultato.
+
+Con il termine \textit{orientato} si intende sottolineare che il modello matematico deve essere un
+modello \textbf{causale}, ossia che rispetti il principio di causa-effetto, l'effetto
+\textit{segue} nel tempo la causa, altrimenti sarebbe un sistema che prevede il futuro. In alcune
+discipline si studiano anche sistemi non causali, come ad esempio nella trasmissione digitale
+terrestre possono essere utilizzati dei filtri anti-causali, trasmettendo ad esempio il segnale con
+una latenza di tre secondi, è possibile sfruttare questi secondi di ``buffer'' per ricostruire in
+maniera più accurata il segnale.
+
+Il concetto di ``orientato'' fa nascere un'idea discriminante nell'ambito delle variabili presenti
+nel modello, dividendole in due grandi \textit{famiglie}, ossia
+\textbf{ingresso} o \textbf{uscita}.
+
