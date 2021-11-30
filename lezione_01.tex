@@ -106,6 +106,7 @@ Si considera il seguente sistema
 Si scrive l'equazione alla maglia
 \begin{equation}
  e = R \dot{q} + L\ddot{q} + \frac{q}{C}
+ \label{eq:equazione_RLC}
 \end{equation}
 con $q$ la carica elettrica e la notazione $\dot{q}$ per indicare la derivata prima nel tempo,
 $\ddot{q}$ la seconda e così via.
@@ -129,9 +130,67 @@ Si suppone che la massa possa muoversi solo lungo la direzione verticale e si in
 posizione, di conseguenza $\dot{s}$ sarà la velocità e $\ddot{s}$ l'accelerazione.
 \begin{equation}
  m\ddot{s} = f - ks - b\dot{s}
+ \label{eq:equazione_massa_molla_smorzatore}
 \end{equation}
 dove $k$ è la rigidezza della molla e $b$ la viscosità dello smorzatore riferita alla velocità.
 
-I due sistemi sono eterogenei tra loro,
-1:09:09
+I due sistemi sono eterogenei tra loro, ma possono essere facilmente messi in relazione nel
+seguente modo:
+$$
+\begin{aligned}
+m &\leftrightarrow L\\
+b &\leftrightarrow R\\
+k &\leftrightarrow \frac{1}{C}\\
+s &\leftrightarrow q\\
+f &\leftrightarrow e
+\end{aligned}
+$$
 
+Se si sostituissero i termini della
+\ref{eq:equazione_massa_molla_smorzatore}
+ nella \ref{eq:equazione_RLC} si otterrebbe ancora la stessa equazione, ciò mostra che due sistemi
+completamente differenti tra loro possono dare origine ad un modello astratto identico.
+Dal punto di vista di oggetto astratto, sono dunque lo stesso sistema, ossia il comportamento di
+uno può essere associato allo stesso comportamento dell'altro.
+
+\newpage
+\section{Variabili di ingresso e uscita}
+\subsection{Massa su un piano}
+Si vuole trovare un metodo per determinare le variabili di ingresso e uscita di un sistema.
+
+Sia dato il seguente sistema composto da una massa $m$ posta su un piano e sottoposta ad una forza
+$f$ di equazione
+\begin{equation}
+ m\ddot{s} = f
+\end{equation}
+è immediato constatare che la forza sia l'ingresso e lo spostamento l'uscita, non può esserci
+spostamento senza forza.
+\subsection{Bilancio familiare}
+Si consideri un ``sistema'' formato da un nucleo familiare, la prima grandezza è \textit{l'introito
+mensile} mentre un'altra variabile è il \textit{tenore di vita}, non è in questo caso facile
+determinare l'equazione che lega queste due variabili.
+
+Sarà intuitivo constatare che \textit{l'introito} sarà la variabile di ingresso e il \textit{tenore
+di vita} la variabile di uscita.
+
+\subsection{Capacitore}
+Si consideri un semplice capacitore attraversato da una corrente $i$ e una tensione ai suoi capi
+pari a $v$, non è in questo caso immediato trovare la variabile di ingresso e quella di uscita.
+$$
+q = C\cdot v
+$$
+Ragionando sul fenomeno fisico si vede che è la carica $q$ (e dunque la corrente) a determinare la
+tensione ai capi del condensatore e non il viceversa, questo ragionamento richiede però la
+conoscenza del fenomeno fisico in esame e non può essere generalizzato a tutti i sistemi.
+
+\subsection{Regola generale}
+Un caso comune è l'analisi di sistemi a partire già dal modello matematico, senza conoscere in
+alcun modo il processo fisico.
+Osservando unicamente le equazioni è possibile determinare quali siano le variabili di ingresso e
+uscita, questo è possibile grazie ad uno strumento che discende direttamente dal principio di
+causalità:\newline
+\emph{saranno variabili di ingresso quelle che compaiono differenziate un numero
+inferiore di volte all'interno dell'equazione del sistema.}
+\newline
+Tutte le altre \textit{possono} essere variabili di uscita.
+Non è detto che ai fini dello studio interessino tutte le variabili non di ingresso.
