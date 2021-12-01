@@ -1,0 +1,43 @@
+%lezione_02.tex
+\chapter{Modelli di sistemi dinamici}
+I principali modelli di sistemi dinamici sono due:
+\begin{itemize}
+\item [$(IU)$]Ingresso-uscita
+\begin{equation}
+f\left(y^{(n)},y^{(n-1)},\dots,y,u^{(m)},u^{(m-1)},\dots,u\right)=0
+\label{eq.:modello_ingresso_uscita}
+\end{equation}
+con $m<n$ (per la regola di Cauchy) per avere un sistema strettamente causale. Con $m=n$ un sistema
+è causale ma non strettamente causale, in genere tutti i modelli fisici sono strettamente causali.
+La \ref{eq.:modello_ingresso_uscita} prende il nome di \textit{equazione generale del sistema}
+mentre $n$
+prende il nome di \textit{ordine del sistema}.
+La funzione può anche essere un sistema di equazioni differenziali di ordine inferiore.
+\item[$(ISU)$] Ingresso-stato-uscita
+\begin{equation}
+y(t) = x_1(t), \dot{y}(t) = x_2(t),\dots,y^{(n-1)}(t)=x_n(t)
+\label{eq.:modello_ingresso_stato_uscita}
+\end{equation}
+Compaiono in questo modello tre tipologie di variabili, \textit{ingresso} e \textit{uscita} come nel
+caso precedente e le variabili \textit{di stato} necessarie a completare il problema di Cauchy.
+Un possibile insieme di variabili di stato sono quelle necessarie a specificare le condizioni
+iniziali dell'equazione differenziale. Questo insieme può essere definito come \textit{stato} del
+sistema.
+Nella \ref{eq.:modello_ingresso_stato_uscita} si vede che il numero di variabili di stato $(x_n)$
+necessarie alla risoluzione del problema è pari all'ordine del sistema.
+\end{itemize}
+
+Qualunque sistema dinamico può essere rappresentato con una diversa scelta delle variabili di
+stato, varieranno le equazioni ma il modello resta valido per quel determinato sistema. La
+rappresentazione ingresso-uscita è invece unica.
+
+Si vede che nella rappresentazione $ISU$, una volta ottenuta l'equazione del sistema, questa può
+essere trasformata per evidenziare particolari proprietà del sistema.
+
+\newpage
+\section{Costruzione di un modello ISU}
+Si può costruire seguendo quattro passaggi
+\begin{enumerate}
+\item Scrivere tutte le equazioni del sistema (eq. diff.)
+\item 18:45
+\end{enumerate}
