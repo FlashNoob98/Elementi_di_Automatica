@@ -50,7 +50,60 @@ quella mediante la regola di Cauchy
 &y_1 = g_1\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right) \\
 &\ \vdots \qquad \vdots\\
 &y_n = g_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)
-\end{aligned}\right.\qquad\text{ISU}\end{equation}
+\end{aligned}\right.\qquad\text{ISU}
+\label{eq.:ISU_generale}
+\end{equation}
 la $t$ in questo caso indica l'eventuale tempo-varianza dei parametri del sistema e non la
-dipendenza dal tempo delle variabili di stato (assunta vera implicitamente)
+dipendenza dal tempo delle variabili di stato (assunta vera implicitamente).
 \end{enumerate}
+
+\subsection{Costruzione modello ISU RLC}
+Si considera l'esempio mostrato in figura \ref{Fig.:circuito_RLC}, analizzando l'equazione
+\ref{eq.:ISU_generale} si vede che sono presenti $n$ equazioni differenziali di primo grado dato
+che le funzioni $f$ e $g$ sono equazioni algebriche, non contengono termini differenziali.
+Sono invece presenti $p$ equazioni puramente algebriche $g$ che legano lo stato, l'ingresso, il
+tempo alle uscite.
+
+\begin{enumerate}
+\item Ricordando l'equazione del sistema ricavata in \ref{eq:equazione_RLC}
+si formalizza il modello
+\begin{equation}\left\{
+\begin{aligned}
+ e &= R i + L\dot{i} + \frac{q}{C}\\
+ i &= \dot{q}
+\end{aligned}\right.\end{equation}
+\item Si individuano tutte le variabili: $e,i,q$
+
+Si individuano dunque le variabili di ingresso tra quelle con ordine di derivata più basso, in
+questo caso la $e$ è differenziata zero volte, sarà un ingresso, in questo caso l'unico; le altre,
+differenziate una volta, saranno le potenziali variabili di uscita.
+\item Si scelgono le variabili di stato, si deve prima determinare l'ordine del sistema:\newline
+\emph{il
+numero di variabili di stato è pari alla somma del numero di volte che le variabili delle equazioni
+compaiono differenziate tolte le variabili di ingresso.}
+
+Sommando l'ordine di derivazione di $i$ e $q$, variabili non di ingresso si ottiene dunque $n=2$.
+
+\item Si possono scegliere come variabili di stato tutte quelle che determinano le condizioni
+iniziali, ossia\newline
+\emph{tutte le variabili che compaiono differenziate e in numero pari al numero di volte
+in cui viene differenziata.}
+
+Per il sistema in esame
+$$
+x_1 = q,\quad x_2 = i
+$$
+\item Scrittura delle equazioni in forma ISU
+
+$$
+\left\{\begin{aligned}
+\dot{x}_1 &= f_1\left(x_1,x_2,u\right) = \dot{q} = i = x_2\\
+\dot{x}_2 &=f_2(x_1,x_2,u) = \dot{i} = \frac{e}{L} - \frac{R}{L}i-\frac{1}{LC}q =\\
+&= -\frac{1}{LC}x_1 - \frac{R}{L}x_2 + \frac{1}{L}u\\
+y_1 &= i = g_1(x_1,x_2,u)=x_2\\
+y_2 &=q = g_2(x_1,x_2,u)=x_1
+\end{aligned}\right.
+$$
+\end{enumerate}
+
+\section{Classificazione dei sistemi dinamici}
