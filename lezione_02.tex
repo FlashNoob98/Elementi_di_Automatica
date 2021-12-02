@@ -38,6 +38,19 @@ essere trasformata per evidenziare particolari proprietà del sistema.
 \section{Costruzione di un modello ISU}
 Si può costruire seguendo quattro passaggi
 \begin{enumerate}
-\item Scrivere tutte le equazioni del sistema (eq. diff.)
-\item 18:45
+\item Scrivere tutte le equazioni del sistema (eq. diff.) conoscendo il modello fisico del sistema
+\item Individuare le variabili di ingresso e uscita, mediante il principio di causalità
+\item Scegliere le variabili di stato dopo averne individuato il numero. Una scelta possibile è
+quella mediante la regola di Cauchy
+\item Riscrivere le equazioni di partenza trovate al punto 1 nella seguente forma
+\begin{equation}\left\{ \begin{aligned}
+&\dot{x}_1 = f_1\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)\\
+&\ \vdots \qquad \vdots\\
+&\dot{x}_n = f_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)\\
+&y_1 = g_1\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right) \\
+&\ \vdots \qquad \vdots\\
+&y_n = g_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)
+\end{aligned}\right.\qquad\text{ISU}\end{equation}
+la $t$ in questo caso indica l'eventuale tempo-varianza dei parametri del sistema e non la
+dipendenza dal tempo delle variabili di stato (assunta vera implicitamente)
 \end{enumerate}
