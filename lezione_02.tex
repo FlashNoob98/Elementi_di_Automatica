@@ -107,3 +107,70 @@ $$
 \end{enumerate}
 
 \section{Classificazione dei sistemi dinamici}
+Per comodità si riporta la \ref{eq.:ISU_generale} in forma più compatta.
+Si costruisce un vettore di variabili di stato, di ingressi e di uscite
+$$
+x = \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n
+\end{bmatrix} \in \mathbb{R}^n \textcolor{red}{\left(\in\mathbb{C}^n\right)}\
+u=\begin{bmatrix}
+u_1\\
+u_2\\
+\vdots\\
+u_m
+\end{bmatrix}\in\mathbb{R}^m\
+y=\begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_p
+\end{bmatrix}\in \mathbb{R}^p
+$$
+l'esistenza di variabili complesse per le variabili di stato è giustificata da scelte pratiche
+utili alla risoluzione del problema anche se non legate strettamente a fenomeni fisici.
+
+Di conseguenza la $f$ sarà un vettore di funzioni
+$$\left.\begin{aligned}
+&f_1\left(x_1,...,x_n,u_1,...,u_m,t\right)=f_1(x,u,t)\\
+&\ \vdots\\
+&f_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)=f_n(x,u,t)
+\end{aligned}\right\} \Rightarrow f(x,u,t)=\begin{bmatrix}
+f_1(x,u,t)\\
+\vdots\\
+f_n(x,u,t)
+\end{bmatrix}
+$$
+Analogamente per le funzioni $g$
+$$
+\left.\begin{aligned}
+&g_1(x,u,t)\\
+&\ \vdots\\
+&g_p(x,u,t)
+\end{aligned}\right\}\Rightarrow
+g(x,u,t) = \begin{bmatrix}
+g_1(x,u,t)\\
+\vdots\\
+g_p(x,u,t)
+\end{bmatrix}
+$$
+
+La forma generale della ISU diventa
+\begin{equation}\text{ISU }\left\{
+\begin{aligned}
+\dot{x} = f(x,u,t)\\
+y = g(x,u,t)
+\end{aligned}\right.
+\label{eq.:ISU_compatta}
+\end{equation}
+
+Si suppone che le funzioni $f,g$ siano lineari in $x$ e $u$ ossia che possano essere espresse come
+combinazione lineare di quelle variabili $(x,u)$.
+
+Ad esempio la prima componente di $f$
+$$
+\dot{x}_1 = a_{11}(t)x_1+a_{12}(t)x_2 + \dots + a_{1n}(t)x_n + b_{11}(t)u_1+\dots+b_{1m}(t)u_m
+$$
+1:09:08
