@@ -4,7 +4,7 @@ I principali modelli di sistemi dinamici sono due:
 \begin{itemize}
 \item [$(IU)$]Ingresso-uscita
 \begin{equation}
-f\left(y^{(n)},y^{(n-1)},\dots,y,u^{(m)},u^{(m-1)},\dots,u\right)=0
+f\left(y^{(n)},y^{(n-1)},\ldots,y,u^{(m)},u^{(m-1)},\ldots,u\right)=0
 \label{eq.:modello_ingresso_uscita}
 \end{equation}
 con $m<n$ (per la regola di Cauchy) per avere un sistema strettamente causale. Con $m=n$ un sistema
@@ -15,7 +15,7 @@ prende il nome di \textit{ordine del sistema}.
 La funzione può anche essere un sistema di equazioni differenziali di ordine inferiore.
 \item[$(ISU)$] Ingresso-stato-uscita
 \begin{equation}
-y(t) = x_1(t), \dot{y}(t) = x_2(t),\dots,y^{(n-1)}(t)=x_n(t)
+y(t) = x_1(t), \dot{y}(t) = x_2(t),\ldots,y^{(n-1)}(t)=x_n(t)
 \label{eq.:modello_ingresso_stato_uscita}
 \end{equation}
 Compaiono in questo modello tre tipologie di variabili, \textit{ingresso} e \textit{uscita} come nel
@@ -39,21 +39,21 @@ essere trasformata per evidenziare particolari proprietà del sistema.
 Si può costruire seguendo quattro passaggi
 \begin{enumerate}
 \item Scrivere tutte le equazioni del sistema (eq. diff.) conoscendo il modello fisico del sistema
-\item Individuare le variabili di ingresso e uscita, mediante il principio di causalità
+\item Individuare le variabili d'ingresso e uscita, mediante il principio di causalità
 \item Scegliere le variabili di stato dopo averne individuato il numero. Una scelta possibile è
 quella mediante la regola di Cauchy
-\item Riscrivere le equazioni di partenza trovate al punto 1 nella seguente forma
+\item Riscrivere le equazioni di partenza trovate al punto uno nella seguente forma
 \begin{equation}\left\{ \begin{aligned}
-&\dot{x}_1 = f_1\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)\\
+&\dot{x}_1 = f_1\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)\\
 &\ \vdots \qquad \vdots\\
-&\dot{x}_n = f_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)\\
-&y_1 = g_1\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right) \\
+&\dot{x}_n = f_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)\\
+&y_1 = g_1\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right) \\
 &\ \vdots \qquad \vdots\\
-&y_n = g_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)
+&y_n = g_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)
 \end{aligned}\right.\qquad\text{ISU}
 \label{eq.:ISU_generale}
 \end{equation}
-la $t$ in questo caso indica l'eventuale tempo-varianza dei parametri del sistema e non la
+la $t$ in questo caso indica l'eventuale tempo varianza dei parametri del sistema e non la
 dipendenza dal tempo delle variabili di stato (assunta vera implicitamente).
 \end{enumerate}
 
@@ -74,15 +74,15 @@ si formalizza il modello
 \end{aligned}\right.\end{equation}
 \item Si individuano tutte le variabili: $e,i,q$
 
-Si individuano dunque le variabili di ingresso tra quelle con ordine di derivata più basso, in
+Si individuano dunque le variabili d'ingresso tra quelle con ordine di derivata più basso, in
 questo caso la $e$ è differenziata zero volte, sarà un ingresso, in questo caso l'unico; le altre,
 differenziate una volta, saranno le potenziali variabili di uscita.
 \item Si scelgono le variabili di stato, si deve prima determinare l'ordine del sistema:\newline
 \emph{il
 numero di variabili di stato è pari alla somma del numero di volte che le variabili delle equazioni
-compaiono differenziate tolte le variabili di ingresso.}
+compaiono differenziate tolte le variabili d'ingresso.}
 
-Sommando l'ordine di derivazione di $i$ e $q$, variabili non di ingresso si ottiene dunque $n=2$.
+Sommando l'ordine di derivazione di $i$ e $q$, variabili non d'ingresso si ottiene dunque $n=2$.
 
 \item Si possono scegliere come variabili di stato tutte quelle che determinano le condizioni
 iniziali, ossia\newline
@@ -108,7 +108,7 @@ $$
 
 \section{Classificazione dei sistemi dinamici}
 Per comodità si riporta la \ref{eq.:ISU_generale} in forma più compatta.
-Si costruisce un vettore di variabili di stato, di ingressi e di uscite
+Si costruisce un vettore di variabili di stato, d'ingressi e di uscite
 $$
 x = \begin{bmatrix}
 x_1\\
@@ -136,7 +136,7 @@ Di conseguenza la $f$ sarà un vettore di funzioni
 $$\left.\begin{aligned}
 &f_1\left(x_1,...,x_n,u_1,...,u_m,t\right)=f_1(x,u,t)\\
 &\ \vdots\\
-&f_n\left(x_1,\dots,x_n,u_1,\dots,u_m,t\right)=f_n(x,u,t)
+&f_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)=f_n(x,u,t)
 \end{aligned}\right\} \Rightarrow f(x,u,t)=\begin{bmatrix}
 f_1(x,u,t)\\
 \vdots\\
@@ -169,8 +169,18 @@ y = g(x,u,t)
 Si suppone che le funzioni $f,g$ siano lineari in $x$ e $u$ ossia che possano essere espresse come
 combinazione lineare di quelle variabili $(x,u)$.
 
-Ad esempio la prima componente di $f$
+Ad esempio la funzione $f$
+$$\begin{aligned}
+&\dot{x}_1 = a_{11}(t)x_1+a_{12}(t)x_2 + \ldots + a_{1n}(t)x_n + b_{11}(t)u_1+\ldots+b_{1m}(t)u_m\\
+&\ \vdots\\
+&\dot{x}_n = a_{n1}(t)x_1 +  a_{n2}(t)x_2 + \ldots + a_{nn}(t)x_n + b_{n1}(t)u_1+\ldots+b_{nm}(t)u_m
+\end{aligned}
 $$
-\dot{x}_1 = a_{11}(t)x_1+a_{12}(t)x_2 + \dots + a_{1n}(t)x_n + b_{11}(t)u_1+\dots+b_{1m}(t)u_m
-$$
-1:09:08
+
+Analogamente la funzione $g$
+$$\begin{aligned}
+&g_1 = c_{11}(t)x_1 + \ldots + c_{1n}(t)x_n + d_{11}(t)u_1 + \ldots + d_{1m}(t)u_m\\
+&\ \vdots\\
+&g_p = c_{p1}(t)x_1 + \ldots + c_{pn}(t)x_n + d_{p1}(t)u_1+\ldots+d_{pm}(t)u_m
+\end{aligned}$$
+
