@@ -1,0 +1,277 @@
+%lezione_02.tex
+\chapter{Modelli di sistemi dinamici}
+I principali modelli di sistemi dinamici sono due:
+\begin{itemize}
+\item [$(IU)$]Ingresso-uscita
+\begin{equation}
+f\left(y^{(n)},y^{(n-1)},\ldots,y,u^{(m)},u^{(m-1)},\ldots,u\right)=0
+\label{eq.:modello_ingresso_uscita}
+\end{equation}
+con $m<n$ (per la regola di Cauchy) per avere un sistema strettamente causale. Con $m=n$ un sistema
+è causale ma non strettamente causale, in genere tutti i modelli fisici sono strettamente causali.
+La \ref{eq.:modello_ingresso_uscita} prende il nome di \textit{equazione generale del sistema}
+mentre $n$
+prende il nome di \textit{ordine del sistema}.
+La funzione può anche essere un sistema di equazioni differenziali di ordine inferiore.
+\item[$(ISU)$] Ingresso-stato-uscita
+\begin{equation}
+y(t) = x_1(t), \dot{y}(t) = x_2(t),\ldots,y^{(n-1)}(t)=x_n(t)
+\label{eq.:modello_ingresso_stato_uscita}
+\end{equation}
+Compaiono in questo modello tre tipologie di variabili, \textit{ingresso} e \textit{uscita} come nel
+caso precedente e le variabili \textit{di stato} necessarie a completare il problema di Cauchy.
+Un possibile insieme di variabili di stato sono quelle necessarie a specificare le condizioni
+iniziali dell'equazione differenziale. Questo insieme può essere definito come \textit{stato} del
+sistema.
+Nella \ref{eq.:modello_ingresso_stato_uscita} si vede che il numero di variabili di stato $(x_n)$
+necessarie alla risoluzione del problema è pari all'ordine del sistema.
+\end{itemize}
+
+Qualunque sistema dinamico può essere rappresentato con una diversa scelta delle variabili di
+stato, varieranno le equazioni ma il modello resta valido per quel determinato sistema. La
+rappresentazione ingresso-uscita è invece unica.
+
+Si vede che nella rappresentazione $ISU$, una volta ottenuta l'equazione del sistema, questa può
+essere trasformata per evidenziare particolari proprietà del sistema.
+
+\newpage
+\section{Costruzione di un modello ISU}
+Si può costruire seguendo quattro passaggi
+\begin{enumerate}
+\item Scrivere tutte le equazioni del sistema (eq. diff.) conoscendo il modello fisico del sistema
+\item Individuare le variabili d'ingresso e uscita, mediante il principio di causalità
+\item Scegliere le variabili di stato dopo averne individuato il numero. Una scelta possibile è
+quella mediante la regola di Cauchy
+\item Riscrivere le equazioni di partenza trovate al punto uno nella seguente forma
+\begin{equation}\left\{ \begin{aligned}
+&\dot{x}_1 = f_1\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)\\
+&\ \vdots \qquad \vdots\\
+&\dot{x}_n = f_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)\\
+&y_1 = g_1\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right) \\
+&\ \vdots \qquad \vdots\\
+&y_n = g_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)
+\end{aligned}\right.\qquad\text{ISU}
+\label{eq.:ISU_generale}
+\end{equation}
+la $t$ in questo caso indica l'eventuale tempo varianza dei parametri del sistema e non la
+dipendenza dal tempo delle variabili di stato (assunta vera implicitamente).
+\end{enumerate}
+
+\subsection{Costruzione modello ISU RLC}
+Si considera l'esempio mostrato in figura \ref{Fig.:circuito_RLC}, analizzando l'equazione
+\ref{eq.:ISU_generale} si vede che sono presenti $n$ equazioni differenziali di primo grado dato
+che le funzioni $f$ e $g$ sono equazioni algebriche, non contengono termini differenziali.
+Sono invece presenti $p$ equazioni puramente algebriche $g$ che legano lo stato, l'ingresso, il
+tempo alle uscite.
+
+\begin{enumerate}
+\item Ricordando l'equazione del sistema ricavata in \ref{eq:equazione_RLC}
+si formalizza il modello
+\begin{equation}\left\{
+\begin{aligned}
+ e &= R i + L\dot{i} + \frac{q}{C}\\
+ i &= \dot{q}
+\end{aligned}\right.\end{equation}
+\item Si individuano tutte le variabili: $e,i,q$
+
+Si individuano dunque le variabili d'ingresso tra quelle con ordine di derivata più basso, in
+questo caso la $e$ è differenziata zero volte, sarà un ingresso, in questo caso l'unico; le altre,
+differenziate una volta, saranno le potenziali variabili di uscita.
+\item Si scelgono le variabili di stato, si deve prima determinare l'ordine del sistema:\newline
+\emph{il
+numero di variabili di stato è pari alla somma del numero di volte che le variabili delle equazioni
+compaiono differenziate tolte le variabili d'ingresso.}
+
+Sommando l'ordine di derivazione di $i$ e $q$, variabili non d'ingresso si ottiene dunque $n=2$.
+
+\item Si possono scegliere come variabili di stato tutte quelle che determinano le condizioni
+iniziali, ossia\newline
+\emph{tutte le variabili che compaiono differenziate e in numero pari al numero di volte
+in cui viene differenziata.}
+
+Per il sistema in esame
+$$
+x_1 = q,\quad x_2 = i
+$$
+\item Scrittura delle equazioni in forma ISU
+
+$$
+\left\{\begin{aligned}
+\dot{x}_1 &= f_1\left(x_1,x_2,u\right) = \dot{q} = i = x_2\\
+\dot{x}_2 &=f_2(x_1,x_2,u) = \dot{i} = \frac{e}{L} - \frac{R}{L}i-\frac{1}{LC}q =\\
+&= -\frac{1}{LC}x_1 - \frac{R}{L}x_2 + \frac{1}{L}u\\
+y_1 &= i = g_1(x_1,x_2,u)=x_2\\
+y_2 &=q = g_2(x_1,x_2,u)=x_1
+\end{aligned}\right.
+$$
+\end{enumerate}
+
+\newpage
+\section{Classificazione dei sistemi dinamici}
+Per comodità si riporta la \ref{eq.:ISU_generale} in forma più compatta.
+Si costruisce un vettore di variabili di stato, d'ingressi e di uscite
+$$
+x = \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n
+\end{bmatrix} \in \mathbb{R}^n \textcolor{red}{\left(\in\mathbb{C}^n\right)}\
+u=\begin{bmatrix}
+u_1\\
+u_2\\
+\vdots\\
+u_m
+\end{bmatrix}\in\mathbb{R}^m\
+y=\begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_p
+\end{bmatrix}\in \mathbb{R}^p
+$$
+l'esistenza di variabili complesse per le variabili di stato è giustificata da scelte pratiche
+utili alla risoluzione del problema anche se non legate strettamente a fenomeni fisici.
+
+Di conseguenza la $f$ sarà un vettore di funzioni
+$$\left.\begin{aligned}
+&f_1\left(x_1,...,x_n,u_1,...,u_m,t\right)=f_1(x,u,t)\\
+&\ \vdots\\
+&f_n\left(x_1,\ldots,x_n,u_1,\ldots,u_m,t\right)=f_n(x,u,t)
+\end{aligned}\right\} \Rightarrow f(x,u,t)=\begin{bmatrix}
+f_1(x,u,t)\\
+\vdots\\
+f_n(x,u,t)
+\end{bmatrix}
+$$
+Analogamente per le funzioni $g$
+$$
+\left.\begin{aligned}
+&g_1(x,u,t)\\
+&\ \vdots\\
+&g_p(x,u,t)
+\end{aligned}\right\}\Rightarrow
+g(x,u,t) = \begin{bmatrix}
+g_1(x,u,t)\\
+\vdots\\
+g_p(x,u,t)
+\end{bmatrix}
+$$
+
+La forma generale della ISU diventa
+\begin{equation}\text{ISU }\left\{
+\begin{aligned}
+\dot{x} = f(x,u,t)\\
+y = g(x,u,t)
+\end{aligned}\right.
+\label{eq.:ISU_compatta}
+\end{equation}
+
+Si suppone che le funzioni $f,g$ siano lineari in $x$ e $u$ ossia che possano essere espresse come
+combinazione lineare di quelle variabili $(x,u)$.
+
+Ad esempio la funzione $f$
+$$\begin{aligned}
+&\dot{x}_1 = a_{11}(t)x_1+a_{12}(t)x_2 + \ldots + a_{1n}(t)x_n + b_{11}(t)u_1+\ldots+b_{1m}(t)u_m\\
+&\ \vdots\\
+&\dot{x}_n = a_{n1}(t)x_1 +  a_{n2}(t)x_2 + \ldots + a_{nn}(t)x_n + b_{n1}(t)u_1+\ldots+b_{nm}(t)u_m
+\end{aligned}
+$$
+
+Analogamente la funzione $g$
+$$\begin{aligned}
+&g_1 = c_{11}(t)x_1 + \ldots + c_{1n}(t)x_n + d_{11}(t)u_1 + \ldots + d_{1m}(t)u_m\\
+&\ \vdots\\
+&g_p = c_{p1}(t)x_1 + \ldots + c_{pn}(t)x_n + d_{p1}(t)u_1+\ldots+d_{pm}(t)u_m
+\end{aligned}$$
+
+Si può scrivere il sistema in forma vettoriale ottenuto dal prodotto di un vettore riga contenente
+i coefficienti e un vettore colonna contenente le variabili, questo per ogni elemento di
+$\dot{x}$, si ottiene dunque una matrice $n\times n$ di coefficienti ed un vettore colonna di
+variabili $x$.
+$$\begin{aligned}
+f = \dot{x} = A \cdot x + B\cdot u
+\end{aligned}
+$$
+con
+$$
+A = \begin{bmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \dots & a_{nn}
+\end{bmatrix} \in \mathbb{R}^{n\times n} \quad
+B = \begin{bmatrix}
+b_{11} & \dots & b_{1m} \\
+\vdots & \ddots & \vdots \\
+b_{n1} & \dots & b_{nm}
+\end{bmatrix} \in \mathbb{R}^{n\times m}
+$$
+La matrice $A$ è sempre quadrata mentre la matrice $B$ ha una dimensione che dipende dal numero di
+ingressi e può diventare un vettore se l'ingresso è unico.
+
+Si ripete la procedura per le funzioni $g$
+$$
+g = y = C\cdot x + D\cdot u
+$$
+con
+$$
+C = \begin{bmatrix}
+c_{11} & \dots & c_{1n} \\
+\vdots & \ddots & \vdots \\
+c_{p1} & \dots & c_{pn}
+\end{bmatrix} \in \mathbb{R}^{p\times n} \quad
+D = \begin{bmatrix}
+d_{11} & \dots & d_{1m} \\
+\vdots & \ddots & \vdots \\
+d_{p1} & \dots & d_{pm}
+\end{bmatrix} \in \mathbb{R}^{p\times m}
+$$
+La matrice $D$ diventa uno scalare se il sistema ha un solo ingresso e una sola uscita.
+
+Riassumendo
+\begin{equation}
+\text{ISU } \left\{\begin{aligned}
+\dot{x} &= A(t)x + B(t) u \\
+y &= C(t) x + D(t) u
+\end{aligned}\right.
+\label{eq.:ISU_compatta_matrice}
+\end{equation}
+\emph{Un sistema si dice \textbf{lineare} se le funzioni $f$ e $g$ sono entrambe lineari nello stato
+e nell'ingresso},
+ossia se possono essere scritte nella forma \ref{eq.:ISU_compatta_matrice}.
+
+Se le equazioni del sistema compaiono nella seguente forma
+$$\left\{\begin{aligned}
+\dot{x} &= f(x,u)\\
+y &= g(x,u)\end{aligned}\right.
+$$
+allora il sistema si dice \textit{stazionario} o \textit{tempo invariante},
+ossia il sistema avrà sempre la stessa evoluzione fissato l'ingresso e lo stato iniziale. In caso
+contrario il sistema si comporterebbe in maniera differente a seconda di quando viene
+sollecitato e analizzato.
+Se il sistema gode di entrambe le proprietà si dirà \textit{Lineare Tempo Invariante} e saranno
+quelli prevalentemente analizzati nel corso, sono sempre risolvibili.
+\newpage
+\subsection{Ulteriori classificazioni}
+Nel seguente sistema, l'uscita non dipende \textit{direttamente} dall'ingresso
+$$
+\left\{\begin{aligned}
+\dot{x} &= f(x,u,t) \\
+y &= g(x,t)
+\end{aligned}
+\right.
+$$
+viene definito \emph{sistema strettamente proprio}, in caso contrario è \emph{proprio}.
+
+Nel caso di sistemi lineari
+$$
+\left\{
+\begin{aligned}
+\dot{x} &= Ax + Bu \\
+y &= Cx
+\end{aligned}
+\right. \qquad D = 0 \Leftrightarrow \text{Strettamente proprio}
+$$
+In natura esistono solo sistemi strettamente propri, non esistono quelli propri,
+qualunque ingresso ha bisogno di propagarsi nel sistema entro un certo tempo, non può quindi
+modificare l'uscita istantaneamente.

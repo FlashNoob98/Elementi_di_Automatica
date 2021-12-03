@@ -280,3 +280,6 @@ TSWLatexianTemp*
 
 # Pdf output (manually add to releases)
 *.pdf
+
+#Visual Studio dictionary
+.vscode/
