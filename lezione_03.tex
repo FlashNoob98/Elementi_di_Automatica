@@ -32,3 +32,78 @@ Si aggiungono ai bipoli passivi i generatori di tensione e corrente
 \draw (4,2) [current source,i<^=$i$] to (4,0);
 \end{circuitikz}
 \end{figure}
+
+\subsection{Esempio rete RLC}
+Si ha la seguente rete
+\begin{figure}[h]
+\centering
+\begin{circuitikz}
+\draw (0,0) to [voltage source,v=$e$]  (0,2)
+            to [L=$L$,i>^=$i_L$,-*] (2,2)  node[above,label]{$A$}
+            to [C,l_=$C$,i>_=$i_C$] (2,0)
+            to (0,0);
+\draw (2,2) to (3,2) to [R=$R$,i>^=$i_R$] (3,0) to (2,0);
+\end{circuitikz}
+\end{figure}
+
+Si ricavano le equazioni del sistema utilizzando in questo caso le leggi di Kirchhoff applicate al
+nodo $A$ e alla prima maglia (che comprende il generatore)
+$$\left\{\begin{aligned}
+i_L &= i_C + i_R &\Rightarrow&\ i_L = C\dot{v}_C + \frac{v_C}{R}\\
+e &= v_L + v_C &\Rightarrow&\ e = L\dot{i}_L + v_C\\
+v_C &= v_R
+\end{aligned}\right.
+$$
+
+Elaborando le equazioni si vede che alcune variabili potranno risultare superflue, ad esempio in
+questo caso $v_C$ e $v_R$ sono la stessa grandezza.
+
+Si individuano ora le variabili e si dividono in ingressi e uscite al fine di rispettare il
+principio di causalità ricordando che gli ingressi compaiono differenziati un numero minore di volte
+$$\begin{matrix}
+e& i_L& v_C\\
+(0) & (1) & (1)\\
+u & y & y\\
+u & x_1 & x_2
+\end{matrix}
+$$
+
+Si scelgono le variabili di stato, applicando la legge di Cauchy, il numero di ingressi è pari a
+due perché entrambe le variabili compaiono differenziate una sola volta.
+$$
+n=2,\ x_1 = i_L,\ x_2 = v_C
+$$
+
+Si scrive quindi la ISU (il sistema è tempo invariante quindi le funzioni della ISU non dipendono
+da $t$
+$$\begin{aligned}
+\dot{x}_1 &= f_1(x_1,x_2,u) = \dot{i}_L = \frac{e}{L} - \frac{v_C}{L} = -\frac{1}{L}x_2 +
+\frac{1}{L} u\\
+\dot{x}_2 &= f_2(x_1,x_2,u) = \dot{v}_C = \frac{i_L}{C} - \frac{v_C}{RC} = \frac{1}{C}x_1 -
+\frac{1}{RC}x_2
+\end{aligned}$$
+
+Andrebbero aggiunte le relazioni che legano le uscite all'effettiva variabile di studio ad esempio
+la tensione ai capi della resistenza e la corrente nell'induttanza, dunque
+$$
+y_1 = v_R,\ y_2 = i_L
+$$
+ma riferendosi al modello ISU
+$$\begin{aligned}
+y_1 &= g_1(x_1,x_2,\cancel{u}) = v_R = v_C = x_2\\
+y_2 &= g_2(x_1,x_2,\cancel{u}) = i_L = x_1
+\end{aligned}$$
+
+Si vuole ora classificare la ISU, si verifica la linearità, tutte le funzioni $f$ e $g$ sono
+lineari nello stato e negli ingressi, di conseguenza il sistema è lineare, è anche tempo invariante
+dato che i parametri del sistema sono costanti nel tempo.
+
+Si afferma ora che il sistema è strettamente proprio, ossia nell'espressione della $g$
+non compare l'ingresso $u$.
+
+Si riscrive il sistema in forma compatta utilizzando la notazione
+\ref{eq.:ISU_compatta_matrice}
+$$
+37:39
+$$
+
