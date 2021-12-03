@@ -106,6 +106,7 @@ y_2 &=q = g_2(x_1,x_2,u)=x_1
 $$
 \end{enumerate}
 
+\newpage
 \section{Classificazione dei sistemi dinamici}
 Per comodità si riporta la \ref{eq.:ISU_generale} in forma più compatta.
 Si costruisce un vettore di variabili di stato, d'ingressi e di uscite
@@ -225,3 +226,52 @@ d_{11} & \dots & d_{1m} \\
 d_{p1} & \dots & d_{pm}
 \end{bmatrix} \in \mathbb{R}^{p\times m}
 $$
+La matrice $D$ diventa uno scalare se il sistema ha un solo ingresso e una sola uscita.
+
+Riassumendo
+\begin{equation}
+\text{ISU } \left\{\begin{aligned}
+\dot{x} &= A(t)x + B(t) u \\
+y &= C(t) x + D(t) u
+\end{aligned}\right.
+\label{eq.:ISU_compatta_matrice}
+\end{equation}
+\emph{Un sistema si dice \textbf{lineare} se le funzioni $f$ e $g$ sono entrambe lineari nello stato
+e nell'ingresso},
+ossia se possono essere scritte nella forma \ref{eq.:ISU_compatta_matrice}.
+
+Se le equazioni del sistema compaiono nella seguente forma
+$$\left\{\begin{aligned}
+\dot{x} &= f(x,u)\\
+y &= g(x,u)\end{aligned}\right.
+$$
+allora il sistema si dice \textit{stazionario} o \textit{tempo invariante},
+ossia il sistema avrà sempre la stessa evoluzione fissato l'ingresso e lo stato iniziale. In caso
+contrario il sistema si comporterebbe in maniera differente a seconda di quando viene
+sollecitato e analizzato.
+Se il sistema gode di entrambe le proprietà si dirà \textit{Lineare Tempo Invariante} e saranno
+quelli prevalentemente analizzati nel corso, sono sempre risolvibili.
+\newpage
+\subsection{Ulteriori classificazioni}
+Nel seguente sistema, l'uscita non dipende \textit{direttamente} dall'ingresso
+$$
+\left\{\begin{aligned}
+\dot{x} &= f(x,u,t) \\
+y &= g(x,t)
+\end{aligned}
+\right.
+$$
+viene definito \emph{sistema strettamente proprio}, in caso contrario è \emph{proprio}.
+
+Nel caso di sistemi lineari
+$$
+\left\{
+\begin{aligned}
+\dot{x} &= Ax + Bu \\
+y &= Cx
+\end{aligned}
+\right. \qquad D = 0 \Leftrightarrow \text{Strettamente proprio}
+$$
+In natura esistono solo sistemi strettamente propri, non esistono quelli propri,
+qualunque ingresso ha bisogno di propagarsi nel sistema entro un certo tempo, non può quindi
+modificare l'uscita istantaneamente.
