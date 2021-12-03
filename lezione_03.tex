@@ -1,0 +1,34 @@
+\section{Sistemi elettrici}
+Si richiamano le convenzioni utilizzate nei sistemi elettrici, saranno composti da uno o più
+generatori di tensione o corrente e composti da bipoli passivi.
+
+Verrà utilizzata la convenzione dell'utilizzatore per i seguenti bipoli
+\begin{figure}[h]
+\centering
+\begin{circuitikz}
+\draw (0,2) [R=$R$,i>^=$i$,v<=$v$] to (0,0);
+\draw (1.5,1) node[label]{$v = Ri$};
+\draw (4,2) [C=$C$,i>^=$i$,v<=$v$] to (4,0);
+\draw (5.8,1) node[label]{$q = Cv$};
+\draw (7.5,2) [L=$L$,i>^=$i$,v<=$v$] to (7.5,0);
+\draw (9,1) node[label]{$\Phi = Li$};
+\end{circuitikz}
+\end{figure}
+
+Derivando le equazioni dei bipoli dinamici rispetto al tempo si ottiene
+$$\begin{aligned}
+q &= Cv\stackrel{\frac{d}{dt}}{\rightarrow} \frac{dq}{dt} = i =
+\frac{d}{dt} \left(Cv\right) \stackrel{C\text{ cost}}{=} C\frac{dv}{dt} = C\dot{v}\\
+\Phi &= Li \stackrel{\frac{d}{dt}}{\rightarrow} \frac{d\Phi}{dt} = v = \frac{d}{dt}\left(Li \right)
+\stackrel{L\text{ cost}}{=} L \frac{di}{dt} = L \dot{i}
+\end{aligned}$$
+
+Si aggiungono ai bipoli passivi i generatori di tensione e corrente
+\begin{figure}[h]
+\centering
+\begin{circuitikz}[american voltages]
+\draw (0,0) [european voltage source] to (0,2);
+\draw (0.5,2) to [open, v^>=$ $,l=$e$] (0.5,0);
+\draw (4,2) [current source,i<^=$i$] to (4,0);
+\end{circuitikz}
+\end{figure}
