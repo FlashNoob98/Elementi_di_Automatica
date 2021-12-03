@@ -184,3 +184,44 @@ $$\begin{aligned}
 &g_p = c_{p1}(t)x_1 + \ldots + c_{pn}(t)x_n + d_{p1}(t)u_1+\ldots+d_{pm}(t)u_m
 \end{aligned}$$
 
+Si può scrivere il sistema in forma vettoriale ottenuto dal prodotto di un vettore riga contenente
+i coefficienti e un vettore colonna contenente le variabili, questo per ogni elemento di
+$\dot{x}$, si ottiene dunque una matrice $n\times n$ di coefficienti ed un vettore colonna di
+variabili $x$.
+$$\begin{aligned}
+f = \dot{x} = A \cdot x + B\cdot u
+\end{aligned}
+$$
+con
+$$
+A = \begin{bmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \dots & a_{nn}
+\end{bmatrix} \in \mathbb{R}^{n\times n} \quad
+B = \begin{bmatrix}
+b_{11} & \dots & b_{1m} \\
+\vdots & \ddots & \vdots \\
+b_{n1} & \dots & b_{nm}
+\end{bmatrix} \in \mathbb{R}^{n\times m}
+$$
+La matrice $A$ è sempre quadrata mentre la matrice $B$ ha una dimensione che dipende dal numero di
+ingressi e può diventare un vettore se l'ingresso è unico.
+
+Si ripete la procedura per le funzioni $g$
+$$
+g = y = C\cdot x + D\cdot u
+$$
+con
+$$
+C = \begin{bmatrix}
+c_{11} & \dots & c_{1n} \\
+\vdots & \ddots & \vdots \\
+c_{p1} & \dots & c_{pn}
+\end{bmatrix} \in \mathbb{R}^{p\times n} \quad
+D = \begin{bmatrix}
+d_{11} & \dots & d_{1m} \\
+\vdots & \ddots & \vdots \\
+d_{p1} & \dots & d_{pm}
+\end{bmatrix} \in \mathbb{R}^{p\times m}
+$$
