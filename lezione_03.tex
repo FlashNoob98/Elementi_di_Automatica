@@ -141,7 +141,27 @@ Si analizza il seguente circuito
 Applicando le leggi di Kirchhoff
 $$\begin{aligned}
 A: i_1 &= i_{R_1} + i_{C_1} + i_L\\
-B: i_L &= i_{C_2} + i_{R_2} + i_2
+B: i_L &= i_{C_2} + i_{R_2} + i_2 \\
+M: v_1 &= v_L + v_2
 \end{aligned}
 $$
-53:35
+
+Sono presenti più variabili che equazioni, si utilizzano le equazioni caratteristiche dei bipoli per ridurre il sistema, sviluppando le precedenti si ottiene:
+$$
+\begin{aligned}
+ A: &= \frac{v_1}{R_1} + C_1\dot{v}_1 + i_L \\
+ B: &= C_2\dot{v}_2 + \frac{v_2}{R_2} + i_2 \\
+ M: &= v_1 = v_2 + v_2 = L\dot{i_L} + v_2
+\end{aligned}
+$$
+
+Ora si indicano le variabili presenti nelle espressioni appena ricavate e vanno classificate tra causa ed effetto, contando il massimo ordine di differenziazione di ciascuna:
+$$\begin{aligned}
+ i_1& &i_2& & v_1& &v_2& &i_L \\
+ (0)& &(0)& & (1)& &(1)  & &(1)
+\end{aligned}$$
+Le prime due variabili saranno le cause, le restanti le uscite o gli effetti.
+
+L'ordine del sistema $(n)$ è pari alla somma degli ordini di differenziazione delle variabili non di ingresso, ossia $3\times 1 = 3$
+
+1:04:59
