@@ -11,13 +11,58 @@ Solitamente sono anche indicati i morsetti di alimentazione.
  \begin{circuitikz}
   \draw (0,0) node[op amp, anchor=-](OA){}
  (OA.+) -- ++(-1,0)
- to [short, -o] (-1,-1);
+ to [short, -*] (-1,-1);
  \draw
 (OA.-) -- ++(-1,0)
- to [short, -o] (-1,0);
+ to [short, -*] (-1,0);
  \draw (-1,-1) to [open,v^>=$e$] (-1,0);
- \draw (OA.out) -- ++(0,0) to [open,v^<=$v_{out}$] ++(0,-1)
+ \draw (OA.out) -- ++(0,0) to [open,v^<=$v$,*-*] ++(0,-1)
   node[ground]{} ;
+  \draw (OA.up)  node[vcc]{$+V_{cc}$};
+  \draw (OA.down) node[vee]{$-V_{cc}$};
  \end{circuitikz}
+\end{figure}
+L'equazione caratteristica è
+$$
+v = -Ae
+$$
+Solitamente il valore $A$ è molto grande, anche \SI{e6}{} così come l'impedenza
+d'ingresso tra i morsetti $+$ e $-$.
 
+Dato un segnale in ingresso dunque, questo verrà restituito in uscita invertito
+ed amplificato. Questa condizione è verificata se si suppone che la $v$ è
+compresa tra i valori $[-V_{cc},+V_{cc}]$ di alimentazione.
+In caso contrario l'uscita verrebbe ``tagliata'' e ci sarebbe un comportamento
+non lineare, ipotesi di lavoro sempre evitata in questo corso.
+
+Di conseguenza il segnale d'ingresso dovrebbe essere di valori pari a $v/A$,
+valori bassissimi, si può ritenere dunque che la caduta di tensione
+all'ingresso sarà prossima a \SI{0}{\volt}, è quindi come se l'ingresso fosse
+un corto circuito (anche se non lo è).
+
+L'impedenza d'ingresso, essendo di ordine elevato, implica che anche la
+corrente nello stadio d'ingresso sia prossima a \si{0}, quindi si può modellare
+come un circuito aperto.
+
+In conclusione lo stadio d'ingresso si comporta sia da circuito chiuso che
+circuito aperto e viene chiamato \textbf{corto circuito virtuale}.
+
+Lo stadio d'uscita è confrontabile con un generatore ideale di tensione.
+
+Si consideri il seguente circuito:
+\begin{figure}[H]
+\centering
+\begin{circuitikz}
+\draw (3,-.5) node[op amp](op2){}
+      (0,0) to [R=$R_1$,*-*]  (op2.-)
+            to ++(0,1)
+            to [R=$R_2$] (4,1);
+\draw (op2.out) |- (4,1) ;
+\draw (op2.out) to [short,-*] ++(1,0)
+                to [open,-*,v^<=$v$] ++(0,-0.5)
+                node[ground]{};
+\draw (op2.+) to [short] ++(0,-.5)
+        node[ground]{};
+\draw (0,-1.5) node[ground]{} to [open,v^>=$e$,*-*] (0,0);
+\end{circuitikz}
 \end{figure}
