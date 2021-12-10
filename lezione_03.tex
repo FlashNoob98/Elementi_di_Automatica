@@ -1,5 +1,6 @@
 \section{Sistemi elettrici}
-Si richiamano le convenzioni utilizzate nei sistemi elettrici, saranno composti da uno o più
+Si richiamano le convenzioni utilizzate nei sistemi elettrici, saranno composti
+da uno o più
 generatori di tensione o corrente e composti da bipoli passivi.
 
 Verrà utilizzata la convenzione dell'utilizzatore per i seguenti bipoli
@@ -46,7 +47,8 @@ Si ha la seguente rete
 \end{circuitikz}
 \end{figure}
 
-Si ricavano le equazioni del sistema utilizzando in questo caso le leggi di Kirchhoff applicate al
+Si ricavano le equazioni del sistema utilizzando in questo caso le leggi di
+Kirchhoff applicate al
 nodo $A$ e alla prima maglia (che comprende il generatore)
 $$\left\{\begin{aligned}
 i_L &= i_C + i_R &\Rightarrow&\ i_L = C\dot{v}_C + \frac{v_C}{R}\\
@@ -55,10 +57,12 @@ v_C &= v_R
 \end{aligned}\right.
 $$
 
-Elaborando le equazioni si vede che alcune variabili potranno risultare superflue, ad esempio in
+Elaborando le equazioni si vede che alcune variabili potranno risultare
+superflue, ad esempio in
 questo caso $v_C$ e $v_R$ sono la stessa grandezza.
 
-Si individuano ora le variabili e si dividono in ingressi e uscite al fine di rispettare il
+Si individuano ora le variabili e si dividono in ingressi e uscite al fine di
+rispettare il
 principio di causalità ricordando che gli ingressi compaiono differenziati un numero minore di volte
 $$\begin{matrix}
 e& i_L& v_C\\
@@ -68,13 +72,15 @@ u & x_1 & x_2
 \end{matrix}
 $$
 
-Si scelgono le variabili di stato, applicando la legge di Cauchy, il numero di ingressi è pari a
+Si scelgono le variabili di stato, applicando la legge di Cauchy, il numero di
+ingressi è pari a
 due perché entrambe le variabili compaiono differenziate una sola volta.
 $$
 n=2,\ x_1 = i_L,\ x_2 = v_C
 $$
 
-Si scrive quindi la ISU (il sistema è tempo invariante quindi le funzioni della ISU non dipendono
+Si scrive quindi la ISU (il sistema è tempo invariante quindi le funzioni della
+ISU non dipendono
 da $t$
 $$\begin{aligned}
 \dot{x}_1 &= f_1(x_1,x_2,u) = \dot{i}_L = \frac{e}{L} - \frac{v_C}{L} = -\frac{1}{L}x_2 +
@@ -146,7 +152,9 @@ M: v_1 &= v_L + v_2
 \end{aligned}
 $$
 
-Sono presenti più variabili che equazioni, si utilizzano le equazioni caratteristiche dei bipoli per ridurre il sistema, sviluppando le precedenti si ottiene:
+Sono presenti più variabili che equazioni, si utilizzano le equazioni
+caratteristiche dei bipoli per ridurre il sistema, sviluppando le precedenti si
+ottiene:
 $$
 \begin{aligned}
  A: &= \frac{v_1}{R_1} + C_1\dot{v}_1 + i_L \\
@@ -155,7 +163,9 @@ $$
 \end{aligned}
 $$
 
-Ora si indicano le variabili presenti nelle espressioni appena ricavate e vanno classificate tra causa ed effetto, contando il massimo ordine di differenziazione di ciascuna:
+Ora si indicano le variabili presenti nelle espressioni appena ricavate e vanno
+classificate tra causa ed effetto, contando il massimo ordine di
+differenziazione di ciascuna:
 $$\begin{aligned}
  i_1& &i_2& & v_1& &v_2& &i_L \\
  (0)& &(0)& & (1)& &(1)  & &(1)\\
@@ -163,7 +173,8 @@ $$\begin{aligned}
 \end{aligned}$$
 Le prime due variabili saranno le cause, le restanti le uscite o gli effetti.
 
-L'ordine del sistema $(n)$ è pari alla somma degli ordini di differenziazione delle variabili non di ingresso, ossia $1 + 1 + 1 = 3$
+L'ordine del sistema $(n)$ è pari alla somma degli ordini di differenziazione
+delle variabili non di ingresso, ossia $1 + 1 + 1 = 3$
 
 Vanno scelte le variabili di stato, in questo caso la scelta è obbligata dato che sono tutte variabili differenziate al primo ordine, quindi
 $$
@@ -185,7 +196,10 @@ y_1 &= v_1 & &= x_1 & &= \textcolor{ForestGreen}{g_1(x_1,x_2,x_3,u_1,u_2,t)}\\
 y_2 &= i_{C_1}  = C_1\dot{v}_1 = C_1\dot{x}_1 = C_1 \textcolor{ForestGreen}{f_1} & &= -\frac{1}{R_1}x_1 -x_3 + u_1 & & = \textcolor{ForestGreen}{g_2(x_1,x_2,x_3,u_1,u_2,t)}
 \end{aligned}$$
 
-Per caratterizzare il sistema si verifica che tutte le equazioni sono lineari e i coefficienti sono tempo-invarianti, inoltre non è strettamente proprio dato la dipendenza diretta della variabile $y_2$ da $u_1$ di conseguenza il sistema è lineare-tempo-invariante-causale (LTIC).
+Per caratterizzare il sistema si verifica che tutte le equazioni sono lineari e
+i coefficienti sono tempo-invarianti, inoltre non è strettamente proprio dato
+la dipendenza diretta della variabile $y_2$ da $u_1$ di conseguenza il sistema
+è lineare-tempo-invariante-causale (LTIC).
 La causalità dipende dunque dalle uscite richieste.
 
 %1:22:30
@@ -216,4 +230,34 @@ y &= \begin{bmatrix}
 1 & 0
 \end{bmatrix}u & &= Cx +Du
 \end{align*}
-1:29:48
+
+Una possibile scelta immediata delle variabili di stato è quella delle tensioni
+ai capi delle capacità e le correnti attraverso le induttanze, premesso che
+siano quelle equivalenti nel caso in cui siano presenti induttanze in serie o
+capacità in parallelo.
+Un'altra possibile scelta di variabili di stato è quella che permette di
+descrivere lo stato energetico del sistema.
+
+\newpage
+\subsubsection{Esempio RLC con definizione parametri ISU}
+Si vuole risolvere una rete RLC serie utilizzando direttamente le variabili in
+formato ISU.
+\begin{figure}[H]
+\centering
+\begin{circuitikz}
+\draw (0,0) to [voltage source,v=$u$] (0,2)
+            to [L=$L$,i>^=$x_1$] (2,2)
+            to [C,l_=$C$,v^<=$x_2$] (2,0)
+            to [R,l_=$R$,v^<=$v_R$] (0,0);
+\end{circuitikz}
+\end{figure}
+Il sistema di equazioni sarà
+$$\left\{ \begin{aligned}
+u &= L\dot{x}_1 + x_2 +Rx_1 \\
+x_1 &= C \dot{x}_2
+\end{aligned}\right.\Rightarrow
+\left\{ \begin{aligned}
+\dot{x}_1 &= -\frac{R}{L}x_1 -\frac{1}{L} x_2 +\frac{1}{L}u \\
+\dot{x}_2 &= \frac{1}{C} x_1
+\end{aligned}\right.
+$$
