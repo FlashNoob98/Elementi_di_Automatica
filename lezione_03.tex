@@ -1,0 +1,263 @@
+\section{Sistemi elettrici}
+Si richiamano le convenzioni utilizzate nei sistemi elettrici, saranno composti
+da uno o più
+generatori di tensione o corrente e composti da bipoli passivi.
+
+Verrà utilizzata la convenzione dell'utilizzatore per i seguenti bipoli
+\begin{figure}[h]
+\centering
+\begin{circuitikz}
+\draw (0,2) [R=$R$,i>^=$i$,v<=$v$] to (0,0);
+\draw (1.5,1) node[label]{$v = Ri$};
+\draw (4,2) [C=$C$,i>^=$i$,v<=$v$] to (4,0);
+\draw (5.8,1) node[label]{$q = Cv$};
+\draw (7.5,2) [L=$L$,i>^=$i$,v<=$v$] to (7.5,0);
+\draw (9,1) node[label]{$\Phi = Li$};
+\end{circuitikz}
+\end{figure}
+
+Derivando le equazioni dei bipoli dinamici rispetto al tempo si ottiene
+$$\begin{aligned}
+q &= Cv\stackrel{\frac{d}{dt}}{\rightarrow} \frac{dq}{dt} = i =
+\frac{d}{dt} \left(Cv\right) \stackrel{C\text{ cost}}{=} C\frac{dv}{dt} = C\dot{v}\\
+\Phi &= Li \stackrel{\frac{d}{dt}}{\rightarrow} \frac{d\Phi}{dt} = v = \frac{d}{dt}\left(Li \right)
+\stackrel{L\text{ cost}}{=} L \frac{di}{dt} = L \dot{i}
+\end{aligned}$$
+
+Si aggiungono ai bipoli passivi i generatori di tensione e corrente
+\begin{figure}[h]
+\centering
+\begin{circuitikz}[american voltages]
+\draw (0,0) [european voltage source] to (0,2);
+\draw (0.5,2) to [open, v^>=$ $,l=$e$] (0.5,0);
+\draw (4,2) [current source,i<^=$i$] to (4,0);
+\end{circuitikz}
+\end{figure}
+
+\subsection{Esempio rete RLC}
+Si ha la seguente rete
+\begin{figure}[h]
+\centering
+\begin{circuitikz}
+\draw (0,0) to [voltage source,v=$e$]  (0,2)
+            to [L=$L$,i>^=$i_L$,-*] (2,2)  node[above,label]{$A$}
+            to [C,l_=$C$,i>_=$i_C$] (2,0)
+            to (0,0);
+\draw (2,2) to (3,2) to [R=$R$,i>^=$i_R$] (3,0) to (2,0);
+\end{circuitikz}
+\end{figure}
+
+Si ricavano le equazioni del sistema utilizzando in questo caso le leggi di
+Kirchhoff applicate al
+nodo $A$ e alla prima maglia (che comprende il generatore)
+$$\left\{\begin{aligned}
+i_L &= i_C + i_R &\Rightarrow&\ i_L = C\dot{v}_C + \frac{v_C}{R}\\
+e &= v_L + v_C &\Rightarrow&\ e = L\dot{i}_L + v_C\\
+v_C &= v_R
+\end{aligned}\right.
+$$
+
+Elaborando le equazioni si vede che alcune variabili potranno risultare
+superflue, ad esempio in
+questo caso $v_C$ e $v_R$ sono la stessa grandezza.
+
+Si individuano ora le variabili e si dividono in ingressi e uscite al fine di
+rispettare il
+principio di causalità ricordando che gli ingressi compaiono differenziati un numero minore di volte
+$$\begin{matrix}
+e& i_L& v_C\\
+(0) & (1) & (1)\\
+u & y & y\\
+u & x_1 & x_2
+\end{matrix}
+$$
+
+Si scelgono le variabili di stato, applicando la legge di Cauchy, il numero di
+ingressi è pari a
+due perché entrambe le variabili compaiono differenziate una sola volta.
+$$
+n=2,\ x_1 = i_L,\ x_2 = v_C
+$$
+
+Si scrive quindi la ISU (il sistema è tempo invariante quindi le funzioni della
+ISU non dipendono
+da $t$
+$$\begin{aligned}
+\dot{x}_1 &= f_1(x_1,x_2,u) = \dot{i}_L = \frac{e}{L} - \frac{v_C}{L} = -\frac{1}{L}x_2 +
+\frac{1}{L} u\\
+\dot{x}_2 &= f_2(x_1,x_2,u) = \dot{v}_C = \frac{i_L}{C} - \frac{v_C}{RC} = \frac{1}{C}x_1 -
+\frac{1}{RC}x_2
+\end{aligned}$$
+
+Andrebbero aggiunte le relazioni che legano le uscite all'effettiva variabile di studio ad esempio
+la tensione ai capi della resistenza e la corrente nell'induttanza, dunque
+$$
+y_1 = v_R,\ y_2 = i_L
+$$
+ma riferendosi al modello ISU
+$$\begin{aligned}
+y_1 &= g_1(x_1,x_2,\cancel{u}) = v_R = v_C = x_2\\
+y_2 &= g_2(x_1,x_2,\cancel{u}) = i_L = x_1
+\end{aligned}$$
+
+Si vuole ora classificare la ISU, si verifica la linearità, tutte le funzioni $f$ e $g$ sono
+lineari nello stato e negli ingressi, di conseguenza il sistema è lineare, è anche tempo invariante
+dato che i parametri del sistema sono costanti nel tempo.
+
+Si afferma ora che il sistema è strettamente proprio, ossia nell'espressione della $g$
+non compare l'ingresso $u$.
+
+Si riscrive il sistema in forma compatta utilizzando la notazione
+\ref{eq.:ISU_compatta_matrice} ponendo
+$$\begin{aligned}
+x &= \begin{pmatrix}x_1\\x_2 \end{pmatrix},& u &= \begin{pmatrix} u \end{pmatrix},&
+y&=\begin{pmatrix}
+y_1 \\y_2 \end{pmatrix}\\
+n&=2& m&=1&  p&=2
+\end{aligned}
+$$
+dunque
+\begin{equation}\left\{\begin{aligned}
+&\dot{x} = \begin{bmatrix}
+0 & -\frac{1}{L}\\
+\frac{1}{C} & -\frac{1}{RC}
+\end{bmatrix} x + \begin{bmatrix}\frac{1}{L}\\0 \end{bmatrix} u\\
+&y =\begin{bmatrix}
+0 & 1\\
+1 & 0
+\end{bmatrix} x + \begin{bmatrix}0\\0 \end{bmatrix}u
+\end{aligned}\right.\end{equation}
+\newpage
+
+\subsection{Esempio rete RLC 2}
+Si analizza il seguente circuito
+\begin{figure}[h]
+\centering
+\begin{circuitikz}
+\draw (0,0) to [current source,i=$i_1$] (0,2) to (2,2) node[above,label]{$A$}
+            to [R=$R_1$,i>_=$i_{R_1}$,v<=$v_1$,*-] (2,0) to (0,0);
+\draw (2,2) to (4,2) to [C=$C_1$,i>_=$i_{C_1}$] (4,0) to (2,0);
+\draw (4,2) to [L=$L$,i>^=$i_L$] (6,2)
+            to [C=$C_2$,i>^=$i_{C_2}$,v<=$v_{C_2}$] (6,0) to (4,0);
+\draw (6,2) to (8,2) node[above,label]{$B$} to [R=$R_2$,i>^=$i_{R_2}$,*-] (8,0) to (6,0);
+\draw (8,2) to (10,2) to [current source,i>^=$i_2$] (10,0) to (8,0);
+\end{circuitikz}
+\end{figure}
+
+Applicando le leggi di Kirchhoff
+$$\begin{aligned}
+A: i_1 &= i_{R_1} + i_{C_1} + i_L\\
+B: i_L &= i_{C_2} + i_{R_2} + i_2 \\
+M: v_1 &= v_L + v_2
+\end{aligned}
+$$
+
+Sono presenti più variabili che equazioni, si utilizzano le equazioni
+caratteristiche dei bipoli per ridurre il sistema, sviluppando le precedenti si
+ottiene:
+$$
+\begin{aligned}
+ A: &= \frac{v_1}{R_1} + C_1\dot{v}_1 + i_L \\
+ B: &= C_2\dot{v}_2 + \frac{v_2}{R_2} + i_2 \\
+ M: &= v_1 = v_2 + v_2 = L\dot{i_L} + v_2
+\end{aligned}
+$$
+
+Ora si indicano le variabili presenti nelle espressioni appena ricavate e vanno
+classificate tra causa ed effetto, contando il massimo ordine di
+differenziazione di ciascuna:
+$$\begin{aligned}
+ i_1& &i_2& & v_1& &v_2& &i_L \\
+ (0)& &(0)& & (1)& &(1)  & &(1)\\
+ u_1& &u_2& & x_1& &x_2& &x_3
+\end{aligned}$$
+Le prime due variabili saranno le cause, le restanti le uscite o gli effetti.
+
+L'ordine del sistema $(n)$ è pari alla somma degli ordini di differenziazione
+delle variabili non di ingresso, ossia $1 + 1 + 1 = 3$
+
+Vanno scelte le variabili di stato, in questo caso la scelta è obbligata dato che sono tutte variabili differenziate al primo ordine, quindi
+$$
+x_1 = v_1,\ x_2 = v_2,\ x_3 = i_L
+$$
+
+\newpage
+Si devono dunque riscrivere le equazioni nella forma ISU isolando le variabili di stato dalle equazioni del sistema
+
+$$\begin{aligned}
+\dot{x}_1 &= \dot{v}_1 = \frac{1}{C_1}i_1 - \frac{1}{R_1C_1}v_1 - \frac{1}{C_1}i_L & &= -\frac{1}{R_1C_1}x_1 - \frac{1}{C_1}x_3 + \frac{1}{C_1}u_1 &= \textcolor{ForestGreen}{f_1(x_1,x_2,x_3,u_1,u_2,t)}\\
+\dot{x}_2 &= \dot{v}_2 = \frac{1}{C_2}i_L - \frac{1}{R_2C_2}v_2 - \frac{1}{C_2}i_2 & &= -\frac{1}{R_2C_2}x_2 + \frac{1}{C_2}x_3 - \frac{1}{C_2}u_2 &= \textcolor{ForestGreen}{f_2(x_1,x_2,x_3,u_1,u_2,t)}\\
+\dot{x}_3 &= \dot{i}_L = \frac{1}{L}v_1 - \frac{1}{L}v_L & &= \frac{1}{L}x_1 - \frac{1}{L}x_2 &= \textcolor{ForestGreen}{f_3(x_1,x_2,x_3,u_1,u_2,t)}
+\end{aligned}$$
+
+Si sceglie (arbitrariamente) come uscita la tensione $v_1$ e la corrente $i_{C_1}$ dunque
+$$\begin{aligned}
+y_1 &= v_1 & &= x_1 & &= \textcolor{ForestGreen}{g_1(x_1,x_2,x_3,u_1,u_2,t)}\\
+y_2 &= i_{C_1}  = C_1\dot{v}_1 = C_1\dot{x}_1 = C_1 \textcolor{ForestGreen}{f_1} & &= -\frac{1}{R_1}x_1 -x_3 + u_1 & & = \textcolor{ForestGreen}{g_2(x_1,x_2,x_3,u_1,u_2,t)}
+\end{aligned}$$
+
+Per caratterizzare il sistema si verifica che tutte le equazioni sono lineari e
+i coefficienti sono tempo-invarianti, inoltre non è strettamente proprio dato
+la dipendenza diretta della variabile $y_2$ da $u_1$ di conseguenza il sistema
+è lineare-tempo-invariante-causale (LTIC).
+La causalità dipende dunque dalle uscite richieste.
+
+%1:22:30
+Si definiscono le variabili vettoriali al fine di riscrivere l'intero sistema in forma matriciale
+\begin{equation*}
+x = \begin{pmatrix}x_1 \\x_2 \\x_3 \end{pmatrix}\quad
+u=\begin{pmatrix}u_1\\u_2 \end{pmatrix}\quad
+y = \begin{pmatrix}y_1\\y_2 \end{pmatrix}
+\end{equation*}
+
+\begin{align*}
+\dot{x} &= \begin{bmatrix}
+-\frac{1}{R_1C_1} & 0 & -\frac{1}{C_1}\\
+0 & -\frac{1}{R_2C_2} & \frac{1}{C_2}\\
+\frac{1}{L} & -\frac{1}{L} & 0
+\end{bmatrix}x +
+\begin{bmatrix}
+\frac{1}{C_1} & 0\\
+0 & -\frac{1}{C_2}\\
+0 & 0
+\end{bmatrix}u & & = Ax+Bu\\
+y &= \begin{bmatrix}
+1 & 0 & 0\\
+-\frac{1}{R_1} & 0 & -1
+\end{bmatrix}x +
+\begin{bmatrix}
+0 & 0\\
+1 & 0
+\end{bmatrix}u & &= Cx +Du
+\end{align*}
+
+Una possibile scelta immediata delle variabili di stato è quella delle tensioni
+ai capi delle capacità e le correnti attraverso le induttanze, premesso che
+siano quelle equivalenti nel caso in cui siano presenti induttanze in serie o
+capacità in parallelo.
+Un'altra possibile scelta di variabili di stato è quella che permette di
+descrivere lo stato energetico del sistema.
+
+\newpage
+\subsubsection{Esempio RLC con definizione parametri ISU}
+Si vuole risolvere una rete RLC serie utilizzando direttamente le variabili in
+formato ISU.
+\begin{figure}[H]
+\centering
+\begin{circuitikz}
+\draw (0,0) to [voltage source,v=$u$] (0,2)
+            to [L=$L$,i>^=$x_1$] (2,2)
+            to [C,l_=$C$,v^<=$x_2$] (2,0)
+            to [R,l_=$R$,v^<=$v_R$] (0,0);
+\end{circuitikz}
+\end{figure}
+Il sistema di equazioni sarà
+$$\left\{ \begin{aligned}
+u &= L\dot{x}_1 + x_2 +Rx_1 \\
+x_1 &= C \dot{x}_2
+\end{aligned}\right.\Rightarrow
+\left\{ \begin{aligned}
+\dot{x}_1 &= -\frac{R}{L}x_1 -\frac{1}{L} x_2 +\frac{1}{L}u \\
+\dot{x}_2 &= \frac{1}{C} x_1
+\end{aligned}\right.
+$$
