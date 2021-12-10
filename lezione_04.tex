@@ -1,0 +1,23 @@
+%Lezione 04
+
+\subsection{Amplificatore operazionale}
+
+Si introduce il modello dell'amplificatore operazionale, rappresentato da un
+triangolo con tre morsetti, due in ingresso ed uno in uscita, quello con il
+segno $-$ viene detto invertente, quello con il segno $+$ è non invertente.
+Solitamente sono anche indicati i morsetti di alimentazione.
+\begin{figure}[H]
+ \centering
+ \begin{circuitikz}
+  \draw (0,0) node[op amp, anchor=-](OA){}
+ (OA.+) -- ++(-1,0)
+ to [short, -o] (-1,-1);
+ \draw
+(OA.-) -- ++(-1,0)
+ to [short, -o] (-1,0);
+ \draw (-1,-1) to [open,v^>=$e$] (-1,0);
+ \draw (OA.out) -- ++(0,0) to [open,v^<=$v_{out}$] ++(0,-1)
+  node[ground]{} ;
+ \end{circuitikz}
+
+\end{figure}
