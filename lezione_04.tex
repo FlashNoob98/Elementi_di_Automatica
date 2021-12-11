@@ -373,6 +373,7 @@ $$
 
 È importante mantenere la coerenza nelle convenzioni.
 
+\newpage
 \subsection{Esempio sistema Massa-Molla-Smorzatore}
 Si suppone di avere un carrello di massa $m$ al quale viene applicata una forza
 $f$. Il carrello è vincolato alla parete mediante una molla di costante $k$ e
@@ -384,15 +385,42 @@ uno smorzatore di coefficiente $b$.
  \label{fig:massa_molla_smorzatore_HQ}
 \end{figure}
 
+Si vuole costruire il modello ISU dell'oggetto.
+Il corpo ha un solo grado di libertà, si fissa un sistema di riferimento.
+Si indica con $s$ la posizione dell'oggetto.
 
+Esistono due modalità principali per scrivere le equazioni di un sistema
+meccanico, l'approccio Newtoniano e l'approccio Lagrangiano, si usa in seguito
+quello Newtoniano.
 
+Si applica il secondo principio delle dinamica, ossia le formule
+precedentemente analizzate.
 
+$$
+m\ddot{s} = f - ks - b\dot{s}
+$$
+$(s_1 , \dot{s}_1 = 0)$
 
+Il numero di equazioni da scrivere è pari al numero di masse moltiplicate per i
+rispettivi gradi di libertà.
 
+Le variabili del sistema sono
+$$\begin{matrix}
+f & s \\
+(0) & (2) \\
+f & s & \dot{s}\\
+u & x_1 &x_2
+\end{matrix}$$
 
+Il sistema è del secondo ordine.
+$$\left\{\begin{aligned}
+\dot{x}_1 &= \dot{s} = x_2 \\
+\dot{x}_2 &= \ddot{s} = \frac{1}{m}f - \frac{k}{m}s - \frac{b}{m}s =
+-\frac{k}{m}x_1 - \frac{b}{m}x_2 + \frac{1}{m}u
+\end{aligned}\right.$$
 
-
-
+Le uscite saranno assegnate arbitrariamente, il sistema è lineare
+tempo invariante e strettamente causale.
 
 
 
