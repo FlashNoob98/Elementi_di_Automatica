@@ -246,12 +246,12 @@ La regola di Cauchy non vale per i sistemi non causali.
 Si sta affermando che il generatore possa pilotare istantaneamente una capacità.
 
 Per modellare un sistema analogo va inserita nel circuito una resistenza $R_s$
-in serie al generatore di tensione.
+in serie al generatore di tensione (o analogamente alla porta d'ingresso).
 \begin{figure}[H]
 \centering
 \begin{circuitikz}[smallR/.style={R, resistors/scale=0.5}]
 \draw (3,-.5) node[op amp](op){}
-      (-2,0) to [smallR,l=$R_s$] ++(2,0) to [C=$C$,i=$i$,v_<=$e$,*-*]  (op.-)
+      (-2,0) to [smallR,l=$R_s$] ++(2,0) to [C=$C$,i=$i$,v_<=$v_C$,*-*]  (op.-)
             to ++(0,1)
             to [R=$R$,i>^=$i$,v<=$v_R$] (4,1);
 \draw (op.out) |- (4,1) ;
@@ -263,3 +263,137 @@ in serie al generatore di tensione.
 \draw (-2,-1.5) node[ground]{} to [open,v^>=$e$,*-*] (-2,0);
 \end{circuitikz}
 \end{figure}
+Le equazioni del sistema:
+$$\left\{\begin{aligned}
+v &= -Ri = -RC\dot{v}_C\\
+e &= R_s i + v_C \Rightarrow i = \frac{e-v_C}{R_s}
+\end{aligned}\right.$$
+
+Ricavando la $i$ dalla seconda e sostituendo nella prima
+$$
+\dot{v}_C =
+\frac{1}{\cancel{R}C}\left(\frac{\cancel{R}}{R_s}\left(e-v_C\right)\right) =
+\frac{e-v_C}{R_sC}
+$$
+Si analizzano le variabili
+$$\begin{matrix}
+e & v_C \\
+(0) & (1) \\
+u & x
+\end{matrix}$$
+
+dunque l'equazione del sistema del primo ordine
+$$\left\{\begin{aligned}
+\dot{x} &= \frac{u}{R_sC} - \frac{x}{R_sC}\\
+y &= v = -Ri = \frac{R}{R_s}u - \frac{r}{R_s}x
+\end{aligned}\right.$$
+Il sistema è dunque lineare tempo invariante causale ma non strettamente
+causale.
+
+\newpage
+\section{Sistemi meccanici}
+Si vogliono analizzare gli elementi principali dei sistemi meccanici.
+\subsubsection{Moti lineari}
+Si considerano inizialmente i sistemi governati da moti lineari.
+Gli elementi principali sono:
+\begin{itemize}
+ \item Elemento \textbf{massa}: $m$ rappresentato solitamente con un cubetto o
+una sfera, se sulla massa sono applicate $n$ forze $f_n$, questa potrà muoversi
+solo lungo una direzione nello spazio e si indica con $s$ la variabile di
+spostamento. Per convenzione la forza è positiva se concorde al verso positivo
+degli spostamenti. L'oggetto subirà un'accelerazione pari a
+$$
+m\ddot{s} = \sum_n f_n
+$$
+
+\item Elemento \textbf{molla}: $k$ è il coefficiente elastico della molla,
+determina la forza che la molla esplica proporzionale alla sua deformazione
+rispetto alla condizione di riposo e in verso opposto (forza di richiamo).
+I due estremi della molla devono essere indicati nel sistema di riferimento,
+dunque
+$$
+f = k(s_2-s_1)
+$$
+Si assume con $s_2=s_1$ la condizione di riposo. Se la molla viene estesa, la
+differenza $s_2-s_1$ è positiva e la molla esplica una forza verso il suo
+interno, viceversa se viene compressa $s_2-s_1$ è negativo e la forza è verso
+l'esterno; ciò è vero per tutte le molle reali che hanno coefficiente elastico
+positivo.
+
+\item Elemento \textbf{smorzatore viscoso}: $b$ è il coefficiente di attrito
+viscoso, anch'esso esplica una forza positiva verso il suo interno e si
+considerano le velocità $\dot{s}_1$ e $\dot{s}_2$ dei suoi estremi.
+La forza esplicata dallo smorzatore è dunque proporzionale alla velocità
+relativa dei suoi estremi
+$$
+f = b(\dot{s}_2-\dot{s}_1)
+$$
+Anche in questo caso la forza è sempre opposta al verso di movimento per gli
+smorzatori reali con $b$ positiva.
+\end{itemize}
+
+Se il sistema ha più gradi di libertà deve essere fornita un'equazione per ogni
+possibile direzione.
+
+\newpage
+\subsubsection{Moti rotazionali}
+Esiste una perfetta simmetria tra le due tipologie di moti, a patto di fornire
+le giuste equivalenze
+\begin{itemize}
+ \item Elemento \textbf{inerzia}: definito un asse, si definisce con $J$ il
+parametro che determina l'attitudine del corpo a generare accelerazioni
+angolari. Si applicano una serie di $n$ coppie $\tau_n$ all'oggetto, positive
+se concordi all'angolo $\theta$; il corpo si metterà in rotazione con una
+certa inerzia
+$$
+J\ddot{\theta} = \sum_n \tau_n
+$$
+
+$\theta$ è l'angolo di cui è ruotato l'asse, dunque $\ddot{\theta}$ è
+l'accelerazione angolare.
+
+ \item Elemento \textbf{molla rotazionale}: analogamente alla molla lineare, la
+molla rotazionale esplica una forza proporzionale alla rotazione relativa dei
+suoi due assi. $\theta_1$ e $\theta_2$ sono le posizioni dei due assi, la
+costante della molla è ancora $k$, la coppia di richiamo $\tau$ si pone
+concorde a $\theta_1$ e discorde a $\theta_2$ dunque:
+$$
+\tau = k\left(\theta_2 - \theta_1\right)
+$$
+
+ \item Elemento \textbf{smorzatore viscoso rotazionale}: sono presenti due assi
+e si indica con $\dot{\theta}_1$ la velocità angolare del primo asse e
+$\dot{\theta}_2$ quella del secondo. La coppia $\tau$ sarà concorde alla
+velocità $\theta_1$ e discorde a $\theta_2$. Se $b$ è il coefficiente viscoso
+allora la coppia sarà
+$$
+\tau = b(\dot{\theta}_2 - \dot{\theta}_1)
+$$
+\end{itemize}
+
+È importante mantenere la coerenza nelle convenzioni.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
