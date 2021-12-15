@@ -160,7 +160,7 @@ l'informazione sulle posizioni assolute dei due assi.
 
 \newpage
 \subsection{Pendolo rigido}
-Il sistema è composto da un'asta rigida di lunghezza $l$ incernierata in un
+Il sistema è composto da un'asta rigida di lunghezza $L$ incernierata in un
 punto, all'altra estremità è posta una massa $m$;
 Si considera con $\theta$ l'angolo dell'asta rispetto all'asse verticale.
 \begin{figure}[h]
@@ -174,8 +174,8 @@ Si applica alla massa una forza $f$ tangente alla traiettoria della stessa, sul
 pendolo agisce inoltre la forza peso $mg$ con $g$ l'accelerazione di gravità
 nel punto in cui si trova il pendolo.
 
-Il momento di inerzia $J$ di un pendolo di massa $m$ e lunghezza $l$ è pari a
-$ml^2$.
+Il momento di inerzia $J$ di un pendolo di massa $m$ e lunghezza $L$ è pari a
+$mL^2$.
 Le coppie $\tau_n$ sono considerate positive se concordi all'asse uscente dal
 piano di disegno (regola della mano destra).
 La forza peso agisce sempre in direzione costante verso il basso, va scomposta
@@ -183,5 +183,67 @@ lungo due componentio e calcolare la coppia utilizzando la componente tangente
 alla traiettoria dunque $lmg\sin\theta$.
 
 $$
-ml^2\ddot\theta = \sum_n{\tau_n} = lf - lmg\sin\theta
+mL^{\cancel{2}}\ddot\theta = \sum_n{\tau_n} = \cancel{L}f -
+\cancel{L}mg\sin\theta
 $$
+
+Analisi delle variabili
+$$\begin{matrix}
+f & \theta & \dot\theta \\
+(0) & (2)  \\
+u & x_1 & x_2
+\end{matrix}$$
+
+Le due equazioni del sistema
+$$\left\{\begin{aligned}
+\dot x_1 &= \dot\theta = x_2\\
+\dot x_2 &= \ddot\theta = \frac{1}{mL} u - \frac{g}{L} \sin(x_1) \\
+y &= \theta = x_1
+\end{aligned}\right.$$
+
+Quello rappresentato è un sistema non lineare (a causa della funzione seno),
+tempo invariante, strettamente proprio. Non è dunque esprimibile in forma
+matriciale.
+
+\newpage
+\subsection{Analisi con variabile lagrangiana}
+Si considera una cerniera nell'origine degli assi, alla quale è collegata
+un'asta di lunghezza $L$ alla quale è collegata una massa $m$, proprio come un
+pendolo. Sulla stessa massa è incernierata un'altra asta di lunghezza $L$
+collegata ad un pattino vincolato a muoversi lungo un binario orizzontale.
+%Inserisci figura
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{primo_ordine_lagrangiana.png}
+ % primo_ordine_lagrangiana.png: 360x245 px, 96dpi, 9.52x6.48 cm, bb=0 0 270 184
+ \label{Fig.:variabile_lagrangiana}
+\end{figure}
+
+Il sistema rappresentato trasforma un movimento lineare in angolare e
+viceversa, si fissa dunque un asse di riferimento lineare $s$ ed uno angolare
+$\theta$. La massa subisce inoltre la forza di gravità $mg$, si applica invece
+una forza $f$ al pattino.
+
+Costruzione del modello ISU con approccio \textbf{lagrangiano}:
+è necessario determinare le variabili che determinano univocamente lo stato del
+sistema, ossa trovare un insieme minimo di variabili che se vincolate eliminano
+tutti i gradi di libertà del sistema.
+
+Una possibile variabile lagrangiana potrebbe essere $\theta$ oppure $s$, scelta
+la stessa si può applicare il principio di conservazione dell'energia:
+
+\begin{emph}
+La variazione totale dell'energia immagazzinata nel sistema è pari al lavoro
+compiuto dalle forze esterne sul sistema stesso.
+\end{emph}
+
+La funzione energia (meccanica) è data dalla somma dell'energia cinetica e
+quella potenziale:
+$$
+W = W_C + W_P = \frac{1}{2}m(L\dot\theta)^2 + mgL\sin(\theta)
+$$
+Il lavoro compiuto dalle forze esterne:
+$$
+\mathcal{L} = \int_0^S f(s)ds
+$$
+1:29:40
