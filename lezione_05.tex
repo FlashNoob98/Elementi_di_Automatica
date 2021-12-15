@@ -239,11 +239,67 @@ compiuto dalle forze esterne sul sistema stesso.
 
 La funzione energia (meccanica) è data dalla somma dell'energia cinetica e
 quella potenziale:
-$$
+\begin{equation}
 W = W_C + W_P = \frac{1}{2}m(L\dot\theta)^2 + mgL\sin(\theta)
-$$
+\label{eq.:moto_lagrangiano}
+\end{equation}
 Il lavoro compiuto dalle forze esterne:
 $$
 \mathcal{L} = \int_0^S f(s)ds
 $$
-1:29:40
+Considerando le variazioni elementari di energia
+$$
+dW = d\mathcal{L}
+$$
+Differenziando la \ref{eq.:moto_lagrangiano}
+$$
+\frac{1}{2}mL^2 \dot\theta d\dot\theta + mgL\cos(\theta)d\theta
+= fds
+\label{eq.:energia_diff_lagrangiano}
+$$
+la posizione $s$ è però pari a $2L\cos(\theta)$, quindi lo spostamento
+infinitesimo
+$$
+ds = 2L(-\sin(\theta))d\theta
+$$
+Sostituendo nella \ref{eq.:energia_diff_lagrangiano} si ottiene
+$$
+\frac{1}{2}mL^22\dot\theta d\dot\theta + mgL \cos(\theta) d\theta =
+-2Lf\sin(\theta)d\theta
+$$
+semplificando ulteriormente
+$$
+ml\dot\theta d\dot\theta + mg\cos(\theta)d\theta = -2f\sin(\theta)d\theta
+$$
+
+Si analizza il primo termine dell'equazione
+$$
+\dot\theta d\dot\theta = \dot\theta d\dot\theta \cdot \frac{dt}{dt} =
+\frac{d\theta}{\cancel{dt}}\cdot d\dot\theta\cdot \frac{\cancel{dt}}{dt} =
+\frac{d\dot\theta}{dt}d\theta = \ddot\theta d\theta
+$$
+Sostituendo nella precedente
+$$
+mL\ddot\theta \cancel{d\theta} + mg\cos(\theta)\cancel{d\theta} = -2f
+\sin(\theta) \cancel{d\theta}
+$$
+
+Ottenuta l'equazione differenziale si procede come consuetudine allo studio del
+sistema
+$$\begin{matrix}
+f & \theta & \dot\theta \\
+(0) & (2) \\
+u & x_1 & x_2
+\end{matrix}$$
+
+L'equazione del sistema
+$$\left\{\begin{aligned}
+\dot x_1 &= \dot\theta = x_1 \\
+\dot x_2 &= \ddot\theta = -\frac{g}{L}\cos(x_1) - \frac{2}{mL}u\sin(x_1)\\
+y &= s = 2L\cos(\theta) = 2L\cos(x_1)
+\end{aligned}\right.$$
+
+Il sistema è non lineare tempo invariante e strettamente proprio.
+In alcune condizioni di funzionamento anche i sistemi non lineari possono essere
+approssimati a sistemi lineari (in realtà tutti i sistemi sono non lineari e la
+loro modellazione implica già un'approssimazione della realtà fisica).
