@@ -134,11 +134,67 @@ liquido nel serbatoio. Si suppone che sia presente una valvola in uscita in
 grado di prelevare un flusso di liquido in uscita $q_u$, analogamente con una
 valvola in ingresso.
 
-Il flusso di un liquido viene chiamata \textbf{portata} e può essere riferita
-ad una portata \textit{massica} $(\si{\kilogram/\second})$
- o \textit{volumetrica} $\si{\meter^3/\second}$
-42:00
-È fondamentale considerare i liquidi incomprimibili affinché valga la seguente
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{serbatoio_due_valvole.png}
+ % serbatoio_due_valvole.png: 411x254 px, 96dpi, 10.87x6.72 cm, bb=0 0 308 190
+ \label{Fig.:serbatoio_due_valvole}
+\end{figure}
+
+
+Il flusso di un liquido viene chiamato \textbf{portata} e ci si può
+riferire
+ad una portata \textit{massica} ($w$) [\si{\kilogram/\second}]
+ o \textit{volumetrica} ($q$) $\si{\meter^3/\second}$, con la seguente
+relazione che le lega
 $$
-a
+w = \rho q
 $$
+dove $\rho$ è la \textit{densità} del liquido.
+
+È fondamentale considerare i liquidi incomprimibili, ossia che la sua densità
+resti costante affinché si possa sempre utilizzare l'uno o l'altro riferimento.
+Ci si riferirà generalmente alla portata volumetrica.
+
+La quantità di massa nel serbatoio è pari alla differenza di massa entrante e
+uscente, supposta la densità costante invece si può quindi ragionare sui volumi
+e le $j$ portate entranti e $k$ portate uscenti ossia:
+$$
+\dot{V} = \frac{d}{dt}(S\cdot h) = S\dot{h} = \sum_j q_i - \sum_k q_u
+$$
+con $\dot{V}$ la variazione di volume e $S$ la sezione del serbatoio
+assunta costante (altrimenti $S\dot h + \dot{S}h$).
+
+Per il sistema in esame con un ingresso ed un'uscita si ha
+$$
+\dot{V} = q_i - q_u
+$$
+Si suppone che la valvola in uscita sia autoregolata, la portata di un fluido
+attraverso una valvola dipende sia dalla sua sezione regolabile che dalla
+differenza di pressione a monte e a valle della stessa, funzione dell'altezza
+del fluido.
+
+Un modello semplice di valvola ammette un parametro $a$ che
+indica il grado di apertura della valvola ed esprime la portata con la
+seguente
+$$
+q = a\sqrt{h}
+$$
+
+Si scrive il modello ISU, l'equazione è già stata ricavata, si procede con le
+variabili:
+$$
+\begin{matrix}
+q_i & h \\
+(0) & (1) \\
+u & x
+\end{matrix}
+$$
+
+$$\left\{\begin{aligned}
+\dot{x} &= \dot{h} = \frac{1}{S} u - \frac{a}{S}\sqrt{x} \\
+y &= V = Sh = Sx
+\end{aligned}\right.$$
+Il sistema è non lineare e strettamente proprio.
+
+53:12
