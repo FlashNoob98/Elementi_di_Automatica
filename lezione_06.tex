@@ -41,9 +41,10 @@ Si riportano le equazioni di bilancio termico che interessano il volume se
 questo è sottoposto ad $n$ flussi termici $q_n$ ed $i$ superfici di scambio
 termico con coefficiente di scambio $K_i$ e con ambienti a temperature $T_i$
 (diverse o meno fra loro):
-$$
+\begin{equation}
 C\dot{T} = \sum_n q_n -\sum_i K_i(T-T_i)
-$$
+\label{eq.:bilancio_termico}
+\end{equation}
 
 Si riporta il modello ISU del sistema in esame con una sola potenza termica in
 ingresso ed un solo scambio termico con un unico ambiente
@@ -108,6 +109,36 @@ u_1 & u_2 & x_1 & x_2
 Il sistema è di ordine due.
 
 $$\left\{\begin{aligned}
-\dot x_1 &= \dot{T}_1
+\dot x_1 &= \dot{T}_1 = \frac{1}{C_1}u_1 - K_{12}(x_1-x_2)\\
+\dot x_2 &= \dot T_2 = -\frac{K_{12}}{C_2} (x_2-x_1) -
+\frac{K_{2a}}{C_2}(x_2-u_2)\\
+y_1 &= T_1 = x_1 \\
+y_2 &= T_2 = x_2
 \end{aligned}\right.$$
-29:23
+
+Se si indica con $v$ la tensione ai capi della resistenza $R$, la potenza
+termica si sarebbe potuta esprimere come $q=\frac{v^2}{R}$ e se si fosse scelta
+$v$ come ingresso si avrebbe avuto un termine al quadrato
+$$
+\dot x_1 = \dot T_1 = \frac{1}{C_1 R} u_1^2 - K_{12}(x_1-x_2) \dots
+$$
+Lo stesso sistema, con variabili diverse sarebbe diventato non lineare.
+
+\section{Sistemi idraulici}
+Un sistema idraulico è modellabile come un serbatoio in grado di contenere un
+certo liquido. Si suppone che ci sia la possibilità di aggiungere una certa
+quantità di liquido $q_i$.
+
+Si suppone che la sezione del serbatoio sia regolare ed $h$ l'altezza del
+liquido nel serbatoio. Si suppone che sia presente una valvola in uscita in
+grado di prelevare un flusso di liquido in uscita $q_u$, analogamente con una
+valvola in ingresso.
+
+Il flusso di un liquido viene chiamata \textbf{portata} e può essere riferita
+ad una portata \textit{massica} $(\si{\kilogram/\second})$
+ o \textit{volumetrica} $\si{\meter^3/\second}$
+42:00
+È fondamentale considerare i liquidi incomprimibili affinché valga la seguente
+$$
+a
+$$
