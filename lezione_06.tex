@@ -244,7 +244,7 @@ lineare, può essere sensato linearizzare la funzione in particolari regimi di
 funzionamento della valvola.
 
 
-\chapter{}
+\chapter{Equilibrio dei sistemi}
 Si ricordi il modello generale di un sistema ISU presentato con la
 \ref{eq.:ISU_generale}
 $$
@@ -298,7 +298,7 @@ certo transitorio, la maggior parte dei sistemi studiati lavorano in stati
 costanti a tratti, mutano tra un punto di equilibrio e l'altro.
 \end{itemize}
 
-\subsection{Pendolo non lineare}
+\subsection{Equilibrio del pendolo}
 Si riprende l'esempio del pendolo rigido analizzato alla sezione
 \ref{sec.:pendolo_rigido}
 \begin{figure}[h]
@@ -320,5 +320,86 @@ $\theta$, e sarebbe in equilibrio anche nell'angolo $\pi - \theta$ rimanendo
 fermo.
 
 Il caso limite è quando l'asta diventa perfettamente orizzontale, il punto di
-equilibrio diventa unico, $\theta = 90\text{\textdegree}$
-1:25:48
+equilibrio diventa unico, $\theta = 90\text{\textdegree}$.
+
+Se $f > mg$ il pendolo comincia a ruotare e non ci saranno più punti di
+equilibrio.
+
+Si riprende il modello analitico del pendolo ricavato in
+\ref{eq.:pendolo_semplice}
+$$
+x_1 = \theta\ x_2 = \dot\theta\ u=f
+$$
+\begin{equation*}
+\left\{\begin{aligned}
+\dot x_1 &= \dot\theta = x_2 = f_1\\
+\dot x_2 &= \ddot\theta = \frac{1}{mL} u - \frac{g}{L}  \sin(x_1) =f_2 \\
+y &= \theta = x_1
+\end{aligned}\right.
+\end{equation*}
+
+Il sistema ammette punti di equilibrio? Dalla definizione, se il sistema
+ammette punti di equilibrio bisogna trovare una coppia
+$(\overline{u},\overline{x})$ tali che la funzione di transizione $f$ sia pari
+a zero.
+$$
+(\overline{u},\overline{x}) \Rightarrow f(\overline{u},\overline{x}) = 0
+$$
+
+Dunque si costruisce il sistema per ricavare lo stato di equilibrio
+$$\left\{\begin{aligned}
+&\overline{x}_2 = 0 \rightarrow \dot\theta = 0\\
+&\frac{1}{m\cancel{L}} \overline{u} - \frac{g}{\cancel{L}}
+\sin(\overline{x}_1)=0 \rightarrow \sin(\overline{x}_1) =
+\frac{1}{mg}\overline{u}
+\end{aligned}\right.$$
+La velocità deve essere nulla e la soluzione è indipendente dalla lunghezza
+dell'asta.
+
+Analizzando la seconda equazione si ha che la funzione seno è limitata tra
+$[-1,1]$ dunque
+$$
+\frac{|\overline{u}|}{mg} \leq 1 \Longleftrightarrow
+|\overline{u}| \leq mg
+$$
+
+Le equazioni confermano quanto intuito precedentemente, la forza peso $mg$ deve
+essere maggiore o uguale della forza $f$ applicata dall'esterno.
+
+Si studiano i seguenti casi
+$$|\overline{u}| \leq mg
+\begin{aligned}
+&\nearrow \\
+& \\
+&\\
+&\searrow
+\end{aligned}\
+\begin{aligned}
+&\\
+&\\
+&|\overline{u}|=mg \begin{aligned}
+&\nearrow \\
+&\searrow
+\end{aligned}\ \begin{aligned}
+&\overline{u} = mg \Rightarrow\sin(\overline{x}_1) = 1 \Rightarrow
+\overline{x}_1 = \frac{\pi}{2}\\
+&\\
+&\overline{u} = -mg \Rightarrow \sin(\overline{x}_1) = -1 \Rightarrow
+\overline{x}_1 = -\frac{\pi}{2}
+\end{aligned}
+&\\
+&\\
+&|\overline{u}|<mg \Rightarrow \overline{x}_1 = \begin{aligned}
+&\nearrow \\
+& \searrow
+\end{aligned}\ \begin{aligned}
+&\sin^{-1}\left(\frac{\pi}{mg}\right) \\
+&\\
+&\pi - \sin^{-1}\left(\frac{\pi}{mg}\right)
+\end{aligned}
+\\
+&\\
+\end{aligned}
+$$
+Si è quantificato numericamente il valore degli angoli di equilibrio del
+sistema.

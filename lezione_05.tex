@@ -180,7 +180,7 @@ $mL^2$.
 Le coppie $\tau_n$ sono considerate positive se concordi all'asse uscente dal
 piano di disegno (regola della mano destra).
 La forza peso agisce sempre in direzione costante verso il basso, va scomposta
-lungo due componentio e calcolare la coppia utilizzando la componente tangente
+lungo due componenti e calcolare la coppia utilizzando la componente tangente
 alla traiettoria dunque $lmg\sin\theta$.
 
 $$
@@ -196,11 +196,14 @@ u & x_1 & x_2
 \end{matrix}$$
 
 Le due equazioni del sistema
-$$\left\{\begin{aligned}
+\begin{equation}
+\label{eq.:pendolo_semplice}
+\left\{\begin{aligned}
 \dot x_1 &= \dot\theta = x_2\\
 \dot x_2 &= \ddot\theta = \frac{1}{mL} u - \frac{g}{L} \sin(x_1) \\
 y &= \theta = x_1
-\end{aligned}\right.$$
+\end{aligned}\right.
+\end{equation}
 
 Quello rappresentato è un sistema non lineare (a causa della funzione seno),
 tempo invariante, strettamente proprio. Non è dunque esprimibile in forma
