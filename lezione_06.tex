@@ -197,4 +197,128 @@ y &= V = Sh = Sx
 \end{aligned}\right.$$
 Il sistema è non lineare e strettamente proprio.
 
-53:12
+\subsection{Sistema idraulico con due serbatoi}
+Si ha un sistema formato da due serbatoi in cascata con un flusso
+monodirezionale tra l'uscita di uno e l'ingresso dell'altro.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{doppio_serbatoio.png}
+ % doppio_serbatoio.png: 576x364 px, 96dpi, 15.24x9.63 cm, bb=0 0 432 273
+ \label{Fig.:doppio_serbatoio}
+\end{figure}
+
+Si indica con $h_1$ l'altezza di liquido nel serbatoio di sezione $S_1$ ed
+$h_2$ l'altezza nel serbatoio di sezione $S_2$. Le portate in uscita dai due
+serbatoi saranno:
+$$\begin{aligned}
+q_{12} &= a_1\sqrt{h_1} //
+q_u &= a_2\sqrt{h_2}
+\end{aligned}$$
+
+Le equazioni del sistema saranno:
+$$\left\{\begin{aligned}
+S_1\dot h_1 &= q_i - q_{12} = q_i - a_1\sqrt{h_1} \\
+S_2 \dot h_2 &= q_{12} - q_u = a_1\sqrt{h_1} - a_2\sqrt{h_2}
+\end{aligned}\right.$$
+
+Si analizzano le variabili
+$$\begin{matrix}
+q_i & h_1 & h_2 \\
+(0) & (1) & (1) \\
+u & x_1 & x_2
+\end{matrix}$$
+
+Il sistema di ordine due in forma ISU
+$$\left\{\begin{aligned}
+\dot x_1 &= \dot h_1 = \frac{1}{S_1} u - \frac{a_1}{S_1} \sqrt{x_1} \\
+\dot x_2 &= \dot h_2 = \frac{a_1}{S_2}\sqrt{x_1} - \frac{a_2}{S_2} \sqrt{x_2} \\
+y_1 &= h_1 = x_1 \\
+y_2 &= h_2 =x_2 \\
+y_3 &= V_{\text{tot}} = S_1h_1 + S_2h_2 = S_1x_1 + S_2 x_2
+\end{aligned}\right.$$
+
+Il sistema è non lineare strettamente proprio.
+
+Se il legame tra la portata e l'altezza fosse lineare, il sistema diventerebbe
+lineare, può essere sensato linearizzare la funzione in particolari regimi di
+funzionamento della valvola.
+
+
+\chapter{}
+Si ricordi il modello generale di un sistema ISU presentato con la
+\ref{eq.:ISU_generale}
+$$
+\left\{\begin{aligned}
+\dot x & = f(x,u,t) \\
+y = g(x,u,t)
+\end{aligned}\right.
+$$
+non è nota l'espressione della $x(t)$, andrebbe
+integrato il sistema di equazioni, non è detto che sia possibile; se la
+funzione $f$ è lineare e tempo invariante è possibile integrare, se il sistema
+non è invece lineare non è detto che sia possibile risolverlo in forma chiusa.
+
+Si supponga che i sistemi godano almeno della proprietà di tempo invarianza
+(coefficienti costanti) o di una lenta tempo varianza nei regimi operativi di
+analisi.
+
+Si danno le seguenti definizioni:
+\begin{itemize}
+\item \textbf{Movimento} nello stato del sistema: Assegnato un certo ingresso
+ed una certa condizione iniziale, si definisce la soluzione del sistema in
+esame per $t\geq t_0$
+$$
+\tilde{x}(t_0) ,\ \begin{aligned}[t]&\tilde{u}(t)\\ [&t_0, t]\end{aligned}
+\longrightarrow \tilde x(t)\quad t\geq t_0
+$$
+
+
+Tra i possibili movimenti ce ne sono alcuni di particolari interesse
+
+\item \textbf{Equilibrio}:
+
+Dato un ingresso costante $\overline{u}$ esiste uno stato costante
+$\overline{x}$ tale per cui la funzione di transizione $f$ calcolata sia pari a
+zero.
+$$
+\overline{u} = \text{ cost} ,\ \exists\  \overline{x} = \text{ cost} \quad :
+\quad f(\overline{x},\overline{u})=0 \Leftrightarrow \text{Equilibro}
+$$
+La tripletta $(\overline{u},\overline{x},\overline{y})$ viene definita punto di
+\textbf{equilibrio del sistema}.
+
+Se la funzione di transizione è nulla allora la $\dot x$ è nulla, dunque il
+sistema non modifica il suo stato, lo stato perdura indefinitamente nel tempo,
+dunque i punti di equilibrio sono movimenti costanti del sistema sottoposto ad
+ingressi costanti.
+Nella realtà nessun ingresso è mai costante.
+
+Variando l'ingresso il sistema raggiunge un nuovo punto di equilibrio dopo un
+certo transitorio, la maggior parte dei sistemi studiati lavorano in stati
+costanti a tratti, mutano tra un punto di equilibrio e l'altro.
+\end{itemize}
+
+\subsection{Pendolo non lineare}
+Si riprende l'esempio del pendolo rigido analizzato alla sezione
+\ref{sec.:pendolo_rigido}
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{pendolo.png}
+ % pendolo.png: 316x278 px, 96dpi, 8.36x7.35 cm, bb=0 0 237 208
+ \label{Fig.:pendolo_semplice}
+\end{figure}
+Il sistema ha un punto di equilibrio?
+Intuitivamente il punto di equilibrio è quello a $\theta=0$, in realtà anche
+$\theta=\pi$ è un punto di equilibrio, in assenza della forza $f$ solo la forza
+peso agisce sul sistema e in queste due posizioni è completamente bilanciata
+dal vincolo dato che l'asta è rigida.
+
+Se invece la forza $f$ applicata è diversa da zero e pari alla componente
+tangente della forza peso $mg\sin(\theta)$ allora la condizione di equilibrio
+si troverà in un punto diverso dai precedenti, inclinato di un certo angolo
+$\theta$, e sarebbe in equilibrio anche nell'angolo $\pi - \theta$ rimanendo
+fermo.
+
+Il caso limite è quando l'asta diventa perfettamente orizzontale, il punto di
+equilibrio diventa unico, $\theta = 90\text{\textdegree}$
+1:25:48
