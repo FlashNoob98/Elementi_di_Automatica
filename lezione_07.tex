@@ -72,8 +72,39 @@ ovvero lo spessore definito prima nell'intorno del punto.
 
 Analogamente per l'ingresso $u(t)$
 $$
-u(t) = \overline{u} = \delta u(t)
+u(t) = \overline{u} + \delta u(t)
+$$
+Gli ingressi si suddividono in \textit{manipolabili} e \textit{non
+manipolabili} dunque
+anche gli ingressi sono affetti da errore e rumore,  è necessario tenere conto
+di questi errori mediante
+$$
+y(t) = \overline{y}+\delta y(t)
 $$
 
-Anche gli ingressi sono affetti da errore e rumore, dunque è necessario
-30:24
+Tutte le precedenti equazioni sono vettoriali.
+
+Derivando l'equazione dello stato
+$$
+\dot{x} = \dot{\overline{x}} + \dot{\delta x} = \dot{\delta x}
+$$
+quindi la variazione dello stato coincide con la variazione locale. Si può
+sviluppare in serie di Taylor nel punto di equilibrio
+\begin{equation}
+\dot{\delta x} = \cancel{f(\overline{x},\overline{u})} + \left.\frac{\partial
+f}{\partial x}\right|_{\text{eq}}\delta x + \left.\frac{\partial f}{\partial
+u}\right|_{\text{eq}}\delta u + o(\delta x, \delta u)
+\label{eq.:linearizzazione_sistema}
+\end{equation}
+La funzione di transizione valutata su un punto di equilibrio è nulla per
+definizione di punto di equilibrio, il termine $\frac{\partial f}{\partial x}$
+è una matrice Jacobiana con numero di righe pari al numero di righe della $f$
+dunque $n$ ed un numero di colonne pari al numero di elementi della $x$, ancora
+$n$ quindi è una matrice $n\times n$, la matrice verrà chiamata $A$.
+
+Il termine $\frac{\partial f}{\partial u}$ ha invece $n$ righe ed $m$ colonne
+dove $m$ è il numero di ingressi, verrà chiamata $B$.
+
+Si riscrive la \ref{eq.:linearizzazione_sistema} trascurando l'o-piccolo si
+ottiene 40:26
+
