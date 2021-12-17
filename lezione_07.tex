@@ -1,0 +1,79 @@
+
+\section{Linearizzazione dei sistemi}
+In mancanza della condizione di tempo invarianza può variare l'analisi del
+sistema, verranno analizzati sistemi con discontinuità ma non sistemi che
+variano con continuità nel tempo i loro parametri.
+
+I sistemi non lineari sono composti da variabili e da parametri, i parametri
+non sono mai forniti con un'accuratezza infinita, di conseguenza anche i
+risultati in uscita avranno una certa incertezza.
+
+Si suppone di modellare un sistema monodimensionale non lineare avendo fissato
+una $\overline{u}(t)$ e si vuole mostrare l'andamento di $\dot x$ in funzione
+di $x$, ricercando i vari punti di equilibrio.
+
+%Curva di lavoro totale
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{curva_non_lineare.png}
+ % curva_non_lineare.png: 312x309 px, 96dpi, 8.25x8.17 cm, bb=0 0 234 232
+ \label{Fig.:curva_non_lineare}
+\end{figure}
+
+Si suppone che il sistema si trovi nel punto di lavoro $A$ indicato sul
+grafico, nella realtà si troverà nell'intorno di quel punto oscillando in un
+certo intervallo in funzione dei disturbi interni ed esterni al sistema.
+
+Si suppone di ingrandire la curva nell'intorno del punto di lavoro
+
+% Immagine ingrandita
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{curva_non_lineare_ingrandita.png}
+ \label{Fig.:curva_non_lineare_ingrandita}
+\end{figure}
+Si considera una retta tangente alla curva nel punto di equilibrio, una retta è
+sinonimo di un modello lineare, l'errore aggiuntivo commesso può ritenersi
+trascurabile se minore dell'accuratezza fornita dal modello sesso.
+
+Il vantaggio ottenuto da tale approssimazione è la possibilità di risolvere
+analiticamente un sistema lineare piuttosto che cercare un teorema in grado di
+risolvere quel particolare sistema non lineare.
+
+Se si sposta di molto il punto di lavoro del sistema è necessario ricalcolare
+la linearizzazione del sistema, non potendo più utilizzare la retta precedente.
+Si ottiene ancora una buona approssimazione.
+
+Ha senso linearizzare solo i punti di equilibrio, altrimenti il sistema non si
+troverebbe nell'intorno di un punto, si potrebbe estendere il concetto anche a
+punti di equilibrio dinamici.
+
+$$\left\{
+\begin{aligned}
+\dot{x} &= f(x,u) \\
+y &= g(x,u)
+\end{aligned}\right.$$
+Si ipotizza che le funzioni $f$ e $g$ siano sufficientemente regolari, ossia
+che esista almeno il differenziale primo.
+
+Si suppone inoltre che il sistema sottoposto ad un ingresso costante
+$\overline{u}$ si trovi in un punto di equilibrio $\overline{x}$ a cui
+corrisponde un'uscita di equilibrio $\overline{y}$, ossia
+$$
+(\overline{u},\overline{x},\overline{y}) \ \text{punto di equilibrio}
+$$
+
+Si applica la seguente posizione
+$$
+x(t) = \overline{x} + \delta x(t)
+$$
+dove $\delta x(t)$ è l'errore della traiettoria rispetto al punto di lavoro,
+ovvero lo spessore definito prima nell'intorno del punto.
+
+Analogamente per l'ingresso $u(t)$
+$$
+u(t) = \overline{u} = \delta u(t)
+$$
+
+Anche gli ingressi sono affetti da errore e rumore, dunque è necessario
+30:24
