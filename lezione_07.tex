@@ -191,11 +191,32 @@ Si calcolano le matrici $A'$ ed $A''$ nei due punti di equilibrio
 $$
 \overline{u} = 0 \left\langle
 \begin{aligned}
+ \\
  \overline{x'} &= \begin{pmatrix}
                   0 \\ 0
-                 \end{pmatrix} \\
+                 \end{pmatrix} \Rightarrow
+                 A' = \left.\frac{\partial f}{\partial x}
+                            \right|_{\begin{aligned}
+                                      x &= \overline{x'}\\
+                                      u &= 0
+                                     \end{aligned}} =
+                                     \begin{pmatrix}
+                                      0 & 1 \\
+                                      -\frac{g}{L} & 0
+                                     \end{pmatrix}
+\\
  \overline{x''} &= \begin{pmatrix}
                    \pi \\ 0
-                  \end{pmatrix}
+                  \end{pmatrix} \Rightarrow
+                 A'' = \left.\frac{\partial f}{\partial x}
+                            \right|_{\begin{aligned}
+                                      x &= \overline{x'}\\
+                                      u &= 0
+                                     \end{aligned}} =
+                                     \begin{pmatrix}
+                                      0 & 1 \\
+                                      \frac{g}{L} & 0
+                                     \end{pmatrix}
 \end{aligned} \right.
 $$
+
