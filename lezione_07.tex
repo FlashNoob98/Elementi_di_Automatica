@@ -106,5 +106,96 @@ Il termine $\frac{\partial f}{\partial u}$ ha invece $n$ righe ed $m$ colonne
 dove $m$ è il numero di ingressi, verrà chiamata $B$.
 
 Si riscrive la \ref{eq.:linearizzazione_sistema} trascurando l'o-piccolo si
-ottiene 40:26
+ottiene
 
+$$\begin{aligned}
+\dot x &= \dot{\delta x} = A\delta x + B \delta u
+\end{aligned}$$
+quella ottenuta è proprio l'equazione di un sistema dinamico lineare con
+variabile di stato pari a $\delta x$ ed ingresso pari a $\delta u$
+
+La variazione dell'uscita invece sarà
+$$\begin{aligned}
+y &= \overline{y} + \delta y = g(\overline{x},\overline{u}) +
+\left.\frac{\partial
+g}{\partial x}\right|_{\text{eq}}\delta x + \left.\frac{\partial g}{\partial
+u}\right|_{\text{eq}}\delta u + o(\delta x, \delta u) \\
+\delta g &\simeq C\delta x + D \delta u
+\end{aligned}$$
+Anche la variazione dell'uscita è lineare con la variazione dello stato e
+dell'ingresso.
+
+Dopo aver risolto il sistema delle variazioni si somma con il sistema dei
+punti di equilibrio e si ottiene la risoluzione dell'intero sistema.
+
+In molti casi la coppia $(0,0)$ è un punto di equilibrio, in questo specifico
+caso è sufficiente calcolare solo le variazioni, dato che andrebbero poi
+sommate con un valore nullo di ingresso ed equilibrio.
+
+Si riprende l'esempio analizzato alla sezione \ref{sec.:equilibrio_del_pendolo}
+$$\left\{\begin{aligned}
+\dot x_1 &= x_2\\
+\dot x_2 &= - \frac{g}{l}\sin{x_1} + \frac{1}{mL}u \\
+y &= x_1
+\end{aligned}\right.$$
+
+Va dunque calcolata la matrice $A$
+$$ A =
+\left.\frac{\partial f }{\partial x}\right|_{\text{eq}} = \begin{pmatrix}
+ \left.\frac{\partial f_1}{\partial x_1}\right|_{\text{eq}}
+ & \left.\frac{\partial f_1}{\partial x_2}\right|_{\text{eq}} \\
+ \left.\frac{\partial f_2}{\partial x_1}\right|_{\text{eq}}
+ & \left.\frac{\partial f_2}{\partial x_2}\right|_{\text{eq}}
+\end{pmatrix} =
+\begin{pmatrix}
+ 0 & 1\\
+ -\frac{g}{L}\cos(\overline{x}_1) & 0
+\end{pmatrix} $$
+
+Si ripete il procedimento rispetto all'ingresso e si calcola la matrice $B$
+$$
+B = \left.\frac{\partial f }{\partial u}\right|_{\text{eq}} =
+\begin{pmatrix}
+ \left.\frac{\partial f_1}{\partial u}\right|_{\text{eq}} \\
+ \left.\frac{\partial f_2}{\partial u}\right|_{\text{eq}}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+\frac{1}{mL}
+\end{pmatrix}
+$$
+La seconda matrice è costante e non dipende dai punti di equilibrio.
+
+Si esegue la stessa operazione per l'equazione delle uscite
+$$
+C = \left.\frac{\partial g}{\partial x}\right|_{\text{eq}} =
+\begin{pmatrix}
+ \left.\frac{\partial g}{\partial x_1}\right|_{\text{eq}}  &
+ \left.\frac{\partial g}{\partial x_2}\right|_{\text{eq}}
+\end{pmatrix} =
+\begin{pmatrix}
+ 1 & 0
+\end{pmatrix}
+$$
+
+Infine dato che il sistema è strettamente proprio non è necessario calcolare la
+matrice $D$ dato che sarà sicuramente nulla, se ne riporta in ogni caso la
+definizione
+$$
+D = \left.\frac{\partial g}{\partial u}\right|_{\text{eq}} =
+0
+$$
+L'unica matrice che varia al variare del punto di equilibrio è la prima.
+
+Si calcolano le matrici $A'$ ed $A''$ nei due punti di equilibrio
+$$
+\overline{u} = 0 \left\langle
+\begin{aligned}
+ \overline{x'} &= \begin{pmatrix}
+                  0 \\ 0
+                 \end{pmatrix} \\
+ \overline{x''} &= \begin{pmatrix}
+                   \pi \\ 0
+                  \end{pmatrix}
+\end{aligned} \right.
+$$
