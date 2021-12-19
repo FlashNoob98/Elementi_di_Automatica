@@ -244,13 +244,13 @@ lineare, può essere sensato linearizzare la funzione in particolari regimi di
 funzionamento della valvola.
 
 
-\chapter{Equilibrio dei sistemi}
+\section{Equilibrio dei sistemi}
 Si ricordi il modello generale di un sistema ISU presentato con la
 \ref{eq.:ISU_generale}
 $$
 \left\{\begin{aligned}
 \dot x & = f(x,u,t) \\
-y = g(x,u,t)
+y &= g(x,u,t)
 \end{aligned}\right.
 $$
 non è nota l'espressione della $x(t)$, andrebbe
@@ -299,13 +299,14 @@ costanti a tratti, mutano tra un punto di equilibrio e l'altro.
 \end{itemize}
 
 \subsection{Equilibrio del pendolo}
+\label{sec.:equilibrio_del_pendolo}
 Si riprende l'esempio del pendolo rigido analizzato alla sezione
 \ref{sec.:pendolo_rigido}
 \begin{figure}[h]
  \centering
  \includegraphics[width=\picwid]{pendolo.png}
  % pendolo.png: 316x278 px, 96dpi, 8.36x7.35 cm, bb=0 0 237 208
- \label{Fig.:pendolo_semplice}
+ %\label{Fig.:pendolo_semplice}
 \end{figure}
 Il sistema ha un punto di equilibrio?
 Intuitivamente il punto di equilibrio è quello a $\theta=0$, in realtà anche
@@ -367,39 +368,24 @@ Le equazioni confermano quanto intuito precedentemente, la forza peso $mg$ deve
 essere maggiore o uguale della forza $f$ applicata dall'esterno.
 
 Si studiano i seguenti casi
-$$|\overline{u}| \leq mg
+$$|\overline{u}| \leq mg\left\langle
 \begin{aligned}
-&\nearrow \\
 & \\
-&\\
-&\searrow
-\end{aligned}\
-\begin{aligned}
-&\\
-&\\
-&|\overline{u}|=mg \begin{aligned}
-&\nearrow \\
-&\searrow
-\end{aligned}\ \begin{aligned}
+&|\overline{u}|=mg \left\langle \begin{aligned}
 &\overline{u} = mg \Rightarrow\sin(\overline{x}_1) = 1 \Rightarrow
 \overline{x}_1 = \frac{\pi}{2}\\
-&\\
 &\overline{u} = -mg \Rightarrow \sin(\overline{x}_1) = -1 \Rightarrow
 \overline{x}_1 = -\frac{\pi}{2}
-\end{aligned}
-&\\
-&\\
-&|\overline{u}|<mg \Rightarrow \overline{x}_1 = \begin{aligned}
-&\nearrow \\
-& \searrow
-\end{aligned}\ \begin{aligned}
+\end{aligned}  \right.
+& \\
+& \\
+&|\overline{u}|<mg \Rightarrow \overline{x}_1 = \left\langle \begin{aligned}
 &\sin^{-1}\left(\frac{\pi}{mg}\right) \\
-&\\
 &\pi - \sin^{-1}\left(\frac{\pi}{mg}\right)
-\end{aligned}
-\\
+\end{aligned}\right.
 &\\
-\end{aligned}
+& \\
+\end{aligned}\right.
 $$
 Si è quantificato numericamente il valore degli angoli di equilibrio del
 sistema.
