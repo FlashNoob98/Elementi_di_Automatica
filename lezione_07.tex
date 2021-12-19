@@ -224,7 +224,8 @@ $$
 Al variare di un solo segno si vedrà come il sistema si comporterà in modi
 completamente differenti, si studierà ossia la \textit{stabilità} del sistema.
 
-\section{Endomorfismo}
+\section{Richiami di geometria}
+\subsection{Endomorfismo}
 Si consideri un'applicazione che trasforma i vettori dello spazio
 $\mathfrak{X}$ in altri vettori dello stesso spazio vettoriale.
 Funzioni di questo tipo possono essere rappresentate da matrici $n\times n$
@@ -250,4 +251,121 @@ $x$ nella base data da $T$
 $$
 x = T \tilde{x}
 $$
-1:12:38
+Dato che $T$ è invertibile
+$\tilde{x} = T^{-1}x$
+
+Si consideri un vettore
+\begin{equation}x' = Ax\label{eq.:endomorfismo}\end{equation}
+dove $A$ è un endomorfismo. Se si vuole
+rappresentare il vettore $x'$ in funzione della nuova base allora
+$$
+T\tilde{x}' = Ax = AT\tilde{x}
+$$
+Si moltiplica per l'inversa di $T$
+$$
+\tilde{x}' = T^{-1}AT \tilde{x}
+$$
+Quindi si è riscritta la relazione \ref{eq.:endomorfismo} ma nella nuova base,
+ciò implica che la trasformazione $A$ è la stessa ma è avvenuta nel nuovo
+sistema di riferimento.
+
+Si può definire
+$$
+T^{-1}A T = \tilde{A}
+$$
+dove $\tilde{A}$ è una matrice \textit{simile} alla matrice $A$, la relazione
+di similitudine è una condizione di uguaglianza, deve verificare tre proprietà:
+\begin{itemize}
+ \item Riflessiva:
+
+    Se $A=\tilde{A}$ la trasformazione $T$ deve necessariamente essere la
+matrice identità $T=I$
+ \item Simmetria:
+
+ Se $A=\tilde{A} \Rightarrow \tilde{A}=A$
+
+ Si moltiplica il primo termine a destra per $T$ e a sinistra per $T^{-1}$
+ \item Transitiva:
+
+ Se $A=\tilde{A},\ \tilde{A}=\tilde{\tilde{A}} \Rightarrow A =
+\tilde{\tilde{A}}$
+\end{itemize}
+
+Si consideri lo spazio delle matrici $\{A\in\mathbb{R}^{n\times n}\}$,
+si può dividere in classi di equivalenza tra loro disgiunte, si possono
+raggruppare tutte le matrici che appartengono alla stessa classe di
+similitudine.
+
+\subsection{Autospazi invarianti monodimensionali}
+Si consideri un certo endomorfismo $A$ definito nello spazio $X^n$, esso
+trasforma come già accennato, rette passanti per l'origine in rette passanti
+per l'origine.
+
+Esistono direzioni ``speciali'' per le quali, applicata $A$, si ottiene un
+altro vettore che giace sul vettore di partenza, al limite cambiando in modulo.
+
+La retta $Ax$ deve essere proporzionale per un fattore $\lambda$ ad $x$
+\begin{align}
+Ax &= \lambda x\\
+(A-\lambda I)x &= \underline{0}
+\label{eq.:autovalori}\end{align}
+Quello appena ottenuto è un sistema algebrico \textit{omogeneo} di $n$
+equazioni in $n$ incognite.
+Dal teorema di Rouché-Capelli, ammetterà una soluzione non banale solo se la
+matrice $(A-\lambda I)$ è singolare, ossia il suo determinante è nullo.
+Il determinante della matrice produce un polinomio, nell'incognita $\lambda$ di
+ordine $n$ detto anche \textit{polinomio caratteristico}
+della matrice $A$.
+(Il sistema omogeneo ammette il cambio di segno)
+$$
+\text{det}(\lambda I -A) = p(\lambda) = \lambda^n + \alpha_{n-1}\lambda^{n-1} +
+\alpha_{n-2}\lambda^{n-2} + \dots + \alpha_0 = 0
+$$
+Si ricaveranno tutti i valori di $\lambda$ per i quali la matrice
+$(A-\lambda I)$ è singolare.
+Dal teorema fondamentale dell'algebra posso trovare $n$ soluzioni,
+$\lambda_1,\dots,\lambda_n $ prendono il nome di \textbf{autovalori} della
+matrice $A$.
+Se la matrice $A$ è reale, i coefficienti sono tutti reali, un polinomio a
+coefficienti reali può ammettere radici reali o complesse e coniugate.
+
+Alcuni autovalori possono avere una molteplicità algebrica $m_{a}$ maggiore di
+uno, ossia possono essere più volte soluzione del polinomio.
+Ad esempio il polinomio
+$$
+(\lambda-1)^{3} = 0
+$$
+ammette come soluzione $\lambda =1$ con molteplicità algebrica $m_a = 3$.
+Se gli autovalori sono tutti distinti fra loro, ossia  avranno tutti
+molteplicità unitaria, la matrice $A$ si dirà di \textit{semplice struttura}.
+
+Per ricavare le direzioni invarianti vanno trovati gli \textbf{autovettori},
+vettori che giacciono nelle direzioni invarianti.
+Se si sostituisce nella \ref{eq.:autovalori} il generico $\lambda_i$
+\begin{equation}
+(\lambda_i I -A)u_i = 0
+\label{eq.:autovalori_sostituiti}
+\end{equation}
+Il vettore $u_i$ non nullo deve per costruzione giacere sulla direzione
+invariante.
+Se un autovalore $\lambda_i$ ha molteplicità $1$, la matrice
+\ref{eq.:autovalori_sostituiti} ``perde  di rango'' una sola volta, quindi di
+$n$ equazioni saranno $n-1$ indipendenti, con un solo grado di libertà, ossia
+lo spazio vettoriale, soluzione del sistema sarà una retta, quindi un solo
+autovettore.
+Se la molteplicità dell'autovalore fosse $2$ allora anche lo spazio delle
+soluzioni potrebbe essere di ordine $2$, dunque un piano o equivalentemente una
+coppia di vettori.
+
+La dimensione dell'autospazio invariante prende il nome di \textit{molteplicità
+geometrica} dell'autovalore $m_{gi}$.
+
+$$
+m_{gi} = n - \rho(\lambda_i I -A)
+$$
+
+Non è possibile trovare un numero di autovettori maggiore della molteplicità
+algebrica del relativo autovalore.
+$$
+1\leq m_{gi} \leq m_{ai}
+$$
