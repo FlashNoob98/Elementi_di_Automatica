@@ -1,2 +1,178 @@
 
+\subsection{Diagonalizzazione per similitudine}
+Sia un'applicazione $A\in\mathbb{R}^{n\times n}$ di semplice struttura, ovvero
+con $n$ autovalori distinti e di conseguenza $n$ autovettori distinti e
+indipendenti tra loro, in uno spazio di $n$ dimensioni, dunque forniscono una
+base.
+$$
+\left\{\begin{aligned}
+\lambda_1& \rightarrow u_1\\
+\vdots& \quad\ \  \vdots \\
+\lambda_n & \rightarrow u_n
+\end{aligned}\right.
+$$
+Si pongono i vettori per colonna in una matrice quadrata $U$
+$$
+U = [u_1, \ldots, u_n]
+$$
+Il rango della matrice sarà certamente $n$, composta da $n$ vettori linearmente
+indipendenti, sarà una matrice non singolare.
+La matrice $U$ può essere usata per realizzare una trasformazione di
+similitudine.
+$$
+x = U\tilde{x}
+$$
+La matrice $U$ prende il nome di \textit{matrice modale},
+la matrice della dinamica del sistema si può riscrivere come
+$$
+\tilde{A} = U^{-1}AU
+$$
+con $\tilde{A}$ la matrice di similitudine dello stesso sistema in una base
+differente, \textit{equivalente} alla matrice $A$ di partenza.
 
+Sviluppando i prodotti
+$$
+\tilde{A} = U^{-1}AU = \begin{bmatrix}
+                        \lambda_1 & 0 & 0 \\
+                        0 & \ddots & 0 \\
+                        0 & 0 & \lambda_n
+                        \end{bmatrix} = \Lambda
+$$
+La matrice $\Lambda$ viene denominata \textit{matrice degli autovalori}.
+Si è ottenuta una matrice della dinamica del sistema di tipo diagonale, con
+solo gli autovalori sulla diagonale.
+La trasformazione di similitudine non altera gli autovalori del sistema.
+
+Questa rappresentazione prende il nome di \textit{diagonalizzazione per
+similitudine}, si è diagonalizzata la matrice della dinamica.
+
+Si vuole dimostrare la precedente
+$$\begin{aligned}
+U^{-1} A[u_1 \ldots u_n] &= U^{-1} [Au_1, Au_2, \ldots, Au_n] =
+U^{-1}[\lambda_1u_1,\lambda_2u_2,\ldots,\lambda_nu_n] =\\
+&=U^{-1} [u_1,u_2,\ldots,u_n] \begin{bmatrix}
+                        \lambda_1 & 0 & 0 \\
+                        0 & \ddots & 0 \\
+                        0 & 0 & \lambda_n
+                             \end{bmatrix} = I\Lambda = \Lambda
+\end{aligned}$$
+
+\chapter{Analisi dei sistemi LTI nel dominio del tempo}
+La forma ISU dei sistemi di questo tipo è
+$$\left\{\begin{aligned}
+\dot x &= Ax +Bu \\
+y &= Cx + Du
+\end{aligned}\right.$$
+Le matrici caratteristiche sono costanti, ma il legame rispetto allo stato è
+implicito, per ricavare esplicitamente il legame tra uscita e stato è necessario
+integrare il sistema.
+
+\section{Risoluzione analitica di un sistema differenziale}
+Per risolvere il sistema è necessario determinare l'integrale generale, dato
+dalla somma dell'integrale dell'omogenea associata
+nominata $x_h(t)$ e di una qualunque soluzione particolare $x_p(t)$
+$$
+x(t) =x_h(t) + x_p(t)
+$$
+Soluzione omogenea $\dot x_h = Ax_h$, si suppone che la soluzione sia del tipo
+$$
+e^{\lambda t}\cdot c\quad \lambda \in \mathbb{R}, c\in \mathbb{R}^n
+$$
+
+Sostituendo l'ipotesi di soluzione nel sistema e differenziando si ottiene
+$$
+\lambda \cancel{e^{\lambda t}} c = A\cancel{e^{\lambda t}} c
+$$
+$$
+\lambda c = A c \Leftrightarrow (\lambda I -A)c = 0
+$$
+Questa equazione è vera solo se $\lambda$ è un autovalore (con $c\neq
+\underline{0}$).
+Esistono solo $n$ soluzioni possibili (nell'ipotesi che la matrice $A$ sia di
+semplice struttura, non è un'ipotesi necessaria).
+
+Qualunque soluzione $x_h$ combinazione lineare delle soluzioni precedentemente
+ricavata, è ancora soluzione del sistema.
+$$
+x_h(t) = \sum_{i=1}^n e^{\lambda_i t} c_i
+$$
+Analogamente si potrebbe procedere con la soluzione particolare.
+
+\subsection{Matrice esponenziale}
+Si indica simbolicamente con
+\begin{equation}
+e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^k t^k}{k!}
+\end{equation}
+È una serie nel tempo e non una matrice di esponenziali.
+
+Si cercano le ipotesi di convergenza della serie, la sua norma è maggiorata da
+una serie assolutamente convergente (per ciascun valore di $t$)
+$$
+\left|\left|e^{At}\right|\right| = \left|\left|\sum_{k} \frac{A^k
+t^k}{k!}\right|\right| \leq \sum_k \frac{\left|\left|A^k\right|\right| t^k}{k!}
+\leq \sum_k \frac{a^kt^k}{k!} \stackrel{\text{def}}{=}e^{at}
+$$
+La norma della somma è minore o uguale alla somma delle norme e i tempi sono
+assunti positivi.
+Si ricava il coefficiente $a^k$ dato che $||A^k|| \leq ||A||^k = a^k $, quella
+ottenuta è la definizione di esponenziale scalare.
+
+Si vuole scrivere una soluzione analitica della matrice esponenziale, si
+supponga che sia diagonalizzabile per similitudine, ossia se ne possa costruire
+la matrice modale, ciò è sicuramente vero se la matrice è di semplice struttura.
+In generale è sufficiente che per ogni autovalore la molteplicità
+algebrica coincida con quella geometrica, ossia siano presenti $n$ autovettori
+distinti (esista una base).
+Si può costruire la matrice $\Lambda$ degli autovalori
+$$
+\Lambda = U^{-1}AU \Leftrightarrow A=U\Lambda U^{-1}
+$$
+Si eleva la matrice $A$ a potenza
+$$
+A^k = (U\Lambda U^{-1})^k = U\Lambda U^{-1} \cdot U\Lambda U^{-1} \cdot
+\ldots\cdot U\Lambda U^{-1}\ k\ \text{volte}
+$$
+Si nota che sono sempre presenti $k$ prodotti $U^{-1}U$ pari alla matrice
+identità, dunque
+$$
+A^k = U\Lambda^kU^{-1}
+$$
+Ma lambda è una matrice diagonale, moltiplicata per sé stessa fornisce ancora
+una matrice diagonale
+\begin{equation}
+A^k = U \begin{bmatrix}
+        \lambda_1^k & 0 & 0      \\
+        \vdots & \ddots & \vdots \\
+        0 & 0 & \lambda_n^k
+        \end{bmatrix} U^{-1} =
+\begin{bmatrix}u_1 & \ldots & u_n\end{bmatrix} \begin{bmatrix}
+        \lambda_1^k & 0 & 0      \\
+        \vdots & \ddots & \vdots \\
+        0 & 0 & \lambda_n^k
+        \end{bmatrix}
+        \begin{bmatrix}
+        v_1^T\\ \vdots \\ v_n^T
+        \end{bmatrix}
+\label{eq.:matrice_esponenziale}
+\end{equation}
+Sviluppando i prodotti
+\begin{equation}
+A^k = \sum_{i=1}^n \lambda_i^k u_i v_i^T
+\label{eq.:forma_spettrale}
+\end{equation}
+Si ottiene la somma di $n$ matrici $n\times n$ denominate residui
+polari $R_i$ moltiplicate per $\lambda^k$.
+Una proprietà dei residui polari, nel caso di matrice diagonalizzabile, è che
+hanno rango pari ad uno.
+
+La \ref{eq.:forma_spettrale} prende il nome di \textit{forma spettrale} (o
+forma \textit{diadica}) della matrice potenza.
+
+\subsubsection{Calcolo della matrice esponenziale}
+Si supponga che $A$ sia diagonalizzabile, si vuole calcolare la matrice
+esponenziale
+$$
+e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!}
+$$
+
+52:54
