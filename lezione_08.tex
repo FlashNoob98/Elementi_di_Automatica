@@ -171,8 +171,153 @@ forma \textit{diadica}) della matrice potenza.
 \subsubsection{Calcolo della matrice esponenziale}
 Si supponga che $A$ sia diagonalizzabile, si vuole calcolare la matrice
 esponenziale
+$$\begin{aligned}
+e^{At} &\stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!}=
+\sum_{k=0}^{+\infty} \frac{U\Lambda^kU^{-1}t^k}{k!} =
+U\left(\sum_{k=0}^{+\infty}\frac{\Lambda^kt^k}{k!}\right)U^{-1}= \\
+       &= U\begin{bmatrix}
+            \sum_{k=0}^{+\infty} \frac{\lambda_1^kt^k}{k!} & 0 & 0 \\
+            0 & \ddots & 0 \\
+            0 & 0 & \sum_{k=0}^{+\infty}\frac{\lambda_n^kt^k}{k!}
+            \end{bmatrix}U^{-1} = U\begin{bmatrix}
+                                    e^{\lambda_1t} & 0 & 0 \\
+                                    0 & \ddots & 0 \\
+                                    0 & 0 & e^{\lambda_n t}
+                                    \end{bmatrix}U^{-1} = \\
+        &= \sum_{i=1}^n e^{\lambda_i t} u_i v_i^T
+\end{aligned}$$
+
+Anche la matrice esponenziale può essere calcolata mediante la sua forma
+diadica o spettrale.
+Riassumendo:
+\begin{enumerate}
+ \item Calcolo $\lambda_i, u_i\ i=1,\ldots,n$
+ \item Verificare che $A$ sia diagonalizzabile, $m_{ai} = m_{gi} \ \forall i$
+ \item (Se 2 vera) Costruzione della matrice modale $U$ e calcolo della sua
+ inversa $U^{-1}\ \ (v_i^T)$
+ \item Costruzione della matrice esponenziale della matrice degli autovalori
+$e^{\Lambda t}$
+ \item Calcolo di $e^{A t} =  U e^{\Lambda t} U^{-1}$ oppure mediante la
+ sommatoria della forma spettrale.
+\end{enumerate}
+
+\newpage
+\subsubsection{Esempio numerico}
+Sia la matrice
 $$
-e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!}
+A = \begin{bmatrix}
+    0 & 1 \\
+    -2 & -3
+    \end{bmatrix}
+$$
+\begin{enumerate}
+\item Calcolo autovalori e autovettori
+
+$p(\lambda) = |\lambda I -A| =
+\text{det}\begin{pmatrix}
+                                                \lambda & -1 \\
+                                                2 & \lambda +3
+                                                \end{pmatrix} =
+\lambda(\lambda+3)+2 = \lambda^2 + 3\lambda +2 = 0$
+
+Le soluzioni
+$$
+\begin{aligned}
+\lambda_1 &= -1 \\
+\lambda_2 &= -2
+\end{aligned}
+$$
+Calcolo degli autovettori
+$$
+(\lambda_1 I -A)u_1 = \begin{pmatrix}
+                        -1 & -1 \\
+                        2 & 2
+                        \end{pmatrix} \begin{pmatrix}
+                                      u_{11} \\ u_{12}
+                                      \end{pmatrix} = \begin{pmatrix}
+                                      0 \\ 0
+                                      \end{pmatrix}
+$$
+La matrice $ (\lambda_1 I -A)u_1$ è per costruzione singolare dato che
+$\lambda$ è un autovalore, perde di rango una volta (dato che è di semplice
+struttura e gli autovalori hanno molteplicità uno).
+Per questo motivo è sufficiente risolvere una sola equazione e gli autovettori
+saranno proporzionali tra di loro, si può assegnare arbitrariamente una
+componente dell'autovettore (ad esempio $u_{12}=1$)
+$$
+- u_{11} - u_{12} = 0 \Rightarrow u_{11} = -1 \Rightarrow u_1 = \begin{pmatrix}
+-1 \\ 1
+\end{pmatrix}
 $$
 
-52:54
+Può essere comodo normalizzare gli autovettori normalizzati ma non è necessario
+in questo corso.
+
+Secondo autovettore:
+$$
+(\lambda_2 I -A)u_1 = \begin{pmatrix}
+                        -2 & -1 \\
+                        2 & 1
+                        \end{pmatrix} \begin{pmatrix}
+                                      u_{21} \\ u_{22}
+                                      \end{pmatrix} = \begin{pmatrix}
+                                      0 \\ 0
+                                      \end{pmatrix}
+$$
+Assegnando arbitrariamente $u_{21} = 1$
+$$
+-2u_{21} - u_{22} = 0 \Rightarrow  u_{22} = -2 \Rightarrow u_2 = \begin{pmatrix}
+1 \\ -2
+\end{pmatrix}
+$$
+
+\item Verifica diagonalizzabilità, passaggio scontato dato che la matrice è di
+semplice struttura.
+
+\item Costruzione della matrice modale
+$$
+U = \begin{bmatrix}u_1 & u_2\end{bmatrix} = \begin{bmatrix}
+                                            -1 & 1 \\
+                                            1 & -2
+                                            \end{bmatrix} \qquad U^{-1} =
+\begin{bmatrix}
+-2 & -1 \\
+-1 & -1
+\end{bmatrix}\begin{matrix}
+\rightarrow & v_1^T \\ \rightarrow & v_2^T
+\end{matrix}
+$$
+
+\item Costruzione della matrice esponenziale degli autovalori $e^{\Lambda t}$
+$$
+e^{\Lambda t} = \begin{bmatrix}
+                e^{-t} & 0 \\
+                0 & e^{-2 t}
+                \end{bmatrix}
+$$
+
+\item Costruzione della matrice esponenziale $e^{At}$ attraverso la
+decomposizione spettrale
+$$\begin{aligned}
+e^{At} &= Ue^{\Lambda t} U^{-1} = \begin{pmatrix}
+                                    -1 & 1 \\
+                                    -1 & -2
+                                    \end{pmatrix} \begin{pmatrix}
+                                                e^{-t} & 0 \\
+                                                0 & e^{-2t}
+                                                \end{pmatrix} \begin{pmatrix}
+                                                -2 & -1 \\
+                                                -1 & -1
+                                                \end{pmatrix} = \\
+    &= \begin{pmatrix}
+        -e^{-t} & e^{-2t} \\
+        -e^{-t} & -2e^{-2t}
+        \end{pmatrix}\begin{pmatrix}
+                    -2 & -1 \\
+                    -1 & -1
+                    \end{pmatrix} = \begin{pmatrix}
+                                    2e^{-t}-e^{-2t} & e^{-t}-e^{-2t}\\
+                                    2e^{-t}+2e^{-2t} & e^{-t}+e^{-2t}
+                                    \end{pmatrix}
+\end{aligned}$$
+\end{enumerate}
