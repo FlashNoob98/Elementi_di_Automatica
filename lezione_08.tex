@@ -333,13 +333,34 @@ A\in\mathbb{R}^{n\times n}\ \lambda_i\ u_i
 \stackrel{\text{def}}{\Leftrightarrow} Au_i = \lambda_iu_i
 $$
 Si vuole dimostrare che se si considera la matrice potenza $A^k$
-$$
+\begin{equation}
 A^k : A^ku_i = \lambda_i^ku_i
-$$
+\label{eq.:uguaglianza_a_k}
+\end{equation}
 La matrice $A^k$ è quadrata, potrebbe essere chiamata $B$, se moltiplicata per
 un vettore si ottiene lo stesso vettore moltiplicato per uno scalare, si
 ottiene cioè la definizione di autospazio invariante monodimensionale.
 La matrice potenza $A^k$ ha come autovettori gli stessi autovettori della
 matrice $A$, l'elevazione a potenza non cambia gli autovettori, gli autovalori
 invece sono le potenze degli autovalori di partenza.
-1:29:14
+
+Si supponga che la \ref{eq.:uguaglianza_a_k} valga per $k=1$ ed un generico $k$
+e $k+1$, si sarà dimostrata per induzione l'uguaglianza.
+
+$$
+A^{k+1}u_i = A^k A u_i = A^k \lambda_i u_i = \lambda_i A^k u_i = \lambda_i
+\lambda_i^k u_i = \lambda_i^{k+1} u_i
+$$
+la penultima uguaglianza è vera per ipotesi induttiva.
+
+Si esegue la stessa dimostrazione per la matrice esponenziale con le stesse
+ipotesi del caso precedente, $u_i$ autovettore della matrice $A$
+$$
+e^{At} : e^{At}u_i = \sum_{k=0}^{+\infty} \frac{A^k t^k} {k!}u_i =
+\sum_{k=0}^{+\infty} \frac{A^k u_i t^k}{k!} = \sum_{k=0}^{+\infty}
+\frac{\lambda_i^ku_it^k}{k!} = \sum_{k=0}^{+\infty} \frac{\lambda_i^k
+t_i^k}{k!}u_i = e^{\lambda_i t}u_i
+$$
+Quella ottenuta è ancora la definizione di autospazio invariante
+monodimensionale e dunque $u_i$ è un autovettore per la matrice $A$ e per la
+sua matrice esponenziale.
