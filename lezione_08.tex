@@ -1,0 +1,366 @@
+
+\subsection{Diagonalizzazione per similitudine}
+Sia un'applicazione $A\in\mathbb{R}^{n\times n}$ di semplice struttura, ovvero
+con $n$ autovalori distinti e di conseguenza $n$ autovettori distinti e
+indipendenti tra loro, in uno spazio di $n$ dimensioni, dunque forniscono una
+base.
+$$
+\left\{\begin{aligned}
+\lambda_1& \rightarrow u_1\\
+\vdots& \quad\ \  \vdots \\
+\lambda_n & \rightarrow u_n
+\end{aligned}\right.
+$$
+Si pongono i vettori per colonna in una matrice quadrata $U$
+$$
+U = [u_1, \ldots, u_n]
+$$
+Il rango della matrice sarà certamente $n$, composta da $n$ vettori linearmente
+indipendenti, sarà una matrice non singolare.
+La matrice $U$ può essere usata per realizzare una trasformazione di
+similitudine.
+$$
+x = U\tilde{x}
+$$
+La matrice $U$ prende il nome di \textit{matrice modale},
+la matrice della dinamica del sistema si può riscrivere come
+$$
+\tilde{A} = U^{-1}AU
+$$
+con $\tilde{A}$ la matrice di similitudine dello stesso sistema in una base
+differente, \textit{equivalente} alla matrice $A$ di partenza.
+
+Sviluppando i prodotti
+$$
+\tilde{A} = U^{-1}AU = \begin{bmatrix}
+                        \lambda_1 & 0 & 0 \\
+                        0 & \ddots & 0 \\
+                        0 & 0 & \lambda_n
+                        \end{bmatrix} = \Lambda
+$$
+La matrice $\Lambda$ viene denominata \textit{matrice degli autovalori}.
+Si è ottenuta una matrice della dinamica del sistema di tipo diagonale, con
+solo gli autovalori sulla diagonale.
+La trasformazione di similitudine non altera gli autovalori del sistema.
+
+Questa rappresentazione prende il nome di \textit{diagonalizzazione per
+similitudine}, si è diagonalizzata la matrice della dinamica.
+
+Si vuole dimostrare la precedente
+$$\begin{aligned}
+U^{-1} A[u_1 \ldots u_n] &= U^{-1} [Au_1, Au_2, \ldots, Au_n] =
+U^{-1}[\lambda_1u_1,\lambda_2u_2,\ldots,\lambda_nu_n] =\\
+&=U^{-1} [u_1,u_2,\ldots,u_n] \begin{bmatrix}
+                        \lambda_1 & 0 & 0 \\
+                        0 & \ddots & 0 \\
+                        0 & 0 & \lambda_n
+                             \end{bmatrix} = I\Lambda = \Lambda
+\end{aligned}$$
+
+\chapter{Analisi dei sistemi LTI nel dominio del tempo}
+La forma ISU dei sistemi di questo tipo è
+$$\left\{\begin{aligned}
+\dot x &= Ax +Bu \\
+y &= Cx + Du
+\end{aligned}\right.$$
+Le matrici caratteristiche sono costanti, ma il legame rispetto allo stato è
+implicito, per ricavare esplicitamente il legame tra uscita e stato è necessario
+integrare il sistema.
+
+\section{Risoluzione analitica di un sistema differenziale}
+Per risolvere il sistema è necessario determinare l'integrale generale, dato
+dalla somma dell'integrale dell'omogenea associata
+nominata $x_h(t)$ e di una qualunque soluzione particolare $x_p(t)$
+$$
+x(t) =x_h(t) + x_p(t)
+$$
+Soluzione omogenea $\dot x_h = Ax_h$, si suppone che la soluzione sia del tipo
+$$
+e^{\lambda t}\cdot c\quad \lambda \in \mathbb{R}, c\in \mathbb{R}^n
+$$
+
+Sostituendo l'ipotesi di soluzione nel sistema e differenziando si ottiene
+$$
+\lambda \cancel{e^{\lambda t}} c = A\cancel{e^{\lambda t}} c
+$$
+$$
+\lambda c = A c \Leftrightarrow (\lambda I -A)c = 0
+$$
+Questa equazione è vera solo se $\lambda$ è un autovalore (con $c\neq
+\underline{0}$).
+Esistono solo $n$ soluzioni possibili (nell'ipotesi che la matrice $A$ sia di
+semplice struttura, non è un'ipotesi necessaria).
+
+Qualunque soluzione $x_h$ combinazione lineare delle soluzioni precedentemente
+ricavata, è ancora soluzione del sistema.
+$$
+x_h(t) = \sum_{i=1}^n e^{\lambda_i t} c_i
+$$
+Analogamente si potrebbe procedere con la soluzione particolare.
+
+\subsection{Matrice esponenziale}
+Si indica simbolicamente con
+\begin{equation}
+e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^k t^k}{k!}
+\end{equation}
+È una serie nel tempo e non una matrice di esponenziali.
+
+Si cercano le ipotesi di convergenza della serie, la sua norma è maggiorata da
+una serie assolutamente convergente (per ciascun valore di $t$)
+$$
+\left|\left|e^{At}\right|\right| = \left|\left|\sum_{k} \frac{A^k
+t^k}{k!}\right|\right| \leq \sum_k \frac{\left|\left|A^k\right|\right| t^k}{k!}
+\leq \sum_k \frac{a^kt^k}{k!} \stackrel{\text{def}}{=}e^{at}
+$$
+La norma della somma è minore o uguale alla somma delle norme e i tempi sono
+assunti positivi.
+Si ricava il coefficiente $a^k$ dato che $||A^k|| \leq ||A||^k = a^k $, quella
+ottenuta è la definizione di esponenziale scalare.
+
+Si vuole scrivere una soluzione analitica della matrice esponenziale, si
+supponga che sia diagonalizzabile per similitudine, ossia se ne possa costruire
+la matrice modale, ciò è sicuramente vero se la matrice è di semplice struttura.
+In generale è sufficiente che per ogni autovalore la molteplicità
+algebrica coincida con quella geometrica, ossia siano presenti $n$ autovettori
+distinti (esista una base).
+Si può costruire la matrice $\Lambda$ degli autovalori
+$$
+\Lambda = U^{-1}AU \Leftrightarrow A=U\Lambda U^{-1}
+$$
+Si eleva la matrice $A$ a potenza
+$$
+A^k = (U\Lambda U^{-1})^k = U\Lambda U^{-1} \cdot U\Lambda U^{-1} \cdot
+\ldots\cdot U\Lambda U^{-1}\ k\ \text{volte}
+$$
+Si nota che sono sempre presenti $k$ prodotti $U^{-1}U$ pari alla matrice
+identità, dunque
+$$
+A^k = U\Lambda^kU^{-1}
+$$
+Ma lambda è una matrice diagonale, moltiplicata per sé stessa fornisce ancora
+una matrice diagonale
+\begin{equation}
+A^k = U \begin{bmatrix}
+        \lambda_1^k & 0 & 0      \\
+        \vdots & \ddots & \vdots \\
+        0 & 0 & \lambda_n^k
+        \end{bmatrix} U^{-1} =
+\begin{bmatrix}u_1 & \ldots & u_n\end{bmatrix} \begin{bmatrix}
+        \lambda_1^k & 0 & 0      \\
+        \vdots & \ddots & \vdots \\
+        0 & 0 & \lambda_n^k
+        \end{bmatrix}
+        \begin{bmatrix}
+        v_1^T\\ \vdots \\ v_n^T
+        \end{bmatrix}
+\label{eq.:matrice_esponenziale}
+\end{equation}
+Sviluppando i prodotti
+\begin{equation}
+A^k = \sum_{i=1}^n \lambda_i^k u_i v_i^T
+\label{eq.:forma_spettrale}
+\end{equation}
+Si ottiene la somma di $n$ matrici $n\times n$ denominate residui
+polari $R_i$ moltiplicate per $\lambda^k$.
+Una proprietà dei residui polari, nel caso di matrice diagonalizzabile, è che
+hanno rango pari ad uno.
+
+La \ref{eq.:forma_spettrale} prende il nome di \textit{forma spettrale} (o
+forma \textit{diadica}) della matrice potenza.
+
+\subsubsection{Calcolo della matrice esponenziale}
+Si supponga che $A$ sia diagonalizzabile, si vuole calcolare la matrice
+esponenziale
+$$\begin{aligned}
+e^{At} &\stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!}=
+\sum_{k=0}^{+\infty} \frac{U\Lambda^kU^{-1}t^k}{k!} =
+U\left(\sum_{k=0}^{+\infty}\frac{\Lambda^kt^k}{k!}\right)U^{-1}= \\
+       &= U\begin{bmatrix}
+            \sum_{k=0}^{+\infty} \frac{\lambda_1^kt^k}{k!} & 0 & 0 \\
+            0 & \ddots & 0 \\
+            0 & 0 & \sum_{k=0}^{+\infty}\frac{\lambda_n^kt^k}{k!}
+            \end{bmatrix}U^{-1} = U\begin{bmatrix}
+                                    e^{\lambda_1t} & 0 & 0 \\
+                                    0 & \ddots & 0 \\
+                                    0 & 0 & e^{\lambda_n t}
+                                    \end{bmatrix}U^{-1} = \\
+        &= \sum_{i=1}^n e^{\lambda_i t} u_i v_i^T
+\end{aligned}$$
+
+Anche la matrice esponenziale può essere calcolata mediante la sua forma
+diadica o spettrale.
+Riassumendo:
+\begin{enumerate}
+ \item Calcolo $\lambda_i, u_i\ i=1,\ldots,n$
+ \item Verificare che $A$ sia diagonalizzabile, $m_{ai} = m_{gi} \ \forall i$
+ \item (Se 2 vera) Costruzione della matrice modale $U$ e calcolo della sua
+ inversa $U^{-1}\ \ (v_i^T)$
+ \item Costruzione della matrice esponenziale della matrice degli autovalori
+$e^{\Lambda t}$
+ \item Calcolo di $e^{A t} =  U e^{\Lambda t} U^{-1}$ oppure mediante la
+ sommatoria della forma spettrale.
+\end{enumerate}
+
+\newpage
+\subsubsection{Esempio numerico}
+Sia la matrice
+$$
+A = \begin{bmatrix}
+    0 & 1 \\
+    -2 & -3
+    \end{bmatrix}
+$$
+\begin{enumerate}
+\item Calcolo autovalori e autovettori
+
+$p(\lambda) = |\lambda I -A| =
+\text{det}\begin{pmatrix}
+                                                \lambda & -1 \\
+                                                2 & \lambda +3
+                                                \end{pmatrix} =
+\lambda(\lambda+3)+2 = \lambda^2 + 3\lambda +2 = 0$
+
+Le soluzioni
+$$
+\begin{aligned}
+\lambda_1 &= -1 \\
+\lambda_2 &= -2
+\end{aligned}
+$$
+Calcolo degli autovettori
+$$
+(\lambda_1 I -A)u_1 = \begin{pmatrix}
+                        -1 & -1 \\
+                        2 & 2
+                        \end{pmatrix} \begin{pmatrix}
+                                      u_{11} \\ u_{12}
+                                      \end{pmatrix} = \begin{pmatrix}
+                                      0 \\ 0
+                                      \end{pmatrix}
+$$
+La matrice $ (\lambda_1 I -A)u_1$ è per costruzione singolare dato che
+$\lambda$ è un autovalore, perde di rango una volta (dato che è di semplice
+struttura e gli autovalori hanno molteplicità uno).
+Per questo motivo è sufficiente risolvere una sola equazione e gli autovettori
+saranno proporzionali tra di loro, si può assegnare arbitrariamente una
+componente dell'autovettore (ad esempio $u_{12}=1$)
+$$
+- u_{11} - u_{12} = 0 \Rightarrow u_{11} = -1 \Rightarrow u_1 = \begin{pmatrix}
+-1 \\ 1
+\end{pmatrix}
+$$
+
+Può essere comodo normalizzare gli autovettori normalizzati ma non è necessario
+in questo corso.
+
+Secondo autovettore:
+$$
+(\lambda_2 I -A)u_1 = \begin{pmatrix}
+                        -2 & -1 \\
+                        2 & 1
+                        \end{pmatrix} \begin{pmatrix}
+                                      u_{21} \\ u_{22}
+                                      \end{pmatrix} = \begin{pmatrix}
+                                      0 \\ 0
+                                      \end{pmatrix}
+$$
+Assegnando arbitrariamente $u_{21} = 1$
+$$
+-2u_{21} - u_{22} = 0 \Rightarrow  u_{22} = -2 \Rightarrow u_2 = \begin{pmatrix}
+1 \\ -2
+\end{pmatrix}
+$$
+
+\item Verifica diagonalizzabilità, passaggio scontato dato che la matrice è di
+semplice struttura.
+
+\item Costruzione della matrice modale
+$$
+U = \begin{bmatrix}u_1 & u_2\end{bmatrix} = \begin{bmatrix}
+                                            -1 & 1 \\
+                                            1 & -2
+                                            \end{bmatrix} \qquad U^{-1} =
+\begin{bmatrix}
+-2 & -1 \\
+-1 & -1
+\end{bmatrix}\begin{matrix}
+\rightarrow & v_1^T \\ \rightarrow & v_2^T
+\end{matrix}
+$$
+
+\item Costruzione della matrice esponenziale degli autovalori $e^{\Lambda t}$
+$$
+e^{\Lambda t} = \begin{bmatrix}
+                e^{-t} & 0 \\
+                0 & e^{-2 t}
+                \end{bmatrix}
+$$
+
+\item Costruzione della matrice esponenziale $e^{At}$ attraverso la
+decomposizione spettrale
+$$\begin{aligned}
+e^{At} &= Ue^{\Lambda t} U^{-1} = \begin{pmatrix}
+                                    -1 & 1 \\
+                                    -1 & -2
+                                    \end{pmatrix} \begin{pmatrix}
+                                                e^{-t} & 0 \\
+                                                0 & e^{-2t}
+                                                \end{pmatrix} \begin{pmatrix}
+                                                -2 & -1 \\
+                                                -1 & -1
+                                                \end{pmatrix} = \\
+    &= \begin{pmatrix}
+        -e^{-t} & e^{-2t} \\
+        -e^{-t} & -2e^{-2t}
+        \end{pmatrix}\begin{pmatrix}
+                    -2 & -1 \\
+                    -1 & -1
+                    \end{pmatrix} = \begin{pmatrix}
+                                    2e^{-t}-e^{-2t} & e^{-t}-e^{-2t}\\
+                                    2e^{-t}+2e^{-2t} & e^{-t}+e^{-2t}
+                                    \end{pmatrix}
+\end{aligned}$$
+La matrice esponenziale è al più combinazione lineare delle funzioni del tempo
+presenti nella matrice ricavata al punto 4 chiamate anche \textbf{modi
+naturali} del sistema, potrebbe contenerne di meno.
+\end{enumerate}
+
+\subsubsection{Complementi}
+Sia la matrice $A\in\mathbb{R}^{n\times n}$ ed un suo autovalore $\lambda_i$ a
+cui è associato l'autovettore $u_i$
+$$
+A\in\mathbb{R}^{n\times n}\ \lambda_i\ u_i
+\stackrel{\text{def}}{\Leftrightarrow} Au_i = \lambda_iu_i
+$$
+Si vuole dimostrare che se si considera la matrice potenza $A^k$
+\begin{equation}
+A^k : A^ku_i = \lambda_i^ku_i
+\label{eq.:uguaglianza_a_k}
+\end{equation}
+La matrice $A^k$ è quadrata, potrebbe essere chiamata $B$, se moltiplicata per
+un vettore si ottiene lo stesso vettore moltiplicato per uno scalare, si
+ottiene cioè la definizione di autospazio invariante monodimensionale.
+La matrice potenza $A^k$ ha come autovettori gli stessi autovettori della
+matrice $A$, l'elevazione a potenza non cambia gli autovettori, gli autovalori
+invece sono le potenze degli autovalori di partenza.
+
+Si supponga che la \ref{eq.:uguaglianza_a_k} valga per $k=1$ ed un generico $k$
+e $k+1$, si sarà dimostrata per induzione l'uguaglianza.
+
+$$
+A^{k+1}u_i = A^k A u_i = A^k \lambda_i u_i = \lambda_i A^k u_i = \lambda_i
+\lambda_i^k u_i = \lambda_i^{k+1} u_i
+$$
+la penultima uguaglianza è vera per ipotesi induttiva.
+
+Si esegue la stessa dimostrazione per la matrice esponenziale con le stesse
+ipotesi del caso precedente, $u_i$ autovettore della matrice $A$
+$$
+e^{At} : e^{At}u_i = \sum_{k=0}^{+\infty} \frac{A^k t^k} {k!}u_i =
+\sum_{k=0}^{+\infty} \frac{A^k u_i t^k}{k!} = \sum_{k=0}^{+\infty}
+\frac{\lambda_i^ku_it^k}{k!} = \sum_{k=0}^{+\infty} \frac{\lambda_i^k
+t_i^k}{k!}u_i = e^{\lambda_i t}u_i
+$$
+Quella ottenuta è ancora la definizione di autospazio invariante
+monodimensionale e dunque $u_i$ è un autovettore per la matrice $A$ e per la
+sua matrice esponenziale.
