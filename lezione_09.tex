@@ -1,0 +1,149 @@
+\subsection{Teorema di Caley-Hamilton}
+Si consideri una matrice $A$ quadrata
+$$
+A\in\mathbb{R}^{n\times n},\ p(\lambda) = \text{det}(\lambda I-A) = \lambda^n +
+\alpha_{n-1}\lambda^{n-1} + \ldots + \alpha_0 \lambda^0
+$$
+Ogni matrice quadrata è soluzione del proprio polinomio caratteristico, con
+abuso di notazione
+$$
+p(A) = A^n + \alpha_{n-1}A^{n-1}+ \ldots + \alpha_0 A^0 =
+\underline{\underline{0}}
+$$
+con $A^0 = I$ e $p(A)$ un polinomio di matrici.
+
+Si dimostra il teorema con l'ipotesi semplificativa ma non necessaria di
+matrice A di semplice struttura
+$$
+p(A)\cdot u_i = A^nu_i + \alpha_{n-1}A^{n-1}u_i + \ldots + \alpha_0 u_i =
+(\lambda_i^n+\alpha_{n-1}\lambda_i^{n-1}+\ldots + \alpha_0)u_i = \underline{0}\
+\forall i
+$$
+Quello ottenuto all'ultimo termine è proprio il polinomio caratteristico che
+valutato nell'autovalore è nullo per definizione.
+
+Nell'ipotesi di semplice struttura i diversi autovettori $u_i$ formano una
+base, di conseguenza tutti gli altri vettori saranno combinazione lineare degli
+autovettori e restituiranno anch'essi il vettore nullo nulli se moltiplicati
+per il polinomio di matrici $p(A)$
+$$
+p(A) = 0 \Rightarrow p(A)\cdot x = \underline{0} \ \ \forall x\in X^n
+$$
+La matrice deve necessariamente avere rango nullo perché moltiplicata per un
+vettore dia come risultato un vettore nullo, di conseguenza, l'unica matrice di
+rango nullo è la matrice nulla
+$$
+\rho(p(A))=0 \Rightarrow p(A) = \underline{\underline{0}}
+$$
+
+Si può isolare il termine $A^n$ dal polinomio di matrici, $k\geq 0$
+$$
+A^n = \sum_{i=0}^{n-1}(-\alpha_i)A^i \Rightarrow A^{n+k} =
+\sum_{i=0}^{n-1}\beta_iA^i
+$$
+La potenza di ordine $n$ è una combinazione lineare di potenze fino all'ordine
+$n-1$, si dimostra per induzione, vera per $k=0$, si ipotizza vera per un
+generico $k$, si dimostra che è vera per $k+1$, si ottiene la dimostrazione del
+teorema.
+
+\subsection{Tecnica del polinomio interpolante - Matrice di Vandermonde}
+Si vuole calcolare ancora la matrice esponenziale $e^{At}$
+\begin{equation}
+e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!} =
+\sum_{i=0}^{n-1} \alpha_i(t)A^i
+\label{eq.:esponenziale_polinomio_interpolante}
+\end{equation}
+Sfruttando quanto ricavato dal teorema di Caley-Hamilton si potrebbe riscrivere
+la potenza come una combinazione lineare di potenze di ordine inferiore.
+I coefficienti $\alpha_i(t)$ raggruppano tutti i coefficienti della potenza
+$i$-esima della matrice $A$, è presente la dipendenza del tempo a causa dei
+termini $t^k$.
+Se si potessero calcolare i coefficienti $\alpha_i(t)$ si potrebbe ridurre la
+serie ad una somma finita di matrici.
+
+$$
+e^{At} \cdot u_1 = \sum_{i=0}^{n-1} \alpha_i(t)A^iu_1 =
+\sum_{i=0}^{n-1}\alpha_i(t)\lambda^i_1 u_1 = e^{\lambda_1 t} u_1
+$$
+Si può ripetere questo passaggio per tutti gli autovettori della matrice $A$
+$$
+e^{At}u_n = \sum_{i=0}^{n-1} \alpha_i(t)A^iu_n = \sum_{i=0}^{n-1}
+\alpha_i(t)\lambda_n^i u_n = e^{\lambda_n t} u_n
+$$
+Essendo gli autovettori non nulli allora
+$$
+\sum_{i=0}^{n-1} \alpha_i(t) \lambda^i_n = e^{\lambda_n t}
+$$
+Riscrivendo il sistema in forma compatta
+$$
+\begin{bmatrix}
+1 &\lambda_1 & \lambda_1^2 & \ldots & \lambda_1^{n-1}\\
+\vdots &\vdots  &\vdots    &              & \vdots&         \\
+1  &\lambda_n & \lambda_n^2 & \ldots &\lambda_n^{n-1}
+\end{bmatrix}
+\begin{bmatrix}
+                \alpha_0(t) \\ \vdots \\ \alpha_{n-1}(t)
+                \end{bmatrix} = \begin{bmatrix}
+                                e^{\lambda_1 t} \\ \vdots \\ e^{\lambda_n t}
+                                \end{bmatrix}
+$$
+La prima matrice prende il nome di \textbf{matrice di Vandermonde}, si indica
+con $V(\lambda_1,\ldots,\lambda_n)$, funzione di $n$ elementi.
+
+Il determinante della matrice di Van der Monde è pari alla produttoria delle
+differenze di tutti i coefficienti
+$$
+\text{det}\left(V\left(\lambda_1,\ldots,\lambda_n\right)\right) = \prod_{1\leq
+i < j \leq n } (\lambda_j - \lambda_i)
+$$
+L'unico caso che può annullare la produttoria è quando due coefficienti con
+indice diverso siano uguali, ovvero $A$ non sia di semplice struttura, in caso
+contrario, invertendo la matrice si possono ricavare i coefficienti
+$$
+\begin{bmatrix}
+\alpha_0(t)\\
+\vdots \\
+\alpha_{n-1}(t)
+\end{bmatrix} =
+V^{-1}(\lambda_1,\ldots,\lambda_n)
+\begin{bmatrix}
+e^{\lambda_1 t}\\
+\vdots \\
+e^{\lambda_n t}
+\end{bmatrix}
+$$
+Sostituiti nell'equazione \ref{eq.:esponenziale_polinomio_interpolante}, dopo
+aver calcolato le potenze della matrice $A$ permettono di calcolare la matrice
+esponenziale con la somma di finiti termini.
+
+Rispetto al metodo precedente non è necessario calcolare gli autovettori ma
+\textbf{è necessario che la matrice $A$ sia di semplice struttura}.
+
+\subsubsection{Procedura operativa}
+\begin{enumerate}
+ \item Calcolo degli autovalori
+ \item Verifica che i $\lambda_i$ siano distinti, ossia che $A$ sia semplice
+ \item Se si la 2. risoluzione del sistema
+$V(\lambda_1,\ldots,\lambda_n)\begin{bmatrix}
+\alpha_0(t) \\ \vdots \\ \alpha_{n-1}(t) \end{bmatrix}= \begin{bmatrix}
+e^{\lambda_1 t } \\ \vdots \\ e^{\lambda_n t}
+\end{bmatrix}$
+\item Calcolo della matrice esponenziale $e^{At} = \sum_{i=0}^{n-1}
+\alpha_i(t)A^i$
+\end{enumerate}
+
+\subsubsection{Esempio numerico}
+Si riprende la stessa matrice utilizzata nel metodo della diagonalizzazione
+(vedi paragrafo \ref{sec.:metodo_diagonalizzazione})
+$$
+A = \begin{bmatrix}
+0 & 1\\
+-2 & -3
+\end{bmatrix}
+$$
+\begin{enumerate}
+\item $p(\lambda) = \text{det} (\lambda I -A) = 0\Rightarrow \lambda_1 = -1,\
+\lambda_2 = -2$
+\item $\lambda_1\neq \lambda_2 \Rightarrow A $ semplice struttura
+\item 41:29
+\end{enumerate}
