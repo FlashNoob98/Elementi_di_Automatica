@@ -88,7 +88,7 @@ $$
                                 \end{bmatrix}
 $$
 La prima matrice prende il nome di \textbf{matrice di Vandermonde}, si indica
-con $V(\lambda_1,\ldots,\lambda_n)$, funzione di $n$ elementi.
+con \linebreak $V(\lambda_1,\ldots,\lambda_n)$, funzione di $n$ elementi.
 
 Il determinante della matrice di Van der Monde è pari alla produttoria delle
 differenze di tutti i coefficienti
@@ -145,5 +145,45 @@ $$
 \item $p(\lambda) = \text{det} (\lambda I -A) = 0\Rightarrow \lambda_1 = -1,\
 \lambda_2 = -2$
 \item $\lambda_1\neq \lambda_2 \Rightarrow A $ semplice struttura
-\item 41:29
+\item Costruzione e risoluzione del sistema $V\alpha_n(t) = e^{\lambda_n t}$
+$$
+\begin{bmatrix}
+1 & -1 \\
+1 & -2
+\end{bmatrix}\begin{bmatrix}
+\alpha_0(t) \\ \alpha_1 (t)
+\end{bmatrix} =
+\begin{bmatrix}
+e^{-t} \\
+e^{-2t}
+\end{bmatrix}\Rightarrow \begin{bmatrix}
+\alpha_0(t) \\ \alpha_1 (t)
+\end{bmatrix} = - \begin{bmatrix}
+-2 & 1 \\
+-1 & 1
+\end{bmatrix}\begin{bmatrix}
+e^{-t} \\ e^{-2t}
+\end{bmatrix}
+$$
+Sviluppando si ottiene
+$$\left\{\begin{aligned}
+\alpha_0(t) &= 2e^{-t} - e^{-2t}\\
+\alpha_1(t) &= e^{-t} -e^{-2t}
+\end{aligned}\right.$$
+\item Calcolo della matrice esponenziale
+$$\begin{aligned}
+e^{At} &= \alpha_0(t)I + \alpha_1(t) A^1 =\\
+&=\begin{pmatrix}
+2e^{-t}-e^{-2t} & 0 \\
+0 & 2e^{-t}-e^{-2t}
+\end{pmatrix} + \begin{pmatrix}
+0 & e^{-t}-e^{-2t} \\
+-2e^{-t}+2e^{-2t} & -3e^{-t} + 3e^{-2t}
+\end{pmatrix} =\\
+&= \begin{pmatrix}
+2e^{-t}-e^{-2t} & e^{-t}-e^{-2t}\\
+-2e^{-t} + e^{-2t} & -e^{-t}+2e^{2t}
+\end{pmatrix}
+\end{aligned}$$
 \end{enumerate}
+51:10

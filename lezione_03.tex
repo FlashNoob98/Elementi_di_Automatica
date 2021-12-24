@@ -185,9 +185,14 @@ $$
 Si devono dunque riscrivere le equazioni nella forma ISU isolando le variabili di stato dalle equazioni del sistema
 
 $$\begin{aligned}
-\dot{x}_1 &= \dot{v}_1 = \frac{1}{C_1}i_1 - \frac{1}{R_1C_1}v_1 - \frac{1}{C_1}i_L & &= -\frac{1}{R_1C_1}x_1 - \frac{1}{C_1}x_3 + \frac{1}{C_1}u_1 &= \textcolor{ForestGreen}{f_1(x_1,x_2,x_3,u_1,u_2,t)}\\
-\dot{x}_2 &= \dot{v}_2 = \frac{1}{C_2}i_L - \frac{1}{R_2C_2}v_2 - \frac{1}{C_2}i_2 & &= -\frac{1}{R_2C_2}x_2 + \frac{1}{C_2}x_3 - \frac{1}{C_2}u_2 &= \textcolor{ForestGreen}{f_2(x_1,x_2,x_3,u_1,u_2,t)}\\
-\dot{x}_3 &= \dot{i}_L = \frac{1}{L}v_1 - \frac{1}{L}v_L & &= \frac{1}{L}x_1 - \frac{1}{L}x_2 &= \textcolor{ForestGreen}{f_3(x_1,x_2,x_3,u_1,u_2,t)}
+\dot{x}_1 &= \dot{v}_1 = \frac{1}{C_1}i_1 - \frac{1}{R_1C_1}v_1 -
+\frac{1}{C_1}i_L & &= -\frac{1}{R_1C_1}x_1 - \frac{1}{C_1}x_3 + \frac{1}{C_1}u_1
+&= \textcolor{ForestGreen}{f_1(x,u,t)}\\
+\dot{x}_2 &= \dot{v}_2 = \frac{1}{C_2}i_L - \frac{1}{R_2C_2}v_2 -
+\frac{1}{C_2}i_2 & &= -\frac{1}{R_2C_2}x_2 + \frac{1}{C_2}x_3 - \frac{1}{C_2}u_2
+&= \textcolor{ForestGreen}{f_2(x,u,t)}\\
+\dot{x}_3 &= \dot{i}_L = \frac{1}{L}v_1 - \frac{1}{L}v_L & &= \frac{1}{L}x_1 -
+\frac{1}{L}x_2 &= \textcolor{ForestGreen}{f_3(x,u,t)}
 \end{aligned}$$
 
 Si sceglie (arbitrariamente) come uscita la tensione $v_1$ e la corrente $i_{C_1}$ dunque
