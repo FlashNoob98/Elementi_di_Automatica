@@ -186,4 +186,68 @@ e^{At} &= \alpha_0(t)I + \alpha_1(t) A^1 =\\
 \end{pmatrix}
 \end{aligned}$$
 \end{enumerate}
-51:10
+
+\newpage
+\subsubsection{Riassunto dei due metodi precedenti}
+Sia $A$ una matrice di semplice struttura, si può calcolare la matrice
+esponenziale mediante due metodi
+\begin{enumerate}
+ \item Diagonalizzazione
+
+ Per $n$ autovalori distinti
+ $$
+ \exists\ n \text{ autovettori indipendenti } u_i \Rightarrow U=[u_1,\ldots,u_n]
+ $$
+ $$\begin{aligned}
+ A &= U\Lambda U^{-1} = \sum_{i=1}^{n} e^{\lambda_i}u_iv_i^T\\
+ e^{At} &= Ue^{\Lambda t} U^{-1} = \sum_{i=1}^{n} e^{\lambda_i}u_iv_i^T
+ \end{aligned}$$
+ Ricordando che il prodotto tra autovettori e le colonne della matrice modale
+inversa si ottengono le matrici $R_i$ denominate \textit{matrici dei residui
+polari}, avranno rango unitario in questo caso, hanno in generale il rango pari
+alla molteplicità geometrica dell'autovettore $i-$esimo $u_i$.
+$$
+u_i v_i^T = R_i
+$$
+
+\item Polinomio interpolante
+
+Si costruisce la matrice di Vandermonde, si calcola il vettore dei coefficienti
+$\alpha$ e si calcola la matrice esponenziale
+$$
+V(\lambda_1,\ldots,\lambda_n) \Rightarrow \alpha_i(t):
+\begin{bmatrix}
+\alpha_0(t) \\
+\vdots \\
+\alpha_{n-1}(t)
+\end{bmatrix} = V^{-1}(\lambda_1,\ldots,\lambda_n)
+\begin{bmatrix}
+e^{\lambda_1t}\\
+\vdots \\
+e^{\lambda_nt}
+\end{bmatrix}
+$$
+$$
+e^{At} =\sum_{i=0}^{n-1} \alpha_i(t)A^i
+$$
+\end{enumerate}
+
+\subsection{Matrice non semplice}
+Si suppone che la matrice non sia di semplice struttura ma solo
+diagonalizzabile, esisteranno $m$ autovalori distinti $(m < n)$, dunque il
+generico autovalore $\lambda_i$ avrà molteplicità algebrica maggiore di uno.
+Per calcolare gli autovettori si risolvono i sistemi
+$$
+(A-\lambda_iI)u_i=0
+$$
+la molteplicità geometrica del generico autovettore è
+$$
+m_{gi}= n-\rho(A-\lambda_iI)
+$$
+Se la molteplicità geometrica è inferiore di quella algebrica, si troveranno
+meno autovettori di quanti sono necessari a diagonalizzare la matrice che
+risulterà dunque \textbf{non diagonalizzabile}. $1<>, m_{gi}  m_{ai} \leq n $
+Considerato l'autovalore $\lambda_i$
+$$
+\lambda_i\ 1:02:51
+$$
