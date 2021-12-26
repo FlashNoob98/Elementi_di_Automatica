@@ -1,0 +1,122 @@
+
+\subsection{Esempio calcolo matrice esponenziale}
+Sia la seguente matrice $A$
+$$
+A = \begin{bmatrix}
+0 & 1\\
+-1 & -1
+\end{bmatrix}
+$$
+Il polinomio caratteristico sarà
+$$
+p(\lambda) = \lambda^2 + \lambda +1 \left\langle \begin{aligned}
+\lambda_1 &= -\frac{1}{2} + j\frac{\sqrt{3}}{2} \\
+\lambda_2 &= -\frac{1}{2} -j\frac{\sqrt{3}}{2}
+\end{aligned}\right.
+$$
+La matrice è di semplice struttura, può essere diagonalizzata per similitudine,
+vanno calcolati gli autovettori
+$$
+(\lambda_1I-A)u_1 = 0 =\begin{pmatrix}
+-\frac{1}{2} + j\frac{\sqrt{3}}{2} & -1 \\
+1 & \frac{1}{2} + j\frac{\sqrt{3}}{2}
+\end{pmatrix}\begin{pmatrix}
+u_{11} \\ u_{12}
+\end{pmatrix} = \begin{pmatrix}
+0 \\0
+\end{pmatrix} +j\begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+Procedendo con il calcolo, si ricorda che solo un'equazione è indipendente, si
+sceglie una delle due variabili arbitrariamente, $u_{11} = 1\Rightarrow u_{12}
+= -\frac{1}{2} + j\frac{\sqrt{3}}{2}$
+$$
+u_1 = \begin{pmatrix}
+1 \\ -\frac{1}{2}+j\frac{\sqrt{3}}{2}
+\end{pmatrix} = \begin{pmatrix}
+1 \\ -\frac{1}{2}
+\end{pmatrix} + j\begin{pmatrix}
+0 \\ \frac{\sqrt{3}}{2}
+\end{pmatrix} = u_a + ju_b
+$$
+per ricavare il vettore $u_2$ si esegue il coniugato della seguente uguaglianza
+$$
+Au_1 = \lambda_1u_1 \stackrel{\text{conj.}}{\longrightarrow}Au_1^* =
+\lambda_1^* u_1
+$$
+Dato che i due autovalori sono complessi e coniugati
+$$
+\lambda_1^* = \lambda_2 \Rightarrow u_2 = u_1^* = u_a -ju_b
+$$
+
+Si costruisce la matrice modale $U$ con i due autovalori
+$$\begin{aligned}
+U &= [u_1 \quad u_2] = \begin{bmatrix}
+1 & 1 \\
+-\frac{1}{2}+j\frac{\sqrt{3}}{2} & -\frac{1}{2}-j\frac{\sqrt{3}}{2}
+\end{bmatrix}\Rightarrow \\
+e^{At} &= Ue^{\Lambda t} U^{-1} = U\begin{bmatrix}
+e^{\left(-\frac{1}{2}+j\frac{\sqrt{3}}{2}\right)t} & 0\\
+0 & e^{\left(-\frac{1}{2}-j\frac{\sqrt{3}}{2}\right)t}
+\end{bmatrix}U^{-1}
+\end{aligned}$$
+Si continua lo sviluppo usando la formula di Eulero, la complessità
+può essere ridotta utilizzando la matrice in forma reale.
+
+$$
+U_r = [u_a \ u_b] = \begin{bmatrix}
+1 & 0 \\
+-\frac{1}{2} & \frac{\sqrt{3}}{2}
+\end{bmatrix} \longrightarrow \Lambda_r =\begin{bmatrix}
+\alpha & \omega \\
+-\omega & \alpha
+\end{bmatrix}=
+\begin{bmatrix}
+-\frac{1}{2} & \frac{\sqrt{3}}{2}\\
+-\frac{\sqrt{3}}{2} & -\frac{1}{2}
+\end{bmatrix} = U_r^{-1}AU_r
+$$
+Sostituendo nella matrice esponenziale, con i risultati ottenuti in
+\ref{eq.:esponenziale_comp_coniugata}
+$$
+e^{\Lambda_r t} = e^{-\frac{1}{2}t}\begin{pmatrix}
+\cos \left(\frac{\sqrt{3}}{2}t\right) & \sin \left(\frac{\sqrt{3}}{2}t\right) \\
+-\sin \left(\frac{\sqrt{3}}{2}t\right) & \cos \left(\frac{\sqrt{3}}{2}t\right)
+\end{pmatrix}\rightarrow
+e^{At} = U_r e^{\Lambda_r t} U_r^{-1}
+$$
+
+\subsection{Proprietà della matrice esponenziale}
+$$
+\begin{array}{>{\displaystyle}c|>{\displaystyle}c}
+ e^{at}=\sum_{k=0}^{+\infty} \frac{a^kt^k}{k!} & e^{At}=\sum_{k=0}^{+\infty}
+\frac{A^k t^k}{k!} \\ \hline
+e^{a\cdot \text{\o{}} } = 1 & e^{A\cdot \text{\o{}}} = I\\
+\frac{d}{dt} e^{at} = ae^{at} & \frac{d}{dt} e^{At} = Ae^{At} = e^{At}A\\
+e^{at}\cdot e^{bt} = e^{(a+b)t} & e^{At}\cdot e^{Bt} = e^{(A+B)t}\\
+\left(e^{at}\right)^{-1} = e^{-at} & \left(e^{At}\right)^{-1} = e^{-At}
+\end{array}
+$$
+Dimostrazione della derivata
+$$
+\frac{d}{dt} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!} =
+\sum_{k=1}^{+\infty}\frac{A^kt^{k-1}}{(k-1)!} =
+A\sum_{k=1}^{+\infty} \frac{A^{k-1}t^{k-1}}{(k-1)!} \stackrel{k-1=k'}{=}
+A\sum_{k'=0}^{+\infty}\frac{A^{k'}t^{k'}}{k'!} = Ae^{At} = e^{At}A
+$$
+Solo in questo caso il prodotto tra matrici è commutativo dato che la matrice
+viene moltiplicata per la sua matrice esponenziale corrispondente.
+
+La terza proprietà (\textit{prodotto}) è vera solo se le matrici $A$ e $B$
+commutano ossia \linebreak se $AB = BA$.
+
+Dimostrazione della quarta proprietà (\textit{inversa}), sfruttando la
+proprietà del prodotto, sicuramente le matrici $A$ e $-A$ commutano
+$$
+e^{At} \cdot e^{-At} = e^{(A-A)t} = I
+$$
+L'unica matrice che moltiplicata per un'altra restituisce la matrice identità è
+proprio la sua inversa.
+
+29:42
