@@ -199,7 +199,7 @@ esponenziale mediante due metodi
  \exists\ n \text{ autovettori indipendenti } u_i \Rightarrow U=[u_1,\ldots,u_n]
  $$
  $$\begin{aligned}
- A &= U\Lambda U^{-1} = \sum_{i=1}^{n} e^{\lambda_i}u_iv_i^T\\
+ A &= U\Lambda U^{-1} = \sum_{i=1}^{n} \lambda_i u_iv_i^T\\
  e^{At} &= Ue^{\Lambda t} U^{-1} = \sum_{i=1}^{n} e^{\lambda_i}u_iv_i^T
  \end{aligned}$$
  Ricordando che il prodotto tra autovettori e le colonne della matrice modale
@@ -246,8 +246,32 @@ m_{gi}= n-\rho(A-\lambda_iI)
 $$
 Se la molteplicità geometrica è inferiore di quella algebrica, si troveranno
 meno autovettori di quanti sono necessari a diagonalizzare la matrice che
-risulterà dunque \textbf{non diagonalizzabile}. $1<>, m_{gi}  m_{ai} \leq n $
-Considerato l'autovalore $\lambda_i$
+risulterà dunque \textbf{non diagonalizzabile}. $1< m_{gi} \leq  m_{ai} \leq n $
+
+Considerato il generico autovalore $\lambda_i$ si pongono i corrispondenti
+autovettori in colonna
 $$
-\lambda_i\ 1:02:51
+\lambda_i \rightarrow U_i=[u_{i_1},\ldots,u_{i_{m_{ai}}}]
+$$
+Si costruisce in seguito la matrice modale affiancando i blocchi appena ottenuti
+$$
+U = [U_1,U_2,\ldots,U_m]
+$$
+Di conseguenza si costruisce una matrice degli autovalori dove ogni autovalore
+è ripetuto sulla diagonale per un numero di volte pari alla sua molteplicità
+(algebrica o geometrica, coincidono)
+$$
+A=U
+\begin{bmatrix}
+\lambda_1 &0 &0 &0 &0 &0 &0 &0 &0 &0 \\
+0    &\ddots &0 &0 &0 &0 &0 &0 &0 &0 \\
+0 &0 &\lambda_1 &0 &0 &0 &0 &0 &0 &0 \\
+0 &0 &0 &\lambda_2 &0 &0 &0 &0 &0 &0 \\
+0 &0 &0 &0    &\ddots &0 &0 &0 &0 &0 \\
+0 &0 &0 &0 &0 &\lambda_2 &0 &0 &0 &0 \\
+0 &0 &0 &0 &0 &0    &\ddots &0 &0 &0 \\
+0 &0 &0 &0 &0 &0 &0 &\lambda_n &0 &0 \\
+0 &0 &0 &0 &0 &0 &0 &0    &\ddots &0 \\
+0 &0 &0 &0 &0 &0 &0 &0 &0 &\lambda_n
+\end{bmatrix}U^{-1}
 $$
