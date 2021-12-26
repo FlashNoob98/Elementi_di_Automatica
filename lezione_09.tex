@@ -357,4 +357,104 @@ U=\begin{pmatrix}u & u_a+ju_b & u_a-ju_b\end{pmatrix}
 0 & 0 & \alpha -j\omega
 \end{pmatrix}
 $$
-Quindi la matrice esponenziale 1:31:38
+Quindi la matrice esponenziale
+$$\begin{aligned}
+e^{\Lambda t} &= \begin{pmatrix}
+e^{\lambda t} & 0 & 0 \\
+0 & e^{(\alpha +j\omega)t} & 0 \\
+0 & 0 & e^{(\alpha - j\omega)t}
+\end{pmatrix} =\\
+&=\begin{pmatrix}
+e^{\lambda t} & 0 & 0 \\
+0 & e^{\alpha t}(\cos(\omega t) + j\sin(\omega t)) & 0\\
+0 & 0 & e^{\alpha t}(\cos(\omega t) - j\sin(\omega t))
+\end{pmatrix}
+\end{aligned}$$
+Questa matrice va poi calcolata per le matrici $U$ e $U^{-1}$ con termini
+complessi.
+
+Si sfrutta ora la matrice $U_r$ reale, considerando solo termini reali
+$$
+U_r = \begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix}
+$$
+La matrice $\Lambda$ non sarà più diagonale
+$$
+AU_r = A\begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix} =
+\begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix}\left(
+\begin{array}{c:cc}
+\lambda & 0 & 0\\ \hdashline
+0 &\alpha &\omega \\
+0 &-\omega &\alpha \\
+\end{array}\right)
+$$
+Si è ottenuta una matrice diagonale a blocchi in cui il primo blocco è scalare
+mentre alla coppia di autovalori complessi coniugati corrisponde il blocco
+$2\times2$
+$$
+AU_r = U_r \Lambda_r
+$$
+
+Si calcola la matrice esponenziale
+$$
+e^{At} = U_r e^{\Lambda_r t}U_r^{-1}
+$$
+Si deve calcolare la matrice $e^{\Lambda_r t}$, sapendo che la matrice potenza
+di una matrice diagonale a blocchi è ancora una matrice diagonale a blocchi.
+
+$$
+e^{At} = U_r \left(
+\begin{array}{c:c}
+e^{\lambda t} & 0 \quad 0 \\ \hdashline
+\begin{aligned}
+0 \\ 0
+\end{aligned} &\begin{aligned} \\ e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t}\end{aligned}
+\end{array}
+\right) U_r^{-1}
+$$
+il termine esponenziale è ancora una matrice $2\times 2$
+$$
+e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t} =
+e^{\alpha t} \begin{pmatrix}
+\cos \omega t & \sin \omega t \\
+-\sin \omega t & \cos \omega t
+\end{pmatrix}
+$$
+per dimostrare quest'uguaglianza si devono verificare due condizioni:
+\begin{enumerate}
+ \item $e^{\Lambda_r \cdot 0} = I$
+ \item $\frac{d}{dt} e^{\Lambda_r t} = \Lambda_re^{\Lambda_r t}$
+\end{enumerate}
+similmente alle condizioni dell'esponenziale scalare, entrambe si dimostrano
+banalmente.
+
+\newpage
+In conclusione la matrice esponenziale
+$$\begin{aligned}
+e^{At} &= U_r \left(\begin{array}{c:cc}
+e^{\lambda t} & 0 & 0 \\ \hdashline
+0 & e^{\alpha t}\cos\omega t & e^{\alpha t}\sin\omega t \\
+0 & -e^{\alpha t}\sin\omega t & e^{\alpha t}\cos\omega t
+\end{array}\right)U_r^{-1} = \\
+&=e^{\alpha t}uv^T + e^{\alpha t}\left[
+u_a(\cos\omega t\cdot v_a^T + \sin\omega t\cdot v_b^T) +
+u_b(\sin\omega t\cdot v_b^T - \cos\omega t\cdot v_a^T)
+\right]
+\end{aligned}$$
+con la matrice inversa pari a
+$$
+U_r^{-1} = \begin{pmatrix}
+v^T \\ v_a^T \\ v_b^T
+\end{pmatrix}
+$$
