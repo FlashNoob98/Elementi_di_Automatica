@@ -275,3 +275,86 @@ A=U
 0 &0 &0 &0 &0 &0 &0 &0 &0 &\lambda_n
 \end{bmatrix}U^{-1}
 $$
+Raccogliendo i termini
+$$
+A = \sum_{i=1}^m \lambda_i \cdot \sum_{j=1}^{m_{ai}} u_{ij}\cdot v_{ij}^T
+$$
+Sono necessari due pedici in quanto il primo indica il gruppo di autovettori
+associati all'autovalore $i$ mentre il secondo è associato alla molteplicità
+$m_{ai}$ e permette di moltiplicare l'autovalore per ogni suo autovettore.
+
+Analogamente per la matrice esponenziale
+$$
+e^{At} = \sum_{i=1}^m e^{\lambda_i t} \cdot \sum_{j=1}^{m_{ai}} u_{ij}\cdot
+v_{ij}^T
+$$
+Con un abuso di notazione si potrebbero indicare autovalori uguali con nomi
+diversi, in modo da avere comunque un numero di autovalori pari al numero di
+autovettori e riprendere la notazione del caso precedente con matrice semplice.
+
+I vettori  $u_i$ vengono chiamati autovettori \textit{destri} ovvero devono
+moltiplicare a destra la matrice $A$ per restituire l'autovalore.
+
+Gli autovettori $v_i$ vengono invece chiamati autovettori sinistri (presi
+sempre per colonna)
+$$\begin{aligned}
+u_i &: Au_i = \lambda_i u_i\\
+v_i &: v_iA = \lambda_i v_i
+\end{aligned}$$
+
+\subsection{Autovalori complessi e coniugati}
+Ad ogni coppia di autovalori complessi e coniugati corrisponderà una coppia di
+autovettori complessi e coniugati, il resto della notazione non cambia, si
+risolveranno due sistemi di equazioni, uno per la parte reale ed uno per la
+parte immaginaria.
+
+Si introduce una variante della diagonalizzazione, chiamata \textbf{forma
+reale} della matrice degli autovalori.
+Per avere tutti termini reali sulla matrice degli autovalori sarà necessario
+perdere l'ipotesi di matrice diagonale ma di avere invece una matrice diagonale
+a blocchi.
+
+Si considera per semplicità di analisi un caso di $n=3$ ed un autovalore reale
+ed uno complesso e coniugato, in caso contrario si ripete il risultato ottenuto.
+
+I tre autovalori saranno
+$$\left\{\begin{matrix}
+\lambda \\ \alpha+j\omega \\ \alpha-j\omega
+\end{matrix}\right.$$
+Si devono costruire gli autovettori complessi e coniugati
+$$\left\{\begin{aligned}
+&(A-(\alpha+j\omega)I)(u_a+ju_b) = \underline{0} + j\underline{0}\\
+&(A-(\alpha-j\omega)I)(u_a-ju_b) = \underline{0} + j\underline{0}
+\end{aligned}\right.$$
+Si sviluppa la prima riga
+$$\begin{aligned}
+&(A-(\alpha+j\omega))(u_a + ju_b) = \underline{0} +
+j\underline{0}\Rightarrow
+\left\{\begin{aligned}
+&Au_a - \alpha u_a + \omega u_b = 0\\
+&Au_b - \omega u_a -\alpha u_b = 0
+\end{aligned}\right.
+\end{aligned}$$
+Si porta a sinistra la matrice $A$ e si lasciano gli altri termini a destra
+$$
+\left\{\begin{aligned}
+Au_a &= \alpha u_a - \omega u_b \\
+Au_b &= \omega u_a + \alpha u_b
+\end{aligned}\right. \Leftrightarrow A (u_a \ u_b) = (u_a \ u_b)
+\begin{pmatrix}
+\alpha & \omega\\
+-\omega & \alpha
+\end{pmatrix}
+$$
+
+Se si volesse diagonalizzare, si dovrebbe costruire una matrice modale complessa
+$$
+U=\begin{pmatrix}u & u_a+ju_b & u_a-ju_b\end{pmatrix}
+\stackrel{\Lambda=U^{-1}AU}{\rightarrow}\Lambda=
+\begin{pmatrix}
+\lambda & 0 & 0\\
+0 & \alpha+j\omega & 0 \\
+0 & 0 & \alpha -j\omega
+\end{pmatrix}
+$$
+Quindi la matrice esponenziale 1:31:38
