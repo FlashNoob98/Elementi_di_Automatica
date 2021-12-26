@@ -1,0 +1,460 @@
+\subsection{Teorema di Caley-Hamilton}
+Si consideri una matrice $A$ quadrata
+$$
+A\in\mathbb{R}^{n\times n},\ p(\lambda) = \text{det}(\lambda I-A) = \lambda^n +
+\alpha_{n-1}\lambda^{n-1} + \ldots + \alpha_0 \lambda^0
+$$
+Ogni matrice quadrata è soluzione del proprio polinomio caratteristico, con
+abuso di notazione
+$$
+p(A) = A^n + \alpha_{n-1}A^{n-1}+ \ldots + \alpha_0 A^0 =
+\underline{\underline{0}}
+$$
+con $A^0 = I$ e $p(A)$ un polinomio di matrici.
+
+Si dimostra il teorema con l'ipotesi semplificativa ma non necessaria di
+matrice A di semplice struttura
+$$
+p(A)\cdot u_i = A^nu_i + \alpha_{n-1}A^{n-1}u_i + \ldots + \alpha_0 u_i =
+(\lambda_i^n+\alpha_{n-1}\lambda_i^{n-1}+\ldots + \alpha_0)u_i = \underline{0}\
+\forall i
+$$
+Quello ottenuto all'ultimo termine è proprio il polinomio caratteristico che
+valutato nell'autovalore è nullo per definizione.
+
+Nell'ipotesi di semplice struttura i diversi autovettori $u_i$ formano una
+base, di conseguenza tutti gli altri vettori saranno combinazione lineare degli
+autovettori e restituiranno anch'essi il vettore nullo nulli se moltiplicati
+per il polinomio di matrici $p(A)$
+$$
+p(A) = 0 \Rightarrow p(A)\cdot x = \underline{0} \ \ \forall x\in X^n
+$$
+La matrice deve necessariamente avere rango nullo perché moltiplicata per un
+vettore dia come risultato un vettore nullo, di conseguenza, l'unica matrice di
+rango nullo è la matrice nulla
+$$
+\rho(p(A))=0 \Rightarrow p(A) = \underline{\underline{0}}
+$$
+
+Si può isolare il termine $A^n$ dal polinomio di matrici, $k\geq 0$
+$$
+A^n = \sum_{i=0}^{n-1}(-\alpha_i)A^i \Rightarrow A^{n+k} =
+\sum_{i=0}^{n-1}\beta_iA^i
+$$
+La potenza di ordine $n$ è una combinazione lineare di potenze fino all'ordine
+$n-1$, si dimostra per induzione, vera per $k=0$, si ipotizza vera per un
+generico $k$, si dimostra che è vera per $k+1$, si ottiene la dimostrazione del
+teorema.
+
+\subsection{Tecnica del polinomio interpolante - Matrice di Vandermonde}
+Si vuole calcolare ancora la matrice esponenziale $e^{At}$
+\begin{equation}
+e^{At} \stackrel{\text{def}}{=} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!} =
+\sum_{i=0}^{n-1} \alpha_i(t)A^i
+\label{eq.:esponenziale_polinomio_interpolante}
+\end{equation}
+Sfruttando quanto ricavato dal teorema di Caley-Hamilton si potrebbe riscrivere
+la potenza come una combinazione lineare di potenze di ordine inferiore.
+I coefficienti $\alpha_i(t)$ raggruppano tutti i coefficienti della potenza
+$i$-esima della matrice $A$, è presente la dipendenza del tempo a causa dei
+termini $t^k$.
+Se si potessero calcolare i coefficienti $\alpha_i(t)$ si potrebbe ridurre la
+serie ad una somma finita di matrici.
+
+$$
+e^{At} \cdot u_1 = \sum_{i=0}^{n-1} \alpha_i(t)A^iu_1 =
+\sum_{i=0}^{n-1}\alpha_i(t)\lambda^i_1 u_1 = e^{\lambda_1 t} u_1
+$$
+Si può ripetere questo passaggio per tutti gli autovettori della matrice $A$
+$$
+e^{At}u_n = \sum_{i=0}^{n-1} \alpha_i(t)A^iu_n = \sum_{i=0}^{n-1}
+\alpha_i(t)\lambda_n^i u_n = e^{\lambda_n t} u_n
+$$
+Essendo gli autovettori non nulli allora
+$$
+\sum_{i=0}^{n-1} \alpha_i(t) \lambda^i_n = e^{\lambda_n t}
+$$
+Riscrivendo il sistema in forma compatta
+$$
+\begin{bmatrix}
+1 &\lambda_1 & \lambda_1^2 & \ldots & \lambda_1^{n-1}\\
+\vdots &\vdots  &\vdots    &              & \vdots&         \\
+1  &\lambda_n & \lambda_n^2 & \ldots &\lambda_n^{n-1}
+\end{bmatrix}
+\begin{bmatrix}
+                \alpha_0(t) \\ \vdots \\ \alpha_{n-1}(t)
+                \end{bmatrix} = \begin{bmatrix}
+                                e^{\lambda_1 t} \\ \vdots \\ e^{\lambda_n t}
+                                \end{bmatrix}
+$$
+La prima matrice prende il nome di \textbf{matrice di Vandermonde}, si indica
+con \linebreak $V(\lambda_1,\ldots,\lambda_n)$, funzione di $n$ elementi.
+
+Il determinante della matrice di Van der Monde è pari alla produttoria delle
+differenze di tutti i coefficienti
+$$
+\text{det}\left(V\left(\lambda_1,\ldots,\lambda_n\right)\right) = \prod_{1\leq
+i < j \leq n } (\lambda_j - \lambda_i)
+$$
+L'unico caso che può annullare la produttoria è quando due coefficienti con
+indice diverso siano uguali, ovvero $A$ non sia di semplice struttura, in caso
+contrario, invertendo la matrice si possono ricavare i coefficienti
+$$
+\begin{bmatrix}
+\alpha_0(t)\\
+\vdots \\
+\alpha_{n-1}(t)
+\end{bmatrix} =
+V^{-1}(\lambda_1,\ldots,\lambda_n)
+\begin{bmatrix}
+e^{\lambda_1 t}\\
+\vdots \\
+e^{\lambda_n t}
+\end{bmatrix}
+$$
+Sostituiti nell'equazione \ref{eq.:esponenziale_polinomio_interpolante}, dopo
+aver calcolato le potenze della matrice $A$ permettono di calcolare la matrice
+esponenziale con la somma di finiti termini.
+
+Rispetto al metodo precedente non è necessario calcolare gli autovettori ma
+\textbf{è necessario che la matrice $A$ sia di semplice struttura}.
+
+\subsubsection{Procedura operativa}
+\begin{enumerate}
+ \item Calcolo degli autovalori
+ \item Verifica che i $\lambda_i$ siano distinti, ossia che $A$ sia semplice
+ \item Se si la 2. risoluzione del sistema
+$V(\lambda_1,\ldots,\lambda_n)\begin{bmatrix}
+\alpha_0(t) \\ \vdots \\ \alpha_{n-1}(t) \end{bmatrix}= \begin{bmatrix}
+e^{\lambda_1 t } \\ \vdots \\ e^{\lambda_n t}
+\end{bmatrix}$
+\item Calcolo della matrice esponenziale $e^{At} = \sum_{i=0}^{n-1}
+\alpha_i(t)A^i$
+\end{enumerate}
+
+\subsubsection{Esempio numerico}
+Si riprende la stessa matrice utilizzata nel metodo della diagonalizzazione
+(vedi paragrafo \ref{sec.:metodo_diagonalizzazione})
+$$
+A = \begin{bmatrix}
+0 & 1\\
+-2 & -3
+\end{bmatrix}
+$$
+\begin{enumerate}
+\item $p(\lambda) = \text{det} (\lambda I -A) = 0\Rightarrow \lambda_1 = -1,\
+\lambda_2 = -2$
+\item $\lambda_1\neq \lambda_2 \Rightarrow A $ semplice struttura
+\item Costruzione e risoluzione del sistema $V\alpha_n(t) = e^{\lambda_n t}$
+$$
+\begin{bmatrix}
+1 & -1 \\
+1 & -2
+\end{bmatrix}\begin{bmatrix}
+\alpha_0(t) \\ \alpha_1 (t)
+\end{bmatrix} =
+\begin{bmatrix}
+e^{-t} \\
+e^{-2t}
+\end{bmatrix}\Rightarrow \begin{bmatrix}
+\alpha_0(t) \\ \alpha_1 (t)
+\end{bmatrix} = - \begin{bmatrix}
+-2 & 1 \\
+-1 & 1
+\end{bmatrix}\begin{bmatrix}
+e^{-t} \\ e^{-2t}
+\end{bmatrix}
+$$
+Sviluppando si ottiene
+$$\left\{\begin{aligned}
+\alpha_0(t) &= 2e^{-t} - e^{-2t}\\
+\alpha_1(t) &= e^{-t} -e^{-2t}
+\end{aligned}\right.$$
+\item Calcolo della matrice esponenziale
+$$\begin{aligned}
+e^{At} &= \alpha_0(t)I + \alpha_1(t) A^1 =\\
+&=\begin{pmatrix}
+2e^{-t}-e^{-2t} & 0 \\
+0 & 2e^{-t}-e^{-2t}
+\end{pmatrix} + \begin{pmatrix}
+0 & e^{-t}-e^{-2t} \\
+-2e^{-t}+2e^{-2t} & -3e^{-t} + 3e^{-2t}
+\end{pmatrix} =\\
+&= \begin{pmatrix}
+2e^{-t}-e^{-2t} & e^{-t}-e^{-2t}\\
+-2e^{-t} + e^{-2t} & -e^{-t}+2e^{2t}
+\end{pmatrix}
+\end{aligned}$$
+\end{enumerate}
+
+\newpage
+\subsubsection{Riassunto dei due metodi precedenti}
+Sia $A$ una matrice di semplice struttura, si può calcolare la matrice
+esponenziale mediante due metodi
+\begin{enumerate}
+ \item Diagonalizzazione
+
+ Per $n$ autovalori distinti
+ $$
+ \exists\ n \text{ autovettori indipendenti } u_i \Rightarrow U=[u_1,\ldots,u_n]
+ $$
+ $$\begin{aligned}
+ A &= U\Lambda U^{-1} = \sum_{i=1}^{n} \lambda_i u_iv_i^T\\
+ e^{At} &= Ue^{\Lambda t} U^{-1} = \sum_{i=1}^{n} e^{\lambda_i}u_iv_i^T
+ \end{aligned}$$
+ Ricordando che il prodotto tra autovettori e le colonne della matrice modale
+inversa si ottengono le matrici $R_i$ denominate \textit{matrici dei residui
+polari}, avranno rango unitario in questo caso, hanno in generale il rango pari
+alla molteplicità geometrica dell'autovettore $i-$esimo $u_i$.
+$$
+u_i v_i^T = R_i
+$$
+
+\item Polinomio interpolante
+
+Si costruisce la matrice di Vandermonde, si calcola il vettore dei coefficienti
+$\alpha$ e si calcola la matrice esponenziale
+$$
+V(\lambda_1,\ldots,\lambda_n) \Rightarrow \alpha_i(t):
+\begin{bmatrix}
+\alpha_0(t) \\
+\vdots \\
+\alpha_{n-1}(t)
+\end{bmatrix} = V^{-1}(\lambda_1,\ldots,\lambda_n)
+\begin{bmatrix}
+e^{\lambda_1t}\\
+\vdots \\
+e^{\lambda_nt}
+\end{bmatrix}
+$$
+$$
+e^{At} =\sum_{i=0}^{n-1} \alpha_i(t)A^i
+$$
+\end{enumerate}
+
+\subsection{Matrice non semplice}
+Si suppone che la matrice non sia di semplice struttura ma solo
+diagonalizzabile, esisteranno $m$ autovalori distinti $(m < n)$, dunque il
+generico autovalore $\lambda_i$ avrà molteplicità algebrica maggiore di uno.
+Per calcolare gli autovettori si risolvono i sistemi
+$$
+(A-\lambda_iI)u_i=0
+$$
+la molteplicità geometrica del generico autovettore è
+$$
+m_{gi}= n-\rho(A-\lambda_iI)
+$$
+Se la molteplicità geometrica è inferiore di quella algebrica, si troveranno
+meno autovettori di quanti sono necessari a diagonalizzare la matrice che
+risulterà dunque \textbf{non diagonalizzabile}. $1< m_{gi} \leq  m_{ai} \leq n $
+
+Considerato il generico autovalore $\lambda_i$ si pongono i corrispondenti
+autovettori in colonna
+$$
+\lambda_i \rightarrow U_i=[u_{i_1},\ldots,u_{i_{m_{ai}}}]
+$$
+Si costruisce in seguito la matrice modale affiancando i blocchi appena ottenuti
+$$
+U = [U_1,U_2,\ldots,U_m]
+$$
+Di conseguenza si costruisce una matrice degli autovalori dove ogni autovalore
+è ripetuto sulla diagonale per un numero di volte pari alla sua molteplicità
+(algebrica o geometrica, coincidono)
+$$
+A=U
+\begin{bmatrix}
+\lambda_1 &0 &0 &0 &0 &0 &0 &0 &0 &0 \\
+0    &\ddots &0 &0 &0 &0 &0 &0 &0 &0 \\
+0 &0 &\lambda_1 &0 &0 &0 &0 &0 &0 &0 \\
+0 &0 &0 &\lambda_2 &0 &0 &0 &0 &0 &0 \\
+0 &0 &0 &0    &\ddots &0 &0 &0 &0 &0 \\
+0 &0 &0 &0 &0 &\lambda_2 &0 &0 &0 &0 \\
+0 &0 &0 &0 &0 &0    &\ddots &0 &0 &0 \\
+0 &0 &0 &0 &0 &0 &0 &\lambda_n &0 &0 \\
+0 &0 &0 &0 &0 &0 &0 &0    &\ddots &0 \\
+0 &0 &0 &0 &0 &0 &0 &0 &0 &\lambda_n
+\end{bmatrix}U^{-1}
+$$
+Raccogliendo i termini
+$$
+A = \sum_{i=1}^m \lambda_i \cdot \sum_{j=1}^{m_{ai}} u_{ij}\cdot v_{ij}^T
+$$
+Sono necessari due pedici in quanto il primo indica il gruppo di autovettori
+associati all'autovalore $i$ mentre il secondo è associato alla molteplicità
+$m_{ai}$ e permette di moltiplicare l'autovalore per ogni suo autovettore.
+
+Analogamente per la matrice esponenziale
+$$
+e^{At} = \sum_{i=1}^m e^{\lambda_i t} \cdot \sum_{j=1}^{m_{ai}} u_{ij}\cdot
+v_{ij}^T
+$$
+Con un abuso di notazione si potrebbero indicare autovalori uguali con nomi
+diversi, in modo da avere comunque un numero di autovalori pari al numero di
+autovettori e riprendere la notazione del caso precedente con matrice semplice.
+
+I vettori  $u_i$ vengono chiamati autovettori \textit{destri} ovvero devono
+moltiplicare a destra la matrice $A$ per restituire l'autovalore.
+
+Gli autovettori $v_i$ vengono invece chiamati autovettori sinistri (presi
+sempre per colonna)
+$$\begin{aligned}
+u_i &: Au_i = \lambda_i u_i\\
+v_i &: v_iA = \lambda_i v_i
+\end{aligned}$$
+
+\subsection{Autovalori complessi e coniugati}
+Ad ogni coppia di autovalori complessi e coniugati corrisponderà una coppia di
+autovettori complessi e coniugati, il resto della notazione non cambia, si
+risolveranno due sistemi di equazioni, uno per la parte reale ed uno per la
+parte immaginaria.
+
+Si introduce una variante della diagonalizzazione, chiamata \textbf{forma
+reale} della matrice degli autovalori.
+Per avere tutti termini reali sulla matrice degli autovalori sarà necessario
+perdere l'ipotesi di matrice diagonale ma di avere invece una matrice diagonale
+a blocchi.
+
+Si considera per semplicità di analisi un caso di $n=3$ ed un autovalore reale
+ed uno complesso e coniugato, in caso contrario si ripete il risultato ottenuto.
+
+I tre autovalori saranno
+$$\left\{\begin{matrix}
+\lambda \\ \alpha+j\omega \\ \alpha-j\omega
+\end{matrix}\right.$$
+Si devono costruire gli autovettori complessi e coniugati
+$$\left\{\begin{aligned}
+&(A-(\alpha+j\omega)I)(u_a+ju_b) = \underline{0} + j\underline{0}\\
+&(A-(\alpha-j\omega)I)(u_a-ju_b) = \underline{0} + j\underline{0}
+\end{aligned}\right.$$
+Si sviluppa la prima riga
+$$\begin{aligned}
+&(A-(\alpha+j\omega))(u_a + ju_b) = \underline{0} +
+j\underline{0}\Rightarrow
+\left\{\begin{aligned}
+&Au_a - \alpha u_a + \omega u_b = 0\\
+&Au_b - \omega u_a -\alpha u_b = 0
+\end{aligned}\right.
+\end{aligned}$$
+Si porta a sinistra la matrice $A$ e si lasciano gli altri termini a destra
+$$
+\left\{\begin{aligned}
+Au_a &= \alpha u_a - \omega u_b \\
+Au_b &= \omega u_a + \alpha u_b
+\end{aligned}\right. \Leftrightarrow A (u_a \ u_b) = (u_a \ u_b)
+\begin{pmatrix}
+\alpha & \omega\\
+-\omega & \alpha
+\end{pmatrix}
+$$
+
+Se si volesse diagonalizzare, si dovrebbe costruire una matrice modale complessa
+$$
+U=\begin{pmatrix}u & u_a+ju_b & u_a-ju_b\end{pmatrix}
+\stackrel{\Lambda=U^{-1}AU}{\rightarrow}\Lambda=
+\begin{pmatrix}
+\lambda & 0 & 0\\
+0 & \alpha+j\omega & 0 \\
+0 & 0 & \alpha -j\omega
+\end{pmatrix}
+$$
+Quindi la matrice esponenziale
+$$\begin{aligned}
+e^{\Lambda t} &= \begin{pmatrix}
+e^{\lambda t} & 0 & 0 \\
+0 & e^{(\alpha +j\omega)t} & 0 \\
+0 & 0 & e^{(\alpha - j\omega)t}
+\end{pmatrix} =\\
+&=\begin{pmatrix}
+e^{\lambda t} & 0 & 0 \\
+0 & e^{\alpha t}(\cos(\omega t) + j\sin(\omega t)) & 0\\
+0 & 0 & e^{\alpha t}(\cos(\omega t) - j\sin(\omega t))
+\end{pmatrix}
+\end{aligned}$$
+Questa matrice va poi calcolata per le matrici $U$ e $U^{-1}$ con termini
+complessi.
+
+Si sfrutta ora la matrice $U_r$ reale, considerando solo termini reali
+$$
+U_r = \begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix}
+$$
+La matrice $\Lambda$ non sarà più diagonale
+$$
+AU_r = A\begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix} =
+\begin{pmatrix}
+u & u_a & u_b
+\end{pmatrix}\left(
+\begin{array}{c:cc}
+\lambda & 0 & 0\\ \hdashline
+0 &\alpha &\omega \\
+0 &-\omega &\alpha \\
+\end{array}\right)
+$$
+Si è ottenuta una matrice diagonale a blocchi in cui il primo blocco è scalare
+mentre alla coppia di autovalori complessi coniugati corrisponde il blocco
+$2\times2$
+$$
+AU_r = U_r \Lambda_r
+$$
+
+Si calcola la matrice esponenziale
+$$
+e^{At} = U_r e^{\Lambda_r t}U_r^{-1}
+$$
+Si deve calcolare la matrice $e^{\Lambda_r t}$, sapendo che la matrice potenza
+di una matrice diagonale a blocchi è ancora una matrice diagonale a blocchi.
+
+$$
+e^{At} = U_r \left(
+\begin{array}{c:c}
+e^{\lambda t} & 0 \quad 0 \\ \hdashline
+\begin{aligned}
+0 \\ 0
+\end{aligned} &\begin{aligned} \\ e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t}\end{aligned}
+\end{array}
+\right) U_r^{-1}
+$$
+il termine esponenziale è ancora una matrice $2\times 2$
+$$
+e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t} =
+e^{\alpha t} \begin{pmatrix}
+\cos \omega t & \sin \omega t \\
+-\sin \omega t & \cos \omega t
+\end{pmatrix}
+$$
+per dimostrare quest'uguaglianza si devono verificare due condizioni:
+\begin{enumerate}
+ \item $e^{\Lambda_r \cdot 0} = I$
+ \item $\frac{d}{dt} e^{\Lambda_r t} = \Lambda_re^{\Lambda_r t}$
+\end{enumerate}
+similmente alle condizioni dell'esponenziale scalare, entrambe si dimostrano
+banalmente.
+
+\newpage
+In conclusione la matrice esponenziale
+$$\begin{aligned}
+e^{At} &= U_r \left(\begin{array}{c:cc}
+e^{\lambda t} & 0 & 0 \\ \hdashline
+0 & e^{\alpha t}\cos\omega t & e^{\alpha t}\sin\omega t \\
+0 & -e^{\alpha t}\sin\omega t & e^{\alpha t}\cos\omega t
+\end{array}\right)U_r^{-1} = \\
+&=e^{\alpha t}uv^T + e^{\alpha t}\left[
+u_a(\cos\omega t\cdot v_a^T + \sin\omega t\cdot v_b^T) +
+u_b(\sin\omega t\cdot v_b^T - \cos\omega t\cdot v_a^T)
+\right]
+\end{aligned}$$
+con la matrice inversa pari a
+$$
+U_r^{-1} = \begin{pmatrix}
+v^T \\ v_a^T \\ v_b^T
+\end{pmatrix}
+$$
