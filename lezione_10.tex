@@ -154,4 +154,70 @@ Si costruisce una matrice formata da matrici diagonali a blocchi, si hanno
 sempre gli autovalori sulla diagonale ma compaiono degli $1$ sulla
 \textit{sovradiagonale}, la dimensione sarà $m_{ai}\times m_{ai}$.
 
-Per il calcolo della matrice esponenziale invece, si può dimostrare che 40:28
+Per il calcolo della matrice esponenziale invece, sapendo che l'esponenziale di
+una matrice diagonale a blocchi è ancora una matrice diagonale a blocchi, si
+otterrà una matrice che ha sulla diagonale le matrici esponenziali dei singoli
+blocchi.
+$$
+e^{At} = U_Je^{Jt}U_J^{-1} = U_J\begin{bmatrix}
+\ddots & \\
+& e^{J_{i1} t}\\
+& & e^{J_{i2} t} \\
+& & & \ddots
+\end{bmatrix}U_J^{-1}
+$$
+Il termine $e^{J_{in}t}$ è l'esponenziale $n-$esimo del \textit{miniblocco} di
+Jordan, si dimostra che ha dimensione $m_{ai}$ e la seguente forma
+$$
+e^{J_{in} t} =e^{\lambda_i t} \begin{bmatrix}
+1 & t & \frac{t^2}{2} & \frac{t^3}{3!} & \frac{t^4}{4!} \\
+0 & 1 & t & \frac{t^2}{2} & \frac{t^3}{3!}  \\
+0 & 0 & 1 & t & \frac{t^2}{2} \\
+0 & 0 & 0 & 1 & t  \\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+L'analisi di questo tipo di matrici verrà ripresa con l'analisi dei sistemi nel
+dominio di Laplace.
+
+\newpage
+\section{Calcolo dell'integrale generale della ISU}
+Si consideri un sistema LTI nella forma ISU implicita
+$$
+\dot{x} = Ax + Bu
+$$
+Si vuole ricavare l'integrale della soluzione $x(t)$
+$$
+x(t) = x_h(t) + x_p(t)
+$$
+Si studia la soluzione dell'omogenea, assumendo che sia
+$$
+\dot x_h = Ax_h \rightarrow x_h(t) = e^{A(t-t_0)}\cdot c \quad t\geq t_0,\
+c\in\mathbb{R}^n
+$$
+Per dimostrare la precedente equazione è sufficiente sostituire il risultato
+ipotizzato nell'equazione di partenza e derivando si ottiene
+$$
+\dot{x}_h(t) = Ae^{A(t-t_0)} \cdot c = Ax_h(t)
+$$
+Esistono infinite soluzioni dato che la scelta del vettore $c$ costante è
+arbitraria.
+
+L'integrale \textbf{particolare} invece si risolve con la seguente ipotesi di
+soluzione
+$$
+x_p(t) = \int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau =
+e^{At} \int_{t_0}^t e^{-A\tau}Bu(\tau)d\tau
+$$
+Anche questa si basa sulla matrice esponenziale, si verifica che sia
+effettivamente soluzione dell'equazione differenziale, analogamente al caso
+precedente si sostituisce e si deriva il prodotto dei due termini entrambi
+dipendenti dal tempo, con la nota formula $\frac{d}{dt}(AB) = A'B + AB'$
+$$\begin{aligned}
+\dot{x}_p(t) &= Ae^{At} \int_{t_0}^t e^{-A\tau}Bu(\tau)d\tau +
+e^{At}e^{-At}Bu(t) =\\
+&=A \int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau + Bu(t) = \\
+&= Ax_p(t) + Bu
+\end{aligned}$$
+
+56:18
