@@ -95,7 +95,10 @@ $$
 e^{a\cdot \text{\o{}} } = 1 & e^{A\cdot \text{\o{}}} = I\\
 \frac{d}{dt} e^{at} = ae^{at} & \frac{d}{dt} e^{At} = Ae^{At} = e^{At}A\\
 e^{at}\cdot e^{bt} = e^{(a+b)t} & e^{At}\cdot e^{Bt} = e^{(A+B)t}\\
-\left(e^{at}\right)^{-1} = e^{-at} & \left(e^{At}\right)^{-1} = e^{-At}
+\left(e^{at}\right)^{-1} = e^{-at} & \left(e^{At}\right)^{-1} = e^{-At}\\
+ \hline & \text{det}\left(e^{At}\right) =
+e^{\text{tr}(A)}\\
+ & e^{A^Tt} = \left(e^{At}\right)^T
 \end{array}
 $$
 Dimostrazione della derivata
@@ -119,4 +122,36 @@ $$
 L'unica matrice che moltiplicata per un'altra restituisce la matrice identità è
 proprio la sua inversa.
 
-29:42
+\subsection{Analisi con matrice non diagonalizzabile}
+Esisterà qualche autovalore per il quale la molteplicità geometrica è
+strettamente minore della molteplicità algebrica, se ciò avviene, la matrice
+$A$ non è diagonalizzabile, non esiste alcuna matrice simile diagonale.
+
+È comodo operare nel dominio di Laplace per risolvere una matrice non
+diagonalizzabile, altrimenti bisogna riferirsi alla forma di
+\href{https://it.wikipedia.org/wiki/Forma_canonica_di_Jordan}{Jordan},
+approfondimenti
+\href{https://youtu.be/mD4zrWkgy0o?list=PL6Tz-CNThN13TMpt6jGje3vbOv0rzKWS7&t=
+3199}{qui} e
+\href{https://youtu.be/XrnbTxP010I?list=PL6Tz-CNThN13TMpt6jGje3vbOv0rzKWS7}
+{qui}.
+La Jordanizzazione consiste nel costruire una matrice non diagonale $U_J$ che
+mediante una trasformazione di similitudine generi la matrice $J$
+$$ J = U_J^{-1}AU_J =U_J^{-1}
+\begin{bmatrix}
+\ddots & 0 & & & \\
+ & \lambda_1 & 1 & 0 & & & &\\
+ & 0 & \ddots & 1 &  & & \\
+ & 0 & 0 & \lambda_1 & 0 & \\
+ & & & & \lambda_2 & 1 & 0 \\
+ & & & & 0& \ddots & 1 \\
+ & & & & 0 & 0 & \lambda_2 & 0 &\\
+ & & & & & &  & \ddots
+\end{bmatrix}U_J
+$$
+
+Si costruisce una matrice formata da matrici diagonali a blocchi, si hanno
+sempre gli autovalori sulla diagonale ma compaiono degli $1$ sulla
+\textit{sovradiagonale}, la dimensione sarà $m_{ai}\times m_{ai}$.
+
+Per il calcolo della matrice esponenziale invece, si può dimostrare che 40:28
