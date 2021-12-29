@@ -350,7 +350,7 @@ $$
 Se si volesse diagonalizzare, si dovrebbe costruire una matrice modale complessa
 $$
 U=\begin{pmatrix}u & u_a+ju_b & u_a-ju_b\end{pmatrix}
-\stackrel{\Lambda=U^{-1}AU}{\rightarrow}\Lambda=
+\stackrel{\Lambda=U^{-1}AU}{\longrightarrow}\Lambda=
 \begin{pmatrix}
 \lambda & 0 & 0\\
 0 & \alpha+j\omega & 0 \\
@@ -441,7 +441,8 @@ banalmente.
 
 \newpage
 In conclusione la matrice esponenziale
-$$\begin{aligned}
+\begin{equation}
+\begin{aligned}
 e^{At} &= U_r \left(\begin{array}{c:cc}
 e^{\lambda t} & 0 & 0 \\ \hdashline
 0 & e^{\alpha t}\cos\omega t & e^{\alpha t}\sin\omega t \\
@@ -451,7 +452,9 @@ e^{\lambda t} & 0 & 0 \\ \hdashline
 u_a(\cos\omega t\cdot v_a^T + \sin\omega t\cdot v_b^T) +
 u_b(\sin\omega t\cdot v_b^T - \cos\omega t\cdot v_a^T)
 \right]
-\end{aligned}$$
+\end{aligned}
+\label{eq.:esponenziale_comp_coniugata}
+\end{equation}
 con la matrice inversa pari a
 $$
 U_r^{-1} = \begin{pmatrix}

@@ -1,0 +1,401 @@
+
+\subsection{Esempio calcolo matrice esponenziale}
+Sia la seguente matrice $A$
+$$
+A = \begin{bmatrix}
+0 & 1\\
+-1 & -1
+\end{bmatrix}
+$$
+Il polinomio caratteristico sarà
+$$
+p(\lambda) = \lambda^2 + \lambda +1 \left\langle \begin{aligned}
+\lambda_1 &= -\frac{1}{2} + j\frac{\sqrt{3}}{2} \\
+\lambda_2 &= -\frac{1}{2} -j\frac{\sqrt{3}}{2}
+\end{aligned}\right.
+$$
+La matrice è di semplice struttura, può essere diagonalizzata per similitudine,
+vanno calcolati gli autovettori
+$$
+(\lambda_1I-A)u_1 = 0 =\begin{pmatrix}
+-\frac{1}{2} + j\frac{\sqrt{3}}{2} & -1 \\
+1 & \frac{1}{2} + j\frac{\sqrt{3}}{2}
+\end{pmatrix}\begin{pmatrix}
+u_{11} \\ u_{12}
+\end{pmatrix} = \begin{pmatrix}
+0 \\0
+\end{pmatrix} +j\begin{pmatrix}
+0 \\ 0
+\end{pmatrix}
+$$
+Procedendo con il calcolo, si ricorda che solo un'equazione è indipendente, si
+sceglie una delle due variabili arbitrariamente, $u_{11} = 1\Rightarrow u_{12}
+= -\frac{1}{2} + j\frac{\sqrt{3}}{2}$
+$$
+u_1 = \begin{pmatrix}
+1 \\ -\frac{1}{2}+j\frac{\sqrt{3}}{2}
+\end{pmatrix} = \begin{pmatrix}
+1 \\ -\frac{1}{2}
+\end{pmatrix} + j\begin{pmatrix}
+0 \\ \frac{\sqrt{3}}{2}
+\end{pmatrix} = u_a + ju_b
+$$
+per ricavare il vettore $u_2$ si esegue il coniugato della seguente uguaglianza
+$$
+Au_1 = \lambda_1u_1 \stackrel{\text{conj.}}{\longrightarrow}Au_1^* =
+\lambda_1^* u_1
+$$
+Dato che i due autovalori sono complessi e coniugati
+$$
+\lambda_1^* = \lambda_2 \Rightarrow u_2 = u_1^* = u_a -ju_b
+$$
+
+Si costruisce la matrice modale $U$ con i due autovalori
+$$\begin{aligned}
+U &= [u_1 \quad u_2] = \begin{bmatrix}
+1 & 1 \\
+-\frac{1}{2}+j\frac{\sqrt{3}}{2} & -\frac{1}{2}-j\frac{\sqrt{3}}{2}
+\end{bmatrix}\Rightarrow \\
+e^{At} &= Ue^{\Lambda t} U^{-1} = U\begin{bmatrix}
+e^{\left(-\frac{1}{2}+j\frac{\sqrt{3}}{2}\right)t} & 0\\
+0 & e^{\left(-\frac{1}{2}-j\frac{\sqrt{3}}{2}\right)t}
+\end{bmatrix}U^{-1}
+\end{aligned}$$
+Si continua lo sviluppo usando la formula di Eulero, la complessità
+può essere ridotta utilizzando la matrice in forma reale.
+
+$$
+U_r = [u_a \ u_b] = \begin{bmatrix}
+1 & 0 \\
+-\frac{1}{2} & \frac{\sqrt{3}}{2}
+\end{bmatrix} \longrightarrow \Lambda_r =\begin{bmatrix}
+\alpha & \omega \\
+-\omega & \alpha
+\end{bmatrix}=
+\begin{bmatrix}
+-\frac{1}{2} & \frac{\sqrt{3}}{2}\\
+-\frac{\sqrt{3}}{2} & -\frac{1}{2}
+\end{bmatrix} = U_r^{-1}AU_r
+$$
+Sostituendo nella matrice esponenziale, con i risultati ottenuti in
+\ref{eq.:esponenziale_comp_coniugata}
+$$
+e^{\Lambda_r t} = e^{-\frac{1}{2}t}\begin{pmatrix}
+\cos \left(\frac{\sqrt{3}}{2}t\right) & \sin \left(\frac{\sqrt{3}}{2}t\right) \\
+-\sin \left(\frac{\sqrt{3}}{2}t\right) & \cos \left(\frac{\sqrt{3}}{2}t\right)
+\end{pmatrix}\rightarrow
+e^{At} = U_r e^{\Lambda_r t} U_r^{-1}
+$$
+
+\subsection{Proprietà della matrice esponenziale}
+$$
+\begin{array}{>{\displaystyle}c|>{\displaystyle}c}
+ e^{at}=\sum_{k=0}^{+\infty} \frac{a^kt^k}{k!} & e^{At}=\sum_{k=0}^{+\infty}
+\frac{A^k t^k}{k!} \\ \hline
+e^{a\cdot \text{\o{}} } = 1 & e^{A\cdot \text{\o{}}} = I\\
+\frac{d}{dt} e^{at} = ae^{at} & \frac{d}{dt} e^{At} = Ae^{At} = e^{At}A\\
+e^{at}\cdot e^{bt} = e^{(a+b)t} & e^{At}\cdot e^{Bt} = e^{(A+B)t}\\
+\left(e^{at}\right)^{-1} = e^{-at} & \left(e^{At}\right)^{-1} = e^{-At}\\
+ \hline & \text{det}\left(e^{At}\right) =
+e^{\text{tr}(A)}\\
+ & e^{A^Tt} = \left(e^{At}\right)^T
+\end{array}
+$$
+Dimostrazione della derivata
+$$
+\frac{d}{dt} \sum_{k=0}^{+\infty} \frac{A^kt^k}{k!} =
+\sum_{k=1}^{+\infty}\frac{A^kt^{k-1}}{(k-1)!} =
+A\sum_{k=1}^{+\infty} \frac{A^{k-1}t^{k-1}}{(k-1)!} \stackrel{k-1=k'}{=}
+A\sum_{k'=0}^{+\infty}\frac{A^{k'}t^{k'}}{k'!} = Ae^{At} = e^{At}A
+$$
+Solo in questo caso il prodotto tra matrici è commutativo dato che la matrice
+viene moltiplicata per la sua matrice esponenziale corrispondente.
+
+La terza proprietà (\textit{prodotto}) è vera solo se le matrici $A$ e $B$
+commutano ossia \linebreak se $AB = BA$.
+
+Dimostrazione della quarta proprietà (\textit{inversa}), sfruttando la
+proprietà del prodotto, sicuramente le matrici $A$ e $-A$ commutano
+$$
+e^{At} \cdot e^{-At} = e^{(A-A)t} = I
+$$
+L'unica matrice che moltiplicata per un'altra restituisce la matrice identità è
+proprio la sua inversa.
+
+\subsection{Analisi con matrice non diagonalizzabile}
+Esisterà qualche autovalore per il quale la molteplicità geometrica è
+strettamente minore della molteplicità algebrica, se ciò avviene, la matrice
+$A$ non è diagonalizzabile, non esiste alcuna matrice simile diagonale.
+
+È comodo operare nel dominio di Laplace per risolvere una matrice non
+diagonalizzabile, altrimenti bisogna riferirsi alla forma di
+\href{https://it.wikipedia.org/wiki/Forma_canonica_di_Jordan}{Jordan},
+approfondimenti
+\href{https://youtu.be/mD4zrWkgy0o?list=PL6Tz-CNThN13TMpt6jGje3vbOv0rzKWS7&t=
+3199}{qui} e
+\href{https://youtu.be/XrnbTxP010I?list=PL6Tz-CNThN13TMpt6jGje3vbOv0rzKWS7}
+{qui}.
+La Jordanizzazione consiste nel costruire una matrice non diagonale $U_J$ che
+mediante una trasformazione di similitudine generi la matrice $J$
+$$ J = U_J^{-1}AU_J =U_J^{-1}
+\begin{bmatrix}
+\ddots & 0 & & & \\
+ & \lambda_1 & 1 & 0 & & & &\\
+ & 0 & \ddots & 1 &  & & \\
+ & 0 & 0 & \lambda_1 & 0 & \\
+ & & & & \lambda_2 & 1 & 0 \\
+ & & & & 0& \ddots & 1 \\
+ & & & & 0 & 0 & \lambda_2 & 0 &\\
+ & & & & & &  & \ddots
+\end{bmatrix}U_J
+$$
+
+Si costruisce una matrice formata da matrici diagonali a blocchi, si hanno
+sempre gli autovalori sulla diagonale ma compaiono degli $1$ sulla
+\textit{sovradiagonale}, la dimensione sarà $m_{ai}\times m_{ai}$.
+
+Per il calcolo della matrice esponenziale invece, sapendo che l'esponenziale di
+una matrice diagonale a blocchi è ancora una matrice diagonale a blocchi, si
+otterrà una matrice che ha sulla diagonale le matrici esponenziali dei singoli
+blocchi.
+$$
+e^{At} = U_Je^{Jt}U_J^{-1} = U_J\begin{bmatrix}
+\ddots & \\
+& e^{J_{i1} t}\\
+& & e^{J_{i2} t} \\
+& & & \ddots
+\end{bmatrix}U_J^{-1}
+$$
+Il termine $e^{J_{in}t}$ è l'esponenziale $n-$esimo del \textit{miniblocco} di
+Jordan, si dimostra che ha dimensione $m_{ai}$ e la seguente forma
+$$
+e^{J_{in} t} =e^{\lambda_i t} \begin{bmatrix}
+1 & t & \frac{t^2}{2} & \frac{t^3}{3!} & \frac{t^4}{4!} \\
+0 & 1 & t & \frac{t^2}{2} & \frac{t^3}{3!}  \\
+0 & 0 & 1 & t & \frac{t^2}{2} \\
+0 & 0 & 0 & 1 & t  \\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+L'analisi di questo tipo di matrici verrà ripresa con l'analisi dei sistemi nel
+dominio di Laplace.
+
+\newpage
+\section{Calcolo dell'integrale generale della ISU}
+Si consideri un sistema LTI nella forma ISU implicita
+$$\left\{\begin{aligned}
+&\dot{x} = Ax + Bu\\
+&x(t_0) = x_0
+\end{aligned}\right.$$
+Si vuole ricavare l'integrale della soluzione $x(t)$
+$$
+x(t) = x_h(t) + x_p(t)
+$$
+Si studia la soluzione dell'omogenea, assumendo che sia
+$$
+\dot x_h = Ax_h \rightarrow x_h(t) = e^{A(t-t_0)}\cdot c \quad t\geq t_0,\
+c\in\mathbb{R}^n
+$$
+Per dimostrare la precedente equazione è sufficiente sostituire il risultato
+ipotizzato nell'equazione di partenza e derivando si ottiene
+$$
+\dot{x}_h(t) = Ae^{A(t-t_0)} \cdot c = Ax_h(t)
+$$
+Esistono infinite soluzioni dato che la scelta del vettore $c$ costante è
+arbitraria.
+
+L'integrale \textbf{particolare} invece si risolve con la seguente ipotesi di
+soluzione
+$$
+x_p(t) = \int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau =
+e^{At} \int_{t_0}^t e^{-A\tau}Bu(\tau)d\tau
+$$
+Anche questa si basa sulla matrice esponenziale, si verifica che sia
+effettivamente soluzione dell'equazione differenziale, analogamente al caso
+precedente si sostituisce e si deriva il prodotto dei due termini entrambi
+dipendenti dal tempo, con la nota formula $\frac{d}{dt}(AB) = A'B + AB'$
+$$\begin{aligned}
+\dot{x}_p(t) &= Ae^{At} \int_{t_0}^t e^{-A\tau}Bu(\tau)d\tau +
+e^{At}e^{-At}Bu(t) =\\
+&=A \int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau + Bu(t) = \\
+&= Ax_p(t) + Bu
+\end{aligned}$$
+
+L'integrale generale sarà dato dalla somma dell'omogenea e della soluzione
+particolare
+$$
+x(t) = e^{A(t-t_0)}\cdot c + \int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau
+$$
+La costante $c$ si ricava dalle condizioni iniziali
+$$
+x(t_0) = e^{A\cdot\text{\o{}}}\cdot c + \int_{t_0}^{t_0}\dots d\tau = c = x_0
+$$
+
+\newpage
+Si vuole esprimere la ISU in forma esplicita, aggiungendo anche l'equazione
+dell'uscita con $y=Cx+Du$
+$$
+\left\{\begin{aligned}
+x(t) &= e^{A(t-t_0)} x_0 + \int_{t_0}^{t} e^{A(t-\tau)}Bu(\tau)d\tau\\
+y(t) &= Ce^{A(t-t_0)}x_0 + \int_{t_0}^t \left(Ce^{A(t-\tau)}B +
+D\delta(t-\tau) \right)u(\tau)d\tau
+\end{aligned}\right.
+$$
+
+Il passaggio dalla forma implicita a quella esplicita prende il nome di
+\textit{Formule di Lagrange}.
+
+Si nota che una parte della soluzione dipende solo dalla soluzione iniziale,
+un'altra invece è funzione dell'ingresso.
+La prima parte $x_l(t)$ prende il nome di \textit{movimento in evoluzione
+libera} mentre l'altro $x_f(t)$ prende il nome di \textit{movimento forzato},
+dipende appunto dall'ingresso.
+
+Analogamente l'equazione dell'uscita è composta da $y_l(t)$ \textit{risposta in
+evoluzione libera} mentre la seconda parte $x_f(t)$ prende il nome di
+\textit{risposta in evoluzione forzata}.
+
+Si definiscono ulteriori matrici al fine di compattare ancora il sistema
+\begin{itemize}
+\item Matrice di transizione nello stato
+$$
+\Phi(t) = e^{At}\quad (n\times n)
+$$
+\item Matrice delle risposte impulsive nello stato
+$$
+H(t) = e^{At}B \quad (n\times m)
+$$
+\item Matrice di trasformazione d'uscita
+$$
+\Psi(t) = Ce^{At} \quad (p\times n)
+$$
+\item Matrice delle risposte impulsive in uscita
+$$
+W(t) = Ce^{At}B + D\delta(t) \quad (p\times n)
+$$
+\end{itemize}
+Sfruttando queste definizioni la forma esplicita diventa
+$$\left\{\begin{aligned}
+x(t) &= \Phi(t-t_0) x_0 + \int_{t_0}^t H(t-\tau)u(\tau)d\tau \\
+y(t) &= \Psi(t-t_0) x_0 + \int_{t_0}^t W(t-\tau)u(\tau)d\tau
+\end{aligned}\right.
+$$
+
+\newpage
+\section{Principio di sovrapposizione degli effetti}
+Un generico sistema $S$ è lineare se e solo se per esso vale il principio di
+sovrapposizione degli effetti.
+
+Si supponga di avere uno stato iniziale $x'(t_0)$ ed un certo ingresso
+$u'(t)_{[t_0,t]}$, a questa coppia stato-ingresso corrispondono una coppia di
+funzioni $x'(t)$ ed $y'(t)$.
+Si suppone di risolvere il sistema anche con un un'altra coppia $x''(t)$ e
+$y''(t)$.
+$$\left\{\begin{aligned}
+&x'(t_0),\ u'(t)_{[t_0,t]} &\longrightarrow\quad &x'(t),\ y'(t) \\
+&x''(t_0),\ u''(t)_{[t_0,t]} &\longrightarrow\quad & x''(t),\ y''(t)
+\end{aligned}\right.
+$$
+
+Si supponga di avere una condizione iniziale combinazione lineare dei primi
+due, condizione identica anche per l'ingresso con gli stessi coefficienti
+scalari $\alpha$ e $\beta$
+$$\left\{\begin{aligned}
+x(t_0) &= \alpha x'(t_0) + \beta x''(t_0)\\
+u(t) &= \alpha u'(t) + \beta u''(t)
+\end{aligned}\right.\stackrel{\text{PSE}}{\longrightarrow}\
+\left\{\begin{aligned}
+&x(t) = \alpha x'(t) + \beta x''(t)\\
+&y(t) = \alpha y'(t) + \beta y''(t)
+\end{aligned}\right.
+$$
+Il principio di sovrapposizione degli effetti permette di applicare la
+combinazione lineare al movimento dello stato $x(t)$ e all'equazione
+dell'uscita $y(t)$ senza dover ricalcolare gli integrali.
+
+Generalizzando il problema, è utile sfruttare il PSE nel caso in cui l'ingresso
+del sistema sia complesso e possa essere scomposto mediante la combinazione
+lineare di più ingressi semplici, in questo modo si risolveranno tanti
+integrali più semplici rispetto alla risoluzione di un singolo integrale
+complesso.
+
+\subsubsection{Dimostrazione}
+Si dimostra il principio sostituendo le formule di \textit{Lagrange}, con
+l'ipotesi che le soluzioni parziali $x'(t)$ e $x''(t)$ siano corrette
+$$\begin{aligned}
+x(t) &= \alpha x'(t) + \beta x''(t) = \alpha e^{A(t-t_0)}x'(t_0) + \alpha
+\int_{t_0}^t e^{A(t-t_0)}Bu'(\tau)d\tau + \\
+ &+ \beta e^{A(t-t_0)}x''(t_0) + \beta\int_{t_0}^t e^{A(t-t_0)} B
+u''(\tau)d\tau =\\
+&= e^{A(t-t_0)}\left(\alpha x'(t_0) + \beta x''(t_0)\right) + \int_{t_0}^t
+e^{A(t-\tau)} B \left(\alpha u'(\tau) + \beta u''(\tau)\right) d\tau =\\
+&= e^{A(t-t_0)}x(t_0)  + \int_{t_0}^t
+e^{A(t-\tau)}Bu(\tau)d\tau
+\end{aligned}$$
+
+La proprietà è valida anche per i sistemi tempo varianti, è necessaria solo la
+linearità.
+La dimostrazione è analoga per la $y(t)$.
+
+
+\section{Rappresentazioni ISU equivalenti}
+Si consideri un certo sistema ISU, ottenuto mediante l'analisi del sistema
+fisico
+$$
+\left\{\begin{aligned}
+\dot{x} &= Ax + Bu \\
+y & = Cx + Du
+\end{aligned}\right.
+$$
+Si consideri una matrice $T$ invertibile, le sue colonne saranno una base per
+operare un cambio di variabili, ossia riferire il sistema rispetto ai vettori
+della matrice $T$ e non rispetto ai vettori canonici $(1,0,0),(0,1,0),(0,0,1)$.
+
+Il nuovo stato $\tilde{x}$ sarà una combinazione lineare dello stato iniziale
+$$
+x=T\tilde{x} \Leftrightarrow \tilde{x} = T^{-1}x
+$$
+Il nuovo stato perde di significato fisico ma è possibile scrivere un modello
+equivalente
+$$\left\{\begin{aligned}
+T\dot{\tilde{x}} &= AT\tilde{x} + Bu \\
+y &= CT\tilde{x} + Du
+\end{aligned}\right. \Rightarrow
+\left\{\begin{aligned}
+\dot\tilde{x} &= T^{-1}AT \tilde{x} + T^{-1}Bu \\
+y &= CT\tilde{x} + Du
+\end{aligned}\right.
+$$
+La matrice $T^{-1}AT$ è ancora una matrice quadrata, tra l'altro simile alla
+matrice $A$, verrà chiamata $\tilde{A}$; la matrice $T^{-1}B$ è invece una
+matrice $n\times m$, verrà chiamata $\tilde{B}$.
+Con $\tilde{C}$ si indica la matrice $CT$ di dimensioni $p\times n$, la matrice
+$D$ resta invariata, può comunque essere rinominata in $\tilde{D}$.
+
+La nuova forma del sistema sarà
+$$\left\{\begin{aligned}
+\dot{\tilde{x}} &= \tilde{A}\tilde{x} + \tilde{B}u\\
+y &= \tilde{C}\tilde{x} + \tilde{D}u
+\end{aligned}\right.\qquad
+\left[\begin{array}{ll}
+\tilde{A}=T^{-1}AT & \tilde{B} = T^{-1}B\\
+\tilde{C} = CT & \tilde{D} = D
+\end{array}\right]_{x=T\tilde{x}}
+$$
+Entrambe le ISU rappresentano il sistema, mediante un cambiamento del
+riferimento non varia il legame ingresso-uscita.
+Tutte le quadruple di matrici ottenute possono essere categorizzate in classi
+di equivalenza, esistono infinite quadruple equivalenti al variare della
+matrice $T$ diagonalizzabile.
+
+\subsubsection{Esempio}
+Sia il seguente sistema, si sceglie la matrice modale come matrice per il
+cambio di variabili
+$$
+\dot{x} = Ax +Bu \stackrel{x=U\tilde{x}}{\longrightarrow} \dot{\tilde{x}} =
+U^{-1}AU\tilde{x} + U^{-1}BU = \Lambda\tilde{x} + \tilde{B}u
+$$
+La ISU equivalente presenta una matrice della dinamica diagonale, è immediato
+calcolare la matrice di transizione, mediante l'esponenziale della matrice.
+Si calcola facilmente l'evoluzione libera del sistema, per ritornare al sistema
+di riferimento precedente va moltiplicata la $U$ costante per $\tilde{x}$.
