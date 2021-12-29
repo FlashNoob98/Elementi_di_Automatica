@@ -347,4 +347,55 @@ $$
 y & = Cx + Du
 \end{aligned}\right.
 $$
-1:35:47
+Si consideri una matrice $T$ invertibile, le sue colonne saranno una base per
+operare un cambio di variabili, ossia riferire il sistema rispetto ai vettori
+della matrice $T$ e non rispetto ai vettori canonici $(1,0,0),(0,1,0),(0,0,1)$.
+
+Il nuovo stato $\tilde{x}$ sarà una combinazione lineare dello stato iniziale
+$$
+x=T\tilde{x} \Leftrightarrow \tilde{x} = T^{-1}x
+$$
+Il nuovo stato perde di significato fisico ma è possibile scrivere un modello
+equivalente
+$$\left\{\begin{aligned}
+T\dot{\tilde{x}} &= AT\tilde{x} + Bu \\
+y &= CT\tilde{x} + Du
+\end{aligned}\right. \Rightarrow
+\left\{\begin{aligned}
+\dot\tilde{x} &= T^{-1}AT \tilde{x} + T^{-1}Bu \\
+y &= CT\tilde{x} + Du
+\end{aligned}\right.
+$$
+La matrice $T^{-1}AT$ è ancora una matrice quadrata, tra l'altro simile alla
+matrice $A$, verrà chiamata $\tilde{A}$; la matrice $T^{-1}B$ è invece una
+matrice $n\times m$, verrà chiamata $\tilde{B}$.
+Con $\tilde{C}$ si indica la matrice $CT$ di dimensioni $p\times n$, la matrice
+$D$ resta invariata, può comunque essere rinominata in $\tilde{D}$.
+
+La nuova forma del sistema sarà
+$$\left\{\begin{aligned}
+\dot{\tilde{x}} &= \tilde{A}\tilde{x} + \tilde{B}u\\
+y &= \tilde{C}\tilde{x} + \tilde{D}u
+\end{aligned}\right.\qquad
+\left[\begin{array}{ll}
+\tilde{A}=T^{-1}AT & \tilde{B} = T^{-1}B\\
+\tilde{C} = CT & \tilde{D} = D
+\end{array}\right]_{x=T\tilde{x}}
+$$
+Entrambe le ISU rappresentano il sistema, mediante un cambiamento del
+riferimento non varia il legame ingresso-uscita.
+Tutte le quadruple di matrici ottenute possono essere categorizzate in classi
+di equivalenza, esistono infinite quadruple equivalenti al variare della
+matrice $T$ diagonalizzabile.
+
+\subsubsection{Esempio}
+Sia il seguente sistema, si sceglie la matrice modale come matrice per il
+cambio di variabili
+$$
+\dot{x} = Ax +Bu \stackrel{x=U\tilde{x}}{\longrightarrow} \dot{\tilde{x}} =
+U^{-1}AU\tilde{x} + U^{-1}BU = \Lambda\tilde{x} + \tilde{B}u
+$$
+La ISU equivalente presenta una matrice della dinamica diagonale, è immediato
+calcolare la matrice di transizione, mediante l'esponenziale della matrice.
+Si calcola facilmente l'evoluzione libera del sistema, per ritornare al sistema
+di riferimento precedente va moltiplicata la $U$ costante per $\tilde{x}$.
