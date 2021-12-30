@@ -1,0 +1,162 @@
+\section{Modi naturali per i sistemi dinamici}
+I modi naturali sono tutte le funzioni che possono comparire nella risposta in
+evoluzione libera, ovvero tutte le funzioni del tempo che possono essere
+identificate all'interno della matrice esponenziale
+$$
+x_l(t) = e^{At}x_0\ x_0 \in \mathbb{X}^n
+$$
+
+Si consideri un sistema con $n=3$ con i seguenti autovalori e autovettori della
+matrice della dinamica $A$:
+$$\begin{array}{ccc}
+\lambda & \alpha+j\omega & \alpha-j\omega\\
+\downarrow &\downarrow &\downarrow \\
+u & u_a +j u_b & u_a -j u_b
+\end{array}$$
+
+Si costruisce la matrice modale reale $U_r$ e la sua inversa $U_r^{-1}$
+$$\begin{aligned}
+U_r &= [u \ u_a \ u_b] \\
+U_r^{-1} &= \begin{bmatrix}
+             v^T\\v_a^T\\v_b^T
+            \end{bmatrix}
+\end{aligned}$$
+
+Si introduce il cambio di variabili con una nuova variabile di stato $z$
+$$
+z = U_r^{-1} x\rightarrow \Lambda_r = U_r^{-1}AU_r = \left(
+\begin{array}{c:cc}
+ \lambda & 0 & 0 \\ \hdashline
+ 0 & \alpha & \omega \\
+ 0 & -\omega & \alpha
+\end{array}
+\right)
+$$
+
+Calcolando la matrice esponenziale si ottiene
+$$
+e^{At} = e^{\left(U_r\Lambda_r U_r^{-1} \right)t} = U_r e^{\Lambda_r t}U_r^{-1}
+= \begin{pmatrix}
+   u & u_a & u_b
+  \end{pmatrix}\left(
+\begin{array}{c:c}
+ e^{\lambda t}& 0 \quad 0 \\ \hdashline
+\begin{aligned}
+0 \\ 0
+\end{aligned} &\begin{aligned} \\ e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t}\end{aligned}
+\end{array}\right)
+\begin{pmatrix}
+v^T \\ v_a^T \\ v_b^T
+\end{pmatrix}
+$$
+Sviluppando l'esponenziale interno
+$$
+e^{\begin{pmatrix}
+\alpha& \omega\\
+-\omega & \alpha
+\end{pmatrix}t} =
+e^{\alpha t} \begin{pmatrix}
+              \cos \omega t & \sin \omega t \\
+              -\sin \omega t & \cos \omega t
+             \end{pmatrix}
+$$
+La matrice esponenziale completa dunque:
+$$
+e^{At} = \begin{pmatrix}
+   u & u_a & u_b
+  \end{pmatrix}
+\begin{pmatrix}
+e^{\lambda t} & 0 & 0 \\
+0 & e^{\alpha t}\cos\omega t & e^{\alpha t}\sin\omega t \\
+0 & -e^{\alpha t}\sin\omega t & e^{\alpha t}\cos\omega t
+\end{pmatrix}
+\begin{pmatrix}
+v^T \\ v_a^T \\ v_b^T
+\end{pmatrix}
+$$
+Ricordando la definizione di modo naturale si vede che le funzioni del tempo
+sono tutte contenute nella matrice esponenziale degli autovalori
+$e^{\Lambda_r t}$
+
+Si sviluppano i prodotti
+$$
+e^{At} = e^{\lambda t}uv^T + e^{\alpha t}u_a \left(\cos(\omega t) v_a^T +
+\sin(\omega t)v_b^T \right)+
+e^{\alpha t}u_b \left(-\sin(\omega t) v_a^T +
+\cos(\omega t)v_b^T \right)
+$$
+
+Si considera ora l'evoluzione libera
+$$\begin{aligned}
+x_l(t) &= e^{At}x_0 = e^{\lambda t} uv^Tx_0 + e^{\alpha t}\left[
+u_a \left(\cos(\omega t) v_a^Tx_0 +
+\sin(\omega t)v_b^Tx_0 \right) +\right. \\
+ &\left.+ e^{\alpha t}u_b \left(-\sin(\omega t) v_a^Tx_0 +
+\cos(\omega t)v_b^Tx_0 \right)
+\right]
+\end{aligned}$$
+si osserva che i vettori $v^T$ sono righe mentre $x_0$ sono vettori colonna, di
+conseguenza il loro prodotto è uno scalare $c$, si fanno le seguenti posizioni
+$$
+\begin{bmatrix}
+v^T \\ v_a^T \\ v_b^T
+\end{bmatrix}
+x_0 =
+\begin{pmatrix}
+ c \\ c_a \\  c_b
+\end{pmatrix}
+$$
+Si riscrive l'equazione dell'evoluzione libera
+$$\begin{aligned}
+x_l(t) &= ce^{\lambda t}u +e^{\alpha t} u_a\left(\cos(\omega t)c_a +
+\sin(\omega t) c_b\right) + \\
+& + e^{\alpha t} u_b\left(-\sin(\omega t)c_a +
+\cos(\omega t) c_b\right)
+\end{aligned}$$
+Se si analizza lo stato nell'istante di tempo nullo
+$$
+x_l(0) = cu + c_au_a +c_bu_b =x_0 \Rightarrow z_l(0) = \begin{pmatrix}
+ c \\ c_a \\  c_b
+\end{pmatrix} = z_0 = U_R^{-1} x_0
+$$
+Si osserva che le costanti $c$ sono proprio le componenti dello stato iniziale
+rispetto alla nuova base $u$.
+
+Si considerino le seguenti posizioni per definire l'angolo $\varphi$
+$$
+m=\sqrt{c_a^2 + c_b ^2} \qquad \sin\varphi = \frac{c_a}{m} \qquad \cos\varphi =
+\frac{c_b}{m}
+$$
+si riscrive la $x_l(t)$ in forma ancora più compatta, sfruttando le formule di
+prostaferesi
+$$
+x_l(t) = ce^{\lambda t} u + me^{\alpha t}\left(\sin(\omega t +\varphi)u_a +
+\cos(\omega t + \varphi)u_b\right)
+$$
+Le funzioni dipendenti dal tempo, generate da matrici diagonalizzabili, possono
+essere al più esponenziali scalari per ogni autovalore reale, chiamati moti
+\textbf{aperiodici}; oppure funzioni sinusoidali moltiplicate per esponenziali
+per ogni autovalore complesso e coniugato, verranno detti modi
+\textbf{pseudo-periodici}.
+
+Si vuole capire come sarà l'andamento qualitativo dell'evoluzione libera dello
+stato al variare degli autovalori.
+
+\newpage
+\subsection{Moti aperiodici}
+Sono generati da autovalori reali
+$$
+\lambda \text{ reali} \rightarrow e^{\lambda t} u
+$$
+Si possono avere tre casi 38:29
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}
+\addplot[color=black]{exp(x)};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
