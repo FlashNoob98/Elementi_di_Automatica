@@ -146,7 +146,7 @@ Si vuole capire come sarà l'andamento qualitativo dell'evoluzione libera dello
 stato al variare degli autovalori.
 
 \newpage
-\subsection{Moti aperiodici}
+\subsection{Modi aperiodici}
 Sono generati da autovalori reali
 $$
 \lambda \text{ reali} \rightarrow e^{\lambda t} u
@@ -160,13 +160,14 @@ Si possono avere tre casi
    \begin{axis}[
      axis lines=left,
      width=\textwidth,
-     xtick={0,3.5},
-     xticklabels={0,t},
+     xtick={0,1,3.5},
+     xticklabels={0,$\tau$,t},
      ytick={1,1.5},
      ymax=1.5,
      yticklabels={1,$e^{\lambda t}$},
      ]
     \addplot[color=black,domain=0:3.5]{exp(-x)};
+    \addplot[color=black,domain=0:1]{1-x};
    \end{axis}
   \end{tikzpicture}
   \caption{$\lambda<0$}
@@ -201,7 +202,7 @@ Si possono avere tre casi
      xticklabels={0,t},
      ytick={1,34},
      ymax=34,
-     ymin = 0.5,
+     ymin = 0,
      yticklabels={1,$e^{\lambda t}$},
      ]
     \addplot[color=black,domain=0:3.5]{exp(x)};
@@ -211,3 +212,38 @@ Si possono avere tre casi
  \end{subfigure}
 \end{figure}
 
+Nello spazio di stato $X^n$ si individua una direzione data dal vettore $u$,
+all'istante $t=0 \rightarrow e^{\lambda t}u = u$, non c'è alcun contributo
+dato dal modo.
+
+Al variare di $t$ il vettore $u$ può
+\begin{itemize}
+\item $\lambda<0$ il vettore diminuisce di ampiezza.
+\item $\lambda=0$ il vettore resta costante.
+\item $\lambda>0$ il
+vettore aumenta di ampiezza indefinitamente.
+\end{itemize}
+
+Se $\lambda<0$ si introduce una \textbf{costante di tempo} $\tau =
+-\frac{1}{\lambda}$
+e la funzione esponenziale si può esprimere come
+$e^{-\frac{t}{\tau}}$, dunque si può affermare che con una certa percentuale di
+errore la funzione è ingegneristicamente approssimabile a zero.
+Al variare di $\tau$ si ha un tempo di ``riduzione'' del fenomeno maggiore o
+minore, per un tempo pari a tre $\tau$ il vettore si riduce di almeno il 95\%
+$$\begin{aligned}
+t=3\tau&\Rightarrow e^{-\frac{t}{\tau}}
+< 0.05\ (5\%)\\
+t=4\tau&\Rightarrow e^{-\frac{t}{\tau}}
+< 0.02\ (2\%)\\
+t=5\tau&\Rightarrow e^{-\frac{t}{\tau}}
+< 0.01\ (1\%)
+\end{aligned}$$
+
+\subsection{Modo Pseudo-Periodico}
+Si considera una coppia di autovalori complessi e coniugati
+$$
+\alpha + j\omega \rightarrow e^{\alpha t}\left(\sin(\omega t + \phi)u_a +
+\cos(\omega t + \varphi)u_b\right)
+$$
+51:40
