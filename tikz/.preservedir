@@ -1,0 +1,3 @@
+Questo file assicura la creazione della cartella vuota tikz/
+per permettere il corretto funzionamento della libreria
+external di tikzpicture (pgfplots)

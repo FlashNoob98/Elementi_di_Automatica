@@ -30,14 +30,21 @@
 }
 \usepackage{arydshln} % dashed lines in matrix (array)
 
+
+
 %Definizione 'globale' larghezza immagini
 \newcommand{\picwid}{0.3\linewidth}
-
+\usepackage{tikz}
 \usepackage{pgfplots} % Plot dei grafici
-\pgfplotsset{width=5cm,compat=1.9}
+\pgfplotsset{compat=1.18}
 % Riduzione tempi di compilazione esternalizzando le figure in pdf separati
 \usepgfplotslibrary{external}
-\tikzexternalize
+%\usetikzlibrary{pgfplots.external}
+\tikzexternalize[prefix=tikz/, optimize command away=\includepdf]
+
+\usepackage{caption}
+\usepackage{subcaption}
+
 
 \date{28/11/21}
 \title{Appunti Elementi di Automatica}
