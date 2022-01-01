@@ -244,7 +244,7 @@ t=5\tau&\Rightarrow e^{-\frac{t}{\tau}}
 \subsection{Modo Pseudo-Periodico}
 Si considera una coppia di autovalori complessi e coniugati
 $$
-\alpha \pm j\omega \rightarrow e^{\alpha t}\left(\sin(\omega t + \phi)u_a +
+\alpha \pm j\omega \rightarrow e^{\alpha t}\left(\sin(\omega t + \varphi)u_a +
 \cos(\omega t + \varphi)u_b\right)
 $$
 
@@ -346,4 +346,51 @@ Due parametri che caratterizzano i modi pseudo-periodici sono
 \item \textbf{Coefficiente di smorzamento} $\zeta =
 -\frac{\alpha}{\omega_n}$
 \end{itemize}
-1:07:26
+
+\newpage
+Dal punto di vista grafico
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    width = 0.5\linewidth,
+    ymin = -1.5,
+    ymax = 1.5,
+    xmax = 1.5,
+    xmin = -1.5,
+    ticklabel style={anchor=north west},
+    xtick = {-1,0},
+    xticklabels={$\alpha$, 0},
+    ytick = {-1,0,1},
+    yticklabels={$-\omega$,0,$\omega$},
+    xlabel=Re,ylabel=Im,
+    %axis line style={latex-latex},
+    %axis line style={shorten >=-7.5pt, shorten <=-7.5pt},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north west},
+    ylabel style={at={(ticklabel* cs:1)},anchor=south west},
+]
+\addplot[color=red,domain=-1:0]{-x};
+\draw [dashed] (-1,-1) -- (-1,1);
+\draw [dashed] (-1,-1) -- (0,-1);
+\draw [dashed] (-1,1) -- (0,1);
+\node[] at  (axis cs:-1,1){X};
+\node[] at (axis cs:-1,-1){X};
+\node[color=red,rotate=-44] at (axis cs:-0.45,0.6){$\omega_n$};
+\draw [color=red] (0,0) ++(-0.2:0.4) arc (-0.2:0:0.4)
+        node[midway,above right,inner sep=2pt,font={\footnotesize}]{$\theta$};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+1:12:38
+%figure
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=\picwid]{posizione_autovalori}
+%\end{figure}
+Dalla figura si vede la relazione tra l'angolo $\theta$ e $\zeta$
+$$\zeta = \sin\theta \in ]-1,1[$$
+
+Se fosse pari a $\pm\frac{\pi}{2}$ i due autovalori
+coinciderebbero in un unico punto, ossia si avrebbe un autovalore reale di
+molteplicità due, negativo o positivo.
