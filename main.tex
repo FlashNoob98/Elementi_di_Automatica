@@ -31,8 +31,20 @@
 \usepackage{arydshln} % dashed lines in matrix (array)
 
 
+
 %Definizione 'globale' larghezza immagini
 \newcommand{\picwid}{0.3\linewidth}
+\usepackage{tikz}
+\usepackage{pgfplots} % Plot dei grafici
+\pgfplotsset{compat=1.18}
+% Riduzione tempi di compilazione esternalizzando le figure in pdf separati
+\usepgfplotslibrary{external}
+%\usetikzlibrary{pgfplots.external}
+\tikzexternalize[prefix=tikz/, optimize command away=\includepdf]
+
+\usepackage{caption}
+\usepackage{subcaption}
+
 
 \date{28/11/21}
 \title{Appunti Elementi di Automatica}
@@ -50,4 +62,5 @@
 \include{lezione_08}
 \include{lezione_09}
 \include{lezione_10}
+\include{lezione_11}
 \end{document}
