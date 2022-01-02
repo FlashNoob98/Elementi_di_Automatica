@@ -359,7 +359,8 @@ Dal punto di vista grafico
     ymax = 1.5,
     xmax = 1.5,
     xmin = -1.5,
-    ticklabel style={anchor=north west},
+    xticklabel style={anchor=north west},
+    yticklabel style={anchor=west},
     xtick = {-1,0},
     xticklabels={$\alpha$, 0},
     ytick = {-1,0,1},
@@ -367,8 +368,8 @@ Dal punto di vista grafico
     xlabel=Re,ylabel=Im,
     %axis line style={latex-latex},
     %axis line style={shorten >=-7.5pt, shorten <=-7.5pt},
-    xlabel style={at={(ticklabel* cs:1)},anchor=north west},
-    ylabel style={at={(ticklabel* cs:1)},anchor=south west},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=west},
 ]
 \addplot[color=red,domain=-1:0]{-x};
 \draw [dashed] (-1,-1) -- (-1,1);
@@ -377,12 +378,11 @@ Dal punto di vista grafico
 \node[] at  (axis cs:-1,1){X};
 \node[] at (axis cs:-1,-1){X};
 \node[color=red,rotate=-44] at (axis cs:-0.45,0.6){$\omega_n$};
-\draw [color=red] (0,0) ++(-0.2:0.4) arc (-0.2:0:0.4)
-        node[midway,above right,inner sep=2pt,font={\footnotesize}]{$\theta$};
+\draw [color=red,->] (0,1.1) arc (90:135:1.1);
+\node[color=red] at (axis cs:-0.5,1.3){$\theta$};
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-1:12:38
 %figure
 %\begin{figure}[H]
 %\centering
@@ -394,3 +394,148 @@ $$\zeta = \sin\theta \in ]-1,1[$$
 Se fosse pari a $\pm\frac{\pi}{2}$ i due autovalori
 coinciderebbero in un unico punto, ossia si avrebbe un autovalore reale di
 molteplicità due, negativo o positivo.
+
+A parità di $\omega_n$, al diminuire di $\theta$, diminuisce lo smorzamento,
+ossia le oscillazioni perdurano per più tempo.
+
+\subsection{Stima dell'andamento qualitativo dei sistemi dinamici}
+Analisi dell'evoluzione libera di un sistema del secondo ordine con una coppia
+di autovalori reali, negativi e distinti.
+$$
+x_l(t) = e^{At} x_0 = Ue^{\Lambda t}U^{-1}x_0
+$$
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    width = 0.5\linewidth,
+    height =0.3\linewidth,
+    ymin = -0.5,
+    ymax = 0.5,
+    xmax = 1,
+    xmin = -2.5,
+    %axis equal,
+    %xticklabel style={anchor=north west},
+    yticklabel style={anchor=west},
+    xtick = {-2,-1,0},
+    xticklabels={$\lambda_2$,$\lambda_1$, 0},
+    ytick = {0},
+    yticklabels={0},
+    xlabel=Re,ylabel=Im,
+    %axis line style={latex-latex},
+    %axis line style={shorten >=-7.5pt, shorten <=-7.5pt},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=west},
+]
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Si può effettuare un cambio di variabili
+$x=Uz$, $U^{-1}x_0=Z_l(0)$, dai due autovalori è possibile ricavare gli
+autovettori per costruire la matrice modale $U = (u_1 \ u_2)$.
+
+$$
+x_l(t) = \left(e^{\lambda_1 t}u_1v_1^T+e^{\lambda_2 t}u_2v_2^T\right)x_0 =
+z_1(0) e^{\lambda_1 t} u_1 + z_2(0)e^{\lambda_2 t}u_2
+$$
+
+\newpage
+Si riporta l'andamento dello stato del sistema nel piano chiamato
+\textit{ritratto di fase}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\picwid]{traiettoria_stato_convergente}
+\end{figure}
+
+Entrambi i vettori si accorciano nell'origine, la traiettoria del punto $x_0$ è
+contenuta nella regione di piano delimitata dai vettori $u_1$ ed $u_2$. Se gli
+autovalori fossero uguali la traiettoria sarebbe rettilinea, ma $\lambda_1$ è
+minore in modulo rispetto a $\lambda_2$ dunque la
+sua costante di tempo sarà più grande, di conseguenza la traiettoria sarà curva
+e vicina al vettore $u_1$.
+
+Si dice che $\lambda_1$ è l'autovalore dominante perché perdura più a lungo nel
+tempo, è sempre l'autovalore massimo.
+L'origine è in questo caso un \textbf{nodo stabile} della traiettoria.
+
+\subsubsection{Andamento con autovalori positivi}
+Se gli autovalori sono positivi
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    width = 0.5\linewidth,
+    height =0.3\linewidth,
+    ymin = -0.5,
+    ymax = 0.5,
+    xmax = 2.5,
+    xmin = -0.5,
+    %axis equal,
+    %xticklabel style={anchor=north west},
+    yticklabel style={anchor=west},
+    xtick = {0,1,2},
+    xticklabels={0,$\lambda_2$,$\lambda_1$},
+    ytick = {0},
+    yticklabels={0},
+    xlabel=Re,ylabel=Im,
+    %axis line style={latex-latex},
+    %axis line style={shorten >=-7.5pt, shorten <=-7.5pt},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=west},
+]
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Anche in questo caso l'autovalore dominante è $\lambda_1$, ossia la
+componente ad esso associato diverge più rapidamente di quella
+associata all'autovalore $\lambda_2$, la traiettoria tenderà ad una retta
+parallela ad $u_1$
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{traiettoria_stato_divergente}
+\end{figure}
+L'origine viene definito in questo caso un \textbf{nodo instabile} dato che le
+componenti si allontanano da quel punto.
+
+\subsubsection{Autovalori con segno discorde}
+Nel caso in cui gli autovalori fossero di segno opposto, si avrebbe ancora
+$\lambda_1$ come autovalore dominante, mentre il secondo tenderebbe a zero
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    width = 0.5\linewidth,
+    height =0.3\linewidth,
+    ymin = -0.5,
+    ymax = 0.5,
+    xmax = 1.5,
+    xmin = -1.5,
+    %axis equal,
+    %xticklabel style={anchor=north west},
+    yticklabel style={anchor=west},
+    xtick = {-1,0,1},
+    xticklabels={$\lambda_2$,0,$\lambda_1$},
+    ytick = {0},
+    yticklabels={0},
+    xlabel=Re,ylabel=Im,
+    %axis line style={latex-latex},
+    %axis line style={shorten >=-7.5pt, shorten <=-7.5pt},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=west},
+]
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+La traiettoria tende a coincidere sulla retta determinata da $u_1$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\picwid]{traiettoria_stato_sella}
+\end{figure}
+L'origine verrà detto \textbf{punto di sella} a causa del diverso comportamento
+rispetto alle due componenti.
