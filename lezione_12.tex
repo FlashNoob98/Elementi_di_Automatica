@@ -695,14 +695,7 @@ lineare che lo genera
    \addplot[domain=6:7.5,yshift=1.2pt]
            {2*(x-6)};
 
-   \draw[color=red,line width=0.25mm](-0.5,0)--(0,0);
-   \addplot[domain=0:1,color=red,line width=0.25mm]
-           {2*x};
-   \addplot[domain=1:5,color=red,line width=0.25mm]
-           {2};
-   \addplot[domain=5:6,color=red,line width=0.25mm]
-           {2*(6-x)};
-    \draw[color=red,line width=0.25mm] (6,0)--(7.3,0);
+\draw[color=red,line width=0.25mm](-0.5,0)--(0,0)--(1,2)--(5,2)--(6,0)--(7.3,0);
     \draw[color=red, dashed](0,2)--(1,2) -- (1,0);
     \draw[color=red, dashed](5,0)--(5,2);
    \end{axis}
@@ -713,4 +706,42 @@ $$
 \textcolor{blue}{-2\delta_{-2}(t-1)}
 \textcolor{violet}{-2\delta_{-2}(t-5)}
 +2\delta_{-2}(t-6)
+$$
+
+\subsubsection{Rampa con gradino}
+Un altro esempio
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=0.6\linewidth,
+    axis lines = middle,
+    axis y line = middle,
+    %axis equal image,
+    xlabel={$t$},
+    ylabel={$u(t)$},
+    xmax=5,
+    xmin=-0.5,
+    ymin=-0.5,
+    ymax=10,
+    xtick={0,2,4},
+    %xticklabels={},
+    ytick={0,5},
+    %yticklabels={$\frac{1}{\varepsilon}$},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor= east,color=red},
+    %x tick label style={yshift={(\tick==4)*1.5em}},
+    %x tick label style={yshift={(\tick==5)*1.5em}},
+    %xticklabel style={xshift=-4pt},
+    ]
+    \draw[color=red,line width=0.25mm]
+(-0.5,0)--(0,0)--(2,5)--(4,5)--(4,0)--(4.8,0);
+    \draw[color=red, dashed](0,5)--(2,5) -- (2,0);
+   \end{axis}
+ \end{tikzpicture}
+\end{figure}
+
+$$
+u(t) = \frac{5}{2}\delta_{-2}(t) - \frac{5}{2}\delta_{-2}(t-2)-5\delta_{-1}(t-4)
 $$
