@@ -380,7 +380,7 @@ sistemi dinamici.
 
 \subsection{Segnali canonici}
 \subsubsection{Impulso rettangolare}
-Il segnale indicato con $\delta_\varepsilon(t)$
+Il segnale indicato con $\delta_\varepsilon(t)$ con area unitaria
 \begin{figure}[h]
 \centering
  \begin{tikzpicture}
@@ -415,8 +415,195 @@ $$
 0 & \text{altrimenti}
 \end{cases}
 $$
-Eseguendo il limite si ottiene \textbf{l'impulso di Dirac}
+Eseguendo il limite si ottiene \textbf{l'impulso di Dirac} o \textbf{Delta di
+Dirac}
 $$
 \lim_{\varepsilon \to 0} \delta_\varepsilon(t) = \delta(t)
 $$
-48:18
+\textbf{Proprietà della $\delta$}
+$$\left\{
+\begin{aligned}
+&\delta(t)=0 & \forall t\neq 0 \\
+&\int_{-\infty}^{\infty} \delta(\tau)d\tau = 1\\
+&f(t)\delta(t-\tau) = f(\tau)\delta(t-\tau)
+\end{aligned}\right.
+$$
+
+Queste tipologie di ingressi rappresentano delle sollecitazioni
+\textit{violente} al sistema, l'impulso trasferisce al sistema un'energia
+finita in un tempo infinitesimo, dunque con una potenza \textit{infinita}.
+
+È possibile rappresentare fenomeni reali con dinamiche nel tempo molto
+distinte tra loro mediante la funzione impulso, ad esempio l'apertura per
+pochi secondi della porta di un forno acceso da molti minuti è un fenomeno con
+un tempo trascurabile rispetto all'intera dinamica del sistema ma sottrae
+comunque una quantità di energia finita allo stesso; si può per questo
+caratterizzare l'interazione o il forzamento mediante una funzione impulsiva.
+
+Analogamente il colpo inferto \textit{istantaneamente} ad una biglia su un
+tavolo, le conferisce istantaneamente una certa energia che la mette in moto.
+
+\subsubsection{Segnale gradino}
+Un segnale con due livelli costanti, mediante un passaggio \textit{istantaneo}
+$$
+\delta_{-1}(t) = \begin{cases}
+0 & t<0 \\
+1 & t \geq 0
+\end{cases}
+$$
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=\picwid,
+    axis lines = left,
+    axis y line = middle,
+    xlabel={$t$},
+    ylabel={$\delta_{-1}(t)$},
+    xmax=3,
+    xmin=-1,
+    ymin=0,
+    ymax=1.5,
+    xtick={0},
+    xticklabels={0},
+    ytick={1},
+    yticklabels={1},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+   ]
+   \addplot[domain=0:3]{1};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+
+Si può anche rappresentare con
+$$
+\delta_{-1}(t) = \int_{-\infty}^{t} \delta(\tau)d\tau
+$$
+
+\subsubsection{Rampa unitaria}
+Indicata con
+$$
+\delta_{-2}(t) = \begin{cases}
+0 & t<0 \\
+t & t\geq 0
+\end{cases}
+$$
+Ha il seguente andamento con pendenza unitaria
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=\picwid,
+    axis lines = left,
+    axis y line = middle,
+    axis equal image,
+    xlabel={$t$},
+    ylabel={$\delta_{-2}(t)$},
+    xmax=1.5,
+    xmin=-1,
+    ymin=0,
+    xtick={0},
+    xticklabels={0},
+    ytick={0},
+    yticklabels={0},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+   ]
+   \addplot[domain=0:1.5]{x};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+Analogamente al segnale precedente
+$$
+\delta_{-2}(t) = \int_{-\infty}^{t} = \delta_{-1}(\tau)d\tau
+$$
+
+\newpage
+\subsubsection{Parabola unitaria}
+Un segnale che cresce con accelerazione costante
+$$
+\delta_{-3}(t) = \begin{cases}
+0 & t<0 \\
+\frac{t^2}{2} & t\geq 0
+\end{cases}
+$$
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=\picwid,
+    axis lines = left,
+    axis y line = middle,
+    axis equal image,
+    xlabel={$t$},
+    ylabel={$\delta_{-2}(t)$},
+    xmax=1.5,
+    xmin=-1,
+    ymin=0,
+    xtick={0},
+    xticklabels={0},
+    ytick={0},
+    yticklabels={0},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+   ]
+   \addplot[domain=0:1.5]{x^2/2};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+$$
+\delta_{-3}(t) = \int_{-\infty}^{t} = \delta_{-2}(\tau)d\tau
+$$
+
+\subsubsection{Segnale polinomiale di ordine $n$}
+Indicato con
+$$
+\delta_{-(n+1)}(t) = \begin{cases}
+ 0 & t<0 \\
+ \frac{t^n}{n!} & t\geq 0
+\end{cases} = \frac{t^n}{n!}\delta_{-1}(t)
+$$
+oppure
+$$
+\delta_{-(n+1)}(t) = \int_{-\infty}^{t} \delta_{-n}(\tau)d\tau
+$$
+
+\subsubsection{Segnali comunque complessi}
+I segnali polinomiali sono molto utili anche per \textit{destrutturare} segnali
+più complessi, ad esempio il seguente segnale
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=\picwid,
+    axis lines = middle,
+    axis y line = middle,
+    xlabel={$t$},
+    ylabel={$u(t)$},
+    xmax=6,
+    xmin=-0.5,
+    ymin=-2.1,
+    ymax=1.5,
+    xtick={1,3,4,5},
+    %xticklabels={},
+    ytick={-2,0,1},
+    %yticklabels={$\frac{1}{\varepsilon}$},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=east},
+    x tick label style={yshift={(\tick==4)*1.5em}},
+    x tick label style={yshift={(\tick==5)*1.5em}},
+    ]
+%   \addplot[domain=1:3,samples=2]{1};
+%   \addplot[domain=4:5,samples=2]{-2};
+   \draw[] (1,0)--(1,1)--(3,1)--(3,0)--(4,0)--(4,-2)--(5,-2)--(5,0);
+   %\draw[] (3,0)--(3,1);
+   %\draw[] ()--();
+   \draw[dashed] (0,1)--(1,1);
+   \draw[dashed] (0,-2)--(4,-2);
+   \end{axis}
+ \end{tikzpicture}
+\end{figure}
+
+1:10:22
