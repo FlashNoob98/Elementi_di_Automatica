@@ -569,41 +569,148 @@ $$
 \delta_{-(n+1)}(t) = \int_{-\infty}^{t} \delta_{-n}(\tau)d\tau
 $$
 
+\newpage
 \subsubsection{Segnali comunque complessi}
 I segnali polinomiali sono molto utili anche per \textit{destrutturare} segnali
-più complessi, ad esempio il seguente segnale
+più complessi, ad esempio il seguente segnale in rosso
 \begin{figure}[h]
 \centering
  \begin{tikzpicture}
   \begin{axis}
    [
-    width=\picwid,
+    width=0.6\linewidth,
     axis lines = middle,
     axis y line = middle,
+    axis equal image,
     xlabel={$t$},
     ylabel={$u(t)$},
     xmax=6,
     xmin=-0.5,
-    ymin=-2.1,
-    ymax=1.5,
+    ymin=-2.2,
+    ymax=2.2,
     xtick={1,3,4,5},
     %xticklabels={},
-    ytick={-2,0,1},
+    ytick={-2,-1,0,1,2},
     %yticklabels={$\frac{1}{\varepsilon}$},
     xlabel style={at={(ticklabel* cs:1)},anchor=north},
-    ylabel style={at={(ticklabel* cs:1)},anchor=east},
+    ylabel style={at={(ticklabel* cs:1)},anchor=south east,color=red},
     x tick label style={yshift={(\tick==4)*1.5em}},
     x tick label style={yshift={(\tick==5)*1.5em}},
+    xticklabel style={xshift=4pt},
     ]
 %   \addplot[domain=1:3,samples=2]{1};
 %   \addplot[domain=4:5,samples=2]{-2};
-   \draw[] (1,0)--(1,1)--(3,1)--(3,0)--(4,0)--(4,-2)--(5,-2)--(5,0);
+
    %\draw[] (3,0)--(3,1);
    %\draw[] ()--();
-   \draw[dashed] (0,1)--(1,1);
-   \draw[dashed] (0,-2)--(4,-2);
+   \draw[dashed,color=red] (0,1)--(1,1);
+   \draw[dashed,color=red] (0,-2)--(4,-2);
+   \draw[color=blue,yshift=0.6pt] (-0.5,0)--(1,0)--(1,1)--(6,1);
+   \draw[color=green, yshift=-0.6pt] (-1.5,0)--(3,0) --
+   (3,-1) -- (6,-1);
+
+   \draw[color = violet, yshift=-1.2pt] (-1.5,0)-- (4,0) --
+   (4,-2)--(6,-2);
+   \draw[color =black] (5,0)--(5,2)--(6,2);
+   \draw[color=red,line width=0.25mm]
+        (-0.5,0)--(1,0)--
+        (1,1)--(3,1)--
+        (3,0)--(4,0)--
+        (4,-2)--(5,-2)
+        --(5,0)--(5.8,0);
    \end{axis}
  \end{tikzpicture}
 \end{figure}
+può essere scomposto mediante una combinazione lineare di gradini
+$\delta_{-1}$, sfruttando il principio di sovrapposizione degli effetti poi si
+analizzerà il sistema sottoposto volta per volta a ciascuna parte del segnale
+scomposto.
 
-1:10:22
+$$
+\textcolor{red}{u(t)} = \textcolor{blue}{\delta_{-1}(t-1)}
+\textcolor{green}{-\delta_{-1}(t-3) } \textcolor{violet}{- 2\delta_{-1}(t-4)} +
+2\delta_{-1}(t-5)
+$$
+Se si volesse calcolare la risposta forzata $y_f(t)$, assumendo che $y'_f(t)$
+sia la risposta al generico impulso $\delta_{-1}(t)$
+$$
+y_f(t) = y'_f(t-1) - y'_f(t-3) -2y'_f(t-4)+2y'_f(t-5)
+$$
+
+\newpage
+\subsubsection{Segnale porta diagonale}
+Sia il seguente segnale, si vuole rappresentare la sua combinazione lineare che
+lo genera
+\begin{figure}[h]
+\centering
+ \begin{tikzpicture}
+  \begin{axis}
+   [
+    width=0.6\linewidth,
+    axis lines = middle,
+    axis y line = middle,
+    axis equal image,
+    xlabel={$t$},
+    ylabel={$u(t)$},
+    xmax=7.5,
+    xmin=-0.5,
+    ymin=-3.2,
+    ymax=3.2,
+    xtick={1,5,6},
+    %xticklabels={},
+    ytick={-3,-2,-1,0,1,2,3},
+    %yticklabels={$\frac{1}{\varepsilon}$},
+    xlabel style={at={(ticklabel* cs:1)},anchor=north},
+    ylabel style={at={(ticklabel* cs:1)},anchor=south east,color=red},
+    %x tick label style={yshift={(\tick==4)*1.5em}},
+    %x tick label style={yshift={(\tick==5)*1.5em}},
+    xticklabel style={xshift=-4pt},
+    ]
+%   \addplot[domain=1:3,samples=2]{1};
+%   \addplot[domain=4:5,samples=2]{-2};
+
+   %\draw[] (3,0)--(3,1);
+   %\draw[] ()--();
+   %\draw[dashed,color=red] (0,1)--(1,1);
+   %\draw[dashed,color=red] (0,-2)--(4,-2);
+   %\draw[color=blue,yshift=0.6pt] (-0.5,0)--(1,0)--(1,1)--(6,1);
+   %\draw[color=green, yshift=-0.6pt] (-1.5,0)--(3,0) --
+   %(3,-1) -- (6,-1);
+
+   %\draw[color = violet, yshift=-1.2pt] (-1.5,0)-- (4,0) --
+   %(4,-2)--(6,-2);
+   %\draw[color =black] (5,0)--(5,2)--(6,2);
+   \draw[color=green, yshift=0.6pt] (-0.5,0)--(0,0);
+   \addplot[domain=0:2.5,color=green,yshift=0.6pt]
+           {2*x};
+
+   \draw[color=blue, yshift=-0.6pt] (-0.5,0)--(1,0);
+   \addplot[domain=1:3.5,color=blue,yshift=-0.6pt]
+           {2*(1-x)};
+
+   \draw[color=violet, yshift=-1.2pt] (-0.5,0)--(5,0);
+   \addplot[domain=5:6.5,color=violet,yshift=-1.2pt]
+           {2*(5-x)};
+
+   \addplot[domain=6:7.5,yshift=1.2pt]
+           {2*(x-6)};
+
+   \draw[color=red,line width=0.25mm](-0.5,0)--(0,0);
+   \addplot[domain=0:1,color=red,line width=0.25mm]
+           {2*x};
+   \addplot[domain=1:5,color=red,line width=0.25mm]
+           {2};
+   \addplot[domain=5:6,color=red,line width=0.25mm]
+           {2*(6-x)};
+    \draw[color=red,line width=0.25mm] (6,0)--(7.3,0);
+    \draw[color=red, dashed](0,2)--(1,2) -- (1,0);
+    \draw[color=red, dashed](5,0)--(5,2);
+   \end{axis}
+ \end{tikzpicture}
+\end{figure}
+$$
+\textcolor{red}{u(t)} = \textcolor{green}{+2\delta_{-2}(t)}
+\textcolor{blue}{-2\delta_{-2}(t-1)}
+\textcolor{violet}{-2\delta_{-2}(t-5)}
++2\delta_{-2}(t-6)
+$$
