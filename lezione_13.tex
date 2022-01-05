@@ -113,4 +113,107 @@ u(\tau)d\tau \stackrel{\text{def}}{=} H(t)*u(t)
 $$
 
 Analogamente per la $y_f(t)$
-41:22
+
+$$
+y_f(t) \stackrel{\text{def}}{=} \int_0^t W(t-\tau)u(\tau)d\tau =
+\int_{-\infty}^{+\infty}W(t-\tau)u(\tau)d\tau \stackrel{\text{def}}{=}W(t)*u(t)
+$$
+
+\newpage
+\section{Trasformata di Laplace}
+Sia la funzione $f$ reale e nulla per $t<0$, la seconda ipotesi permette di
+ricavare univocamente l'antitrasformata, non è necessaria per eseguire la
+trasformata.
+$$
+f:\mathbb{R}\to\mathbb{R},\ f(t)=0\ \forall t <0
+$$
+Viceversa se la funzione non è nulla per $t<0$
+potrebbe comunque esserlo per un certo istante minore di zero; se il sistema è
+tempo invariante si può effettuare una traslazione temporale, prima e dopo aver
+trasformato e antitrasformato.
+Viceversa una funzione sinusoidale non può essere trasformata nel dominio di
+laplace e antritrasformata.
+
+\textbf{Definizione di trasformata}, l'integrale parte da $0^-$ per
+sottolineare che se sono presenti impulsi all'istante iniziale, questi vanno
+considerati
+$$
+F(s)=\Lap[f(t)] = \int_{0^-}^{+\infty} f(\tau)e^{-s\tau} d\tau \qquad s
+\in \mathbb{C}
+$$
+Non è detto che l'integrale converga ma se converge per un certo $s$ con
+parte reale $\sigma$ allora convergerà per tutti gli altri $s$ con parte
+reale maggiore di $\sigma$, si individua quindi un semipiano destro di
+convergenza.
+
+Dato che la trasformata di Laplace è una funzione \textit{analitica} si può
+estendere la definizione a qualunque punto del semipiano di convergenza eccetto
+le singolarità polari della funzione.
+
+\subsection{Proprietà della trasformata}
+\begin{itemize}
+ \item \textbf{Linearità:} $
+  \Lap [\alpha f_1(t) + \beta f_2(t)] = \alpha F_1(s) + \beta F_2(s)
+ $
+ \item \textbf{Traslazione in $t$:} $
+ \Lap[ f(t-\tau)  ] = e^{-s\tau}F(s) \quad \tau>0
+ $
+ \item \textbf{Traslazione in $s$:} $
+ \Lap[e^{\sigma t}f(t)] = F(s-\sigma)
+ $
+ \item \textbf{Derivazione nel tempo:}
+ $$\begin{aligned}
+  \Lap[&\dot{f}(t)]  = sF(s) - f(0^{-})\\
+ \Lap[&\ddot{f}(t)] = s\Lap[\dot f(t)] - \dot{f}(0^-) = s^2 F(s) - sf(0^-) -
+\dot{f}(0^-)\\
+&\vdots \qquad \text{iterando}\\
+\Lap[&f^{(n)}(t)]= s^nF(s) - \sum_{i=1}^n s^{n-i}f^{(i-1)}(0^-)
+ \end{aligned}$$
+ \item \textbf{Derivazione in $s$:} $\Lap [tf(t)]=
+ -\frac{dF(s)}{ds}
+ $
+ \item \textbf{Integrazione in $t$:} $
+ \Lap[\int_0^tf(\tau)d\tau] = \frac{1}{s}F(s)
+ $
+ \item \textbf{Convoluzione in $t$:} $
+ \Lap[f_1(t)*f_2(t)] = F_1(s)\cdot F_2(s)
+ $
+ \item \textbf{Teorema valore iniziale:} $$
+ \lim_{t\to 0^+} f(t) = f(0^+) = \lim_{s\to +\infty} sF(s)
+ $$
+ \item \textbf{Teorema valore finale:} $$
+ \lim_{t\to + \infty} f(t) = \lim_{s\to 0} s F(s)
+ $$
+\end{itemize}
+
+\subsection{Trasformate degli ingressi canonici}
+$$\begin{aligned}
+\Lap[\delta(t)] &= 1 \quad
+\Lap[\delta_{-1}(t)] = \frac{1}{s}\quad
+\Lap[\delta_{-2}(t)] = \frac{1}{s^2}\quad
+\Lap[\delta_{-3}(t)] = \frac{1}{s^3} \\
+\Lap[\delta_{-n}(t)] &= \Lap\left[\frac{t^{n-1}}{(n-1)!}\delta_{-1}(t)\right] =
+\frac{1}{s^n}\\
+\Lap\left[e^{\alpha t}\delta_{-1}(t)\right] &= \frac{1}{s-\alpha}\\
+\Lap\left[te^{\alpha t}\delta_{-1}(t)\right] &=
+\Lap \left[e^{\alpha t}\delta_{-2}(t)\right] =
+\frac{1}{s-\alpha}^2\\
+\Lap\left[\frac{t^{n-1}}{(n-1)!}e^{\alpha t} \delta_{-1}(t)\right] &=
+\frac{1}{(s-\alpha)^n} \\
+\Lap\left[\sin(\omega t)\delta_{-1}(t)\right] &= \frac{\omega}{s^2+\omega^2},\
+\Lap\left[\cos(\omega t)\delta_{-1}(t)\right] = \frac{s}{s^2+\omega^2}\\
+\Lap\left[e^{\alpha t}\sin(\omega t) \delta_{-1}(t)\right] &=
+\frac{\omega}{(s-\alpha)^2+\omega^2},\ \Lap\left[e^{\alpha t}\cos(\omega
+t)\delta_{-1}(t)\right] = \frac{s-\alpha}{(s-\alpha)^2+\omega^2}\\
+\Lap\left[t\sin(\omega t)\delta_{-1}(t)\right] & = \frac{2\omega
+s}{(s^2+\omega^2)^2},\  \Lap\left[t\cos(\omega t)\delta_{-1}(t)\right] =
+\frac{s^2-\omega^2}{(s^2+\omega^2)^2}\\
+\Lap\left[te^{\alpha t}\sin(\omega t) \delta_{-1}(t)\right] & =
+\frac{2\omega(s-\alpha)}{\left((s-\alpha)^2+\omega^2\right)^2},\
+\Lap\left[te^{\alpha t}\cos(\omega t) \delta_{-1}(t)\right] =
+\frac{(s-\alpha)^2-\omega^2}{\left((s-\alpha)^2+\omega^2\right)^2}
+\end{aligned}
+$$
+
+\subsubsection{Trasformata di una funzione periodica}
+Sia una funzione periodica 1:15:11
