@@ -1,0 +1,56 @@
+
+\section{Modi naturali nel regime forzato}
+Si analizza lo stato di un sistema forzato da un impulso
+$$
+x_f(t) = \left.\int_{0}^t e^{A(t-\tau)}Bu(\tau) d\tau = e^{At}Bc = H(t)c =
+x_l(t)\right|_{x_0=Bc}
+$$
+Sia il forzamento impulsivo $ u(t)  = \delta(t)c$, $H(t)$ è la matrice delle
+risposte impulsive dello stato.
+Si ricorda l'equazione dell'evoluzione libera
+$$
+x_l(t) = e^{At}x_0
+$$
+Si nota che $x_0$ e $Bc$ hanno la stessa dimensione e sono entrambi costanti
+quindi l'evoluzione forzata è pari all'evoluzione libera con condizioni
+iniziali $x_0$ pari $Bc$, ossia lo stato è stato modificato istantaneamente, a
+partire dall'origine, mediante la funzione impulso.
+L'evoluzione libera sarà composta dai modi naturali ricavati nell'analisi
+dell'evoluzione libera.
+
+Si supponga che il vettore $c$ sia nullo ovunque eccetto per una componente $j$
+$$
+c^T= \begin{bmatrix}
+0& \ldots & 0 & 1 & 0 & \ldots & 0
+\end{bmatrix}
+$$
+La risposta forzata sarà
+$$
+x_f(t)=e^{at}Bc = e^{At}b_j = h_j(t)
+$$
+Si ottiene solo la colonna $j$-esima di $H(t)$ ossia la risposta all'impulso
+all'ingresso $j$-esimo.
+
+$$
+H(t) = e^{At}B = \sum_j e^{\lambda_j t}u_jv_j^TB
+$$
+Il prodotto $v_j^TB$ è un vettore riga, $v_j^T$ è sicuramente un vettore non
+nullo, $B$ allo stesso tempo è la matrice degli ingressi, non ha senso
+considerarla nulla; ad ogni modo il prodotto tra questi due termini può
+comunque dare origine al vettore nullo, se $v_j^T$ appartiene al \textit{nullo
+sinistro} di $B$, o comunque essere nullo per alcuni autovalori $j$, se ciò
+accade, il modo $j$ esimo non compare nel risultato, si parla di modo
+\textit{non eccitabile} dall'ingresso, viceversa
+$$
+v_j^TB \neq 0 \Leftrightarrow \text{Modo $j$ eccitabile}
+$$
+
+Analisi della funzione $\Psi(t)$ dell'uscita
+$$
+\Psi(t) = Ce^{At} = \sum_j e^{\lambda_i t} Cu_jv_j^T
+$$
+Analogamente al caso precedente, il vettore $u_j$ può essere contenuto nel
+\textit{kernel} di $C$, il prodotto sarà il vettore nullo, viceversa
+$$
+Cu_j\neq 0 \Leftrightarrow \text{Modo $j$ osservabile}
+$$
