@@ -13,4 +13,4 @@ Ti piacciono questi appunti? Puoi sostenermi offrendomi un caffè o una pizza pr
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate?hosted_button_id=7KELP768NJSYW)
 
-Oppure direttamente su PayPal all'indirizzo [danieldaniele1988@gmail.com](https://paypal.me/FlashNoob98)
+Oppure direttamente su PayPal all'indirizzo [danieledaniele1988@gmail.com](https://paypal.me/FlashNoob98)
