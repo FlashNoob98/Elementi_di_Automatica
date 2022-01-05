@@ -104,8 +104,13 @@ eccitabili, dunque i modi in uscita devono essere sia osservabili che
 eccitabili.
 
 Si può eseguire l'estensione degli estremi di integrazione dato che
-$u(t)=0,H(t)=0\forall t<0$ e
+$u(t)=0\ \forall t<0$ e $H(t) = 0\ \forall t>0$
+si ottiene la definizione di \textbf{prodotto di convoluzione}, la matrice $H$
+contiene dunque solo i modi eccitabili.
 $$
 x_f(t) = \int_0^t H(t-\tau) u(\tau) d\tau = \int_{-\infty}^{\infty} H(t-\tau)
 u(\tau)d\tau \stackrel{\text{def}}{=} H(t)*u(t)
 $$
+
+Analogamente per la $y_f(t)$
+41:22
