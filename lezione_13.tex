@@ -216,4 +216,46 @@ s}{(s^2+\omega^2)^2},\  \Lap\left[t\cos(\omega t)\delta_{-1}(t)\right] =
 $$
 
 \subsubsection{Trasformata di una funzione periodica}
-Sia una funzione periodica 1:15:11
+Sia $f$ una funzione periodica di periodo $T$
+$$
+f_T: \mathbb{R}\to\mathbb{R}
+$$
+Se ne vuole calcolare la trasformata di Laplace
+$$
+F(s) = \Lap[f_T(t)] = \left(\int_0^Tf(t)e^{-st}dt\right)\cdot\frac{1}{1-e^{-sT}}
+$$
+
+\newpage
+\subsubsection{Antitrasformata razionali fratte}
+Sia la seguente funzione fratta con grado $\frac{m}{n}$
+$$
+F(s) = \frac{N(s)}{D(s)}
+$$
+Le radici del numeratore vengono chiamate \textbf{zeri}, le radici del
+denominatore vengono denominate \textbf{poli}. La funzione è ovviamente non
+definita sui poli.
+La differenza $n-m$ tra il numero di poli e zeri, chiamata anche \textit{eccesso
+poli-zeri} viene detta \textbf{grado relativo} della funzione.
+
+$$
+n-m =
+\left\{\begin{aligned}
+&n>m\\
+&n=m\\
+&n<m  \rightarrow \quad \text{Funzioni non causali}
+\end{aligned}\right.
+$$
+I primi due casi saranno gli unici considerati in questo corso.
+
+\textbf{n=m}
+$$
+F(s) = \frac{N(s)}{D(s)} = \frac{N'(s)}{D(s)} + d\qquad \frac{[n-1]}{[n]} +d
+$$
+Si ottiene una funzione con grado del numeratore pari a quello del denominatore
+meno uno sommata ad una costante $d$.
+
+\textbf{Esempio numerico}
+$$
+F(s) =\frac{3s^2+s+2}{s+1}  = \polylongdiv[vars=s,style=D]{3*s^2+s+2}{s+1}
+$$
+1:25:19
