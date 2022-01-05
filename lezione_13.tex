@@ -54,3 +54,58 @@ Analogamente al caso precedente, il vettore $u_j$ può essere contenuto nel
 $$
 Cu_j\neq 0 \Leftrightarrow \text{Modo $j$ osservabile}
 $$
+
+L'uscita forzata, si rappresenta la matrice delle risposte all'impulso in uscita
+$$
+W(t) = Ce^{At}B = \sum_j e^{\lambda_j t} C u_jv_j^T B
+$$
+Il modo sarà nullo sia se non è osservabile, sia se non è eccitabile.
+
+\subsection{Risposta al gradino}
+Si valuta l'equazione dello stato
+$$
+x_f(t) = \int_0^t e^{A(t-\tau)}B\delta_{-1}(\tau)d\tau =
+\int_0^t e^{A(t-\tau)} d\tau\cdot B
+$$
+Si ipotizza per semplicità che $A$ sia
+diagonalizzabile
+$$\begin{aligned}
+x_f(t)&\stackrel{A\text{ diag.}}{=}
+U\int_0^t e^{\Lambda(t-\tau)}d\tau U^{-1} B = U
+\int_0^t\text{diag}\left\{e^{\lambda_1(t-\tau)}
+,\ldots,e^{\lambda_n(t-\tau)}
+\right\} d \tau U^{-1}B\\
+&= U\text{diag}\left\{
+\frac{e^{\lambda_1t}-1}{\lambda_1},\ldots,\frac{e^{\lambda_nt}-1}{\lambda_n}
+\right\}U^{-1}B
+\end{aligned}$$
+
+Il prodotto $U^{-1}B$ è pari a
+$$
+U^{-1}B = \begin{bmatrix}
+           v_1^T \\
+           \vdots \\
+           v_n^T
+          \end{bmatrix}B
+$$
+Sarà dunque nullo per alcune righe, ossia per i modi non eccitabili, dunque non
+comparirà il modo $j$-esimo in uscita.
+
+La risposta forzata nell'uscita, con ipotesi semplificativa di sistema
+strettamente proprio $(D=0)$
+$$
+y_f(t) = Cx_f(t) = CU\text{diag}\left\{
+\frac{e^{\lambda_1t}-1}{\lambda_1},\ldots,\frac{e^{\lambda_nt}-1}{\lambda_n}
+\right\}U^{-1}B
+$$
+Alcune colonne del prodotto $CU$ si potranno annullare, individuano i modi non
+osservabili mentre le righe nulle a destra $U^{-1}B$ rappresentano i modi non
+eccitabili, dunque i modi in uscita devono essere sia osservabili che
+eccitabili.
+
+Si può eseguire l'estensione degli estremi di integrazione dato che
+$u(t)=0,H(t)=0\forall t<0$ e
+$$
+x_f(t) = \int_0^t H(t-\tau) u(\tau) d\tau = \int_{-\infty}^{\infty} H(t-\tau)
+u(\tau)d\tau \stackrel{\text{def}}{=} H(t)*u(t)
+$$
