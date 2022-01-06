@@ -197,7 +197,7 @@ $$\begin{aligned}
 \Lap\left[e^{\alpha t}\delta_{-1}(t)\right] &= \frac{1}{s-\alpha}\\
 \Lap\left[te^{\alpha t}\delta_{-1}(t)\right] &=
 \Lap \left[e^{\alpha t}\delta_{-2}(t)\right] =
-\frac{1}{s-\alpha}^2\\
+\frac{1}{(s-\alpha)^2}\\
 \Lap\left[\frac{t^{n-1}}{(n-1)!}e^{\alpha t} \delta_{-1}(t)\right] &=
 \frac{1}{(s-\alpha)^n} \\
 \Lap\left[\sin(\omega t)\delta_{-1}(t)\right] &= \frac{\omega}{s^2+\omega^2},\
@@ -256,6 +256,61 @@ meno uno sommata ad una costante $d$.
 
 \textbf{Esempio numerico}
 $$
-F(s) =\frac{3s^2+s+2}{s+1}  = \polylongdiv[vars=s,style=D]{3*s^2+s+2}{s+1}
+F(s) =\frac{3s^2+s+2}{s+1}  \rightarrow
+\polylongdiv[vars=s,style=D]{3*s^2+s+2}{s+1}
 $$
-1:25:19
+Il quoziente $d$ sarà $3s-2$ e il resto $N'$ sarà $4$, la funzione dunque si
+riscrive come
+$$
+F(s) = \frac{4}{s+1} + 3s - 2
+$$
+L'antitrasformata sarà
+$$
+\Lap^{-1}[F(s)] = f(t) = 4e^{-t}+3\dot{\delta}(t)-2\delta(t)
+$$
+Non ha molto senso fisico la notazione di $\dot{\delta}(t)$
+
+\newpage
+\textbf{n$>$m}\newline
+Si sviluppa la funzione in fratti semplici
+$$
+F(s) = \frac{N(s)}{D(s)} = \frac{R_1}{s-p_1} + \frac{R_2}{s-p_2} + \dots +
+\frac{R_n}{s-p_n}
+$$
+I termini $R_i$ sono chiamati residui polari associati al polo $p_i$, si
+supponga per il momento che i poli siano tutti distinti tra loro.
+$$
+R_i = \lim_{s\to p_i} (s-p_i)F(s)
+$$
+Si dimostra inoltre che
+$$
+\sum_{i=1}^n R_i = \left\langle
+\begin{aligned}
+0 &\qquad n-m>1\\
+\frac{b_m}{a_n} &\qquad n-m=1
+\end{aligned}\right.
+$$
+I coefficienti $a_n$ e $b_n$ si ottengono dai polinomi del numeratore e
+denominatore:
+$$
+\left\{\begin{aligned}
+N(s) &= b_ns^n + \ldots+b_0\\
+D(s) &= a_n s^n + \ldots + a_0
+\end{aligned}\right.
+$$
+
+\textbf{Esempio con poli coincidenti}\newline
+Si supponga che il polo $p_j$ abbia molteplicità $3$
+$$
+F(s) =
+\frac{R_1}{s-p_1}+\frac{R_2}{s-p_2}+\ldots+\frac{R_j}{s-p_j}+
+\frac{R_j^{(2)}}{(s-p_j)^2 }+
+\frac{R_j^{(3)}}{(s-p_j)^3}+\ldots+
+\frac{R_n}{s-p_n}
+$$
+Il residuo associato alla potenza $k$-esima del polo $i$-esimo con molteplicità
+$h$ si calcola con la seguente
+$$
+R_i^{(k)} = \lim_{s\to p_i} \frac{1}{(h-k)!}\frac{d^{h-k}}{ds^{h-k}}
+\left[(s-p_i)^hF(s)\right]
+$$
