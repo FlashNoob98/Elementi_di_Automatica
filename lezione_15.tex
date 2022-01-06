@@ -1,0 +1,40 @@
+
+\section{Equazione differenziale generale}
+Sia un sistema LTI espresso mediante la sua equazione differenziale generale
+$$
+y^{(n)} + \alpha_{n-1}y^{(n-1)} + \alpha_{n-2}y^{(n-2)} + \ldots +
+\alpha_0 y = \beta_mu^{(m)}+ \beta_{m-1}u^{(m-1)} +
+\ldots + \beta_0 u
+$$
+Si vuole conoscere il legame tra questa equazione e la funzione di
+trasferimento, è necessario conoscere anche le condizioni iniziali, si può
+supporre che siano tutte nulle:
+$$
+y(0) = \dot{y}(0) = \ldots = y^{(n-1)}(0) = 0 \qquad
+[y(t)=y_f(t)]
+$$
+
+Si trasforma l'intera equazione con Laplace
+$$\begin{aligned}
+s^nY(s)+\alpha_{n-1}s^{n-1}Y(s) + \ldots + \alpha_0 Y(s) &= \beta_m s^m U(s) +
+\ldots + \beta_0U(s)\\
+\left(s^n+\alpha_{n-1}s^{n-1} + \ldots + \alpha_0 \right)Y(s) &= \left(\beta_m
+s^m  +
+\ldots + \beta_0\right)U(s)
+\end{aligned}$$
+Nel caso di sistemi \textit{SISO} la funzione di trasferimento si ricava con il
+rapporto tra le trasformate dell'uscita e dell'ingresso, utilizzando la
+precedente si ottiene
+$$
+W(s) = \frac{Y_f(s)}{U(s)} = \frac{\beta_m
+s^m  +
+\ldots + \beta_0}{s^n+\alpha_{n-1}s^{n-1} + \ldots +
+\alpha_0}
+$$
+Nei sistemi LTI la funzione di trasferimento si esprime sempre in una forma
+razionale fratta. L'ordine $n$ del polinomio al denominatore sarà sempre
+maggiore o uguale a quello del numeratore, viceversa si avrebbe un sistema non
+causale, non di interesse nell'ambito del corso.
+antitrasformando la funzione di trasferimento si può ricavare l'equazione
+differenziale generale.
+08:11
