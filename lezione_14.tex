@@ -160,4 +160,211 @@ f(t) &=
 Con varie formule trigonometriche è possibile ottenere l'espressione identica
 alla precedente $\sqrt{10}\cos(3t+
 \text{arg}(-3+j))$.
-33:22
+
+\newpage
+\section{Funzione di trasferimento}
+Strumento molto utile al fine di calcolare le risposte forzate dei sistemi.
+Si consideri un sistema Lineare tempo-invariante
+$S$, sottoposto ad un  ingresso $u(t)$ con uscita $y(t)$.
+
+La definizione di \textit{funzione di trasferimento} non è univoca, si
+definisce in questo corso come la trasformata della matrice delle risposte
+impulsive.
+$$
+W(s) \stackrel{\text{def}}{=}\Lap\left[W(t)\right]
+$$
+Non sono presenti informazioni riguardo lo stato del sistema nella matrice
+$W(t)$, per la biunivocità della trasformata, anche la funzione di
+trasferimento non conterrà informazioni circa lo stato del sistema.
+
+Si considera un ingresso generico $u(t)$, viene \textit{campionato} con una
+sequenza di impulsi rettangolari di periodo $T$.
+Si ottiene dunque una rappresentazione $\tilde{u}(t)$
+$$
+\tilde{u}(t) = \sum_{i=0}^{+\infty}\delta_T(t-iT)Tu(iT)
+$$
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1,declare
+function={f(\x)=(0.5*\x*sin(100*\x)+2+0.1*\x;}]
+\coordinate (start) at (0,{f(0)});
+\coordinate (x0) at (1,{f(1)});
+\coordinate (x1) at (2,{f(2)});
+\coordinate (x2) at (3,{f(3)});
+\coordinate (x3) at (4,{f(4)});
+\coordinate (x4) at (5,{f(5)});
+\coordinate (end) at (5.0,{f(5.0)});
+\draw[fill=orange!40!white] (0,0) rectangle (1,{f(0)});
+\draw[fill=orange!40!white] (1,0) rectangle (2,{f(1)});
+\draw[fill=orange!40!white] (2,0) rectangle (3,{f(2)});
+\draw[fill=orange!40!white] (3,0) rectangle (4,{f(3)});
+\draw[fill=orange!40!white] (4,0) rectangle (5,{f(4)});
+%\draw (5,0)--(5,{f(5)});
+\draw [-latex] (-0.5,0) -- (6,0) node (xaxis) [below] {$t$};
+\draw [-latex] (0,-0.5) -- (0,5) node [left] {$u(t)$};
+\foreach \x/\xtext in {1/T ,2/2T, 3/3T , 4/4T , 5/5T }
+ \draw[xshift=\x cm] (0pt,3pt) -- (0pt,0pt)
+node[below=2pt,fill=white,font=\normalsize]
+  {$\xtext$};
+\draw[domain=0:5,samples=200,variable=\x,red,thick] plot ({\x},{f(\x)});
+
+\foreach \n in {0,1,2,3}
+\draw[red,fill=red] (x\n) circle (2pt) node[font=\normalsize] {$ $};
+%\draw[<->] (2,-1)--(3,-1) node[above,midway] {$\Delta x$};
+\end{tikzpicture}
+\end{figure}
+
+Essendo il sistema lineare per ipotesi, l'uscita sarà combinazione
+lineare delle singole risposte ai differenti impulsi rettangolari
+$$
+\tilde{y}(t) = \sum_{i=0}^{+\infty} W_T(t-iT)Tu(iT)
+\stackrel{}T\to 0{\longrightarrow} y_f(t) =
+\int_0^{+\infty} W(t-\tau)u(\tau)d\tau
+$$
+Si può estendere l'estremo di integrazione inferiore dato che $u(\tau)$ è nulla
+per $\tau<0$
+$$
+y_f(t) = \int_{-\infty}^{+\infty}W(t-\tau)u(\tau)d\tau = W(t)*u(t)
+$$
+La risposta forzata di un sistema LTI è sempre data dal prodotto di
+convoluzione tra la matrice delle risposte agli impulsi e l'ingresso.
+
+Si applica la trasformata di Laplace della risposta forzata
+$$
+\Lap[y_f(t)] = Y_f(s) = \Lap[W(t)*u(t)] = \Lap[W(t)]\cdot \Lap[u(t)] = W(s)
+\cdot U(s)
+$$
+Se il sistema è \textit{SISO} (Single-Input-Single-Output) allora
+$$
+W(s) = \frac{Y_f(s)}{U(s)}
+$$
+Con la funzione di trasferimento non è necessario eseguire l'integrale di
+convoluzione per determinare l'uscita forzata ma è sufficiente eseguire il
+prodotto delle due trasformate e antitrasformare.
+
+%\subsubsection{Esempio}
+Sia la seguente ISU generica
+$$
+\left\{\begin{aligned}
+\dot{x} &= Ax+Bu \\
+y &= Cx +Du
+\end{aligned}\right.
+$$
+Il movimento forzato
+$$
+x_f(t) = \int_0^t e^{A(t-\tau)} Bu(\tau)d\tau
+\stackrel{u=\delta}{\longrightarrow} x_\delta(t) =
+\int_0^te^{A(t-\tau)}B\delta(\tau)d\tau = e^{At} B = H(t)
+$$
+Uscita forzata
+$$
+y_f(t) = Cx_f(t) +Du(t) \stackrel{u=\delta}{\longrightarrow} y_\delta(t) =
+Ce^{At}B + D\delta(t) = W(t)
+$$
+In alternativa
+$$
+y_f(t) =C\int_0^t e^{A(t-\tau)} Bu(\tau) d\tau + Du(t) = \int_0^t
+\left(Ce^{A(t-\tau)}B + D\delta(t-\tau)\right)u(\tau)d\tau
+$$
+Si estendono gli estremi di integrazione
+$$
+y_f(t) = \int_{-\infty}^{+\infty} W(t-\tau)u(\tau)d\tau
+\stackrel{\text{def}}{=} W(t)*u(t)
+$$
+
+\subsubsection{Esempio nastro trasportatore}
+Sia dato un nastro di lunghezza $L$ avvolto su due rulli che ruotano con
+velocità costante $v$, sul nastro viene depositata una certa quantità di
+materiale $u(t)$.
+
+Il nastro non altera la quantità di materiale, dunque l'uscita sarà
+semplicemente l'ingresso traslato nel tempo di una quantità $\tau=\frac{L}{v}$
+$$
+y(t) = u\left(t-\frac{L}{v}\right) = u(t-\tau)
+$$
+
+Per calcolare la ISU è necessario definire una variabile di stato che ne
+caratterizzi la condizione iniziale, ossia la quantità di materiale depositata
+lungo il nastro, funzione dello spazio $s$ e del tempo $t$.
+Il sistema è dunque a parametri \textit{distribuiti} perché ha uno stato che
+varia con continuità ed ha quindi infiniti valori differenti.
+Il modello ISU non sarà più alle derivate totali ma alle derivate parziali.
+
+Se si sottopone il sistema ad un ingresso impulsivo si ottiene la risposta
+all'impulso e trasformando si ottiene anche la funzione di trasferimento
+$$
+u(t) = \delta(t) \Rightarrow w(t) = \delta(t-\tau)
+\stackrel{\Lap}{\longrightarrow} W(s) = e^{-s\tau}
+$$
+La funzione di trasferimento non è in questo caso legata all'esistenza di una
+ISU in forma canonica, è sufficiente che il sistema sia
+lineare-tempo-invariante.
+L'uscita è ancora il prodotto di convoluzione tra la funzione di trasferimento
+e l'ingresso.
+
+\subsubsection{Definizione funzione di trasferimento con ISU}
+Si applica la trasformata di Laplace all'intero sistema ISU
+$$
+\left\{\begin{aligned}
+\dot{x} &= Ax+Bu \\
+y &= Cx +Du
+\end{aligned}\right. \stackrel{\Lap}{\longrightarrow} \left\{\begin{aligned}
+sX(s) - x(0) &= AX(s) + BU(s) \\
+Y(s) &= CX(s) + DU(s)
+\end{aligned}\right.
+$$
+Raccogliendo i termini della prima equazione
+$$
+\left(sI-A\right)X(s) = x(0) + BU(s)
+$$
+La matrice $(sI-A)$ è invertibile per tutti i valori di $s$ ad eccezione degli
+autovalori della matrice $A$.
+Con tale ipotesi:
+$$\left\{\begin{aligned}
+X(s) &= (sI-A)^{-1}x(0) + (sI-A)^{-1}BU(s)\\
+Y(s) &= C(sI-A)^{-1}x(0) + \left(C(sI-A)^{-1}B+D\right)U(s)\end{aligned}\right.
+$$
+Si è ricavata una ISU in forma esplicita, analoga alle formule di Lagrange
+ricavate alla sezione \ref{sec:formule_lagrange}.
+Per analogia
+$$
+\left\{\begin{aligned}
+X(s) &= X_l(s) + X_f(s)\\
+Y(s) &= Y_l(s) + Y_f(s)
+\end{aligned}\right.
+$$
+
+Si ottiene ancora la funzione di trasferimento
+$$
+W(s) = C(sI-A)^{-1}B + D
+$$
+
+L'evoluzione libera
+$$\begin{aligned}
+x_l(t) = e^{At}x_0 \stackrel{\Lap}{\longleftrightarrow}& X_l(s) =
+(sI-A)^{-1}x(0) \qquad \forall x(0)\\
+&\Downarrow\\
+\Lap[e^{At}] = \Lap[\Phi(t)] &= (sI-A)^{-1}=\Phi(s)
+\end{aligned}
+$$
+La trasformata della matrice esponenziale è l'inversa di $(sI-A)$, è possibile
+calcolare la matrice esponenziale come la sua antitrasformata. Analogamente è
+comodo calcolare la risposta in evoluzione libera.
+
+La matrice delle risposte impulsive nello stato
+$$\begin{aligned}
+H(t) &= e^{At} B \stackrel{\Lap}{\longleftrightarrow} H(s) = (sI-A)^{-1}B
+=\Phi(s)B\\
+x_f(t) &= \int_0^t H(t-\tau)u(\tau)d\tau = H(t)*u(t)
+\stackrel{\Lap}{\longleftrightarrow} X_f(s) =H(s)U(s)
+\end{aligned}
+$$
+
+Analogamente per l'uscita
+$$\begin{aligned}
+y_l(t) &= Ce^{At}x(0) \stackrel{\Lap}{\longleftrightarrow} Y_l(s) =
+C(sI-A)^{-1}x(0)\\
+y_f(t) &= C\int_0^te^{A(t-\tau)}Bu(\tau) + Du(t) d\tau
+\stackrel{\Lap}{\longleftrightarrow} Y_f(s) = W(s)U(s)
+\end{aligned}$$
