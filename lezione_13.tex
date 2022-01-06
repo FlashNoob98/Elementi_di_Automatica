@@ -1,0 +1,316 @@
+
+\section{Modi naturali nel regime forzato}
+Si analizza lo stato di un sistema forzato da un impulso
+$$
+x_f(t) = \left.\int_{0}^t e^{A(t-\tau)}Bu(\tau) d\tau = e^{At}Bc = H(t)c =
+x_l(t)\right|_{x_0=Bc}
+$$
+Sia il forzamento impulsivo $ u(t)  = \delta(t)c$, $H(t)$ è la matrice delle
+risposte impulsive dello stato.
+Si ricorda l'equazione dell'evoluzione libera
+$$
+x_l(t) = e^{At}x_0
+$$
+Si nota che $x_0$ e $Bc$ hanno la stessa dimensione e sono entrambi costanti
+quindi l'evoluzione forzata è pari all'evoluzione libera con condizioni
+iniziali $x_0$ pari $Bc$, ossia lo stato è stato modificato istantaneamente, a
+partire dall'origine, mediante la funzione impulso.
+L'evoluzione libera sarà composta dai modi naturali ricavati nell'analisi
+dell'evoluzione libera.
+
+Si supponga che il vettore $c$ sia nullo ovunque eccetto per una componente $j$
+$$
+c^T= \begin{bmatrix}
+0& \ldots & 0 & 1 & 0 & \ldots & 0
+\end{bmatrix}
+$$
+La risposta forzata sarà
+$$
+x_f(t)=e^{at}Bc = e^{At}b_j = h_j(t)
+$$
+Si ottiene solo la colonna $j$-esima di $H(t)$ ossia la risposta all'impulso
+all'ingresso $j$-esimo.
+
+$$
+H(t) = e^{At}B = \sum_j e^{\lambda_j t}u_jv_j^TB
+$$
+Il prodotto $v_j^TB$ è un vettore riga, $v_j^T$ è sicuramente un vettore non
+nullo, $B$ allo stesso tempo è la matrice degli ingressi, non ha senso
+considerarla nulla; ad ogni modo il prodotto tra questi due termini può
+comunque dare origine al vettore nullo, se $v_j^T$ appartiene al \textit{nullo
+sinistro} di $B$, o comunque essere nullo per alcuni autovalori $j$, se ciò
+accade, il modo $j$ esimo non compare nel risultato, si parla di modo
+\textit{non eccitabile} dall'ingresso, viceversa
+$$
+v_j^TB \neq 0 \Leftrightarrow \text{Modo $j$ eccitabile}
+$$
+
+Analisi della funzione $\Psi(t)$ dell'uscita
+$$
+\Psi(t) = Ce^{At} = \sum_j e^{\lambda_i t} Cu_jv_j^T
+$$
+Analogamente al caso precedente, il vettore $u_j$ può essere contenuto nel
+\textit{kernel} di $C$, il prodotto sarà il vettore nullo, viceversa
+$$
+Cu_j\neq 0 \Leftrightarrow \text{Modo $j$ osservabile}
+$$
+
+L'uscita forzata, si rappresenta la matrice delle risposte all'impulso in uscita
+$$
+W(t) = Ce^{At}B = \sum_j e^{\lambda_j t} C u_jv_j^T B
+$$
+Il modo sarà nullo sia se non è osservabile, sia se non è eccitabile.
+
+\subsection{Risposta al gradino}
+Si valuta l'equazione dello stato
+$$
+x_f(t) = \int_0^t e^{A(t-\tau)}B\delta_{-1}(\tau)d\tau =
+\int_0^t e^{A(t-\tau)} d\tau\cdot B
+$$
+Si ipotizza per semplicità che $A$ sia
+diagonalizzabile
+$$\begin{aligned}
+x_f(t)&\stackrel{A\text{ diag.}}{=}
+U\int_0^t e^{\Lambda(t-\tau)}d\tau U^{-1} B = U
+\int_0^t\text{diag}\left\{e^{\lambda_1(t-\tau)}
+,\ldots,e^{\lambda_n(t-\tau)}
+\right\} d \tau U^{-1}B\\
+&= U\text{diag}\left\{
+\frac{e^{\lambda_1t}-1}{\lambda_1},\ldots,\frac{e^{\lambda_nt}-1}{\lambda_n}
+\right\}U^{-1}B
+\end{aligned}$$
+
+Il prodotto $U^{-1}B$ è pari a
+$$
+U^{-1}B = \begin{bmatrix}
+           v_1^T \\
+           \vdots \\
+           v_n^T
+          \end{bmatrix}B
+$$
+Sarà dunque nullo per alcune righe, ossia per i modi non eccitabili, dunque non
+comparirà il modo $j$-esimo in uscita.
+
+La risposta forzata nell'uscita, con ipotesi semplificativa di sistema
+strettamente proprio $(D=0)$
+$$
+y_f(t) = Cx_f(t) = CU\text{diag}\left\{
+\frac{e^{\lambda_1t}-1}{\lambda_1},\ldots,\frac{e^{\lambda_nt}-1}{\lambda_n}
+\right\}U^{-1}B
+$$
+Alcune colonne del prodotto $CU$ si potranno annullare, individuano i modi non
+osservabili mentre le righe nulle a destra $U^{-1}B$ rappresentano i modi non
+eccitabili, dunque i modi in uscita devono essere sia osservabili che
+eccitabili.
+
+Si può eseguire l'estensione degli estremi di integrazione dato che
+$u(t)=0\ \forall t<0$ e $H(t) = 0\ \forall t>0$
+si ottiene la definizione di \textbf{prodotto di convoluzione}, la matrice $H$
+contiene dunque solo i modi eccitabili.
+$$
+x_f(t) = \int_0^t H(t-\tau) u(\tau) d\tau = \int_{-\infty}^{\infty} H(t-\tau)
+u(\tau)d\tau \stackrel{\text{def}}{=} H(t)*u(t)
+$$
+
+Analogamente per la $y_f(t)$
+
+$$
+y_f(t) \stackrel{\text{def}}{=} \int_0^t W(t-\tau)u(\tau)d\tau =
+\int_{-\infty}^{+\infty}W(t-\tau)u(\tau)d\tau \stackrel{\text{def}}{=}W(t)*u(t)
+$$
+
+\newpage
+\section{Trasformata di Laplace}
+Sia la funzione $f$ reale e nulla per $t<0$, la seconda ipotesi permette di
+ricavare univocamente l'antitrasformata, non è necessaria per eseguire la
+trasformata.
+$$
+f:\mathbb{R}\to\mathbb{R},\ f(t)=0\ \forall t <0
+$$
+Viceversa se la funzione non è nulla per $t<0$
+potrebbe comunque esserlo per un certo istante minore di zero; se il sistema è
+tempo invariante si può effettuare una traslazione temporale, prima e dopo aver
+trasformato e antitrasformato.
+Viceversa una funzione sinusoidale non può essere trasformata nel dominio di
+laplace e antritrasformata.
+
+\textbf{Definizione di trasformata}, l'integrale parte da $0^-$ per
+sottolineare che se sono presenti impulsi all'istante iniziale, questi vanno
+considerati
+$$
+F(s)=\Lap[f(t)] = \int_{0^-}^{+\infty} f(\tau)e^{-s\tau} d\tau \qquad s
+\in \mathbb{C}
+$$
+Non è detto che l'integrale converga ma se converge per un certo $s$ con
+parte reale $\sigma$ allora convergerà per tutti gli altri $s$ con parte
+reale maggiore di $\sigma$, si individua quindi un semipiano destro di
+convergenza.
+
+Dato che la trasformata di Laplace è una funzione \textit{analitica} si può
+estendere la definizione a qualunque punto del semipiano di convergenza eccetto
+le singolarità polari della funzione.
+
+\subsection{Proprietà della trasformata}
+\begin{itemize}
+ \item \textbf{Linearità:} $
+  \Lap [\alpha f_1(t) + \beta f_2(t)] = \alpha F_1(s) + \beta F_2(s)
+ $
+ \item \textbf{Traslazione in $t$:} $
+ \Lap[ f(t-\tau)  ] = e^{-s\tau}F(s) \quad \tau>0
+ $
+ \item \textbf{Traslazione in $s$:} $
+ \Lap[e^{\sigma t}f(t)] = F(s-\sigma)
+ $
+ \item \textbf{Derivazione nel tempo:}
+ $$\begin{aligned}
+  \Lap[&\dot{f}(t)]  = sF(s) - f(0^{-})\\
+ \Lap[&\ddot{f}(t)] = s\Lap[\dot f(t)] - \dot{f}(0^-) = s^2 F(s) - sf(0^-) -
+\dot{f}(0^-)\\
+&\vdots \qquad \text{iterando}\\
+\Lap[&f^{(n)}(t)]= s^nF(s) - \sum_{i=1}^n s^{n-i}f^{(i-1)}(0^-)
+ \end{aligned}$$
+ \item \textbf{Derivazione in $s$:} $\Lap [tf(t)]=
+ -\frac{dF(s)}{ds}
+ $
+ \item \textbf{Integrazione in $t$:} $
+ \Lap[\int_0^tf(\tau)d\tau] = \frac{1}{s}F(s)
+ $
+ \item \textbf{Convoluzione in $t$:} $
+ \Lap[f_1(t)*f_2(t)] = F_1(s)\cdot F_2(s)
+ $
+ \item \textbf{Teorema valore iniziale:} $$
+ \lim_{t\to 0^+} f(t) = f(0^+) = \lim_{s\to +\infty} sF(s)
+ $$
+ \item \textbf{Teorema valore finale:} $$
+ \lim_{t\to + \infty} f(t) = \lim_{s\to 0} s F(s)
+ $$
+\end{itemize}
+
+\subsection{Trasformate degli ingressi canonici}
+$$\begin{aligned}
+\Lap[\delta(t)] &= 1 \quad
+\Lap[\delta_{-1}(t)] = \frac{1}{s}\quad
+\Lap[\delta_{-2}(t)] = \frac{1}{s^2}\quad
+\Lap[\delta_{-3}(t)] = \frac{1}{s^3} \\
+\Lap[\delta_{-n}(t)] &= \Lap\left[\frac{t^{n-1}}{(n-1)!}\delta_{-1}(t)\right] =
+\frac{1}{s^n}\\
+\Lap\left[e^{\alpha t}\delta_{-1}(t)\right] &= \frac{1}{s-\alpha}\\
+\Lap\left[te^{\alpha t}\delta_{-1}(t)\right] &=
+\Lap \left[e^{\alpha t}\delta_{-2}(t)\right] =
+\frac{1}{(s-\alpha)^2}\\
+\Lap\left[\frac{t^{n-1}}{(n-1)!}e^{\alpha t} \delta_{-1}(t)\right] &=
+\frac{1}{(s-\alpha)^n} \\
+\Lap\left[\sin(\omega t)\delta_{-1}(t)\right] &= \frac{\omega}{s^2+\omega^2},\
+\Lap\left[\cos(\omega t)\delta_{-1}(t)\right] = \frac{s}{s^2+\omega^2}\\
+\Lap\left[e^{\alpha t}\sin(\omega t) \delta_{-1}(t)\right] &=
+\frac{\omega}{(s-\alpha)^2+\omega^2},\ \Lap\left[e^{\alpha t}\cos(\omega
+t)\delta_{-1}(t)\right] = \frac{s-\alpha}{(s-\alpha)^2+\omega^2}\\
+\Lap\left[t\sin(\omega t)\delta_{-1}(t)\right] & = \frac{2\omega
+s}{(s^2+\omega^2)^2},\  \Lap\left[t\cos(\omega t)\delta_{-1}(t)\right] =
+\frac{s^2-\omega^2}{(s^2+\omega^2)^2}\\
+\Lap\left[te^{\alpha t}\sin(\omega t) \delta_{-1}(t)\right] & =
+\frac{2\omega(s-\alpha)}{\left((s-\alpha)^2+\omega^2\right)^2},\
+\Lap\left[te^{\alpha t}\cos(\omega t) \delta_{-1}(t)\right] =
+\frac{(s-\alpha)^2-\omega^2}{\left((s-\alpha)^2+\omega^2\right)^2}
+\end{aligned}
+$$
+
+\subsubsection{Trasformata di una funzione periodica}
+Sia $f$ una funzione periodica di periodo $T$
+$$
+f_T: \mathbb{R}\to\mathbb{R}
+$$
+Se ne vuole calcolare la trasformata di Laplace
+$$
+F(s) = \Lap[f_T(t)] = \left(\int_0^Tf(t)e^{-st}dt\right)\cdot\frac{1}{1-e^{-sT}}
+$$
+
+\newpage
+\subsubsection{Antitrasformata razionali fratte}
+Sia la seguente funzione fratta con grado $\frac{m}{n}$
+$$
+F(s) = \frac{N(s)}{D(s)}
+$$
+Le radici del numeratore vengono chiamate \textbf{zeri}, le radici del
+denominatore vengono denominate \textbf{poli}. La funzione è ovviamente non
+definita sui poli.
+La differenza $n-m$ tra il numero di poli e zeri, chiamata anche \textit{eccesso
+poli-zeri} viene detta \textbf{grado relativo} della funzione.
+
+$$
+n-m =
+\left\{\begin{aligned}
+&n>m\\
+&n=m\\
+&n<m  \rightarrow \quad \text{Funzioni non causali}
+\end{aligned}\right.
+$$
+I primi due casi saranno gli unici considerati in questo corso.
+
+\textbf{n=m}
+$$
+F(s) = \frac{N(s)}{D(s)} = \frac{N'(s)}{D(s)} + d\qquad \frac{[n-1]}{[n]} +d
+$$
+Si ottiene una funzione con grado del numeratore pari a quello del denominatore
+meno uno sommata ad una costante $d$.
+
+\textbf{Esempio numerico}
+$$
+F(s) =\frac{3s^2+s+2}{s+1}  \rightarrow
+\polylongdiv[vars=s,style=D]{3*s^2+s+2}{s+1}
+$$
+Il quoziente $d$ sarà $3s-2$ e il resto $N'$ sarà $4$, la funzione dunque si
+riscrive come
+$$
+F(s) = \frac{4}{s+1} + 3s - 2
+$$
+L'antitrasformata sarà
+$$
+\Lap^{-1}[F(s)] = f(t) = 4e^{-t}+3\dot{\delta}(t)-2\delta(t)
+$$
+Non ha molto senso fisico la notazione di $\dot{\delta}(t)$
+
+\newpage
+\textbf{n$>$m}\newline
+Si sviluppa la funzione in fratti semplici
+$$
+F(s) = \frac{N(s)}{D(s)} = \frac{R_1}{s-p_1} + \frac{R_2}{s-p_2} + \dots +
+\frac{R_n}{s-p_n}
+$$
+I termini $R_i$ sono chiamati residui polari associati al polo $p_i$, si
+supponga per il momento che i poli siano tutti distinti tra loro.
+$$
+R_i = \lim_{s\to p_i} (s-p_i)F(s)
+$$
+Si dimostra inoltre che
+$$
+\sum_{i=1}^n R_i = \left\langle
+\begin{aligned}
+0 &\qquad n-m>1\\
+\frac{b_m}{a_n} &\qquad n-m=1
+\end{aligned}\right.
+$$
+I coefficienti $a_n$ e $b_n$ si ottengono dai polinomi del numeratore e
+denominatore:
+$$
+\left\{\begin{aligned}
+N(s) &= b_ns^n + \ldots+b_0\\
+D(s) &= a_n s^n + \ldots + a_0
+\end{aligned}\right.
+$$
+
+\textbf{Esempio con poli coincidenti}\newline
+Si supponga che il polo $p_j$ abbia molteplicità $3$
+$$
+F(s) =
+\frac{R_1}{s-p_1}+\frac{R_2}{s-p_2}+\ldots+\frac{R_j}{s-p_j}+
+\frac{R_j^{(2)}}{(s-p_j)^2 }+
+\frac{R_j^{(3)}}{(s-p_j)^3}+\ldots+
+\frac{R_n}{s-p_n}
+$$
+Il residuo associato alla potenza $k$-esima del polo $i$-esimo con molteplicità
+$h$ si calcola con la seguente
+$$
+R_i^{(k)} = \lim_{s\to p_i} \frac{1}{(h-k)!}\frac{d^{h-k}}{ds^{h-k}}
+\left[(s-p_i)^hF(s)\right]
+$$
