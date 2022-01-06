@@ -1,5 +1,5 @@
 
-\section{Equazione differenziale generale}
+\subsection{Equazione differenziale generale}
 Sia un sistema LTI espresso mediante la sua equazione differenziale generale
 $$
 y^{(n)} + \alpha_{n-1}y^{(n-1)} + \alpha_{n-2}y^{(n-2)} + \ldots +
@@ -36,5 +36,52 @@ razionale fratta. L'ordine $n$ del polinomio al denominatore sarà sempre
 maggiore o uguale a quello del numeratore, viceversa si avrebbe un sistema non
 causale, non di interesse nell'ambito del corso.
 antitrasformando la funzione di trasferimento si può ricavare l'equazione
-differenziale generale.
-08:11
+differenziale generale e viceversa.
+
+\subsection{Struttura della funzione di trasferimento}
+Si ricorda che l'unico termine dipendente da $s$ nella funzione di
+trasferimento è la trasformata della funzione di transizione $\Phi(s)$
+$$
+W(s) = C(sI-A)^{-1} B +D = C\Phi(s) B+D
+$$
+Si analizza la struttura di $\Phi(s)$, l'inversione di una matrice si esegue
+con il rapporto della trasposta della matrice \textit{aggiunta} e il suo
+determinante
+$$
+\Phi(s) = (sI-A)^{-1} = \frac{\left(\left(sI-A\right)^a\right)^T}{|sI-A|}
+$$
+Il denominatore è il polinomio caratteristico.
+\newpage
+In misura esemplificativa si considera una matrice $2\times2$
+$$\begin{aligned}
+A&=\begin{pmatrix}
+   a_{11} & a_{12} \\
+   a_{21} & a_{22}
+  \end{pmatrix}\\
+  \Phi(s) &=
+\begin{pmatrix}
+ s-a_{11} & -a_{12} \\
+ -a_{21} & s-a_{22}
+\end{pmatrix}^{-1} =
+\frac{\left(\begin{pmatrix}
+ s-a_{11} & -a_{12} \\
+ -a_{21} & s-a_{22}
+\end{pmatrix}^a\right)^T}{(s-a_{11})(s-a_{22})-a_{12}a_{21}}
+= \frac{\begin{pmatrix}
+           s-a_{22} & a_{12} \\
+           a_{21} & s-a_{11}
+         \end{pmatrix}
+}{p(s)}
+\end{aligned}$$
+L'ordine del polinomio è due mentre l'ordine dei polinomi contenuti nella
+matrice al numeratore sono al più di ordine $n-1$, questo è sempre vero dato
+che i complementi algebrici si costruiscono rimuovendo una riga ed
+una colonna quindi riducendo il grado della matrice di partenza, di conseguenza
+il grado del suo determinante.
+
+Tornando al caso generale
+$$
+\Phi(s) = \frac{E(s)}{p(n)}
+$$
+I polinomi contenuti nella matrice $E(s)$ possono essere fattorizzati
+17:12
