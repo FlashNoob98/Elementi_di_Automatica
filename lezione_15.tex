@@ -84,4 +84,112 @@ $$
 \Phi(s) = \frac{E(s)}{p(n)}
 $$
 I polinomi contenuti nella matrice $E(s)$ possono essere fattorizzati
-17:12
+e potrebbe capitare che tutti abbiano uno o più fattori in comune, possono
+essere messi in evidenza. Qualcuno di questi fattori potrebbe essere in comune
+anche ai fattori del denominatore, si potrebbero dunque semplificare, in tal
+caso il polinomio al denominatore indicato con $m(s)$ prende il nome di
+\textit{polinomio minimo} con grado minore o uguale ad $n$.
+Nel caso in cui non ci siano state semplificazioni si parla di sistema in
+\textit{forma minima}.
+
+La struttura generale del polinomio caratteristico:
+$$
+p(s) = |sI-A| = \prod_{i=1}^{n'}(s-\lambda_i)^{m_{ai}}
+$$
+La struttura corrispondente del polinomio minimo si può dimostrare essere:
+$$
+m(s) = \prod_{i=1}^{n'} (s-\lambda_i)^{m_{gi}}
+$$
+Le radici sono ancora tutte presenti ma stavolta non presenti con esponente la
+molteplicità algebrica bensì quella geometrica.
+
+Si ricostruisce la matrice $W(s)$ e si indicano le dimensioni delle matrici che
+la compongono:
+$$\begin{array}{c c c c c c c}
+W(s) &= &C&\Phi(s)&B &+ &D\\
+p\times m & & p\times n& n \times n & n \times m & & p \times m
+\end{array}$$
+La matrice $\Phi(s)$ è composta da funzioni razionali fratte, tutte
+strettamente proprie, viene moltiplicata a destra e a sinistra da matrici
+costanti, sarà ancora formata da funzioni razionali fratte in $s$ strettamente
+proprie. Quando si somma con la matrice $D$, se questa non è nulla, si
+otterranno funzioni razionali fratte proprie, in cui il grado di numeratore e
+denominatore coincidono.
+
+\subsection{Trasformazione del sistema in forma di stato}
+Si ricorda che
+$$
+\Phi(s) = (sI-A)^{-1} = \Lap\left[e^{At}\right]
+\stackrel{\Lap^{-1}}{\longrightarrow}  e^{At} = \Lap^{-1}[\Phi(s)] =
+\Lap^{-1}\left[(sI-A)^{-1}\right]
+$$
+
+\textbf{Esempio numerico:}
+$$
+A = \begin{pmatrix}
+     0 & 1 \\ -2 & -3
+    \end{pmatrix}
+\longrightarrow (sI-A) =
+\begin{pmatrix}
+ s & -1 \\ 2 & s+3
+\end{pmatrix}
+$$
+Si calcola l'inversa
+$$
+\Phi(s) = (sI-A)^{-1} = \frac{
+\begin{bmatrix}
+  s+3 & 1 \\ -2 & s
+  \end{bmatrix}
+}{\begin{aligned}
+&s(s+3)+2\\
+&(s+1)(s+2)
+  \end{aligned}
+} =
+\frac{R_1}{s+1} + \frac{R_2}{s+2}
+$$
+Scomponendo in fratti semplici, in questo caso i residui saranno matrici
+$2\times 2$.
+$$
+R_1 = \lim_{s\to -1} (s+1) \Phi(s) = \lim_{s\to -1} \frac{
+\begin{bmatrix}
+ s+3 & 1 \\ -2 & s
+\end{bmatrix}
+}{s+2} =
+\frac{
+\begin{bmatrix}
+ 2 & 1 \\ -2 & -1
+\end{bmatrix}
+}{1} = \begin{bmatrix}
+ 2 & 1 \\ -2 & -1
+\end{bmatrix}
+$$
+
+Analogamente il secondo residuo
+$$
+R_2 = \lim_{s\to -2} (s+2) \Phi(s) = \lim_{s\to -2} \frac{
+\begin{bmatrix}
+ s+3 & 1 \\ -2 & s
+\end{bmatrix}
+}{s+1} =
+\frac{
+\begin{bmatrix}
+ 1 & 1 \\ -2 & -2
+\end{bmatrix}
+}{-1} = \begin{bmatrix}
+ -1 & -1 \\ 2 & 2
+\end{bmatrix}
+$$
+Entrambe le matrici sono di rango unitario pari alla molteplicità
+algebrica della corrispondente radice $\rho(R_i) = m_{ai}$.
+
+Sostituendo si ottiene
+$$
+\Phi(s) = \frac{1}{s+1}\begin{bmatrix}
+                        2 & 1 \\ -2 & -1
+                       \end{bmatrix}
++ \frac{1}{s+2}
+\begin{bmatrix}
+ -1 & -1 \\ 2 & 2
+\end{bmatrix}
+$$
+41:00
