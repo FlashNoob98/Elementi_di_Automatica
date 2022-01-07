@@ -27,9 +27,15 @@ una parabola e così via.
 Tutti questi segnali (eccetto il primo che resta costante) divergeranno per
 $t\to \infty$.
 
-Si analizzano gli altri poli
+Si analizzano gli altri poli, se ne esiste almeno uno con parte reale positiva,
+si avrà un esponenziale divergente nell'antitrasformata, se invece sono tutti a
+parte reale negativa la loro somma convergerà.
 $$\left\{
 \begin{aligned}
-\exists p_i : \Re(p_i) > 0
+\exists p_i &: \Re(p_i) > 0 \Rightarrow \text{Divergono} \\
+\forall p_i &: \Re(p_i) < 0 \Rightarrow \text{Convergono} \\
+\forall p_i &: \Re(p_i) < 0 \text{ e qualcuno sull'asse } \Im\ (m_a=1)
 \end{aligned}\right.
 $$
+Un terzo caso prevede la presenza di poli sull'asse immaginario, a parte reale
+nulla 11:07
