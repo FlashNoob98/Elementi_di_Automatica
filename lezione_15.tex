@@ -182,14 +182,209 @@ $$
 Entrambe le matrici sono di rango unitario pari alla molteplicità
 algebrica della corrispondente radice $\rho(R_i) = m_{ai}$.
 
-Sostituendo si ottiene
+Sostituendo si ottiene la trasformata della matrice di transizione allo stato,
+ossia la funzione di trasferimento del sistema
 $$
-\Phi(s) = \frac{1}{s+1}\begin{bmatrix}
-                        2 & 1 \\ -2 & -1
-                       \end{bmatrix}
+\Phi(s) = \frac{1}{s+1}
+\begin{bmatrix}
+ 2 & 1 \\ -2 & -1
+\end{bmatrix}
 + \frac{1}{s+2}
 \begin{bmatrix}
  -1 & -1 \\ 2 & 2
 \end{bmatrix}
 $$
-41:00
+
+Antitrasformando con Laplace
+$$\begin{aligned}
+e^{At} &= \Lap^{-1} \left[\Phi(s)\right] = e^{-t}R_1 + e^{-2t} R_2 =
+\begin{bmatrix}
+ 2e^{-t}-e^{-2t} & e^{-t}-e^{-2t} \\
+ -2e^{-t}+2e^{-2t} & -e^{-t}+2e^{-2t}
+\end{bmatrix}\\
+&=\sum_{i=1}^2 e^{\lambda_i t} R_i \stackrel{\text{Radici distinte}}{=}
+\sum_{i=1}^2 e^{\lambda_i t}u_iv_i^T\Rightarrow R_i = u_iv_i^T
+\end{aligned}$$
+
+\newpage
+Questa considerazione può essere generalizzata anche al caso generico di radici
+coincidenti. La matrice $A$ è diagonale a blocchi, un autovalore sarà
+sicuramente $-1$, gli altri due si ricavano dal polinomio caratteristico della
+sotto matrice $2\times2$ e sono $-1$ e $-2$
+$$
+A =
+\begin{pmatrix}
+ 2 & 4 & 0 \\
+ -3 & -5 & 0 \\
+ 0 & 0 & -1
+\end{pmatrix} \longrightarrow
+\left\{
+\begin{aligned}
+ \lambda_1 &= -1 & & m_{a1} = 2 \\
+  \lambda_2 &= -2 & & m_{a2} = 1 \\
+\end{aligned}\right.
+$$
+La molteplicità geometrica del primo autovalore coincide con quella algebrica,
+la matrice è ancora diagonalizzabile.
+$$
+\Phi(s) = \frac{R_1}{s+1} + \frac{R_2}{s+2}
+\stackrel{\Lap^{-1}}{\longrightarrow} e^{At} = e^{-t}R_1 + e^{-2t}R_2 =
+e^{-t}(u_1' {v_1'}^{T} + u_1'' {v_1''}^{T}) + e^{-2t}u_2v_2^T
+$$
+Confrontando i risultati ottenuti con l'antitrasformata e quelli ottenuti
+mediante la diagonalizzazione si vede che
+$$
+R_1 = u_1' {v_1'}^{T} \qquad R_2 = u_2v_2^T
+$$
+La matrice $R_1$ ha rango $2$ perché somma di due matrici ortogonali di rango
+unitario.
+
+\subsection{Legame tra la funzione di trasferimento e i modi naturali}
+Si riprende la definizione di funzione di trasferimento rispetto ad un
+riferimento ISU
+$$\begin{aligned}
+W(s) &= C(sI-A)^{-1} B +D = C\Phi(s) B +D = C\frac{E(s)}{m(s)}B +D\\
+&= \frac{E'(s)}{d_w(s)} + D = \frac{M(s)}{d_w(s)}
+\end{aligned}$$
+Eseguendo il prodotto $CE(s)B$ si ottiene una matrice diversa chiamata $E'(s)$,
+non è detto che al denominatore ci sia ancora $m(s)$, le nuove radici del
+numeratore potrebbero essere in comune con quelle del polinomio minimo, quindi
+$m(s)\rightarrow d_w(s)$, non è detto che conterrà ancora tutti gli autovalori
+della matrice A.
+
+Gli autovalori ``persi'' godono di alcune proprietà, si antitrasforma e si
+riprende l'analisi nel dominio del tempo
+$$
+W(t) = \Lap^{-1}[W(s)] = C\Phi(t)B +D\delta(t) = C\sum_{i=1}^ne^{\lambda_i t}
+Cu_iv_i^TB + D\delta(t)
+$$
+se $u_i$ è contenuto nel \textit{kernel} di $C$ il prodotto si annulla ma e il
+termine $e^{\lambda_i t}$ non è presente nella matrice $W(t)$ allora
+$\lambda_i$ non può essere una radice di $d_w(s)$ altrimenti ricomparirebbe
+durante la scomposizione in fratti semplici e dunque nell'antitrasformata.
+
+I modi per i quali il prodotto $Cu_i$ fosse nullo sono stati chiamati ``modi
+non osservabili'', analogamente per il prodotto $v_i^TB$ sono chiamati ``modi
+non eccitabili'', entrambi non compaiono nella matrice $W(t)$ e dunque non
+compaiono i rispettivi autovalori nella matrice $d_w(s)$.
+
+\newpage
+\subsubsection{Caso con radici complesse e coniugate}
+Sia data una matrice con $n=3$ e un autovalore reale e due complessi e coniugati
+$$
+e^{At} \qquad n=3 \qquad \lambda,\ \alpha \pm j\omega
+$$
+La matrice $\Phi(s)$ si ottiene ancora mediante l'utilizzo dei residui,
+effettuando la somma degli ultimi due termini si ha
+$$
+\Phi(s) = (sI-A)^{-1} = \frac{R_1}{s-\lambda} + \frac{R_a +
+jR_b}{s-\alpha+j\omega} + \frac{R_a -
+jR_b}{s-\alpha-j\omega} = \frac{R_1}{s-\lambda} +
+\frac{2R_a(s-\alpha)-2R_b\omega}{(s-\alpha)^2+\omega^2}
+$$
+L'antitrasformata comprenderà le funzioni trigonometriche
+$$
+\Phi(t) = R_1e^{\lambda t} + 2R_ae^{\alpha t}\cos(\omega t) -
+2R_be^{\alpha
+t}\sin(\omega t)
+$$
+Se si confronta il risultato ottenuto con quello a pagina
+\pageref{radici_complesse_coniugate_tempo} nel dominio del tempo si ottiene
+$$
+\left\{\begin{aligned}
+R_1 &= uv^T \\
+2R_a &= u_av_a^T + u_bv_b^T\\
+2R_b &= u_bv_b^T - u_av_a^T
+\end{aligned}\right.
+$$
+
+\subsection{Usi della funzione di trasferimento}
+La funzione di trasferimento può essere rappresentata in diverse forme per
+poter rappresentare particolari proprietà. $(m\leq n)$
+$$
+W(s) = \frac{N(s)}{D(s)} = \frac{\beta_ms^m + \ldots + \beta_0}{\alpha_ns^n +
+\alpha_{n-1}s^{n-1} +\ldots +\alpha_0}
+$$
+Le radici del numeratore sono \textit{zeri} e quelle del denominatore
+\textit{poli}, l'insieme di queste radici prende il nome di
+\textit{singolarità} della funzione di trasferimento.
+Le radici del denominatore contengono un insieme degli autovalori della matrice
+della dinamica, se questo insieme è completo, ossia tutti gli autovalori sono
+contenuti negli zeri del denominatore della funzione di trasferimento, allora
+il sistema si dice in forma \textit{minima}.
+
+La prima forma studiata è quella \textit{fattorizzata} ossia si fattorizzano
+il numeratore e il denominatore, prende anche il nome di
+\textbf{Forma di Evans}, il guadagno (di Evans) in evidenza
+$K_E=\frac{\beta_m}{\alpha_n}$.
+
+Se capitano radici complesse e coniugate, possono essere poste
+nella forma trinomiale reale
+$$
+W(f) = K_E \frac{(s-z_1)(s-z_2)\ldots(s-z_m)}{(s-p_1)(s-p_2)\ldots(s-p_n)} =
+K_E \frac{\prod_{i}(s-z_i)\prod_{i}(s^2 +a_{zi}s +
+b_{zi})}{\prod_{i}(s-p_i)\prod_{i}(s^2 +a_{pi}s + b_{pi})}
+$$
+con $b_{zi},b_{pi}>0$
+
+\newpage
+\subsubsection{Forma di Bode}
+Si definisce una costante per zeri e poli reali
+$$
+\tau_{zi} = -\frac{1}{z_i} \qquad \tau_{pi} = -\frac{1}{p_i}
+$$
+Per i trinomi indivisibili invece si introducono ulteriori due coefficienti, la
+pulsazione naturale $\omega$ e il coefficiente di smorzamento $\zeta$
+$$
+\omega_{nzi} = \sqrt{b_{zi}} \qquad \zeta_{zi} =
+\frac{a_{zi}}{2\omega_{nzi}} \qquad \omega_{npi} = \sqrt{b_{pi}} \qquad
+\zeta_{pi} =
+\frac{a_{pi}}{2\omega_{npi}}
+$$
+
+Si riscrive la funzione di trasferimento nella seguente forma, $K_B$ è il
+guadagno di Bode, il termine $s$ indica poli o zeri nell'origine (a seconda del
+segno di $g$)
+$$
+W(s) = \frac{K_B}{s^g}\frac{\prod_i (1+s\tau_{zi})
+\prod_i\left(1+\frac{2\zeta_{zi}}{\omega_{nzi}}s + \frac{s^2}{\omega_{nzi}^2}
+\right)}{ \prod_i (1+s\tau_{pi})
+\prod_i\left(1+\frac{2\zeta_{pi}}{\omega_{npi}}s + \frac{s^2}{\omega_{npi}^2}
+\right)  }
+$$
+Si indicano i termini messi in evidenza per passare da una forma all'altra
+$$
+K_B = K_E\frac{\prod_i\left(-\frac{1}{z_i}\right)\prod_i\left(b_{zi} \right)}
+{\prod_i\left(-\frac{1}{p_i}\right)\prod_i\left(b_{pi} \right)}
+$$
+
+L'intero $g$ che compare come esponente della $s$ al denominatore prende il
+nome di \textit{tipo} del sistema, se $g=0$ il sistema è di tipo zero, se $g=1$
+il sistema è di tipo uno e così via.\\
+Ad esempio:
+$$
+g=0 \Rightarrow K_B = W(0)
+$$
+Si annullano tutti i termini nella produttoria quando $s=0$, resta il termine
+$K_B$ che prende anche il nome di \textit{guadagno statico}.
+Si consideri un sistema zero con tutti i poli a parte reale negativa, si
+applica in ingresso un gradino unitario, si vuole valutare l'uscita $y(t)$.
+Dopo un periodo di tempo sufficientemente lungo, per il teorema del valore
+finale
+$$
+\lim_{t\to +\infty} y(t) = \lim_{s\to 0} sY(s) = \lim_{s\to 0}
+\cancel{s}W(s)\frac{1}{\cancel{s}} = K_B
+$$
+Dopo un certo tempo, l'uscita sarà pari ad un valore costante pari al guadagno
+statico.
+
+Se il sistema è di tipo uno, la costante $K_B$ prende il nome di
+\textit{guadagno di velocità}
+$$
+g=1 \Rightarrow K_B = \lim_{s\to 0} sW(s)
+$$
+il termine $sW(s)$ è la derivata nel dominio di Laplace dell'uscita, il sistema
+diverge con una rampa costante di pendenza pari a $K_B$.
+
+Se il sistema fosse di tipo due si chiamerebbe $K_B$ il guadagno di
+accelerazione.
