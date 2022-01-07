@@ -1,0 +1,35 @@
+
+\section{Risposta ai segnali canonici}
+Ci si riferirà principalmente alla risposta al gradino e all'impulso, facendo
+uso della funzione di trasferimento presentata nella sezione precedente.
+Si esegue inizialmente un'analisi di tipo ``asintotico'', per $t\to \infty$,
+successivamente per $t\to 0$. Questo tipo di risposta non richiede l'analisi
+puntuale delle equazioni del sistema, è necessario analizzare alcune
+caratteristiche della funzione di trasferimento.
+
+La risposta all'impulso è per definizione l'antitrasformata della funzione di
+trasferimento
+$$
+W(t) = \Lap^{-1} [W(s)]
+$$
+Sviluppati i fratti, la funzione avrà la seguente forma
+$$
+W(t) = \Lap^{-1}\left[\frac{R_0}{s} + \frac{R_1}{s^2} +\ldots +
+\frac{R_{g-1}}{s^g} + \frac{p_1}{s-p_1} + \frac{p_2}{s-p_2} + \ldots \right]
+$$
+I primi fratti (fino a $R_{g-1}$) sono associati ai poli nell'origine, seguono
+i fratti associati ai poli reali ($p_i$) o eventualmente complessi e coniugati.
+
+Il valore di $g$ permette di capire il tipo di sistema e se positivo, il numero
+di poli nell'origine.
+L'antitrasformata del primo termine è un gradino, del secondo è una retta, poi
+una parabola e così via.
+Tutti questi segnali (eccetto il primo che resta costante) divergeranno per
+$t\to \infty$.
+
+Si analizzano gli altri poli
+$$\left\{
+\begin{aligned}
+\exists p_i : \Re(p_i) > 0
+\end{aligned}\right.
+$$
