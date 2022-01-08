@@ -37,5 +37,96 @@ $$\left\{
 \forall p_i &: \Re(p_i) < 0 \text{ e qualcuno sull'asse } \Im\ (m_a=1)
 \end{aligned}\right.
 $$
-Un terzo caso prevede la presenza di poli sull'asse immaginario, a parte reale
-nulla 11:07
+Il terzo caso prevede la presenza di poli a parte reale negativa più
+qualcuno sull'asse immaginario, a parte reale
+nulla ma con molteplicità algebrica pari ad uno, in questo caso si ha una
+permanenza dell'uscita. Se invece la molteplicità algebrica degli autovalori a
+parte reale nulla è maggiore di uno il sistema diverge.
+
+Un sistema è \textbf{asintoticamente stabile} se e soltanto se
+$$
+\lim_{t\to +\infty} W(t) = 0
+$$
+ciò è garantito solo se \textit{tutti} i poli hanno parte reale negativa.
+
+\newpage
+\subsection{Poli dominanti}
+Sono i poli con parte reale massima, origine dei modi che perdurano per più
+tempo.
+Si ipotizza che il sistema sia asintoticamente stabile, tutti i poli sono
+contenuti nel semipiano sinistro.
+
+Si supponga che il polo dominante sia \textit{reale}, asintoticamente il
+comportamento è simile ad un sistema del primo ordine. Dopo un tempo pari a tre
+o quattro volte la costante di tempo del polo dominante è indifferente
+considerare solo la funzione associata a quel polo o l'intera funzione di
+trasferimento.
+$$
+W(s) = K_B \frac{\prod_i (1+s\tau_{zi})
+\prod_i\left(1+\frac{2\zeta_{zi}}{\omega_{nzi}}s + \frac{s^2}{\omega_{nzi}^2}
+\right)}{ \prod_i (1+s\tau_{pi})
+\prod_i\left(1+\frac{2\zeta_{pi}}{\omega_{npi}}s + \frac{s^2}{\omega_{npi}^2}
+\right)  }
+$$
+Il tipo $g$, in un sistema asintoticamente stabile, può essere negativo o al
+più pari a zero. Per $t \to \infty, s\to 0$ la funzione di
+trasferimento tende inizialmente a
+$$W(s)=K_B\frac{1}{1+s\tau_{pj}}$$
+con $\tau_{pj}$ la
+costante di tempo dominante associata al polo $j$-esimo. La semplificazione va
+eseguita nella forma di \textit{Bode} e va preservato il guadagno statico, non
+è possibile eseguirla nella forma di \textit{Evans}.
+
+
+Si supponga che i poli dominanti siano una coppia di poli complessi e coniugati.
+In questo caso il termine residuo sarebbe
+$$
+W(s)=K_B \frac{1}{1+\frac{2\zeta_{pi}}{\omega_{npi}}s +
+\frac{s^2}{\omega_{npi}^2}
+}
+$$
+
+Si considereranno dunque due tipi di sistemi, sistemi del primo ordine o
+sistemi del secondo ordine.
+\newpage
+\subsubsection{Sistema del primo ordine}
+Sia il seguente sistema con funzione di trasferimento del primo ordine, si
+studia la risposta all'impulso come antitrasformata della funzione di
+trasferimento
+$$
+W(s) = K_B \frac{1}{1+s\tau} \stackrel{\Lap^{-1}}{\longrightarrow} W(t) = K_B
+e^{-\frac{t}{\tau}}
+$$
+\begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+  \begin{axis}[
+   width = 0.4\linewidth,
+   axis lines = left,
+   ylabel={$W(t)$},
+   xlabel={$t$},
+   xtick={0,1},
+   xticklabels={,$\tau$},
+   ytick={1},
+   yticklabels={$K_B$},
+   xlabel style={at={(ticklabel* cs:1)},anchor=north},
+   ylabel style={at={(ticklabel* cs:1)},anchor= east,rotate=-90},
+   ymax=1.3,
+   ymin=0,
+   ]
+   \addplot[domain=0:3]{exp{-x}};
+   \addplot[domain=0:1]{1-x};
+\addplot [color=red,pattern = north east lines, pattern color=red,
+] coordinates {
+    (0, 1.4)
+    (0, 0)
+    (0.5, 0)
+    (0.5, 1.4)
+};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+Questa soluzione vale per i sistemi del primo ordine e anche per quelli che si
+approssimano per $t>\tau_{\text{max}}$ a sistemi del primo ordine, nel secondo
+caso però le soluzioni per $t<\tau$ devono essere verificate rispetto alle
+altre costanti di tempo del sistema.
