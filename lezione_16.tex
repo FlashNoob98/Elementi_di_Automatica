@@ -89,7 +89,7 @@ $$
 Si considereranno dunque due tipi di sistemi, sistemi del primo ordine o
 sistemi del secondo ordine.
 \newpage
-\subsubsection{Sistema del primo ordine}
+\subsection{Sistema del primo ordine}
 Sia il seguente sistema con funzione di trasferimento del primo ordine, si
 studia la risposta all'impulso come antitrasformata della funzione di
 trasferimento
@@ -131,7 +131,7 @@ approssimano per $t>\tau_{\text{max}}$ a sistemi del primo ordine, nel secondo
 caso però le soluzioni per $t<\tau$ devono essere verificate rispetto alle
 altre costanti di tempo del sistema.
 
-Si analizza la risposta al gradino
+\subsubsection{Risposta al gradino}
 $$
 u(t) = \delta_{-1}(t) \longrightarrow Y_f(s) = \frac{W(s)}{s} =
 \frac{K_b}{s(1+s\tau)}
@@ -181,7 +181,7 @@ Anche in questo caso bisogna porre attenzione alle analisi condotte vicino lo
 zero se il sistema del primo ordine è stato ottenuto come semplificazione di un
 sistema  più complesso.
 
-\subsubsection{Sistema del secondo ordine con poli complessi e coniugati}
+\subsection{Sistema del secondo ordine con poli complessi e coniugati}
 La funzione di trasferimento ha la seguente forma
 $$
 W(s) = K_B \frac{1}{1+\frac{2\zeta}{\omega_n}s+\frac{s^2}{\omega_n^2}}
@@ -195,11 +195,12 @@ $$
    axis equal image,
    ylabel={\Im},
    xlabel={\Re},
-   xtick={-0.6,0},
-   xticklabels={$\alpha$,0},
-   ytick={-0.5,0.5},
+   ytick={-0.557,0.557},
+   xtick={-0.706,0},
+   xticklabels={$\alpha$,$0$},
    yticklabels={$-j\omega$,$j\omega$},
    y tick label style={anchor=west,xshift=0.5em},
+   x tick label style={xshift=0.5em},
    xlabel style={at={(ticklabel* cs:1)},anchor=north west},
    ylabel style={at={(ticklabel* cs:1)},anchor= west,},
    xmax=1,
@@ -208,10 +209,88 @@ $$
    \addplot[trig format plots=rad, domain=0:2*pi,samples=100]
    ({0.9*cos(x)},
     {0.9*sin(x)});
-    \draw[dashed] (-0.6,-0.5) -- (-0.6,0.5);
+
+\draw[color=red] (0,0)--(-0.706,0.557) node[midway,above]{$\omega_n$};
+\draw[color=red,->] (0,0.8) arc (90:141.73:0.8) node at (115.85:0.7){$\theta$};
+
+    \draw[dashed] (0,-0.557) -- (-0.706,-0.557)node[circle,fill,
+inner sep=2pt,]{} -- (-0.706,0.557)node[circle,fill,
+inner sep=2pt]{} -- (0,0.557);
   \end{axis}
-
  \end{tikzpicture}
-
 \end{figure}
-44:14
+L'angolo $\theta$ è tale che il coefficiente di smorzamento
+$\zeta=\sin\theta$.\\
+La pulsazione naturale $\omega_n$ è il modulo del polo dunque $\alpha = -
+\omega_n\zeta$.
+
+\subsubsection{Risposta all'impulso}
+Si prova a calcolare la risposta all'impulso, riorganizzando la funzione di
+trasferimento
+$$
+W(t) = \Lap^{-1}[W(s)] =
+\Lap^{-1}\left[\frac{K_B}{\sqrt{1-\zeta^2}}\frac{\omega_n^2
+\sqrt{1-\zeta^2}}{(s+\zeta\omega_n)^2+\omega_n^2(1-\zeta^2 ) } \right]
+$$
+Si esegue l'antitrasformata ottenendo una funzione seno.
+$$
+W(t) = \frac{K_B}{\sqrt{1-\zeta^2}}\omega_n e^{-\zeta\omega_n t}
+\sin\left(\omega_n\sqrt{1-\zeta^2}\cdot t\right)\delta_{-1}(t)
+$$
+\newpage
+Si ottiene un andamento identico a quanto analizzato alla sezione
+\ref{sec:modo_pseudo_periodico}
+\begin{figure}[h]
+\centering
+  \begin{tikzpicture}
+   \begin{axis}[
+     axis lines=left,
+     axis x line=middle,
+     width=0.6\textwidth,
+     xtick={0,3},
+     xticklabels={0,t},
+     ytick={-1,0,1,1.5},
+     xmax=3,
+     ymax=1.5,
+     ymin=-1,
+     yticklabels={$-\frac{K_B}{\sqrt{1-\zeta^2}}\omega_n$,0,
+$\frac{K_B}{\sqrt{1-\zeta^2}}\omega_n$,$W(t)$},
+     ]
+    \addplot[color=black,domain=0:3,samples=200]{exp(-x)*sin(500*x)};
+    \addplot[color=red,domain=0:3]{exp(-x)}
+         node[above,midway,color=red,yshift=1em]{$e^{-\zeta\omega_n t}$};
+    \addplot[color=red,domain=0:3]{-exp(-x)}
+         node[below,midway,color=red,yshift = -1em]{$-e^{-\zeta\omega_n t}$};
+\addplot [draw=none,pattern = north east lines, pattern color=red,
+] coordinates {
+    (0, 1.6)
+    (0, -1.1)
+    (0.5, -1.1)
+    (0.5, 1.6)
+};
+   \end{axis}
+ \end{tikzpicture}
+\end{figure}
+Anche in questo caso se il sistema proviene da una semplificazione di un
+sistema più complesso si devono trascurare le soluzioni ottenute per intervalli
+di tempo troppo piccoli in funzione delle costanti di tempo eliminate.
+
+\subsubsection{Risposta al gradino}
+La funzione di uscita sarà pari a
+$$
+Y_f(s) = \frac{W(s)}{s} = K_B\frac{\omega_n^2}{s(\omega_n^2 + 2\zeta\omega_n s
++s^2)}
+$$
+antitrasformando
+$$
+W_{-1}(t) = K_B \Lap^{-1} \left[\frac{R_0}{s} + \frac{R_as+R_b}
+{\omega_n^2 +2\zeta\omega_n s+s^2}\right]
+$$
+Con la formula dei residui $R_0=1$
+$$
+W_{-1}(t) = K_B \Lap^{-1} \left[\frac{(s^2+2\zeta\omega_n+\omega_n^2)
++R_as^2+R_bs}
+{s(s^2+2\zeta\omega_n+\omega_n^2)}\right]
+$$
+Per il principio di identità dei polinomi i due numeratori devono essere
+identici dunque 59:56
