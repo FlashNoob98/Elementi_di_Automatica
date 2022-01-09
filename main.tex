@@ -41,13 +41,19 @@
 \usepgfplotslibrary{external}
 %\usetikzlibrary{pgfplots.external}
 \tikzexternalize[prefix=tikz/, optimize command away=\includepdf]
+\usetikzlibrary{patterns} % libreria per disegnare i pattern
 
 \usepackage{caption}
 \usepackage{subcaption}
 
 \usepackage{polynom}
 
-\newcommand{\Lap}{\mathcal{L}} %L di Laplace
+\newcommand{\Lap}{\ensuremath{\mathcal{L}}} %L di Laplace
+\renewcommand{\Re}{\ensuremath{\mathfrak{Re}}} %Parte reale
+\renewcommand{\Im}{\ensuremath{\mathfrak{Im}}} %Parte immaginaria
+
+\usepackage{diagbox} %pacchetto linea diagonale per tabelle
+\usepackage{booktabs} % toprule midrule e bottomrule
 
 \date{28/11/21}
 \title{Appunti Elementi di Automatica}
@@ -70,4 +76,5 @@
 \include{lezione_13}
 \include{lezione_14}
 \include{lezione_15}
+\include{lezione_16}
 \end{document}
