@@ -346,13 +346,13 @@ $$
      axis lines=left,
      axis x line=middle,
      width=0.6\textwidth,
-     xtick={0,1.85,3},
-     xticklabels={0,$t_{a,\varepsilon}$,t},
-     ytick={0,0.85,1,1.15,2,2.3},
+     xtick={0,0.05,0.15,1.85,3},
+     xticklabels={0, ,$t_s$,$t_{a,\varepsilon}$,t},
+     ytick={0,0.14,0.73,0.85,1,1.15,2,2.3},
      xmax=3,
      ymax=2.3,
      ymin=-0.1,
-     yticklabels={0,$1-\varepsilon$,
+     yticklabels={0,0.1,0.9,$1-\varepsilon$,
 1,$1+\varepsilon$,2,$\frac{W_{-1}(t)}{K_B}$},
      ]
     \addplot[color=black,domain=0:3,samples=200]{1-exp(-x)*sin(500*(x+1.61))};
@@ -361,17 +361,19 @@ $$
     \addplot[color=red,domain=0:3]{1-exp(-x)}
          node[below,midway,color=red,yshift = -1em]{$1-e^{-\zeta\omega_n t}$};
     \draw[dashed] (0,1)--(3,1);
-\addplot [draw=none,pattern = north east lines, pattern color=red,
-] coordinates {
-    (0, 2.6)
-    (0, -1.1)
-    (0.2, -1.1)
-    (0.2, 2.6)
-};
+% \addplot [draw=none,pattern = north east lines, pattern color=red,
+% ] coordinates {
+%     (0, 2.6)
+%     (0, -1.1)
+%     (0.2, -1.1)
+%     (0.2, 2.6)
+% };
 \draw [color=OliveGreen,line width = 0.3mm] (0.36,1)--(0.36,1.7)
 node[midway,xshift=0.4em]{$s$};
 \draw [dashed,color = blue] (0,1.15)--(3.1,1.15)--(3.1,0.85)--(0,0.85);
 \draw[dashed,color=blue](1.85,0)--(1.85,1.15);
+\draw[](0,0.14)--(0.05,0.14)--(0.05,0);
+\draw[](0,0.73)--(0.15,0.73)--(0.15,0);
    \end{axis}
  \end{tikzpicture}
 \end{figure}
@@ -383,8 +385,43 @@ smorzamento $\zeta$.
 Si indica con $t_{a,\varepsilon}$ il tempo di assestamento, con $\varepsilon$
 pari solitamente all'1\%, il 2\% o il 3\%. Si valuta da quale istante di tempo
 in poi la funzione si confina nella banda di assestamento.
+
 È facile dimostrare che il tempo di assestamento dipende dall'inviluppo
 esponenziale
 $$
 t_{a,\varepsilon} = -\frac{1}{\zeta\omega_n}\ln(\varepsilon)
 $$
+con $\varepsilon$ espressa in percentuale.
+
+Il tempo di \textit{salita} $t_s$ (o $t_r$ dall'inglese \textit{rise}) indica in
+quanto tempo il segnale passa da un valore del 10\% ad un valore del 90\%
+rispetto a quello di regime.
+
+Si riporta l'andamento qualitativo della sovraelongazione $s$ in funzione di
+$\zeta$.
+\begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+ \begin{axis}[
+     axis lines=middle,
+     width=0.6\textwidth,
+     xlabel=$\zeta$,
+     ylabel=$s$,
+     xtick={0,0.1,0.2,0.6,1},
+     ytick={0,0.1,0.5,0.7,1},
+     xmax=1.2,
+     xmin=-0.1,
+     ymin=-0.1,
+     ymax=1.2,
+     ]
+ \addplot[domain=0:1]{exp((-pi*x)/sqrt(1-x^2))};
+ \draw[dashed](0,0.7)--(0.1,0.7)--(0.1,0);
+ \draw[dashed](0,0.5)--(0.2,0.5)--(0.2,0);
+ \draw[dashed](0,0.1)--(0.6,0.1)--(0.6,0);
+ \end{axis}
+ \end{tikzpicture}
+\end{figure}
+Sono riportati in figura alcuni valori convenzionali assunti dalla funzione.
+
+\subsection{Analisi con la forma di Evans}
+Si analizzano i sistemi per $t\to 0^+$ 1:26:00
