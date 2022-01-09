@@ -1,3 +1,30 @@
 
 \subsection{Analisi delle risposte dei sistemi del secondo ordine}
+Si considera il caso di un sistema del secondo ordine con due poli reali e
+distinti, ha la seguente funzione di trasferimento
+$$
+W(s) =\frac{K_B}{(1+s\tau_1)(1+s\tau_2)}
+$$
+con $\tau_1 > \tau_2$,
+\begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+  \begin{axis}[
+   width=0.6\linewidth,
+   height=0.3\linewidth,
+   axis lines = middle,
+   xtick={-2,-1,0},
+   ytick={0},
+   xlabel={\Re},
+   ylabel={\Im},
+   xmax=0.3,xmin=-2.5,ymin=-0.3,ymax=1,
+   xticklabels={$p_2$,$p_1$,0},
+   ]
+\filldraw(-1,0) circle (2pt)
+         (-2,0) circle (2pt);
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+dunque $p_1$ è il polo dominante.
 
+01:57
