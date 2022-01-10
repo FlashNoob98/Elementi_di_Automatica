@@ -1,5 +1,6 @@
 
 \subsection{Analisi delle risposte dei sistemi del secondo ordine}
+\label{sec:analisi_secondo_ordine}
 Si considera il caso di un sistema del secondo ordine con due poli reali e
 distinti, ha la seguente funzione di trasferimento
 $$
@@ -41,5 +42,117 @@ W(t) =
 K_B\frac{1}{\tau_1-\tau_2}\left(e^{-\frac{t}{\tau_1}}-e^{-\frac{t}{\tau_2}}
 \right)\delta_{-1}(t)
 $$
+Si mostra l'andamento normalizzato rispetto al guadagno statico e le costanti
+di tempo.
+\begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+  \begin{axis}[
+   width = 0.6\linewidth,
+   axis lines = middle,
+   ylabel={$(\tau_2-\tau_1)\frac{W(t)}{K_B}$},
+   xlabel={$t$},
+   xtick={0,0.33,1},
+   xticklabels={,$\tau_2$,$\tau_1$},
+   ytick={-1,0,1},
+   %yticklabels={},
+   x tick label style={yshift=1.5em},
+   xlabel style={at={(ticklabel* cs:1)},anchor=north},
+   ylabel style={at={(ticklabel* cs:1)},anchor= east},
+   ymax=1.3,
+   ymin=-1.1,
+   ]
+   \addplot[domain=0:3,samples=60]{exp{-x}};
+   \addplot[domain=0:1,dashed]{1-x};
+   \addplot[domain=0:3,samples=60]{-exp(-3*x)};
+   \addplot[domain=0:0.333,dashed]{3*x-1};
+   \addplot[domain=0:3,color = red,samples=100,
+   line width =0.2mm]{exp(-x)-exp(-3*x)};
+   %\addplot[]{x};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+La funzione raggiunge un picco e tende poi a decrescere al valore
+dell'esponenziale
+con la costante di tempo maggiore.
 
-05:29
+\subsubsection{Risposta al gradino}
+Si vuole calcolare la risposta al gradino, antitrasformata della funzione di
+trasferimento moltiplicata la trasformata del gradino.
+$\left(\frac{1}{s}\right)$.
+$$\begin{aligned}
+W_{-1}(t) &= \Lap^{-1}\left[ \frac{W(s)}{s} \right] =
+\Lap^{-1}\left[\frac{R_0}{s} + \frac{R_1}{s+\frac{1}{\tau_1}} + \frac{R_2}
+{s+\frac{1}{\tau_2}}
+\right]\frac{K_B}{\tau_1\tau_2} = \\
+&=K_B\left( 1 -
+\frac{\tau_1}{\tau_1-\tau_2}e^{-\frac{t}{\tau_1}} +
+\frac{\tau_2}{\tau_1-\tau_2}e^{-\frac{t}{\tau_2}}\right)\delta_{-1}(t)
+\end{aligned}$$
+L'eccesso poli-zeri è ancora pari a due ma l'ingresso è un gradino, ricordando
+la tabella \ref{tab.:stato-uscita} si vede che la derivata prima e seconda
+sono nulle.
+\begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+  \begin{axis}[
+   width = 0.6\linewidth,
+   axis lines = middle,
+   ylabel={$\frac{W(t)}{K_B}$},
+   xlabel={$t$},
+   xtick={0,0.33,1},
+   xticklabels={,$\tau_2$,$\tau_1$},
+   ytick={-1.3,0,0.3,1},
+yticklabels={$-\frac{\tau_1}{\tau_1-\tau_2}$,0,$\frac{\tau_2}{\tau_1-\tau_2}$,},
+   %x tick label style={yshift=1.5em},
+   xlabel style={at={(ticklabel* cs:1)},anchor=south},
+   ylabel style={at={(ticklabel* cs:1)},anchor= east},
+   ymax=1.3,
+   ymin=-1.3,
+   ]
+   \addplot[domain=0:3,samples=60]{-1.3*exp{-x}};
+   \draw[dashed](0,0.3)--(0.333,0);
+   \draw[dashed](0,-1.3)--(1,0);
+   \draw[dashed] (0,1)--(3,1);
+   \addplot[domain=0:3,samples=60]{0.3*exp(-3*x)};
+   %\addplot[domain=0:0.333]{3*x-1};
+   \addplot[domain=0:3,color = red,samples=100,
+   line width =0.2mm]{1-1.3*exp(-x)+0.3*exp(-3*x)};
+   %\addplot[]{x};
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+In questo caso si vede molto la prevalenza della funzione con costante più
+lenta sulla risposta, l'uscita tende asintoticamente ad uno.
+Nel caso particolare in cui $\tau_1 = \tau_2$ ossia due poli coincidenti
+$$
+W_{-1}(t) = K_B \left( 1 - e^{-\frac{t}{\tau}} - \frac{t}{2}e^{-\frac{t}{\tau}}
+\right)\delta_{-1}(t)
+$$
+L'andamento sarà comunque simile al caso generale.
+
+\subsection{Analisi risposta funzione con uno zero}
+La funzione in analisi del secondo ordine ha anche uno zero al numeratore
+$$
+W(s) =
+\frac{K_B\left(1+s_{\tau_z}\right)}{\left(1+s_{\tau_1}\right)
+\left(1+s_{\tau_2}\right)} \qquad \tau_1>\tau_2
+$$
+A seconda della posizione dello zero rispetto ai poli si avranno soluzioni
+differenti.
+$$
+W(s) = K_B \frac{1}{(1+s\tau_1)(1+s\tau_2)} + K_B
+\frac{s\tau_z}{(1+s\tau_1)(1+s\tau_2)}
+$$
+La risposta impulsiva sarà data da due contributi nel tempo, il primo identico
+a quanto calcolato alla sezione \ref{sec:analisi_secondo_ordine}; il secondo
+termine invece differisce dal primo per $s\tau$, $\tau$ è un fattore di scala,
+la $s$ invece indica la derivata nel tempo, dunque il secondo termine è
+pari alla derivata del primo contributo.
+$$
+W_{-1}(t) = K_B \left(1 -
+\frac{\tau_1-\tau_z}{\tau_1-\tau_2}e^{-\frac{t}{\tau_1}} +
+\frac{\tau_2-\tau_z}{\tau_1-\tau_2}e^{-\frac{t}{\tau_2}}
+\right)\delta_{-1}(t)
+$$
+26:39
