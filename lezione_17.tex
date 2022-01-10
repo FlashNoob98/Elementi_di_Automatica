@@ -27,4 +27,19 @@ con $\tau_1 > \tau_2$,
 \end{figure}
 dunque $p_1$ è il polo dominante.
 
-01:57
+Si analizza la risposta all'impulso
+$$
+W(t) = \Lap^{-1}[W(s)] =
+\frac{K_B}{\tau_1\tau_2}\Lap^{-1}\left[\frac{R_1}{s+\frac{1}{\tau_1}} +
+\frac{R_2}{s+\frac{1}{\tau_2}}\right]
+$$
+L'eccesso poli zeri è pari a due, dunque la sommatoria dei residui deve essere
+pari a zero. $R_1 = \frac{\tau_1\tau_2}{\tau_1-\tau_2} \rightarrow R_2 = -R_1 =
+\frac{\tau_1\tau_2}{\tau_2-\tau_1}$.
+$$
+W(t) =
+K_B\frac{1}{\tau_1-\tau_2}\left(e^{-\frac{t}{\tau_1}}-e^{-\frac{t}{\tau_2}}
+\right)\delta_{-1}(t)
+$$
+
+05:29
