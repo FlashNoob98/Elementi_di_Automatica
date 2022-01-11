@@ -256,9 +256,51 @@ All'avvicinarsi dello zero all'origine genera invece una regione inversa alla
 moltiplicativo $\tau_z$ ha cambiato segno. Il sistema si muove inizialmente
 nella direzione opposta alla forzante.
 Un sistema che presenta questo fenomeno può essere quello di una gru rotante
-con una massa sospesa, se si dà un impulso alla gru di ruotare in un
+con una massa sospesa, se si dà il comando alla gru di ruotare in un
 verso, la massa si sposterà inizialmente nella direzione opposta rispetto al
 braccio e al verso di rotazione.
+Questo fenomeno può essere mitigato utilizzando un sistema di controllo tra i
+comandi imposti dall'operatore e quelli inviati al motore della gru.
 \end{enumerate}
+%figura eventualmente da sostituire
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{secondo_ordine_con_zero}
+\end{figure}
 
-47:06
+\newpage
+\section{Realizzazione}
+La \textit{realizzazione} è il procedimento che tenta di ricostruire un sistema
+ISU a partire dalla funzione di trasferimento.
+
+Si ricorda che per ogni sistema fisico esistono infinite ISU equivalenti,
+mentre esiste una sola funzione di trasferimento, un'unica risposta all'impulso.
+$$
+(A,B,C,D) \longrightarrow W(s)
+$$
+La funzione di trasferimento è sempre esprimibile come un rapporto tra polinomi
+$$
+W(s) = \frac{b_ns^n+\ldots + b_0}
+{s^n + a_{n-1}s^{n-1} + \ldots + a_0}
+$$
+Se $b_n=0$ il sistema diventerebbe strettamente proprio.
+Sono in generale presenti $n+1$ coefficienti al numeratore ed $n$ al
+denominatore, ossia $2n+1$ coefficienti totali.
+
+Nell'ipotesi semplificativa di sistema SISO, alla rappresentazione ISU sono
+associati i seguenti parametri
+$$\begin{array}{*4c}
+ (A & B & C & D) \\
+ \uparrow  &\uparrow & \uparrow & \uparrow \\
+ n^2 & n & n & 1
+\end{array}$$
+In totale saranno $n^2 + 2n + 1$, si vuole capire come ricostruire la ISU a
+partire dalla funzione di trasferimento.
+
+Tra le infinite soluzioni possibili sono presenti le cosiddette \textbf{forme
+canoniche}, particolari strutture ISU composte da matrici con solo zeri o uno o
+coefficienti con un numero massimo pari a $2n+1$.
+
+\subsection{Forma canonica di raggiungibilità}
+
+59
