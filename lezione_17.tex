@@ -212,4 +212,53 @@ scalando la funzione di $\tau_z$. \def\tZeta{0.2}
 $$
 W_{-1}(t) = W_{-1}(t) + \tau_z\dot{W}_{-1}(t)
 $$
-32:04
+Si mostrano le possibili posizioni dello zero rispetto ai poli
+
+ \begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+  \begin{axis}[
+   width=0.6\linewidth,
+   height=0.3\linewidth,
+   axis lines = middle,
+   xtick={-2.5,-2,-1.5,-1,-0.5,0,0.5},
+   ytick={0},
+   xlabel={\Re},
+   ylabel={\Im},
+   xmax=0.5,xmin=-2.5,ymin=-0.3,ymax=1,
+   xticklabels={$(1)$,$p_2$,$(2)$,$p_1$,$(3)$,0,$(4)$},
+   ]
+\filldraw(-1,0) circle (2pt)
+         (-2,0) circle (2pt);
+  \end{axis}
+ \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+\item Se lo zero $z$ si avvicina a $p_2$, si elimina il polo $p_2$ e il sistema
+coinciderebbe ad un sistema con il solo polo $p_1$, la funzione è strettamente
+crescente con derivata prima diversa da zero nell'origine.
+
+\item Viceversa all'avvicinarsi dello zero a $p_1$ si ha una funzione con
+comportamento simile a quello del sistema con costante di tempo $\tau_2$ dunque
+più veloce.
+Lo zero \textit{velocizza} la risposta all'avvicinarsi di questo verso
+l'origine.
+
+\item Al superamento del polo $p_1$ e all'avvicinarsi all'origine degli assi si
+ottiene un sistema ``troppo'' veloce che sovraelonga il valore di regime e si
+stabilizza successivamente.
+
+\item L'ultimo caso con $z\to \infty$ si ha una situazione identica al caso
+iniziale senza alcuno zero.
+All'avvicinarsi dello zero all'origine genera invece una regione inversa alla
+(3) con sovraelongazione negativa, questo perché il termine
+moltiplicativo $\tau_z$ ha cambiato segno. Il sistema si muove inizialmente
+nella direzione opposta alla forzante.
+Un sistema che presenta questo fenomeno può essere quello di una gru rotante
+con una massa sospesa, se si dà un impulso alla gru di ruotare in un
+verso, la massa si sposterà inizialmente nella direzione opposta rispetto al
+braccio e al verso di rotazione.
+\end{enumerate}
+
+47:06
