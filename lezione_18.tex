@@ -1,0 +1,25 @@
+
+\section{Regime con specifici segnali di ingresso}
+\subsection{Ingresso esponenziale}
+Si ha il segnale in ingresso
+$$
+u(t) = e^{\lambda t}\qquad \lambda\in\mathbb{C}
+$$
+La risposta a regime, se esiste è pari a
+$$
+y_r(t) = \int_0^{+\infty} W(\zeta) e^{\lambda(t-\zeta)} d\zeta = e^{\lambda t}
+\int_0^{+\infty} W(\zeta)e^{-\lambda \zeta}
+d\zeta
+$$
+l'integrale ottenuto è proprio la trasformata di Laplace della risposta
+all'impulso $W(t)$ calcolata in $\lambda$. Per un sistema asintoticamente
+stabile in forma minima, se l'ingresso è un esponenziale, l'uscita sarà
+$$
+y_r(t) = e^{\lambda t} W(\lambda)
+$$
+con $\lambda \neq \lambda_i$ autovalori della matrice della dinamica.
+$W(\lambda)$ è dunque una costante, una funzione razionale fratta valutata in
+$\lambda$, di conseguenza l'uscita sarà pari all'ingresso scalato per la
+suddetta costante.
+
+
