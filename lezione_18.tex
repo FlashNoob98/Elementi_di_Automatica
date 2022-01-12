@@ -1,6 +1,6 @@
 
 \section{Regime con specifici segnali di ingresso}
-\subsection{Ingresso esponenziale}
+\subsubsection{Ingresso esponenziale}
 Si ha il segnale in ingresso
 $$
 u(t) = e^{\lambda t}\qquad \lambda\in\mathbb{C}
@@ -21,5 +21,50 @@ con $\lambda \neq \lambda_i$ autovalori della matrice della dinamica.
 $W(\lambda)$ è dunque una costante, una funzione razionale fratta valutata in
 $\lambda$, di conseguenza l'uscita sarà pari all'ingresso scalato per la
 suddetta costante.
+Questa condizione è verificata quasi sempre, ossia le risposte tendono a
+seguire gli ingressi a regime.
 
+Se $\lambda$ fosse però pari proprio ad uno zero della funzione di
+trasferimento allora l'uscita sarebbe nulla per ogni istante di tempo.
+Si dice che gli zeri reali hanno una proprietà \textit{bloccante} per gli
+ingressi esponenziali.
 
+\subsubsection{Ingresso sinusoidale}
+Sia l'ingresso sinusoidale, sfruttando l'identità di Eulero e la linearità del
+sistema, combinate al risultato precedentemente ottenuto per la funzione
+esponenziale, si ha:
+\begin{equation}
+u(t) = \sin(\omega t) \stackrel{\text{Eulero}}{=} \frac{e^{j\omega
+t}-e^{-j\omega t}}{2j}\stackrel{\text{Linearità}}{\longrightarrow} y_r(t) =
+\frac{W(j\omega)e^{j\omega t} - W(-j\omega)e^{-j\omega t}}{2j}
+\label{eq:risposta_sinusoidale}
+\end{equation}
+Va verificata l'esistenza delle funzioni di trasferimento, l'ascissa di
+convergenza coincide con la singolarità polare a parte reale massima ma il
+sistema è supposto asintoticamente stabile, di conseguenza tutti gli autovalori
+avranno parte reale negativa, il semipiano di convergenza conterrà sicuramente
+l'asse immaginario.
+
+Si analizza la funzione di trasferimento valutata in $j\omega$ sfruttando la
+definizione di trasformata di Laplace e ancora una volta la formula di Eulero:
+$$
+W(j\omega) = \int_0^{+\infty} W(t) e^{-j\omega t} dt = \int_0^{+\infty} W(t)
+\left(\cos(\omega t) - j\sin(\omega t) \right)dt
+$$
+Dall'integrale si ottiene che
+$$\left.\begin{aligned}
+&\Re[W(j\omega)] \qquad \text{è pari}\\
+&\Im[W(j\omega)] \qquad \text{è dispari}
+\end{aligned}\right\}
+\Rightarrow\left\{\begin{aligned}
+&|W(j\omega)| \qquad \text{è pari} \\
+&\phase{W(j\omega)}\qquad \text{è dispari}
+\end{aligned}\right. \Rightarrow
+W(-j\omega) = W(j\omega)
+$$
+
+Si rielabora il risultato \ref{eq:risposta_sinusoidale} con la proprietà appena
+ottenuta.
+$$
+17:09
+$$
