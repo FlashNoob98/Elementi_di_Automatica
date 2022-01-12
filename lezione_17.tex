@@ -357,8 +357,68 @@ D_O &= \hat{b}_n = b_n
 \end{aligned}$$
 
 \subsubsection{Proprietà di dualità}
-È facile osservare che
+Le due forme canoniche sono l'una la duale dell'altra, è facile osservare che
 $$
-A_R = A_O^T,\qquad B_R = C_O^T,\qquad C_R
+A_R = A_O^T,\qquad B_R = C_O^T,\qquad C_R=B_O^T,\qquad D_R=D_O
 $$
-1:09:28
+C'è uno scambio di matrici tra ingresso e uscita, ottenuta una rappresentazione
+si può sempre ricavare l'altra.
+Sono presenti solo $2n+1$ parametri, dunque la scrittura delle matrici è
+immediata.
+
+\newpage
+\section{Riassunto delle forme di rappresentazione dei sistemi}
+\begin{itemize}
+\item Equazione differenziale generale, lega le $y$ e le sue derivate alle $u$
+e le sue derivate, una rappresentazione di tipo ingresso-uscita
+\item ISU, utilizzando le regole di Cauchy si ottengono le quattro matrici
+$A,B,C,D$
+\item La funzione di trasferimento $W(s)$, a partire dalla ISU con la formula
+$$
+W(s) = C(sI-A)^{-1}B + D
+$$
+o viceversa mediante la \textit{realizzazione}.
+
+Si ottiene a partire dall'equazione differenziale mediante il rapporto della
+trasformata di Laplace dell'uscita e dell'ingresso, ricordando che la derivata
+nel tempo corrisponde a moltiplicare per $s$.
+Analogamente il processo inverso è simile.
+
+\item Risposta all'impulso mediante la matrice $W(t)$, si ottiene
+antitrasformando la funzione di trasferimento e viceversa.
+Si ottiene a partire dalla rappresentazione ISU con la seguente
+$$
+W(t) = Ce^{At}B +D\delta(t)
+$$
+\end{itemize}
+
+%\newpage
+Si rappresenta di seguito uno schema riassuntivo delle varie tipologie di
+rappresentazione e le diverse procedure di conversione
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{schema_riassuntivo_sistemi}
+\end{figure}
+
+
+\chapter{Analisi in regime permanente}
+Si supponga che il sistema sia asintoticamente stabile e ad esso si applica un
+ingresso che non svanisce nel tempo, si avrà un'evoluzione iniziale ma
+trascorso un certo tempo si avrà una risposta simile all'ingresso.
+Si vuole determinare sotto quali ipotesi questa condizione è verificata.
+
+\textbf{Definizione di risposta in regime permanente}
+$$
+\forall \varepsilon>0 ,\ \forall x(t_0),\
+\exists T_a\left(x(t_0)\right): t>T_a\left(x(t_0)\right)
+\Rightarrow |y(t)-y_r(t)| < \varepsilon
+$$
+Con $T_a$ il tempo di attesa eventualmente funzione dello stato iniziale, $y_r$
+la funzione analitica della risposta a regime.
+
+Ipotesi di esistenza della funzione $y_r(t)$, deve essere indipendente dallo
+stato iniziale, usando le formule di Lagrange
+$$
+y(t) = Ce^{A(t-t_0)x(t_0)+\int_{t_0}^t W(t-\tau)u(\tau)d\tau
+$$
+1:26:00
