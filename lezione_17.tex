@@ -416,10 +416,34 @@ $$
 Con $T_a$ il tempo di attesa eventualmente funzione dello stato iniziale, $y_r$
 la funzione analitica della risposta a regime.
 
-Ipotesi di esistenza della funzione $y_r(t)$, deve essere indipendente dallo
-stato iniziale, usando le formule di Lagrange
+Si supponga che esista la funzione $y_r(t)$, deve essere
+indipendente dallo stato iniziale, nell'ipotesi di sistema lineare, usando le
+formule di Lagrange
 $$
 y(t) = Ce^{A(t-t_0)}x(t_0)+\int_{t_0}^t
 W(t-\tau)u(\tau)d\tau
 $$
-1:26:00
+se si eseguisse il limite per $t\to \infty$ non si avrebbe più una funzione del
+tempo, dunque nell'ipotesi che il sistema sia tempo invariante
+si fa tendere l'istante iniziale $t_0$ in cui viene applicato l'ingresso a
+$-\infty$, è analogo considerare un tempo all'infinito o un istante iniziale a
+$-\infty$ ma in questo modo non si perde la variabile tempo nel risultato del
+limite:
+$$
+y_r(t) = \lim_{t_0\to-\infty} \left(Ce^{A(t-t_0)}x(t_0)+\int_{t_0}^t
+W(t-\tau)u(\tau)d\tau\right)
+$$
+La dipendenza da $x_0$ è solo presente nella componente libera, per $t_0\to
+-\infty$ il coefficiente della matrice esponenziale tende a $+\infty$, se tutti
+i modi del sistema hanno autovalore negativo, dunque il sistema è
+asintoticamente stabile allora anche l'esponenziale tenderà a zero.
+
+Se l'ingresso $u$ è una funzione regolare nel tempo ($W$ è sottinteso dato che
+è composta da sole funzioni esponenziali)
+$$
+y_r(t) = \lim_{t_0\to -\infty} \int_{t_0}^t W(t-\tau) u(\tau)d\tau
+\stackrel{t-\tau = \xi}{=} \int_{+\infty}^{0}W(\xi)u(t-\xi)(-d\xi) =
+\int_0^{+\infty} W(\xi)u(t-\xi)d\xi
+$$
+Se l'integrale esiste finito, sarà sicuramente una funzione del tempo allora il
+sistema ammette un regime permanete.
