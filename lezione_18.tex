@@ -168,5 +168,98 @@ $$
 y_f(t) = \Lap^{-1}\left[\sum_i \frac{R_i}{s-\lambda_i} +
 \frac{R_u}{s-\lambda}\right]
 $$
-La sommatoria fornirà un termine chiamato $y_1(t)$
-40:38
+La sommatoria fornirà un termine chiamato $y_1(t)$ e il residuo $R_u$ una
+funzione $y_2(t)$, per ipotesi i $\lambda_i$ hanno parte reale negativa, quindi
+tutti i termini della funzione $y_1(t)$ tendono a zero.
+Di conseguenza il regime è proprio la seconda parte dell'equazione,
+$y_2(t)=y_r(t)$, quella parte della forzata che dipende dalle singolarità
+polari dell'ingresso, per questo motivo ha la stessa forma dell'ingresso,
+cambiando il residuo $R_u$ che dipende dal sistema cambieranno ampiezza e fase.
+
+La somma di $\Lap^{-1}[\Psi(s)x_0]=y_l(t)$ e $y_1(t)$ forma il transitorio
+$y_t(t)$.
+Il regime esiste se non dipende dallo stato iniziale $x_0$, in realtà è il
+transitorio $y_t(0)$ che deve estinguersi a zero. Potrebbe teoricamente
+capitare che il transitorio tenda a zero perché $y_l(t)$ e $y_1(t)$ siano
+istante per istante uguali e opposte.
+Questo fenomeno può in realtà accadere solo per ingressi esponenziali o
+combinazioni di esponenziali (es. sinusoide).
+Si rimuove l'ipotesi di asintotica stabilità.
+
+Esempio:
+$$
+u(t) = Ue^{\lambda t} \longrightarrow y(t) \propto e^{\lambda t}
+$$
+Dato che l'uscita segue l'ingresso, e l'uscita dipende dallo stato, anche lo
+stato dovrà avere una forma esponenziale. Si supponga che sia della seguente
+forma:
+$$
+x(t) = e^{\lambda t}x(0)
+\stackrel{\dot{x}=Ax+Bu}{\longrightarrow}\lambda \cancel{e^{\lambda t}}x(0) =
+A\cancel{e^{\lambda t}}x(0) + BU\cancel{e^{\lambda t}} \Rightarrow (\lambda
+I-A)x(0) = BU
+$$
+Si suppone che $\lambda \neq \lambda_i$, la matrice $(\lambda I -A)$ è
+invertibile dunque la soluzione esiste ed è unica
+$$
+x(0) = (\lambda I -A)^{-1}BU
+$$
+se lo stato iniziale è esattamente questo, la risposta transitoria sarà
+identicamente nulla $\forall t$ anche senza ipotesi di asintotica stabilità.
+$$\begin{aligned}
+x(t)  &= (\lambda I -A )^{-1}BUe^{\lambda t} &  & t\geq 0\\
+y(t) &= Cx(t) +Du(t) = \left(C(\lambda I-A)^{-1}B+D\right)Ue^{\lambda t}
+=W(\lambda)Ue^{\lambda t}
+&  &
+t\geq 0
+\end{aligned}$$
+Quanto ottenuto è solo un risultato puramente matematico, se un sistema non è
+asintoticamente stabile non ammetterà un regime permanente.
+
+\newpage
+\section{Identificazione sperimentale della funzione di risposta armonica}
+Si supponga di avere un sistema da studiare di cui si conoscono gli ingressi e
+le uscite, non si conoscono le caratteristiche interne del sistema a causa
+della inaccessibilità del sistema stesso o all'impossibilità di realizzarne un
+modello accurato.
+\'E possibile caratterizzare il sistema valutando la \textbf{risposta in
+frequenza}, si applica al sistema una sinusoide
+$$
+u(t)  = U\sin(\omega t)
+$$
+Si vede se dopo un certo tempo l'uscita sia ancora una funzione sinusoidale
+alla stessa frequenza dell'ingresso, il sistema avrà un comportamento lineare
+a quella specifica frequenza
+$$
+y_r(t) = U|W(j \omega)|\sin(\omega t + \phase{W(j \omega)})
+$$
+Si misura il rapporto tra ampiezza di ingresso e uscita e si riporta su un
+grafico funzione della frequenza, analogamente l'angolo.
+
+Si varia successivamente la frequenza, all'estinguersi del transitorio si
+misurano nuovamente ampiezza e frequenza e così via per più frequenze.
+Si può valutare anche a frequenza nulla (guadagno statico).
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=0.6\linewidth]{ricostruzione_risposta_in_frequenza}
+\end{figure}
+
+Si scelgono le funzioni interpolanti delle curve ottenute
+$$
+|\hat{W}(j\omega)| \qquad \phase{\hat{W}(j\omega)} \Rightarrow \hat{W}(j\omega)
+$$
+Si è ricostruita sperimentalmente la funzione di risposta armonica.
+
+La $W(s)$ è una funzione razionale fratta, dunque analitica, se si definisce
+una funzione analitica in un sottoinsieme non numerabile $s$ allora si può
+estendere la definizione a tutto lo spazio rimanente.
+Se la funzione $W(j\omega)$ che è una funzione analitica, è definita sull'asse
+immaginario, che è uno spazio non numerabile, si può estendere la definizione a
+tutto lo spazio, ottenendo una stima della funzione di trasferimento del
+sistema sostituendo $s$ a $j\omega$, si ottiene un modello sperimentale
+approssimato del sistema.
+
+Solitamente un modello approssimato mediante un'analisi sperimentale può
+essere di ordine più alto dell'ordine reale del sistema, si perdono inoltre
+informazioni sulle relazioni fisiche del sistema.
+1:11:47
