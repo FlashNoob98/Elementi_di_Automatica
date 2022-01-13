@@ -60,11 +60,45 @@ $$\left.\begin{aligned}
 &|W(j\omega)| \qquad \text{è pari} \\
 &\phase{W(j\omega)}\qquad \text{è dispari}
 \end{aligned}\right. \Rightarrow
-W(-j\omega) = W(j\omega)
+W(-j\omega) = W^*(j\omega)
 $$
 
 Si rielabora il risultato \ref{eq:risposta_sinusoidale} con la proprietà appena
 ottenuta.
+$$\begin{aligned}
+y_r(t) &= \frac{|W(j\omega)|e^{j\angle{(W(j\omega))}}e^{j\omega t}
+- |W(j\omega)|e^{-j\angle({W(j\omega)})}e^{-j\omega t}  }
+{2j} =\\
+&=
+|W(j\omega)|\frac{e^{j(\omega t + \angle(W(j\omega)))} - e^{-j(\omega t +
+\angle(W(j\omega)))}}
+{2j} = \\
+&= |W(j\omega)|\sin\left(\omega t + \phase{W(j\omega)}\right)
+\end{aligned}$$
+
+Si riassume il risultato nel \textbf{Teorema della risposta armonica}
 $$
-17:09
+u(t) = A\sin(\omega t + \varphi) \longrightarrow y_r(t) =
+A|W(j\omega)|\sin\left( \omega t + \phase{W(j\omega)} + \varphi \right)
 $$
+Per un sistema asintoticamente stabile in forma minima, la risposta a regime di
+un ingresso sinusoidale è ancora una sinusoide alla stessa frequenza di quella
+in ingresso, amplificata o attenuata di una quantità pari al modulo della
+restrizione all'asse immaginario della funzione di trasferimento, sfasata
+inoltre di una quantità pari all'argomento della funzione $W(j\omega)$.
+
+La funzione di trasferimento ristretta all'asse immaginario prende il nome di
+\textit{risposta armonica} del sistema
+$$
+W(j\omega) = \left.W(s)\right|_{s=j\omega} = C(j\omega I-A)^{-1}B + D
+$$
+dà informazioni sul comportamento in frequenza del sistema, ampiezza e fase
+dell'uscita dipenderanno dalla specifica frequenza in ingresso.
+
+Potrebbe accadere che l'armonica in uscita sia esattamente nulla, quando
+$j\omega$ è uno zero della funzione di trasferimento, in realtà due zeri
+complessi e coniugati sull'asse immaginario.
+Essendo la funzione $W(j\omega)$ una funzione regolare, l'intorno degli zeri
+viene comunque attenuato dal sistema.
+
+30:10
