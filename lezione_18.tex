@@ -262,4 +262,68 @@ approssimato del sistema.
 Solitamente un modello approssimato mediante un'analisi sperimentale può
 essere di ordine più alto dell'ordine reale del sistema, si perdono inoltre
 informazioni sulle relazioni fisiche del sistema.
-1:11:47
+
+Un modello sperimentale potrebbe comunque essere più accurato di un modello
+costruito analiticamente utilizzando i dati di targa del sistema, con la loro
+soglia di incertezza che non corrispondono necessariamente alla realtà, un
+modello sperimentale potrebbe invece approssimare meglio i punti reali
+raggiunti dal sistema.
+
+Per analizzare l'intero spettro in frequenza del sistema bisognerebbe
+sollecitare il sistema di volta in volta con un'armonica differente, oppure
+si può usare direttamente un segnale che contiene più armoniche come ad esempio
+il gradino che le contiene tutte.
+Si misura l'uscita e con un analizzatore di spettro si analizzano le frequenze
+in uscita dal sistema ottenendo facilmente informazioni sul comportamento del
+sistema ad un gran numero di armoniche.
+
+\section{Analisi con ingresso periodico}
+Sia il segnale periodico
+$$
+u(t)\ \ T\text{ periodico} \Leftrightarrow u(t+T) = u(t)
+$$
+è sviluppabile in \textit{serie di Fourier}
+$$
+u(t) = \sum_{n=-\infty}^{+\infty} U_n e^{j\omega t}
+$$
+con $U_n$ i coefficienti di Fourier e $\omega = \frac{2\pi}{T}$.
+La serie dei coefficienti di Fourier definisce lo spettro del segnale in
+ingresso, che avrà un'infinità numerabile di coefficienti.
+
+L'uscita a regime $y_r(t)$ esisterà per la linearità del sistema e sarà pari
+alla stessa combinazione lineare dell'ingresso
+$$
+y_r(t) = \sum_{-\infty}^{+\infty} U_nW(jn\omega)e^{j\omega t} =
+\sum_{-\infty}^{+\infty}Y_n e^{j n \omega t}
+$$
+L'uscita ha la forma dello sviluppo in serie di Fourier di un segnale, dunque
+si può affermare che il segnale in uscita è periodico.
+Il peso dei coefficienti sarà differente dunque il segnale in uscita sarà
+comunque deformato rispetto a quello in ingresso.
+
+Si supponga che il segnale in ingresso sia dotato di trasformata di
+Fourier $U(j\omega)$, se ciò è vero esiste ed è finito il seguente integrale
+$$
+u(t) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} U(j\omega)e^{j\omega t}d\omega
+$$
+La trasformata è bilaterale, non è richiesto che il segnale sia nullo per
+$t<0$, sfruttando la linearità del sistema e dell'integrale si ha l'uscita a
+regime
+$$
+y_r(t) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} U(j\omega) W(j\omega)
+e^{j\omega t} d\omega = \frac{1}{2\pi}\int_{-\infty}^{+\infty} Y(j\omega)
+e^{j\omega t} d\omega
+$$
+Si è ottenuta l'antitrasformata di Fourier di $Y(j\omega)$ che sarà dunque lo
+spettro del segnale in uscita, può contenere al più le armoniche del segnale
+d'ingresso, potranno essere attenuate o amplificate dalla funzione
+$W(j\omega)$, se la banda del segnale in ingresso è limitata entro certe
+frequenze, anche l'uscita sarà limitata in quella banda.
+
+Ancora una volta, nell'ipotesi di sistema SISO, la funzione di risposta
+armonica si ottiene analogamente alla funzione di trasferimento $W(s)$ nel
+dominio di Laplace:
+$$
+W(j\omega) = \frac{Y(j\omega)}{U(j\omega)}
+\stackrel{j\omega \rightarrow s}{s\leftarrow j\omega}W(s) =  \frac{Y(s)}{U(s)}
+$$
