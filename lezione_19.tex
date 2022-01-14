@@ -35,4 +35,78 @@ semilog lines/.style={black},
 Il diagramma della fase è anch'esso rappresentato in scala logaritmico e la
 fase viene rappresentata in scala lineare, in gradi o radianti.
 
+Uno strumento rapido per rappresentare i diagrammi di Bode è quello di
+utilizzare i \textit{diagrammi asintotici}, una rappresentazione approssimata
+ma molto rapida dei sistemi.
+Conviene innanzitutto trasformare la funzione di trasferimento nella forma di
+Bode
+$$
+W(j\omega) = \frac{K_B}{(j\omega)^g} \frac{\prod_i (1+j\omega \tau_{zi})
+\prod_i (1-\frac{\omega^2}{\omega_{nz_i}^2} +
+\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j) }
+{\prod_i (1+j\omega \tau_{pi})
+\prod_i (1-\frac{\omega^2}{\omega_{np_i}^2} +
+\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j) }
+$$
 
+Si vuole tracciare il modulo in deciBel
+$$
+|W(j\omega)|_{\si{\deci\bel}} = 20\log_{10}|W(j\omega)|
+$$
+Sfruttando le proprietà del logaritmo
+$$\begin{aligned}
+|W(j\omega)|_{\si{\deci\bel}} &= 20\log_{10}|K_B|-20g\cdot\log_{10}|j\omega| +
+\sum_i 20\log_{10}|1+j\omega\tau_{zi}| + \\
+&+\sum_i 20 \log_{10}
+\left|1-\frac{\omega^2}{\omega_{nz_i}^2} +
+\frac{2\zeta_{zi}}{\omega_{nz_i}}\omega j\right|
+- \sum_i 20\log_{10}|1+j\omega\tau_{pi}| -\\
+&-\sum_i 20 \log_{10}
+\left|1-\frac{\omega^2}{\omega_{np_i}^2} +
+\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j\right|
+\end{aligned}$$
+
+Sono presenti quattro tipologie di termini, si possono tracciare singolarmente
+e poi sommare tra di loro.
+Facendo riferimento in questo caso ai poli si hanno i seguenti termini.
+$$
+W_a(j\omega) = K_B,\quad W_b(j\omega)=\frac{1}{j\omega},\quad W_c(j\omega)=
+\frac{1}{1+j\omega\tau},\quad
+W_d(j\omega)=\frac{1}{1-\frac{\omega^2}{\omega_n^2}+\frac{2\zeta\omega}{\omega_n
+} }
+$$
+
+\subsubsection{Termine guadagno}
+Il termine $W_a$ è un guadagno costante, non dipende dalla frequenza, viene
+rappresentato come una retta orizzontale sul diagramma di Bode, maggiore o
+minore di 0 se si ha un'amplificazione o un'attenuazione
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+yscale=2/30,xscale=7/5
+]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\semilog{-2}{3}{-20}{10}
+\BodeGraph{-2:3}{\KAmp{2}}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+yscale=2/30,xscale=7/5
+]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\semilog{-2}{3}{-20}{10}
+\BodeGraph{-2:3}{\KAmp{2}}
+\end{tikzpicture}
+\end{figure}
+26:18
