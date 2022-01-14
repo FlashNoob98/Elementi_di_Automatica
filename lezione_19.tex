@@ -229,8 +229,33 @@ semilog lines/.style={black},
 Se il termine di smorzamento $\zeta$ assume valori molto piccoli
 ($\zeta<\frac{1}{\sqrt{2}}\simeq0.707$) si ha un picco di massimo chiamato
 \textit{picco di risonanza} e si presenta ad una frequenza di risonanza
-$\omega_r$ pari a
+$\omega_r$ più piccola del punto di rottura pari a
 $$
 \omega_r = \omega_n\sqrt{1-2\zeta^2}
 $$
-1:06:42
+Il valore del picco di risonanza vale
+$$
+M_r = |W(j\omega_r)| = \frac{1}{2|\zeta|\sqrt{1-\zeta^2}}
+$$
+Il punto di passaggio nel punto di rottura vale
+$$
+|W(j\omega_n)| = \frac{1}{2|\zeta|}
+$$
+Il caso limite con $\zeta=0$ si ha un picco di risonanza infinito alla
+pulsazione di risonanza $\omega_n$.
+L'errore che si può commettere utilizzando le rette asintotiche va da un minimo
+di \SI{-6}{\deci\bel} ad un massimo infinito, è necessario controllare il
+valore di $\zeta$ e applicare le dovute correzioni.
+Anche in questo caso la presenza di un coefficiente $k$ che rappresenti la
+molteplicità dei poli, si avrà un'amplificazione dei picchi e della pendenza
+dell'asintoto destro, nel caso in cui questo fosse negativo si avrebbe uno zero
+e il ribaltamento del grafico, con una eventuale cancellazione di una frequenza
+dall'uscita.
+
+\newpage
+\subsection{Regole di tracciamento}
+Si elencano alcune regole per tracciare i diagrammi di Bode dei sistemi.
+\begin{enumerate}
+\item Scrivere la $W(j\omega)$ nella forma di Bode
+\item 1:20:39
+\end{enumerate}
