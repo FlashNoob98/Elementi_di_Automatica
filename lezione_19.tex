@@ -1,0 +1,38 @@
+
+\section{Diagrammi di Bode}
+I \textit{diagrammi di Bode} sono strumenti grafici utili a rappresentare la
+funzione di risposta armonica $W(j\omega)$ che permette di descrivere il
+comportamento in frequenza dei sistemi dinamici.
+
+I diagrammi di Bode si dividono in due grafici, uno per rappresentare il modulo
+di $W(j\omega)$, l'altro per la fase e prendono rispettivamente il nome di
+diagramma del modulo e diagramma di fase.
+
+Spesso l'asse delle ascisse è rappresentato in scala logaritmica, data
+l'elevata ampiezza del dominio delle funzioni, di conseguenza il rapporto tra
+due pulsazioni equidistanziate è sempre pari a dieci.
+Questa distanza viene chiamata \textit{decade}.
+
+L'asse lineare viene invece rappresentato in scala lineare ma i valori
+riportati sono espressi in \textit{deciBel}
+$$
+|W(j\omega)|_{\si{\deci\bel}} = 20\log_{10}|W(j\omega)|
+$$
+Si usa per comodità il fattore $20$ e non $10$ come da definizione.
+Il grafico prende il nome di scala semilogaritmica.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+yscale=2/30,xscale=7/5
+]
+\tikzset{
+semilog lines/.style={black},
+}
+\semilog{-2}{3}{-20}{10}
+\end{tikzpicture}
+\end{figure}
+
+Il diagramma della fase è anch'esso rappresentato in scala logaritmico e la
+fase viene rappresentata in scala lineare, in gradi o radianti.
+
+
