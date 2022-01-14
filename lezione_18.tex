@@ -217,12 +217,12 @@ Quanto ottenuto è solo un risultato puramente matematico, se un sistema non è
 asintoticamente stabile non ammetterà un regime permanente.
 
 \newpage
-\section{Identificazione sperimentale della funzione di risposta armonica}
+\section{Identificazione sperimentale della risposta armonica}
 Si supponga di avere un sistema da studiare di cui si conoscono gli ingressi e
 le uscite, non si conoscono le caratteristiche interne del sistema a causa
 della inaccessibilità del sistema stesso o all'impossibilità di realizzarne un
 modello accurato.
-\'E possibile caratterizzare il sistema valutando la \textbf{risposta in
+È possibile caratterizzare il sistema valutando la \textbf{risposta in
 frequenza}, si applica al sistema una sinusoide
 $$
 u(t)  = U\sin(\omega t)
@@ -325,5 +325,8 @@ armonica si ottiene analogamente alla funzione di trasferimento $W(s)$ nel
 dominio di Laplace:
 $$
 W(j\omega) = \frac{Y(j\omega)}{U(j\omega)}
-\stackrel{j\omega \rightarrow s}{s\leftarrow j\omega}W(s) =  \frac{Y(s)}{U(s)}
+\qquad \begin{aligned}&j\omega \rightarrow s\\
+&s\leftarrow j\omega
+\end{aligned}\qquad W(s) =
+\frac{Y(s)}{U(s)}
 $$
