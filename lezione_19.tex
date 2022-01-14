@@ -166,4 +166,13 @@ semilog lines/.style={black},
 \end{tikzpicture}
 \caption{$\frac{1}{1+j\omega\cdot\tau}$}
 \end{figure}
-È facile individuare il \textit{punto di rottura} 45:10
+È facile individuare il \textit{punto di rottura}, intersezione dei due
+asintoti conoscendo $\tau$.
+L'errore massimo si ha nel punto di rottura, si valuta la funzione in quel punto
+$$
+\left|W_c\left(j\frac{1}{|\tau|}\right)\right|_{\si{\deci\bel}} =
+-20\log_{\si{\deci\bel}}\left|\frac{1}{1+j\frac{1}
+{\cancel{|\tau|}}\cancel{\tau}
+} \right| = -20\log_{10}\sqrt{2} \simeq \SI{-3}{\deci\bel}
+$$
+Il diagramma passa a \SI{-3}{\deci\bel} dal punto di rottura.50:21
