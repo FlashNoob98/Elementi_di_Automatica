@@ -76,7 +76,7 @@ W_d(j\omega)=\frac{1}{1-\frac{\omega^2}{\omega_n^2}+\frac{2\zeta\omega}{\omega_n
 } }
 $$
 
-\subsubsection{Termine guadagno}
+\textbf{Termine guadagno}
 Il termine $W_a$ è un guadagno costante, non dipende dalla frequenza, viene
 rappresentato come una retta orizzontale sul diagramma di Bode, maggiore o
 minore di 0 se si ha un'amplificazione o un'attenuazione
@@ -84,29 +84,86 @@ minore di 0 se si ha un'amplificazione o un'attenuazione
 \centering
 \begin{tikzpicture}[
 gnuplot def/.append style={prefix={tikz/}},
-yscale=2/30,xscale=7/5
+yscale=2/20,xscale=7/5
 ]
 \tikzset{
 semilog lines/.style={black},
 }
 \UnitedB
-\semilog{-2}{3}{-20}{10}
+\semilog{-2}{3}{-10}{10}
 \BodeGraph{-2:3}{\KAmp{2}}
+\BodeGraph{-2:3}{\KAmp{1}}
+\BodeGraph{-2:3}{\KAmp{0.5}}
 \end{tikzpicture}
 \end{figure}
 
+\textbf{Termine monomio}
+Si rappresenta il termine $W_b$
+$$
+|W_b(j\omega)|_{\si{\deci\bel}} = 20\log_{10}\left|\frac{1}{j\omega}\right| =
+-20\log_{10} |j\omega| = -20 \log_{10} (\omega)
+$$
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[
-gnuplot def/.append style={prefix={tikz/}},
-yscale=2/30,xscale=7/5
-]
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[xscale=7/4,yscale=3/80]
 \tikzset{
 semilog lines/.style={black},
 }
 \UnitedB
-\semilog{-2}{3}{-20}{10}
-\BodeGraph{-2:3}{\KAmp{2}}
+\semilog{-2}{2}{-40}{40}
+\BodeGraph{-2:2}{\IntAmp{1}}
+\BodeGraph{-1:1}{-20*2*log10(10**t)}
+\end{scope}
 \end{tikzpicture}
 \end{figure}
-26:18
+Si ottiene una retta con pendenza \SI{-20}{\deci\bel/dec} (\textit{deciBel per
+decade}), se ci fosse più di un polo nell'origine, si avrebbe un esponente $g$
+sul termine $j\omega$ che diventerebbe un fattore moltiplicativo della pendenza
+della retta, in questo caso se i poli sono due la retta ha una pendenza di
+\SI{-40}{\deci\bel/dec}.
+Viceversa se ci fossero degli zeri nell'origine, quindi $g$ negativo, si
+avrebbe una pendenza della retta positiva.
+Si usa spesso una pendenza compatta $-1,-2,+1,+2$ riferendosi al coefficiente
+$g$ e non al prodotto completo per 20, quindi con una pendenza $-1$ si indica
+\SI{-20}{\deci\bel/dec}, con $-2$ saranno \SI{-40}{\deci\bel/dec} e così via.
+
+\textbf{Termine binomio}
+Si vuole rappresentare il modulo del binomio $W_c(j\omega)$
+$$
+|W_c(j\omega)| = 20\log_{10}\left|\frac{1}{1+j\omega\tau}\right| =
+-20\log_{10}|1+j\omega \tau| = -20\log_{10}\sqrt{1+(\omega\tau)^2}
+$$
+Per studiare con comodità questa funzione può essere comodo eseguire prima
+l'analisi asintotica, ossia l'analisi per $\omega$ molto piccoli e molto
+grandi, si approssima la funzione
+$$
+|W_c(j\omega)| \simeq
+\left\{\begin{aligned}
+&-20\log_{10}\sqrt{1} = 0 &  & \omega \ll \frac{1}{|\tau|}\\
+&-20\log_{10}|\omega\tau| &  & \omega \gg \frac{1}{|\tau|}
+\end{aligned}\right.
+$$
+La retta in questo caso non passerà più per l'origine (1,0) ma per il punto
+($\frac{1}{|\tau|}$,0), una decade dopo il punto di intersezione il diagramma
+coincide con la retta asintotica e l'errore è trascurabile.
+\begin{figure}[h]
+\def\tau{0.5}
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[xscale=7/3,yscale=3/60]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\semilog{-1}{2}{-40}{20}
+\BodeGraph[asymp lines,samples=100]{-1:2}
+{\POAmpAsymp{1}{\tau}}
+\BodeGraph{-1:2}{\POAmp{1}{\tau}}
+\end{scope}
+\end{tikzpicture}
+\caption{$\frac{1}{1+j\omega\cdot\tau}$}
+\end{figure}
+È facile individuare il \textit{punto di rottura} 45:10
