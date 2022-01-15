@@ -227,7 +227,7 @@ In tal caso la pendenza iniziale è zero a causa dell'assenza di poli
 nell'origine, ad ogni cambio di pendenza del modulo di $k$ corrisponde un
 cambio di pendenza della fase di $k\cdot\SI{90}{\degree}$.
 
-
+\newpage
 \section{Filtri in frequenza}
 Si ha un sistema generico con un ingresso $u(t)$ a regime permanente, la
 funzione di risposta armonica può essere espressa come il rapporto tra lo
@@ -237,10 +237,9 @@ W(j\omega) = \frac{Y(j\omega)}{U(j\omega)}
 $$
 Qualunque tipo di sistema, ottenuta la funzione di risposta armonica, può
 essere trattato come un \textbf{filtro} in frequenza.
+Si forniscono alcune definizioni di filtro passa-basso e filtro passa-alto.
 
-Si forniscono alcune definizioni di filtro passa-basso e filtro passa-alto
-
-\newpage
+%\newpage
 \subsubsection{Filtro passa basso}
 Un filtro passa basso ha un diagramma del seguente tipo, idealmente dovrebbe
 attenuare con potenza infinita le frequenze superiori alla
@@ -292,4 +291,53 @@ Il segnale deve essere contenuto nella banda di $\pm\SI{3}{\deci\bel}$ per
 $\omega<\omega_H$, deve poi sottostare al valore di \SI{-3}{\deci\bel} superata
 la pulsazione di taglio. Non vengono specificate condizioni sulla fase in
 questo corso.
-1:22:09
+
+\newpage
+\subsubsection{Filtro passa-alto}
+La frequenza di taglio si chiama stavolta frequenza di taglio inferiore
+$\omega_L$, un filtro passa alto ideale deve necessariamente essere un sistema
+proprio, non strettamente proprio, deve esistere lo stesso numero di poli e
+zeri.
+Nella realtà prima o poi i sistemi tagliano sempre.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[xscale=7/3,
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[yscale=3/45]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\OrdBode{5}
+\semilog{-1}{4}{-40}{5}
+\BodeGraph[samples=400]{-1:4}{-\KAmp{80}-\POAmp{10}{100}-
+\PDAmp{2}{1}+2*\POAmp{4}{0.001}}
+\end{scope}
+\end{tikzpicture}
+\caption{$\omega_L = 1,\ \omega_H \simeq \SI{600}{}$}
+\end{figure}
+
+$$
+\left\{
+\begin{aligned}
+ \frac{|W(j\omega)|}{|W(j\infty)|} & < \frac{1}{\sqrt{2}} & & \qquad \omega <
+\omega_L \\
+ \frac{1}{\sqrt{2}} \leq  \frac{|W(j\omega)|}{|W(j\infty)|} & \leq
+\sqrt{2} & &\qquad \omega>\omega_L
+\end{aligned}
+\right.
+$$
+L'intervallo compreso tra $\omega_L$ e $\omega_H$ prende il nome di banda
+passante.
+Nella realtà infatti il filtro passa-alto prende il nome di passa-banda.
+
+Se si considera un segnale con una certa frequenza massima, se ne vuole
+filtrare la bassa frequenza, bisognerebbe usare un filtro passa-alto, in realtà
+se si usa un passa-banda con frequenza di taglio superiore maggiore della
+massima frequenza del segnale in ingresso, allora si comporterà proprio come un
+passa-alto.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width = 0.3\linewidth]{filtro_passa_alto}
+\end{figure}
