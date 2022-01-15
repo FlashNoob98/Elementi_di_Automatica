@@ -209,6 +209,10 @@ pythontex-files-*/
 *.md5
 *.auxlock
 
+# bodegraph & gnuplot
+*.gnuplot
+*.table
+
 # todonotes
 *.tdo
 
