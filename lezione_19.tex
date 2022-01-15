@@ -272,6 +272,7 @@ applicare le eventuali correzioni in quei punti, altrimenti se le frequenze di
 rottura sono vicine tra loro, le correzioni si influenzerebbero.
 \end{enumerate}
 
+\newpage
 \subsubsection{Esercizio di tracciamento}
 Si consideri la seguente funzione
 $$
@@ -279,8 +280,9 @@ W(s) = \frac{(s-1)(s+10)}{s(s^2+s+16)}
 $$
 Va posta nella forma di Bode
 $$
-W(j\omega) = \frac{(-1)(10)}{16} \cdot \frac{1}{s}\cdot \frac{(1-s)(1+0.1s)
-}{\left( 1+\frac{1}{16}s + \frac{s^2}{16} \right)}
+W(j\omega) = \frac{(-1)(10)}{16} \cdot \frac{1}{{j\omega}}\cdot
+\frac{(1-{j\omega})(1+0.1{j\omega})
+}{\left( 1+\frac{1}{16}{j\omega} + \frac{{j\omega}^2}{16} \right)}
 $$
 $$
 K_B = -\frac{10}{16} = -\frac{5}{8} \stackrel{\si{\deci\bel}}{\longrightarrow}
@@ -292,7 +294,34 @@ $$
 \longrightarrow \zeta= \frac{1}{8} = 0.125 < \frac{1}{\sqrt{2}}
 $$
 
-I punti di rottura sono presenti in $1,\ 4,\ 10$
 
-Si traccia il diagramma
-1:35:53
+I punti di rottura sono presenti in $1,\ 4,\ 10$ \si{\radian/\second},
+si traccia il diagramma
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[xscale=7/3,yscale=3/60]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\semilog{-1}{2}{-40}{20}
+\BodeGraph[asymp
+lines,samples=400]{-1:2}{\IntAmp{-0.625}-\POAmpAsymp{1}{0.1}-\POAmpAsymp{1}{1}
++\SOAmpAsymp{1}{0.125}{4}}
+\BodeGraph[samples=400]{-1:2}{\IntAmp{-0.625}-\POAmp{1}{0.1}-\POAmp{1}{1}
+ +\SOAmp{1}{0.125}{4}}
+\end{scope}
+\end{tikzpicture}
+%\caption{$\textcolor{red}{\zeta=\zOne},\quad \textcolor{blue}{\zeta=\zTwo} $}
+\end{figure}
+
+Si tracciano inizialmente i diagrammi asintotici, il primo passa a quota
+\SI{-4}{\deci\bel} con una pendenza di \SI{-20}{\deci\bel} (-2), poi si somma lo
+zero centrato in 1, si somma 1 e si ha una pendenza nulla fino al punto di
+rottura situato in $\omega=4$ con pendenza -2, (polo del secondo ordine),
+fino al punto di rottura in $\omega=10$ in cui si somma nuovamente uno
+zero, aumentando la pendenza di 1 quindi si termina asintoticamente la funzione
+con una pendenza -1.
+La pendenza finale è sempre pari all'ordine relativo $-(n-m)$.
