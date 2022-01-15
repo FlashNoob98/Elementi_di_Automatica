@@ -100,7 +100,7 @@ gnuplot def/.append style={prefix={tikz/}}]
 \tikzset{
 semilog lines/.style={black},
 }
-\OrdBode{30}
+\OrdBode{15}
 \UniteDegre
 \semilog{-1}{2}{-90}{90}
 \BodeGraph[asymp lines,samples=2000]{-1:2}{\POArgAsymp{1}{0.5}}
@@ -113,4 +113,100 @@ semilog lines/.style={black},
 \textcolor{blue}{\tau=>0} $}
 \end{figure}
 Nel punto di rottura si introduce l'inversione del livello della fase.
+Un punto di correzione certo è il passaggio a $\frac{1}{\tau}$ pari a $\pm
+\SI{45}{\degree}$. Se ci si riferisce ad uno zero anziché un polo si ribalta il
+grafico.
+Anche in questo caso il fattore esponenziale $g$ moltiplica la funzione
+scalando il valore degli asintoti a 180 per $g=2$ e così via.
 
+\newpage
+\textbf{Fattore trinomio}
+$$
+\phase{W_d(j\omega)}  = -
+\phase{1-\frac{\omega^2}{\omega_n^2}+j\frac{2\zeta}{\omega_n}\omega}
+$$
+Si ricorda che $-1<\zeta<1$, si studia il caso limite $\zeta=0$ ossia due poli
+puramente immaginari
+$$
+W_d(j\omega) = \frac{1}{1-\frac{\omega^2}{\omega_n^2}} = \left\{
+\begin{aligned}
+ &> 0 &  & \omega < \omega_n\\
+ &< 0 &  & \omega > \omega_n
+\end{aligned}
+\right.
+$$
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[xscale=7/3,yscale=3/180]
+\tikzset{
+semilog lines/.style={black},
+}
+\OrdBode{30}
+\UniteDegre
+\semilog{-1}{2}{-180}{0}
+\BodeGraph[samples=2000]{-1:2}{\SOArgAsymp{1}{0}{3}}
+\BodeGraph[samples=100,color =red]{-1:2}{\SOArg{1}{1}{3}}
+
+\end{scope}
+\end{tikzpicture}
+\caption{$\textcolor{blue}{\zeta=0},\quad
+\textcolor{red}{\zeta=1} $}
+\end{figure}
+
+Se invece $\zeta=1$ si ricade nel caso di due fattori binomiali coincidenti,
+si ottiene una curva passante per $\SI{-90}{\degree}$.
+Se $\zeta$ fosse negativo si invertirebbe ancora una volta il grafico, con
+asintoto a \SI{+180}{\degree} e punto intermedio a \SI{+90}{\degree}.
+Con gli zeri si inverte il grafico.
+
+Si espongono le regole di tracciamento per il diagramma di fase. La prima parte
+coincide con quella vista nel diagramma dei moduli
+\begin{enumerate}
+ \item Per pulsazioni molto piccole, minori del primo punto di rottura, gli
+unici contributi sono dati dal guadagno (se negativo) e da eventuali poli
+centrati nell'origine, l'ordinata iniziale sarà a quota pari a $\phase{K_B}
+-g\cdot\SI{90}{\degree}$
+ \item In corrispondenza di punti di rottura di poli o zeri reali, l'ordinata
+aumenta $(\tau_p<0,\tau_z>0)$ o diminuisce $(\tau_p>0,\tau_z<0)$ di
+$\SI{90}{\degree}\cdot m_a$
+\item In corrispondenza di punti di rottura di poli o zeri complessi,
+l'ordinata aumenta $(\zeta_p<0,\zeta_z>0)$ o diminuisce $(\zeta_p>0,\zeta_z<0)$
+di $\SI{180}{\degree}\cdot m_a$
+\end{enumerate}
+
+\newpage
+Si riporta il diagramma in frequenza della funzione studiata a pag.
+\pageref{sec:Esercizio_bode}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[xscale=7/3,yscale=3/180]
+\tikzset{
+semilog lines/.style={black},
+}
+\UniteDegre
+\OrdBode{30}
+\semilog{-1}{2}{-180}{90}
+\BodeGraph[asymp
+lines,samples=2000]{-1:2}{-\IntArg{0.625}-\POArgAsymp{1}{0.1}+\POArgAsymp{1}{1}
++\SOArgAsymp{1}{0.125}{4}}
+\BodeGraph[samples=400]{-1:2}{-\IntArg{0.625}-\POArg{1}{0.1}+\POArg{1}{1}
+ +\SOArg{1}{0.125}{4}}
+\end{scope}
+\end{tikzpicture}
+%\caption{$\textcolor{red}{\zeta=\zOne},\quad \textcolor{blue}{\zeta=\zTwo} $}
+\end{figure}
+Lo sfasamento iniziale con $K_B=-\frac{5}{8}$ è pari a \SI{-270}{\degree}, nel
+grafico il diagramma è traslato è inizia in realtà a \SI{90}{\degree},
+l'andamento resta identico. I punti di rottura sono ancora $1,\ 4,\ 10$, il
+punto di rottura in 1 è uno zero situato nel semipiano destro, introdurrà un
+ritardo di \SI{90}{\degree}, quello situato in $\omega=10$ è uno zero con
+$\tau$ positiva, introdurrà un anticipo di \SI{90}{\degree}.
+La coppia complessa e coniugata centrata in 4 con $\zeta$ positiva introduce un
+ritardo di \SI{180}{\degree}.
+
+Un sistema è a \textit{fase minima} se il guadagno è positivo e tutte le
+singolarità polari sono 57:10
