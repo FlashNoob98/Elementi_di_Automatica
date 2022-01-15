@@ -226,3 +226,70 @@ singolarità polari sono nel semipiano sinistro (tipo 0).
 In tal caso la pendenza iniziale è zero a causa dell'assenza di poli
 nell'origine, ad ogni cambio di pendenza del modulo di $k$ corrisponde un
 cambio di pendenza della fase di $k\cdot\SI{90}{\degree}$.
+
+
+\section{Filtri in frequenza}
+Si ha un sistema generico con un ingresso $u(t)$ a regime permanente, la
+funzione di risposta armonica può essere espressa come il rapporto tra lo
+spettro dell'uscita e lo spettro dell'ingresso.
+$$
+W(j\omega) = \frac{Y(j\omega)}{U(j\omega)}
+$$
+Qualunque tipo di sistema, ottenuta la funzione di risposta armonica, può
+essere trattato come un \textbf{filtro} in frequenza.
+
+Si forniscono alcune definizioni di filtro passa-basso e filtro passa-alto
+
+\newpage
+\subsubsection{Filtro passa basso}
+Un filtro passa basso ha un diagramma del seguente tipo, idealmente dovrebbe
+attenuare con potenza infinita le frequenze superiori alla
+pulsazione di taglio $\omega_H$, nella realtà ci sarà una pendenza pari al
+grado relativo del sistema $-(n-m)$ dato che tutti i sistemi reali sono
+strettamente propri.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[xscale=7/3,
+gnuplot def/.append style={prefix={tikz/}}]
+\begin{scope}[yscale=3/70]
+\tikzset{
+semilog lines/.style={black},
+}
+\UnitedB
+\semilog{-1}{2}{-70}{0}
+\BodeGraph[asymp lines,samples=400]{-1:2}{2*\POAmpAsymp{1}{0.5}}
+\BodeGraph[samples=400]{-1:2}{2*\POAmp{1}{0.5}}
+\end{scope}
+\end{tikzpicture}
+\caption{$\omega_H = \SI{2}{rad/s}$}
+\end{figure}
+
+Un sistema è un filtro passa-basso reale se rispetta le seguenti condizioni (si
+assume implicitamente che la $g=0$ altrimenti si avrebbe una pendenza iniziale
+non nulla
+$$
+\left\{
+\begin{aligned}
+ \frac{1}{\sqrt{2}} \leq \frac{|W(j\omega)|}{|W(j0)|} &\leq \frac{1}{\sqrt{2}}
+& &\qquad \omega<\omega_H \\
+\frac{|W(j\omega)|}{|W(j0)|} &< \frac{1}{\sqrt{2}} & &\qquad \omega> \omega_H
+\end{aligned}
+\right.
+$$
+Il termine $\sqrt{2}$ si utilizza per convenzione perché indica una perdita di
+potenza di un segnale pari al 50\%, sul decibel il rapporto diventa una
+differenza, dunque \SI{3}{\deci\bel}
+$$
+\left\{
+\begin{aligned}
+|W(j0)| - \SI{3}{\deci\bel} \leq |W(j\omega)| &\leq |W(j0)| + \SI{3}{\deci\bel}
+ & &\qquad \omega < \omega_H \\
+ |W(j\omega)| &<  |W(j0)| - \SI{3}{\deci\bel} &  &\qquad \omega > \omega_H
+\end{aligned}
+\right.
+$$
+Il segnale deve essere contenuto nella banda di $\pm\SI{3}{\deci\bel}$ per
+$\omega<\omega_H$, deve poi sottostare al valore di \SI{-3}{\deci\bel} superata
+la pulsazione di taglio. Non vengono specificate condizioni sulla fase in
+questo corso.
+1:22:09
