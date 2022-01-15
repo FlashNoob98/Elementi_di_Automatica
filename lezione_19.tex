@@ -41,12 +41,13 @@ ma molto rapida dei sistemi.
 Conviene innanzitutto trasformare la funzione di trasferimento nella forma di
 Bode
 $$
-W(j\omega) = \frac{K_B}{(j\omega)^g} \frac{\prod_i (1+j\omega \tau_{zi})
-\prod_i (1-\frac{\omega^2}{\omega_{nz_i}^2} +
-\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j) }
+W(j\omega) = \frac{K_B}{(j\omega)^g}\cdot \frac{\prod_i (1+j\omega
+\tau_{zi})
+\prod_i \left(1-\frac{\omega^2}{\omega_{nz_i}^2} +
+\frac{2\zeta_{zi}}{\omega_{nz_i}}\omega j\right) }
 {\prod_i (1+j\omega \tau_{pi})
-\prod_i (1-\frac{\omega^2}{\omega_{np_i}^2} +
-\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j) }
+\prod_i \left(1-\frac{\omega^2}{\omega_{np_i}^2} +
+\frac{2\zeta_{pi}}{\omega_{np_i}}\omega j\right) }
 $$
 
 Si vuole tracciare il modulo in deciBel
@@ -129,6 +130,7 @@ Si usa spesso una pendenza compatta $-1,-2,+1,+2$ riferendosi al coefficiente
 $g$ e non al prodotto completo per 20, quindi con una pendenza $-1$ si indica
 \SI{-20}{\deci\bel/dec}, con $-2$ saranno \SI{-40}{\deci\bel/dec} e così via.
 
+\newpage
 \textbf{Termine binomio}
 Si vuole rappresentare il modulo del binomio $W_c(j\omega)$
 $$
