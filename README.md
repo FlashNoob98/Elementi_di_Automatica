@@ -1,6 +1,10 @@
 # Elementi_di_Automatica
 Appunti Elementi di Automatica
 
+## Requisiti
+Per generare correttamente i grafici nei diagrammi di Bode è necessario installare il software
+aggiuntivo `gnuplot`
+
 ## Per compilare
 ```
 pdflatex -shell-escape -synctex=1 -interaction=nonstopmode main.tex
