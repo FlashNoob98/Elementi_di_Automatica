@@ -31,3 +31,68 @@ W(s)  = \frac{K_B}{1+s\tau} \qquad
 K_B&>0
 \end{aligned}\right.
 $$
+Facendo riferimento alle figure \ref{fig.amplitude_binomio} per il modulo e
+\ref{fig.phase_monomio} per la fase si partirà da un punto sull'asse reale
+$K_B$ dato che la fase iniziale è nulla mentre si termina nell'origine con
+angolo asintoticamente pari a \SI{-90}{\degree}
+\begin{figure}[h]
+\centering
+\def\KB{3}
+\def\TAU{0.5}
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+}
+\NyquistGraph[smooth,samples=81]{-2:4}
+{\POAmp{\KB}{\TAU}}{\POArg{\KB}{\TAU}}
+
+\NyquistGrid
+\end{scope}
+
+\end{tikzpicture}
+\caption{$K_B = \KB,\ \tau=\TAU$}
+\end{figure}
+
+La distribuzione di punti non è uniforme lungo la curva, sono in realtà tutti
+addensati nel punto iniziale e nell'origine per $\omega\ll\omega_H$ e
+$\omega\gg\omega_H$.
+
+Se $K_B$ fosse negativa con $\tau$ positiva si avrebbe il grafico ribaltato nel
+secondo quadrante.
+
+\subsubsection{Funzione del secondo ordine}
+Si consideri una funzione del secondo ordine
+$$
+W(s) = \frac{K_B}{1+\frac{2\zeta}{\omega_n}s + \frac{s^2}{\omega_n^2}}
+$$
+Le figure d'esempio saranno questa volta la
+\ref{fig.amplitude_trinomio} per quanto riguarda il modulo e la
+\ref{fig.phase_trinomio} per la fase.
+\begin{figure}[h]
+\centering
+\def\KB{1}
+\def\ZETA{0.9}
+\def\ZETAA{0.2}
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+}
+\NyquistGraph[smooth,samples=81]{-2:4}
+{\SOAmp{\KB}{\ZETA}{1}}{\SOArg{\KB}{\ZETA}{1}}
+
+\NyquistGraph[smooth,samples=1250,color=red]{-2:4}
+{\SOAmp{\KB}{\ZETAA}{1}}{\SOArg{\KB}{\ZETAA}{1}}
+
+\NyquistGrid
+\end{scope}
+
+\end{tikzpicture}
+\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
+\end{figure}
+34:51
