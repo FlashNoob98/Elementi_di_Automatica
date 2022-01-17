@@ -95,4 +95,52 @@ Nyquist grid/.style={black},
 \end{tikzpicture}
 \caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
 \end{figure}
-34:51
+
+La sovraelongazione dovuta a coefficienti di smorzamento $\zeta$ minori di
+$\frac{1}{\sqrt{2}}$ tende ad aumentare la distanza della traiettoria
+dall'origine.
+Al limite per $\zeta\to 0 $ il grafico degenera in una coppia di semirette da
+$K_B$ a $+\infty$ e da $-\infty$ a $0$ rispettando la discontinuità dell'angolo.
+
+\subsubsection{Polo nell'origine}
+\begin{equation}
+W(s) = \frac{K_B}{s}
+\label{eq.polo_origine}
+\end{equation}
+Si ha una funzione di trasferimento con un polo nell'origine, facendo
+riferimento alla figura \ref{fig.amplitude_origin_pole} per il guadagno e si
+considera il segno della fase pari a \SI{-90}{\degree} come ricavato dalla
+equazione \ref{eq:fase_polo_origine}
+
+
+\begin{figure}[h]
+\centering
+\def\KB{1}
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}}
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+}
+%\NyquistGraph[smooth,samples=81]{-2:4}
+%{\IntAmp{\KB}}{\IntArg{\KB}}
+\draw[color=blue,line width=0.3mm](0,0)--(0,-2);
+\NyquistGrid
+\end{scope}
+
+\end{tikzpicture}
+%\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
+\end{figure}
+
+Esiste in realtà una singolarità nell'origine, si pensa di deformare l'asse
+immaginario intorno l'origine con un arco di circonferenza di raggio
+$\varepsilon$ ed angolo $\theta\in[0,\frac{\pi}{2}]$, dunque la precedente
+equazione \ref{eq.polo_origine} diventa
+$$
+W(j\omega) = \frac{K_B}{\varepsilon e^{j\theta}}
+$$
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{approssimazione_epsilon_polo_origine}
+\end{figure}
