@@ -1,0 +1,33 @@
+
+\section{Diagrammi di Nyquist}
+Sono una forma di rappresentazione della risposta armonica, definiti sul piano
+di Gauss, si ottiene una curva \textit{graduata} in $\omega$, ossia per ogni
+punto $\omega$ corrisponderà una coppia di punti sul piano di Gauss.
+
+Il modulo e la fase della funzione $W(j\omega)$ sono quelli ricavati
+nell'analisi per i diagrammi di Bode.
+
+Si potrebbe costruire il grafico tabellando tutti i valori per ogni $\omega$,
+in alternativa si arriva alla costruzione a partire dai diagrammi di Bode.
+Seguono le regole di tracciamento
+\begin{enumerate}
+ \item Costruire i diagrammi di Bode (con le eventuali correzioni)
+ \item $g=0 \Rightarrow W(j0) \in \mathbb{R}$ si partirà da un punto sull'asse
+reale di valore $K_B$
+\item $W(j\omega)$ abbandona l'asse reale sempre ortogonalmente.
+\item $g<0:W(j0) = 0$ il diagramma parte dall'origine \textit{oppure}
+
+$g>0: |W(j0)| = +\infty$ Asintoto dipendente dalla fase iniziale
+
+\item $n-m>0 \Rightarrow W(j\infty) = 0$ Sistema strettamente proprio, la
+tangente dipenderà ancora dalla fase $\phase{W(j\infty)}$
+\end{enumerate}
+
+Si consideri un sistema del primo ordine
+$$
+W(s)  = \frac{K_B}{1+s\tau} \qquad
+\left\{\begin{aligned}
+\tau&>0\\
+K_B&>0
+\end{aligned}\right.
+$$
