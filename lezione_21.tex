@@ -146,6 +146,7 @@ $$
 \includegraphics[width=\picwid]{approssimazione_epsilon_polo_origine}
 \end{figure}
 
+\newpage
 \subsubsection{Esempio complesso}
 Si ha la seguente funzione (in forma di Bode)
 $$
@@ -160,23 +161,147 @@ $$
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[
-gnuplot def/.append style={prefix={tikz/}}]
-\begin{scope}[xscale=7/3,yscale=3/180]
+gnuplot def/.append style={prefix={tikz/}},
+xscale=7/3]
+\begin{scope}[yscale=3/80]
 \tikzset{
 semilog lines/.style={black},
 }
-\OrdBode{15}
+\OrdBode{10}
 \UnitedB
-\semilog{-1}{2}{-90}{90}
+\semilog{-2}{2}{-60}{20}
 \BodeGraph[asymp
-lines,samples=2000]{-1:2}{\POAmpAsymp{10}{1}+\POAmpAsymp{1}{10}
--\POAmpAsymp{1}{0.1}}
+lines,samples=1000]{-2:2}{\POgAmpAsymp{1}{1}{0.1}{1}{9.999}+\POAmpAsymp{10}{1}}
 
-\BodeGraph[samples=100]{-1:2}{\POArg{1}{0.5}}
+\BodeGraph[samples=100]{-2:2}{\POgAmp{1}{1}{0.1}{1}{10}+\POAmp{10}{1}}
+
+\end{scope}
+\begin{scope}[yshift=-3.3cm,yscale=3/180]
+\tikzset{
+semilog lines/.style={black},
+}
+\UniteDegre
+\OrdBode{15}
+\semilog{-2}{2}{-180}{0}
+\BodeGraph[samples=100]{-2:2}{\POgArg{1}{1}{0.1}{1}{10}+\POArg{10}{1}}
+
+\BodeGraph[asymp lines,samples=1000]{-2:2}
+{\POgArgAsymp{1}{1}{0.1}{1}{9.999}+\POArgAsymp{10}{1}}
 
 \end{scope}
 \end{tikzpicture}
 %\caption{$\textcolor{red}{\tau=<0},\quad
 %\textcolor{blue}{\tau=>0} $}
 \end{figure}
-55:19
+
+Si rappresenta il conseguente diagramma di Nyquist.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+scale=7/10
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+}
+\NyquistGraph[smooth,samples=100]{-3:2}
+{\POgAmp{1}{1}{0.1}{1}{9.999}+\POAmp{10}{1}}
+{\POgArg{1}{1}{0.1}{1}{9.999}+\POArg{10}{1}}
+
+\NyquistPoint*[]{0.085/above,1/left,10/above left}
+{\POgAmp{1}{1}{0.1}{1}{9.999}+\POAmp{10}{1}}
+{\POgArg{1}{1}{0.1}{1}{9.999}+\POArg{10}{1}}
+
+\NyquistGrid
+\end{scope}
+
+\end{tikzpicture}
+%\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
+\end{figure}
+Sono riportate sulla curva alcune frequenze per
+notare come la distribuzione dei punti non sia uniforme.
+
+\newpage
+\subsubsection{Esempio poli del secondo ordine}
+Si riporta un ulteriore esempio con un polo del secondo ordine al denominatore
+$$
+W(s) = 0.1\cdot\frac{1+10s}{1+0.6s+s^2}
+$$
+
+I valori caratteristici sono:
+$$
+K_B=0.1,\ \tau_z=10,\ \omega_n=1,\ \zeta=0.3<\frac{1}{\sqrt{2}},\ g=0,\ n-m=1
+$$
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+xscale=7/3]
+\begin{scope}[yscale=3/80]
+\tikzset{
+semilog lines/.style={black},
+}
+\OrdBode{10}
+\UnitedB
+\semilog{-2}{2}{-60}{20}
+\BodeGraph[asymp
+lines,samples=1000]{-2:2}{\SOAmpAsymp{0.1}{0.3}{1}-\POAmpAsymp{1}{9.999}}
+
+\BodeGraph[samples=100]{-2:2}{\SOAmp{0.1}{0.3}{1}-\POAmp{1}{9.999}}
+
+\end{scope}
+\begin{scope}[yshift=-4.5cm,yscale=3/180]
+\tikzset{
+semilog lines/.style={black},
+}
+\UniteDegre
+\OrdBode{15}
+\semilog{-2}{2}{-90}{90}
+\BodeGraph[samples=100]{-2:2}{\SOArg{0.1}{0.3}{1}-\POArg{1}{9.999}}
+
+\BodeGraph[asymp lines,samples=1000]{-2:2}
+{\SOArgAsymp{0.1}{0.3}{1}-\POArgAsymp{1}{9.999}}
+
+\end{scope}
+\end{tikzpicture}
+%\caption{$\textcolor{red}{\tau=<0},\quad
+%\textcolor{blue}{\tau=>0} $}
+\end{figure}
+
+Il basso valore di $\zeta$ causa la sovraelongazione della curva e il ripido
+cambio di fase per $\omega=1$.
+
+\newpage
+Si rappresenta il diagramma di Nyquist
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+scale=25/10
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+Nyquist label axis/.style={very thick,blue}
+}
+\NyquistGraph[smooth,samples=2000]{-3:2}
+{\SOAmp{0.1}{0.3}{1}-\POAmp{1}{9.999}}
+{\SOArg{0.1}{0.3}{1}-\POArg{1}{9.999}}
+
+
+\NyquistPoint*[]{1/left,10/left}
+{\SOAmp{0.1}{0.3}{1}-\POAmp{1}{9.999}}
+{\SOArg{0.1}{0.3}{1}-\POArg{1}{9.999}}
+
+\def\valgridNx{0.2}
+\def\valgridNy{0.2}
+\NyquistGrid
+
+\end{scope}
+
+\end{tikzpicture}
+%\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
+\end{figure}
+
+1:16:35
