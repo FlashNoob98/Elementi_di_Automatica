@@ -327,4 +327,196 @@ a_2 & a_1
 }
 {a_1^2}
 $$
-1:18:06
+
+Si consideri la seguente funzione di trasferimento, si sviluppa il denominatore
+$$
+W(s) = \frac{K_B}{s(1+s)^2} = \frac{K_B}{s^3+2s^2 + s} =
+\frac{b_0}{a_3s^3+a_2s^2 + a_1s}
+$$
+Si individuano i coefficienti della matrice
+$$
+r_a = \frac{
+\begin{vmatrix}
+0 & K_B\\
+2 & 1
+\end{vmatrix}
+}
+{1^2} = -2K_B
+$$
+
+\newpage
+Si mostrano i diagrammi di Bode supponendo $K_B>0$
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+xscale=7/2]
+\begin{scope}[yscale=3/80]
+\tikzset{
+semilog lines/.style={black},
+}
+\OrdBode{10}
+\UnitedB
+\semilog{-1}{1}{-60}{20}
+\BodeGraph[asymp
+lines,samples=1000]{-1:1}
+{2*\POAmpAsymp{1}{1}+\IntAmp{1}}
+
+\BodeGraph[samples=100]{-1:1}
+{2*\POAmp{1}{1}+\IntAmp{1}}
+
+\end{scope}
+\begin{scope}[yshift=-1.5cm,yscale=3/180]
+\tikzset{
+semilog lines/.style={black},
+}
+\UniteDegre
+\OrdBode{15}
+\semilog{-1}{1}{-270}{-90}
+\BodeGraph[samples=100]{-1:1}
+{2*\POArg{1}{1}+\IntArg{1}}
+
+\BodeGraph[asymp lines,samples=1000]{-1:1}
+{2*\POArgAsymp{1}{1}+\IntArg{1}}
+
+\end{scope}
+\end{tikzpicture}
+%\caption{$\textcolor{red}{\tau=<0},\quad
+%\textcolor{blue}{\tau=>0} $}
+\end{figure}
+
+e quello di Nyquist
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+scale=15/10
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+Nyquist label axis/.style={very thick,blue}
+}
+% \NyquistGraph[smooth,samples=100]{-3:0.8}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\NyquistGraph[smooth,samples=100]{-0.5:0.999}
+{2*\POAmp{1}{1}+\IntAmp{1}}
+{2*\POArg{1}{1}+\IntArg{1}}
+
+
+% \NyquistPoint*[]{10/left}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\def\valgridNx{0.2}
+\def\valgridNy{0.2}
+\NyquistGrid
+
+\end{scope}
+
+\end{tikzpicture}
+%\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
+\end{figure}
+
+\newpage
+\subsubsection{Funzione con ritardo}
+Si aggiunge un ritardo $T$ ad una funzione di trasferimento con singolo polo
+$$
+W(s) = \frac{K_B}{1+s\tau}e^{-sT}
+$$
+non c'è alcun contributo al modulo che resta invariato
+$$
+|e^{j\omega T}| = 1 \forall \omega
+$$
+mentre la fase è traslata di $\omega T$
+$$
+\phase{e^{-j\omega T}} = -\omega T
+$$
+
+\def\T{10} %definizione ritardo T
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+xscale=7/2]
+\begin{scope}[yscale=3/80]
+\tikzset{
+semilog lines/.style={black},
+}
+\OrdBode{10}
+\UnitedB
+\semilog{-1}{1}{-60}{20}
+\BodeGraph[asymp
+lines,samples=1000]{-1:1}
+{\POAmpAsymp{1}{1}}
+
+\BodeGraph[samples=100]{-1:1}
+{\POAmp{1}{1}}
+
+\end{scope}
+\begin{scope}[yshift=-3cm,yscale=3/200]
+\tikzset{
+semilog lines/.style={black},
+}
+\UniteDegre
+\OrdBode{20}
+\semilog{-1}{1}{-200}{0}
+\BodeGraph[samples=100]{-1:1}
+{\POArg{1}{1}+\RetArg{\T}}
+
+\BodeGraph[asymp lines,samples=1000]{-1:1}
+{\POArgAsymp{1}{1}+\RetArg{\T}}
+
+\end{scope}
+\end{tikzpicture}
+\caption{$T = \T $}
+\end{figure}
+
+Si osserva come il diagramma del modulo resti invariato mentre quello della
+fase decresce all'aumentare di $\omega$.
+
+\newpage
+Questa differenza può essere apprezzata nel diagramma di Nyquist
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+scale=20/10
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+Nyquist label axis/.style={very thick,blue}
+}
+% \NyquistGraph[smooth,samples=100]{-3:0.8}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\NyquistGraph[smooth,samples=100]{-2:2}
+{\POAmp{1}{1}}
+{\POArg{1}{1}+\RetArg{\T}}
+
+
+% \NyquistPoint*[]{10/left}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\def\valgridNx{0.2}
+\def\valgridNy{0.2}
+\NyquistGrid
+
+\end{scope}
+
+\end{tikzpicture}
+\caption{$T=\T,\ K_B=1$}
+\end{figure}
+
+In questo caso il ritardo è contenuto e il sistema converge comunque
+nell'origine nonostante la porzione di grafico presente nel secondo quadrante,
+potrebbe accadere invece che la curva passi all'esterno del punto $(-1,0)$ e il
+sistema risulti instabile, esiste dunque un limite al guadagno $K_B$ che si può
+imporre ad un sistema con ritardo.
