@@ -304,4 +304,27 @@ Nyquist label axis/.style={very thick,blue}
 %\caption{$\textcolor{blue}{\zeta=\ZETA},\ \textcolor{red}{\zeta=\ZETAA}$}
 \end{figure}
 
-1:16:35
+\subsubsection{Funzione con polo nell'origine}
+Sia una funzione di trasferimento nella seguente forma con un solo polo
+nell'origine
+$$
+W(s) = \frac{b_ms^m + \ldots + b_0}{s^n+a_{n-1}s^{n-1} + \ldots + a_1s}\qquad
+\begin{aligned}
+a_0 &= 0\\
+g &= 1
+\end{aligned}
+$$
+
+Il diagramma di Nyquist presenterà un asintoto
+ortogonale all'asse reale passante per il punto $R_a$ calcolabile con la
+seguente
+$$
+r_a = \frac{
+\begin{vmatrix}
+b_1 & b_0 \\
+a_2 & a_1
+\end{vmatrix}
+}
+{a_1^2}
+$$
+1:18:06
