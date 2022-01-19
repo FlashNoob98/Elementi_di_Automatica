@@ -70,6 +70,7 @@ Invece per la asintoticamente stabilità si ha la seguente traiettoria
 
 Un punto di equilibrio è invece instabile se non è stabile.
 
+\newpage
 \subsubsection{Esempio stabilità sistema del primo ordine}
 Si consideri per semplicità un sistema del primo ordine, può essere
 rappresentata la sua equazione caratteristica
@@ -85,3 +86,35 @@ derivata sarà negativa e quindi lo stato tenderà a diminuire nuovamente.
 \centering
 \includegraphics[width=\picwid]{equilibrio_stabile_1D}
 \end{figure}
+Se la curva fosse monotona decrescente, l'ampiezza $\varepsilon$ potrebbe
+essere comunque grande, il sistema ritornerà sempre nel punto di
+equilibrio.
+
+Ciò potrebbe non essere vero, dunque è necessario definire la \textbf{Regione
+di Asintotica Stabilità} o RAS il luogo delle traiettorie che ritornano sempre
+nel punto di equilibrio.
+$$
+\text{RAS}(\overline{x})=\left\{ \stackrel{u=\overline{u}}{x_0\in X^n}
+\ :\ \stackrel{t\to+\infty}{ x_0 \to \overline{x} }\right\}
+$$
+Nel caso in esame il RAS è tutto il dominio $\mathbb{R}$ dunque il punto
+$\overline{x}$ viene definito globalmente asintoticamente stabile.
+L'asintotica stabilità non dipende da $\delta$.
+
+\subsubsection{Funzione spezzata}
+Si presenta una funzione definita da una spezzata come in figura.
+Si individuano i punti di equilibrio
+$$
+\overline{x} = (-\infty,-1] \cup \{2,5\}
+$$
+Si vede, valutando il segno della derivata che il punto 2 ad esempio è
+asintoticamente stabile per $\text{RAS}(2) = (-1,5)$.
+Viceversa per il punto 5, qualunque sia la $\varepsilon$ scelta, la traiettoria
+si allontanerà sempre dal punto di equilibrio dunque $\overline{x}=5$ è
+instabile.
+
+Nella regione  minore di -1 la derivata è nulla su un intero intervallo, dunque
+esiste un'intera regione d punti di equilibrio, è verificata la proprietà di
+stabilità ma non di asintotica stabilità, lo stato resta nello stesso punto
+dopo essere stato perturbato.
+36:56
