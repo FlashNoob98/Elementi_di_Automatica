@@ -101,6 +101,7 @@ Nel caso in esame il RAS è tutto il dominio $\mathbb{R}$ dunque il punto
 $\overline{x}$ viene definito globalmente asintoticamente stabile.
 L'asintotica stabilità non dipende da $\delta$.
 
+\newpage
 \subsubsection{Funzione spezzata}
 Si presenta una funzione definita da una spezzata come in figura.
 Si individuano i punti di equilibrio
@@ -112,9 +113,38 @@ asintoticamente stabile per $\text{RAS}(2) = (-1,5)$.
 Viceversa per il punto 5, qualunque sia la $\varepsilon$ scelta, la traiettoria
 si allontanerà sempre dal punto di equilibrio dunque $\overline{x}=5$ è
 instabile.
-
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{stabilità_spezzata}
+\end{figure}
 Nella regione  minore di -1 la derivata è nulla su un intero intervallo, dunque
 esiste un'intera regione d punti di equilibrio, è verificata la proprietà di
 stabilità ma non di asintotica stabilità, lo stato resta nello stesso punto
 dopo essere stato perturbato.
-36:56
+
+Il punto -1 è instabile a causa della pendenza positiva della funzione a destra.
+
+\subsection{Stabilità nei sistemi lineari e stazionari}
+Si scrive il sistema nella forma lineare di stato e ingresso, ponendo un
+ingresso costante
+$$
+\dot{x} = Ax + Bu\quad u(t)=\overline{u}=\text{cost} :
+0=A\overline{x}+B\overline{u}
+$$
+Si supponga che il sistema non sia omogeneo
+$$
+\overline{u}\neq0\left\langle
+\begin{aligned}
+\text{det}(A)\neq 0 &\Rightarrow \exists ! \text{ equilibrio}\ : \
+\overline{x}=-A^{-1}B\overline{u} \\
+\text{det}(A) = 0 & \left\langle
+\begin{aligned}
+B\overline{u} \in \text{Immagine}\{A\} &\Rightarrow \infty \text{ equilibri} :
+\overline{\overline{x}} + x_{\text{ker}(A)}\\
+B\overline{u} \notin \text{Immagine}\{A\} &\Rightarrow \nexists
+\end{aligned}
+\right.
+\end{aligned}
+\right.
+$$
+44:43
