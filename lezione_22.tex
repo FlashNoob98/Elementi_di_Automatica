@@ -1,0 +1,83 @@
+
+\section{Stabilità interna (Lyapunov)}
+La stabilità interna, chiamata anche \textit{stabilità secondo Lyapunov} fa
+riferimento alla stabilità di un punto di equilibrio di un sistema, cerca di
+qualificarne il tipo di equilibrio.
+Si riprende come esempio l'equilibrio del pendolo rigido analizzato alla
+sezione \ref{sec.:equilibrio_del_pendolo},
+sono stati trovati due differenti punti di equilibrio rispettivamente a
+\SI{0}{\degree} e \SI{180}{\degree}.
+Se il sistema viene perturbato mentre si trova nel suo punto di equilibrio
+inferiore, ritornerà nello stesso punto di equilibrio.
+
+Si ricorda la condizione di equilibrio
+$$
+f(\overline{x},\overline{u})=0
+$$
+si perturba lo stato del sistema
+$$
+\overline{x}\to\overline{x}+\Delta x
+$$
+si genererà un movimento che dipenderà dal tempo, nel caso del pendolo,
+considerando l'attrito con l'aria, inizierà ad oscillare intorno al punto di
+equilibrio con oscillazioni di ampiezza sempre minore.
+Se si trovasse invece nel punto di equilibrio superiore, dopo una perturbazione
+infinitesima, la massa cadrebbe inevitabilmente nel punto più in basso.
+
+Uno dei due punti di equilibrio ha una proprietà di \textit{attrattività}
+rispetto all'altro, se i movimenti dello stato ritornano nel punto di
+equilibrio dopo la perturbazione, anche dopo un tempo asintotico, allora questo
+punto si dirà \textit{stabile}.
+Se la traiettoria $x(t)$ si allontanerà definitivamente dal punto di
+equilibrio, si dirà che questo punto è \textit{instabile}.
+
+\subsubsection{Definizione formale secondo Lyapunov}
+Sia un sistema lineare tempo invariante con ingresso costante
+$$
+\dot{x} = f(x,u),\ u(t) = \overline{u} = \text{cost} :
+f(\overline{x},\overline{u}) = 0
+$$
+Il punto di equilibrio $\overline{x}$ è stabile
+se e solo se
+$$
+\overline{x} \text{ stabile} \stackrel{\text{def}}{\Leftrightarrow}
+\forall\varepsilon > 0 \exists\delta>0: \forall x_0 : ||\overline{x}-x_0||
+\leq\delta \Rightarrow ||x(t)-\overline{x}||<\varepsilon
+$$
+Un punto di equilibrio è asintoticamente stabile se
+$$
+\overline{x} \text{ asintoticamente stabile}
+\Leftrightarrow \left\{
+\begin{aligned}
+1) &\quad \overline{x} \text{ è stabile}\\
+2) &\quad \lim_{t\to+\infty} ||x(t)-\overline{x}||=0
+\end{aligned}
+\right.
+$$
+\newpage
+Si rappresenta graficamente la definizione di stabilità per un sistema di
+dimensione due.
+\begin{figure}[h]
+\centering
+\includegraphics[width = \picwid]{traiettoria_stabile}
+\end{figure}
+
+Invece per la asintoticamente stabilità si ha la seguente traiettoria
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{traiettoria_asintoticamente_stabile}
+\end{figure}
+
+Un punto di equilibrio è invece instabile se non è stabile.
+
+\subsubsection{Esempio stabilità sistema del primo ordine}
+Si consideri per semplicità un sistema del primo ordine, può essere
+rappresentata la sua equazione caratteristica
+$\dot{x} = f(x,\overline{u})$, il punto di stabilità si individua mediante
+l'intersezione con l'asse delle ascisse $(\dot{x}=0)$. Si individua su questo
+asse l'intorno $\overline{x} \pm \varepsilon$,
+si applica una perturbazione $\delta$ spostando il punto di equilibrio, ad
+esempio verso sinistra, ma a sinistra la derivata è positiva, dunque la $x$
+tenderà nuovamente ad aumentare e ritornare nel punto di equilibrio, viceversa
+se si analizza una perturbazione verso destra, la
+derivata sarà negativa e quindi lo stato tenderà a diminuire nuovamente. 22:36
