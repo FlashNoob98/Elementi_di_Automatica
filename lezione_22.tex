@@ -141,10 +141,60 @@ $$
 \begin{aligned}
 B\overline{u} \in \text{Immagine}\{A\} &\Rightarrow \infty \text{ equilibri} :
 \overline{\overline{x}} + x_{\text{ker}(A)}\\
-B\overline{u} \notin \text{Immagine}\{A\} &\Rightarrow \nexists
+B\overline{u} \notin \text{Immagine}\{A\} &\Rightarrow \nexists \text{
+equilibrio}
 \end{aligned}
 \right.
 \end{aligned}
 \right.
 $$
-44:43
+
+Se invece l'ingresso $\overline{u}$ è nullo si risolvono i seguenti due casi
+$$
+\overline{u}=0\Rightarrow(A\overline{x}=0) \left\langle
+\begin{aligned}
+\text{det}(A) \neq 0 & \Rightarrow \exists! \text{ equilibrio} :
+\overline{x}=0\\
+\text{det}(A) = 0 & \Rightarrow \exists \infty \text{ equilibri} :
+\overline{x} \in \text{Ker}(A)
+\end{aligned}\right.
+$$
+
+\newpage
+\subsubsection{Analisi di un punto di equilibrio}
+Si scelga un punto di equilibrio qualsiasi
+$(\overline{x},\overline{u})$ se il sistema è in equilibrio vale l'equazione di
+Lagrange, ricordando che il punto iniziale è pari allo stato in cui si trova il
+sistema in quel momento
+$$
+\overline{x} = e^{At} \overline{x} + \int_0^t e^{a(t-\tau)} B\overline{u}d\tau
+$$
+si perturba lo stato
+$$
+x(t) = e^{At}(\overline{x}+\Delta x)+ \int_0^t e^{a(t-\tau)} B\overline{u}d\tau
+$$
+Si valuta la differenza tra lo stato dopo la perturbazione e prima,
+accertandosi che la norma della differenza sia minore di $\varepsilon$
+$$
+x(t)-\overline{x} = e^{At}\Delta x
+\longrightarrow ||x(t)-\overline{x}|| =
+||e^{At}\Delta x|| < \varepsilon
+$$
+Nella norma non compaiono il punto di equilibrio e lo stato iniziale, dunque la
+stabilità del punto di equilibrio dipende solo dalla matrice $A$ e dalla
+perturbazione $\Delta x$, se un solo punto di equilibrio è stabile, allora lo
+saranno tutti. Questa affermazione vale solo per i sistemi lineari e non quelli
+non lineari, un chiaro esempio è il pendolo analizzato precedentemente che ha
+un punto stabile ed uno instabile ma non è un sistema lineare.
+
+Le funzioni del tempo contenute nella matrice esponenziale $e^{At}$ sono i
+\textit{modi naturali}, se questi sono limitati nel tempo, allora la norma sarà
+sicuramente limitata. I modi dipendono però dagli autovalori della matrice $A$
+$$
+A = \left\{\begin{aligned}
+\Re{\lambda_i}&<0 \ \forall i & &\Leftrightarrow \text{Sistema asintoticamente
+stabile}\\
+\Re{\lambda_i} &\leq 0 \ \forall i & &\Rightarrow
+\end{aligned}
+\right.$$
+1:00:33
