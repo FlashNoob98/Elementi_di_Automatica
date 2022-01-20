@@ -294,4 +294,57 @@ polinomio $P_c$ è il negato (nel senso dei segni) di $P_a$.
 Il criterio di Karithonov garantisce che il polinomio di partenza $P(s)$ abbia
 tutte radici a parte reale negativa, per qualunque combinazione di valori di
 $\alpha$ compresi nei rispettivi intervalli prima definiti se i quattro
-polinomi costruiti hanno tutti radici a parte reale negativa. 1:02:47
+polinomi costruiti hanno tutti radici a parte reale negativa, si applica il
+criterio di Routh ad ogni singolo polinomio.
+
+\subsection{Legame tra stabilità asintotica e funzione di trasferimento}
+Un sistema è stabile se la sua funzione di trasferimento converge
+asintoticamente a zero, questo tipo di stabilità prende il nome di stabilità
+esterna o ingresso-uscita, chiamata anche \textit{BIBO}
+Bounded-Input-Bounded-Output o \textit{LILO} Limited-Input-Limited-Output.
+
+La stabilità secondo Liapunov è invece un concetto di stabilità interna al
+sistema, locale nell'intorno del punto di equilibrio. È comunque un concetto di
+stabilità più forte perché riguarda lo stato del sistema e implica quella
+esterna, se i modi del sistema, studiati con il criterio di Liapunov, sono
+convergenti allora lo saranno sicuramente quelli eccitabili ed osservabili,
+analizzati dalla funzione di trasferimento.
+
+L'implicazione inversa è vera solo per i sistemi in forma minima, ossia se
+tutti i suoi modi sono raggiungibili (eccitabili) ed osservabili.
+La matrice esponenziale $e^{At}$ può essere espressa come rapporto tra una
+matrice $E(s)$ e un polinomio $m(s)$. Si applica l'impulso, ovvero si
+moltiplica per le matrici $C$ e $B$ per ottenere la risposta all'impulso e si
+ricava il rapporto tra una matrice $N(s)$ e un polinomio $dw(s)$ chiamato
+polinomio minimo. Se il polinomio minimo coincide con il polinomio
+caratteristico $P(s)=|sI-A|$, allora il sistema è in forma minima.
+$$
+W(t)  = Ce^{At}B = C\frac{E(s)}{m(s)}B = \frac{N(s)}{dw(s)}
+$$
+Nel polinomio $m(s)$ sono presenti tutti i modi, moltiplicando per $C$ e $B$
+potrebbero esserci delle cancellazioni e il polinomio $dw(s)$ potrebbe non
+contenere tutti i modi e il sistema non essere in forma minima.
+
+Se il sistema è in forma ISU si costruisce la matrice $A$ e si calcola il
+polinomio caratteristico, studiandolo con il criterio di Routh.
+In alternativa si può costruire la funzione di trasferimento
+$W(s)=\frac{N(s)}{dw(s)}$, si può utilizzare il polinomio $dw(s)$ ma devono
+essere eseguite prima tutte le cancellazioni, se e solo se il polinomio ha
+ancora grado $n$ allora si può utilizzare per studiare la stabilità interna.
+
+\subsection{Metodo indiretto di Lyapunov (I criterio)}
+Si vuole studiare la stabilità di un punto di equilibrio non lineare mediante
+lo studio di un sistema linearizzato attorno a quel punto.
+
+Sia il sistema non lineare con ingresso costante situato in un suo punto di
+equilibrio
+$$
+\dot{x} =f(x,u) \qquad u(t) = \overline{u} \longrightarrow
+f(\overline{x},\overline{u})=0 : \overline{x} \text{ punto di equilibrio}
+$$
+Si costruisce il sistema linearizzato nell'intorno dei punti di equilibrio di
+cui si vuole studiare la stabilità, si introducono le variabili di variazione
+$$
+\delta x = x-\overline{x},\ \delta u = u - \overline{u}
+$$
+1:19:00
