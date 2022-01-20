@@ -222,10 +222,73 @@ $$\left\{\begin{aligned}
 \alpha+ \beta &> 0
 \end{aligned}\right.\Rightarrow
 \left\{\begin{aligned}
-\cancel{\beta} &> \cancel{ -2}\\
-\beta & > -\frac{1}{2} \\
-\beta & > -\alpha
+&\cancel{\beta  > -2}\\
+&\beta  > -\frac{1}{2} \\
+&\beta  > -\alpha
 \end{aligned}\right.
 $$
-Con soli due parametri è possibile rappresentare graficamente questa regione
-46:17
+Con soli due parametri è possibile rappresentare graficamente questa regione,
+la RAS è sicuramente contenuta in questa regione, potrebbe essere però più
+piccola. Per individuare la RAS si costruisce la tabella di Routh, i
+coefficienti della prima colonna devono avere tutti lo stesso segno
+$$
+\begin{array}{c|cc}
+3 & 1 & 1+2\beta \\
+2 & 2+\beta & \alpha + \beta \\ \hline
+1 & \frac{2(\beta+1)^2-\alpha}{2+\beta}\\
+0 & \alpha+\beta
+\end{array}\Rightarrow\left\{
+\begin{aligned}
+&2+\beta > 0 \\
+&\frac{2(\beta+1)^2-\alpha}{2+\beta} > 0\\
+&\alpha + \beta > 0
+\end{aligned}\right.\Rightarrow
+\left\{\begin{aligned}
+&\beta>-2\\
+&2(\beta+1)^2 > \alpha\\
+&\beta > -\alpha
+\end{aligned}\right.
+$$
+Intersecando i due sistemi ottenuti si ottiene la RAS
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{ras_alpha_beta}
+\end{figure}
+
+\newpage
+\subsubsection{Criterio di Karithonov}
+Il criterio di Karithonov fa uso del criterio di Routh per risolvere il
+problema di un sistema definito da parametri con una certa tolleranza.
+
+Si consideri un polinomio definito dalla seguente lista di coefficienti
+compresi in un certo intervallo di valori:
+$$
+p(s) : \{\alpha_0,\alpha_1,\alpha_2,\ldots,\alpha_n\} \qquad
+\alpha_i\in[\alpha_i^-,\alpha_i^+]\quad i=0,\ldots,n
+$$
+
+È un caso tipico di tutti i sistemi i cui parametri sono forniti dal
+costruttore con una tolleranza oppure sono stati studiati mediante un certo
+strumento con un'accuratezza finita o ancora sono sottoposti a temperature
+molto diverse tra loro e i loro parametri hanno una certa dipendenza dalla
+temperatura.
+
+Al fine di studiare l'asintotica stabilità vengono costruiti quattro polinomi
+utilizzando gli estremi di ogni parametro secondo uno specifico ordine
+$$
+\begin{aligned}
+P_a(s) &:
+\{\alpha_0^+,\alpha_1^+,\alpha_2^-,\alpha_3^-,\alpha_4^+,\alpha_5^+,\ldots\}\\
+P_b(s) &:
+\{\alpha_0^-,\alpha_1^-,\alpha_2^+,\alpha_3^+,\alpha_4^-,\alpha_5^-,\ldots\}\\
+P_c(s) &:
+\{\alpha_0^+,\alpha_1^-,\alpha_2^-,\alpha_3^+,\alpha_4^+,\alpha_5^-,\ldots\}\\
+P_d(s) &:
+\{\alpha_0^-,\alpha_1^+,\alpha_2^+,\alpha_3^-,\alpha_4^-,\alpha_5^+,\ldots\}
+\end{aligned}
+$$
+Il polinomio $P_b$ è il negato di $P_a$, il polinomio $P_c$ ha i segni traslati
+di una posizione verso sinistra rispetto a $P_a$, il polinomio $P_c$ è il
+negato di $P_a$.
+
+1:02:31
