@@ -234,7 +234,7 @@ $$
  n-2 & c_{n-2,1} & c_{n-2,2} & \cdots & \cdots \\
  n-3 & c_{n-3,1} & c_{n-3,2} & \cdots & \cdots\\
  \vdots \\
-c_0 & c_{0,1}
+ 0 & c_{0,1}
 \end{array}
 $$
 \caption{Tabella di Routh}
@@ -255,4 +255,60 @@ diversi da zero allora la tabella si definisce ben definita.
 Il numero di radici a parte reale negativa è pari al numero di permanenze di
 segno nella tabella, ossia il numero di volte in cui si contano due numeri
 consecutivi con lo stesso segno.
-1:19:57
+Il numero di radici a parte reale negativa è pari al numero di permanenze di
+segno della prima colonna della matrice, viceversa quelle a parte positiva sono
+pari alle differenze di segno tra due valori consecutivi nella colonna.
+Può essere utile capire il numero di radici positive al fine di correggere
+eventualmente il sistema.
+
+\newpage
+\subsubsection{Esempio numerico}
+Si consideri il seguente polinomio
+$$
+P(s) = s^4+6s^3 + 13s^2 + +12s +4
+$$
+La condizione necessaria è verificata, tutti i coefficienti sono positivi, si
+costruisce la tabella di Routh.
+\begin{table}[h]
+$$
+\begin{array}{c|ccc}
+4 & 1 & 13 & 4\\
+3 & 6 & 12 \\ \hline
+2 & 11 & 4 \\
+1 & 108 & & (\times11)\\
+0 & 4
+\end{array}
+$$
+\end{table}
+Si calcolano i coefficienti
+$$
+c_{2,1} = -\frac{1}{6}\begin{vmatrix}
+1 & 13\\
+6 & 12
+\end{vmatrix} = 11
+$$
+$$
+c_{2,2} = -\frac{1}{6}\begin{vmatrix}
+1 & 4\\
+6 & 0
+\end{vmatrix} = 4
+$$
+In questo caso è presente lo zero nella matrice, il coefficiente $c_{2,2}$ è
+proprio pari al termine presente nella posizione
+$c_{4,3}$ ovvero 4, non è necessario calcolare il determinante.
+$$
+c_{1,1} = -\frac{1}{11}\begin{vmatrix}
+6 & 12 \\
+11 & 4
+\end{vmatrix} = \frac{108}{11}
+$$
+Si può moltiplicare per qualunque scalare positivo un'intera riga senza
+alterare il risultato, si può moltiplicare la riga 1 per 11.
+Anche il termine $c_{0,1}$ assume direttamente il valore 4, senza calcolare il
+determinante.
+La matrice è ben definita, sono presenti quattro permanenze di segno, il
+polinomio ha tutte radici a parte reale negativa. Il polinomio si poteva
+infatti riscrivere come
+$$
+p(s) = (s+1)^2(s+2)^2
+$$
