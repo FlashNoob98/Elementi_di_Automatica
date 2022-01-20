@@ -1,0 +1,113 @@
+
+\subsubsection{Polinomi con coefficienti discordi}
+Si consideri il seguente polinomio
+$$
+p(s) = s^5 + 8s^4 + 17s^3 + 8s^2 -14s - 10
+$$
+La condizione necessaria non è soddisfatta, il polinomio non può rappresentare
+un sistema asintoticamente stabile, esisteranno delle radici la cui parte reale
+sarà maggiore o uguale a zero.
+Si costruisce comunque la tabella di Routh per esercizio e per contare il
+numero di radici positive.
+\begin{table}[h]
+$$
+\begin{array}{c:c|ccc}
+& 5 & 1 & 17 & -4 \\
+p & 4 & 8 & 8 & -10 \\ \hline
+p & 3 & 16 &-23/2 \\
+p & 2 & 55/4 & -20 \\
+p & 1 & 259/22 \\
+c & 0 & -20
+\end{array}
+$$
+\end{table}
+Sono presenti quattro permanenze di segno consecutive mentre il passaggio dalla
+riga 1 alla riga 0 contiene una variazione di segno. Il polinomio avrà una sola
+radice a parte reale positiva, la presenza del termine noto -10 esclude la
+presenza di uno zero a parte reale nulla.
+Risolvendo il polinomio con un calcolatore si ottiene:
+$$
+\lambda_i = \{ -5,-2,-1\pm j,1 \}
+$$
+
+\subsubsection{Ulteriore esempio}
+Anche in questo caso non è soddisfatta la condizione necessaria
+$$
+p(s) = s^4 - 6s^3 - 11s^2 + 74 s + 78
+$$
+Si applica la tabella di Routh
+$$
+\begin{array}{c:c|ccc}
+&4 & 1 & -11 & 78\\
+c&3 & -6 & 74 \\ \hline
+c&2 & 4/3 & 78 \\
+p&1 & 425 \\
+p&0 & 78
+\end{array}
+$$
+Il polinomio ha due radici a parte reale negativa e due a parte reale maggiore
+o uguale a zero
+$$
+\lambda_i = \{-3,-1,5\pm j\}
+$$
+
+\newpage
+\subsubsection{Tabella contenente uno zero}
+Si analizza il seguente polinomio
+$$
+p(s) = s^4 + s^3 + s^2 + s + 2
+$$
+È soddisfatta la condizione necessaria ma nella costruzione della tabella
+compare uno zero, dunque non è ben definita e il polinomio non ammette tutte le
+soluzioni a parte reale negativa.
+$$
+\begin{array}{c:c|cccc}
+ & 4 & 1 & 1 & 2 \\
+ & 3 & 1 & 1 \\ \hline
+ & 2 & 0  \\
+ & 1 \\
+ & 0
+\end{array}
+$$
+
+Se si volesse comunque contare il numero di zeri a parte reale positiva e
+negativa esistono alcune tecniche equivalenti per continuare il calcolo.
+
+\textbf{Tecnica delle perturbazioni elementari}
+
+Si può sommare una $\varepsilon$ infinitesima positiva ai coefficienti, ossia
+perturbarli localmente per eliminare lo zero, si continua lo sviluppo della
+tabella:
+$$
+\begin{array}{cc:c|cccc}
+\varepsilon<0 & \varepsilon>0  & 4 & 1 & 1 & 2 \\
+p & p & 3 & 1 & 1 \\ \hline
+c & p & 2 & \varepsilon & 2  \\
+c & c & 1 & -2/\varepsilon\\
+p & c & 0 & 2
+\end{array}
+$$
+Il primo elemento sotto lo zero sarà
+$$
+c_{1,1} = -\frac{1}{\varepsilon}\begin{vmatrix}
+1 & 1 \\
+\varepsilon & 2
+\end{vmatrix} = -\frac{1}{\varepsilon}(2-\varepsilon) \simeq
+-\frac{2}{\varepsilon}
+$$
+Con $\varepsilon$ infinitesimo positivo si hanno due permanenze e due cambi di
+segno, se $\varepsilon$ fosse negativo invece si vede che il risultato non
+cambia.
+Questa tecnica è valida se si azzera un elemento in prima colonna ma non
+più di uno zero per riga.
+
+\subsubsection{Zeri multipli sulla stessa riga}
+Si consideri una riga $i$-esima contenente più di uno zero tra i primi $p$
+elementi, si moltiplicano i coefficienti della riga per $(-1)^p$,
+successivamente si trasla la riga verso sinistra di $p$ posizioni eliminando
+gli zeri, si somma questa nuova riga più piccola ottenuta e la si somma alla
+riga $i$-esima originale; il risultato della somma viene sostituito al posto
+della riga $i$-esima.
+
+Si applica la tecnica al polinomio precedente, si vede che $p=1$, la riga 2
+18:40
