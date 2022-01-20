@@ -345,6 +345,28 @@ $$
 Si costruisce il sistema linearizzato nell'intorno dei punti di equilibrio di
 cui si vuole studiare la stabilità, si introducono le variabili di variazione
 $$
-\delta x = x-\overline{x},\ \delta u = u - \overline{u}
+\delta x = x-\overline{x},\quad \delta u = u - \overline{u} \rightarrow
+A=\left.\frac{\partial f(x,u)}{\partial x}\right|_{
+\begin{aligned}
+&u=\overline{u}\\
+&x=\overline{x}
+\end{aligned}}
 $$
-1:19:00
+Si definisce una matrice $A$ come lo Jacobiano della funzione $f$ rispetto ad
+$x$ calcolato nel punto di equilibrio, per ogni punto di equilibrio.
+
+Il primo criterio di Lyapunov afferma che il punto di equilibrio $\overline{x}$
+è asintoticamente stabile se la matrice $A$ ha tutti autovalori a parte reale
+negativa.
+$\overline{x}$ è instabile se la matrice $A$ ha qualche autovalore a parte reale
+positiva.
+Non sono presenti condizioni circa la semplice stabilità del sistema, non si
+può cioè affermare nulla se la matrice $A$ ha qualche autovalore a parte reale
+nulla, si ricorre in questi casi al teorema di
+\href{https://it.wikipedia.org/wiki/Teorema_di_LaSalle}{LaSalle}, non si può
+utilizzare questo metodo perché la stabilità dipenderebbe dai parametri
+trascurati nel processo di linearizzazione.
+
+\newpage
+\section{Sistemi interconnessi}
+1:26:07
