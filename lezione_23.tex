@@ -101,6 +101,7 @@ cambia.
 Questa tecnica è valida se si azzera un elemento in prima colonna ma non
 più di uno zero per riga.
 
+\newpage
 \subsubsection{Zeri multipli sulla stessa riga}
 Si consideri una riga $i$-esima contenente più di uno zero tra i primi $p$
 elementi, si moltiplicano i coefficienti della riga per $(-1)^p$,
@@ -109,5 +110,91 @@ gli zeri, si somma questa nuova riga più piccola ottenuta e la si somma alla
 riga $i$-esima originale; il risultato della somma viene sostituito al posto
 della riga $i$-esima.
 
+
 Si applica la tecnica al polinomio precedente, si vede che $p=1$, la riga 2
-18:40
+$(0,\ 2)$ viene moltiplicata per $-1$ e traslata di una posizione a sinistra
+ottenendo $(-2,\ 0)$, successivamente sommata alla riga iniziale, si ottiene la
+nuova tabella
+$$
+\begin{array}{c:c|cccc}
+   & 4 & 1 & 1 & 2 \\
+ p & 3 & 1 & 1 \\ \hline
+ c & 2 & -2 & 2  \\
+ c & 1 & 2 \\
+ p & 0 & 2
+\end{array}
+$$
+
+Un'ulteriore tecnica prevede di moltiplicare il polinomio per una radice nota,
+aumentandone il grado, si ricostruisce la tabella di Routh, non dovrebbe
+comparire più lo zero nella prima colonna, salvo casi eccezionali, se ciò non
+dovesse accadere si può cambiare il valore della radice. Si dovrà togliere
+successivamente al numero di radici positive o negative quella aggiunta
+arbitrariamente, in base al suo segno.
+
+\subsubsection{Annullamento di un'intera riga}
+Si consideri il polinomio
+$$
+p(s) = s^5 + s^4 + s^3 + s^2 + s + 1
+$$
+La condizione necessaria è verificata, si costruisce la tabella di Routh, tutta
+la riga 3 sarà nulla
+$$
+\begin{array}{c:c|ccc}
+  & 5 & 1 & 1 & 1 \\
+p & 4 & 1 & 1 & 1 \\ \hline
+  & 3 & 0 & 0 \\
+  & 2 \\
+  & 1 \\
+  & 0
+\end{array}
+$$
+In questo caso il polinomio di partenza può essere fattorizzato in un prodotto
+di due polinomi $p'(s) \cdot p''(s)$, il primo polinomio dipende da tutte le
+righe della tabella di Routh fino a quella prima della riga nulla, in questo
+caso 5 e 4. Un'intera riga si può annullare solo in posizioni dispari (3).
+Le radici contenute nel polinomio $p'$ rispettano la permanenza di segno delle
+righe precedenti a quella annullata, di conseguenza in questo caso il polinomio
+$p'$ avrà una sola radice con parte reale negativa.
+Le restanti righe riguardano il polinomio $p''$, sarà di ordine pari al numero
+di righe rimanenti, è di ordine sempre pari ed è biquadratico, ossia scrivibile
+nella forma $s^2$.
+
+Le radici di un polinomio biquadratico hanno sempre simmetria quadrantale, una
+radice reale avrà una radice simmetrica sull'asse reale di segno opposto, una
+coppia di radici complesse e coniugate avranno un'altra coppia sul lato opposto
+rispetto all'asse reale; ogni quadrante ha la stessa disposizione delle
+radici, si ottiene ruotando quello adiacente.
+
+Sicuramente la condizione necessaria di Routh non è soddisfatta, avrà solo i
+coefficienti delle potenze pari mentre quelli delle potenze dispari saranno
+nulli, in ogni caso non potrebbero esistere radici che non appartengano almeno
+all'asse immaginario o siano a parte reale positiva.
+
+I coefficienti del polinomio $p''$ sono quelli dell'ultima riga prima prima
+della riga nulla
+$$
+p''(s) = s^4 + s^2 + 1
+$$
+Si potrebbe ottenere il polinomio $p'$ eseguendo una divisione
+$$
+\polylongdiv[style=D,vars=s]{s^5+s^4+s^3+s^2+s+1}{s^4+s^2+1}
+$$
+Più rapidamente si può ottenere la riga mancante in tabella derivando il
+polinomio $p''$ ed inserendo i coefficienti ottenuti $\frac{dp''(s)}{ds} = 4s^3
++ 2s$.
+
+La nuova tabella ottenuta sarà
+$$
+\begin{array}{c:c|ccc}
+  & 5 & 1 & 1 & 1 \\
+p & 4 & 1 & 1 & 1 \\ \hline
+p & 3 & 4 & 2 & \frac{dp''}{ds}\\
+p & 2 & 2 & 4 &(\times 4)\\
+c & 1 & -12 & & (\times2)\\
+c & 0 & 4
+\end{array}
+$$
+Il polinomio $p''$ avrà due radici a parte reale negativa e due a parte
+reale positiva.
+38:09
