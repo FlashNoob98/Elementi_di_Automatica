@@ -197,4 +197,35 @@ c & 0 & 4
 $$
 Il polinomio $p''$ avrà due radici a parte reale negativa e due a parte
 reale positiva.
-38:09
+
+\newpage
+\subsection{Studio dei sistemi a parametri incerti}
+Un sistema è a parametri incerti se alcuni suoi parametri sono forniti con un
+intervallo di incertezza oppure non sono ancora stati dimensionati, ad esempio
+il sistema può contenere dei regolatori a struttura preassegnata come i
+regolatori ``PID'' (\textit{Proporzionali-Integrali-Derivativi}) la cui
+struttura e consecutiva legge di controllo sono già assegnati, vanno solo
+impostati i giusti parametri.
+Si cerca dunque la regione di asintotica stabilità (RAS) nell'insieme dei
+parametri, il criterio di Routh si presta bene a questi studi.
+
+Si consideri il polinomio
+$$
+p(s) =s^3 + (2+\beta)^2s^2 + (1+2\beta)s + \alpha + \beta \qquad \alpha,\beta
+\in \mathbb{R}
+$$
+
+Si deve sempre imporre la condizione necessaria
+$$\left\{\begin{aligned}
+2+\beta &> 0 \\
+1+2\beta &> 0 \\
+\alpha+ \beta &> 0
+\end{aligned}\right.\Rightarrow
+\left\{\begin{aligned}
+\cancel{\beta} &> \cancel{ -2}\\
+\beta & > -\frac{1}{2} \\
+\beta & > -\alpha
+\end{aligned}\right.
+$$
+Con soli due parametri è possibile rappresentare graficamente questa regione
+46:17
