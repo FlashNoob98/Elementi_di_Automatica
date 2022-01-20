@@ -520,3 +520,37 @@ nell'origine nonostante la porzione di grafico presente nel secondo quadrante,
 potrebbe accadere invece che la curva passi all'esterno del punto $(-1,0)$ e il
 sistema risulti instabile, esiste dunque un limite al guadagno $K_B$ che si può
 imporre ad un sistema con ritardo.
+\begin{figure}[h]
+\centering
+\def\T{20}
+\begin{tikzpicture}[
+gnuplot def/.append style={prefix={tikz/}},
+scale=20/10
+]
+\begin{scope}
+\tikzset{
+Nyquist grid/.style={black},
+Nyquist label axis/.style={very thick,blue}
+}
+% \NyquistGraph[smooth,samples=100]{-3:0.8}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\NyquistGraph[smooth,samples=1000]{-2:2}
+{\POAmp{2}{1}}
+{\POArg{2}{1}+\RetArg{\T}}
+
+
+% \NyquistPoint*[]{10/left}
+% {2*\POAmp{1}{1}+\IntAmp{1}}
+% {2*\POArg{1}{1}+\IntArg{1}}
+
+\def\valgridNx{0.2}
+\def\valgridNy{0.2}
+\NyquistGrid
+
+\end{scope}
+
+\end{tikzpicture}
+\caption{$T=\T,\ K_B=2$}
+\end{figure}
