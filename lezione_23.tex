@@ -388,5 +388,56 @@ ponendo un sistema integratore si otterrebbe la posizione angolare $\theta$.
 
 \begin{figure}[h]
  \centering
- \includegraphics[width=0.6\linewidth{motore_elettrico_schema_blocchi}
+ \includegraphics[width=0.6\linewidth]{motore_elettrico_schema_blocchi}
 \end{figure}
+
+Si scrive l'equazione alla maglia del sottosistema elettrico e meccanico
+$$\left\{\begin{aligned}
+v&=Ri+L\dot{i} + e_f \\
+e_f &= K\omega
+\end{aligned}\right. \qquad
+\left\{\begin{aligned}
+j\dot\omega &=C_m -b\omega -C_r \\
+C_m &= Ki
+\end{aligned}\right.
+$$
+Si aggiunge l'integratore
+$$\left\{\begin{aligned}
+\theta &= \int_0^t \omega (\tau) d\tau
+\end{aligned}\right.
+$$
+Si costruisce la ISU del sottosistema elettrico e meccanico
+$$\left\{\begin{aligned}
+x_1 &= i\\
+\dot{x}_1 &= -\frac{R}{L}x_1 + \frac{1}{L}v -\frac{1}{L}e_f \\
+y' &= C_m = Kx_1
+\end{aligned}\right. \qquad
+\left\{\begin{aligned}
+x_2 &= \omega \\
+\dot{x}_2 &= -\frac{b}{J}x_2 + \frac{1}{J}C_m -\frac{1}{J}C_r\\
+y'' &= x_2\\
+y''' &= e_f = Kx_2
+\end{aligned}\right.
+$$
+Il sottosistema integratore
+$$
+\left\{\begin{aligned}
+ x_3 &= \theta \\
+ \dot{x_3} & = \omega \\
+ y &= x_3
+\end{aligned}\right.
+$$
+
+Il vettore di stato complessivo è formato dall'unione di tutti gli stati
+ponendo $v=u_1$ e $C_r=u_2$
+$$
+\left\{\begin{aligned}
+\dot{x}_1 &= -\frac{R}{L}x_1 + \frac{1}{L}u_1 - \frac{K}{L}x_2 \\
+\dot{x}_2 &= -\frac{b}{J}x_2 +\frac{K}{J}x_1 - \frac{1}{J}u_2\\
+\dot{x}_3 & = x_2 \\
+y&= x_3
+\end{aligned}\right.
+$$
+Il sistema ISU complessivo è stato costruito tenendo in considerazione la
+relazione di interconnessione tra i sistemi e le rispettive variabili che
+permettono la loro interazione.
