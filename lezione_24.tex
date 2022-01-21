@@ -44,3 +44,89 @@ raggiungibilità dipende solo da queste due matrici. La matrice $A$ contiene i
 modi naturali e le caratteristiche interne al sistema, la matrice $B$ invece
 modula l'ingresso e lo lega alla variabile di stato.
 
+Un drone ad esempio è un sistema sottoattuato, non si può controllare
+istantaneamente la sua posizione e il suo orientamento ma si possono solo
+comandare i motori e quindi la spinta risultante, non si può in alcun modo
+applicare una spinta (senza aggiungere ulteriori eliche e dunque variabili di
+ingresso) che sia ortogonale al piano del drone.
+
+\subsubsection{Matrice di raggiungibilità}
+Permette di studiare la raggiungibilità del sistema, è una matrice a blocchi
+per colonna, il primo blocco è la matrice $B$, poi il prodotto di $A\times B$
+fino ad $A^{n-1}B$ dove $n$ è la dimensione del sistema (o della matrice $A$)
+$$
+R=\left(\begin{array}{c|c|c|c|c}
+   B & AB & A^2B & \dots & A^{n-1}B
+  \end{array}\right)\qquad n\times(n\cdot m )
+$$
+Uno stato $\hat{x}$ è raggiungibile se e solo se
+$$
+\hat{x} \text{ raggiungibile} \Leftrightarrow \hat{x} \in X_R =
+\text{Immagine}\{R\}
+$$
+Un sistema è completamente raggiungibile se $X_R$ corrisponde a tutto lo spazio
+$X^n$ ma ciò è vero se la matrice $R$ è di ragno pieno.
+Per i sistemi con un solo ingresso la matrice diventa quadrata, è sufficiente
+assicurarsi che il determinante sia diverso da zero affinchè abbia rango
+massimo.
+
+Si consideri il seguente esempio
+$$
+A = \begin{pmatrix}
+     1 & 2 \\
+     1 & 2
+    \end{pmatrix}
+\quad B = \begin{pmatrix}
+           1 \\ 1
+          \end{pmatrix} \longrightarrow
+R=
+\begin{array}{c}
+B \ AB \\
+\left(\begin{array}{c:c}
+    1 & 3 \\
+    1 & 3
+   \end{array}\right)
+\end{array}\quad
+\rho(R) = 1 < 2
+$$
+Il sottospazio di raggiungibilità $X_R$ non coincide con tutto lo spazio di
+stato, si deve ricavare la base associata alla matrice $R$ estraendo le colonne
+linearmente indipendenti, in questo caso è sufficiente usare la prima colonna
+$$
+\text{Immagine}\{R\} = <\begin{bmatrix}
+                         1 \\ 1
+                        \end{bmatrix}>
+$$
+Lo spazio ha dimensione 2 $(n=2)$ mentre la base ha dimensione 1, dunque il
+sottospazio di raggiungibilità è la retta passante per l'origine degli assi
+dello stato con pendenza unitaria.
+Ciò significa che si può fornire al sistema un ingresso qualsiasi ma lo stato
+sarà vincolato a muoversi solo lungo la retta $X_R$ ossia tale che $x_1=x_2$
+qualunque sia l'ingresso.
+La proprietà di raggiungibilità è una proprietà differenziale, non dipende
+dalla durata dell'ingresso, se pure si fornisse un ingresso per un tempo
+inferiore, al limite infinitesimo, aumentando l'ampiezza dell'ingresso, al
+limite impulsivo, si otterrebbe comunque uno stato pari al prodotto $Bu(t)$.
+
+Per capire quali parti dello stato sono raggiungibili e quali non lo sono,
+è necessario eseguire una trasformazione di similitudine mediante una matrice,
+ci si pone nell'ipotesi $\rho(R) = n_r<n$ altrimenti il sistema sarebbe
+completamente raggiungibile, esiste un'intera classe di matrici $T_R$
+invertibili
+$$
+\rho(R) = n_r<n \Rightarrow \exists T_R \text{ invertibile} : x=T_rz
+$$
+dunque le matrici $A$ e $B$ diventano
+$$
+A_R = T_R^{-1} A T_R = \begin{pmatrix}
+                        A_{11} & A_{12} \\
+                        0 & A_{22}
+                       \end{pmatrix}
+\qquad
+B_R = \begin{pmatrix}
+       B_1 \\ 0
+      \end{pmatrix}
+$$
+Si otterranno delle matrici a blocchi triangolari superiori, la matrice
+$A_{11}$ di dimensioni $n_r \times n_r$
+43:29
