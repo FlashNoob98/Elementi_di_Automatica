@@ -1,0 +1,46 @@
+
+\section{Raggiungibilità ed osservabilità}
+Queste due proprietà cercano di studiare in modo qualitativo le potenzialità
+dell'ingresso di un certo sistema ISU e la possibilità che offre l'uscita
+rispetto alla possibilità di capire cosa accade nel sistema osservando l'uscita.
+Le potenzialità dell'ingresso possono influenzare l'evoluzione dello stato,
+racchiuso in un sottospazio $X^n$ dell'intero sistema, non è infatti detto che
+l'ingresso possa modificare senza vincoli tutte le variabili di stato, questo
+fenomeno viene studiato attraverso la proprietà di raggiungibilità.
+
+Si vuole inoltre capire se è possibile ricostruire l'evoluzione interna dello
+stato attraverso l'osservazione dell'uscita, in generale non è possibile, si può
+ricostruire una parte dello stato e non tutto.
+
+\subsection{Raggiungibilità (LTI)}
+Uno stato $\hat{x}$ è raggiungibile se e solo se
+$$
+\hat{x} \text{ raggiungibile} \Leftrightarrow  \exists \hat{t},
+\hat{u}_{[t_0,\hat{t}]} : \left.x_f(\hat{t})\right|_{u=\hat{u}} = \hat{x}
+$$
+esiste un tempo $\hat{t}$ ed un ingresso $\hat{u}$ tali per cui l'evoluzione
+forzata $x_f(\hat{t})$ coincida con lo stato $\hat{x}$.
+Questa caratteristica equivale a dire che è possibile pilotare il sistema
+mediante l'ingresso in un certo intervallo finito e portarlo proprio nello
+stato desiderato.
+Un sistema in cui tutti gli stati sono raggiungibili si dirà
+\textit{completamente raggiungibile}, si definisce il sottospazio di
+raggiungibilità $X_R$ sottoinsieme dello spazio dello stato.
+$$
+X_R = \{ x\in X^n : x \text{ è raggiungibile}\} \subseteq X^n
+$$
+Se il sottospazio di raggiungibilità coincide con lo spazio dello stato allora
+il sistema nella sua forma ISU è completamente raggiungibile.
+La raggiungibilità è fondamentale per un progettista, permette di capire se si
+hanno a disposizione i giusti ingressi per il sistema in esame e per
+modificarne lo stato.
+
+Si consideri la funzione della risposta forzata dalle formule di Lagrange
+$$
+x_f(t) = \int_{t_0}^t e^{A(t-t_0)}Bu(\tau) d\tau
+$$
+Nell'espressione compaiono solo le matrici $A$ e $B$, dunque la proprietà di
+raggiungibilità dipende solo da queste due matrici. La matrice $A$ contiene i
+modi naturali e le caratteristiche interne al sistema, la matrice $B$ invece
+modula l'ingresso e lo lega alla variabile di stato.
+
