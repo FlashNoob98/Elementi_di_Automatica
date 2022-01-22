@@ -136,4 +136,35 @@ C_R = CT_r = \begin{pmatrix}
               C_1 & C_2
              \end{pmatrix}
 $$
-45:02
+Il nuovo sistema ISU diventa
+$$
+\left\{\begin{aligned}
+\dot{z} &= A_R z + B_R u \\
+y &= C_Rz + Du
+\end{aligned}\right.
+$$
+Si partizione il vettore $z$ chiamando i suoi primi $n_R$ elementi $Z_1$ e i
+restanti $n-n_R$ si chiameranno $Z_2$.
+$$
+z = \begin{pmatrix}
+Z_1 \\ Z_2
+\end{pmatrix}
+$$
+
+Il sistema così partizionato assume la seguente struttura
+$$
+\left\{\begin{aligned}
+\dot{Z}_1 &= A_{11}Z_1 + A_{12} Z_2 + B_1 u\\
+\dot{Z}_2 &= A_{22}Z_2\\
+y &= C_1Z_1 + C_2 Z_2 +Du
+\end{aligned}\right.
+$$
+Si mostra una rappresentazione grafica del sistema, può essere visto suddiviso
+in due sottosistemi, il primo associato alla prima equazione differenziale e il
+secondo alla seconda.
+Per il primo sottosistema la matrice $A_{11}$ coincide alla sua matrice della
+dinamica, dipende dallo stato $Z_1$ mentre la matrice $A_{12}$ rappresenta la
+mutua relazione tra il sottosistema $Z_1$ e l'ingresso $Z_2$ fornito dal
+rispettivo sottosistema, dunque $Z_2$ può essere considerato come un ingresso
+per il sottosistema $Z_1$.
+Il sottosistema $Z_2$ è autonomo, non ha ingressi.
