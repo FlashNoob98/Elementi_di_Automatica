@@ -196,6 +196,88 @@ La matrice $T_R$ deve essere invertibile, si costruisce nel seguente modo: si
 inseriscono $n_R$ colonne linearmente indipendenti tali che siano una base di
 $X_R$ possono essere prese dalla matrice di raggiungibilità $R$ ed
 eventualmente combinarle affinché siano ancora una base, si completa la matrice
-$T_R$ con $n-n_R$ colonne arbitrarie, rispettando sempre il vincolo del
-determinante di $T_R\neq 0$
-57:45
+$T_R$ con $(n-n_R)$ colonne arbitrarie, rispettando sempre il
+vincolo $\text{det}(T_R)\neq 0$.
+
+Si considerino le matrici dell'esempio precedente
+$$
+A=\begin{pmatrix}
+1 & 2 \\
+1 & 2
+\end{pmatrix} \quad
+B=\begin{pmatrix}
+1 \\ 1
+\end{pmatrix} \quad
+X_R = <\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}> \quad
+T_R = \begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}$$
+Si calcola la matrice di trasformazione e le matrici $A_R$ e $B_R$, si ricorda
+che in questo specifico caso il valore $A_{22}$ è zero perché è uno
+degli autovalori di $A$, non è un motivo strutturale della matrice $A_R$ come
+lo zero in posizione (2,1).
+$$
+A_R = T_R^{-1}AT_R = \begin{pmatrix}
+A_{11} & A_{12} \\
+0 & A_{22}
+\end{pmatrix}=
+\begin{pmatrix}
+3 & -1 \\
+0 & 0
+\end{pmatrix}\quad
+B_R = T_R^{-1}B = \begin{pmatrix}
+1 \\ 0
+\end{pmatrix}
+$$
+$\lambda_1=3$ è l'autovalore della parte raggiungibile, $\lambda_2=0$ è non
+raggiungibile.
+
+\subsubsection{Influenza sull'uscita dalla raggiungibilità}
+La risposta di un sistema è la convoluzione della funzione di trasferimento e
+l'ingresso
+$$
+w(t) = Ce^{At}B = CT_RT_R^{-1}e^{At}T_RT_R^{-1}B
+= CT_Re^{T_R^{-1}AT_Rt}T_R^{-1}B = C_Re^{A_Rt}B_R
+$$
+Il legame ingresso-uscita non dipende dunque dalla forma di rappresentazione
+dello stato. Ricordando la definizione della matrice esponenziale
+$$\begin{aligned}
+w(t) &= (C_1\ C_2) e^{\begin{pmatrix}
+A_{11} & A_{12} \\
+0 & A_{22}
+\end{pmatrix}t}\begin{pmatrix}
+B_1 \\ 0
+\end{pmatrix} =
+(C_1 \ C_2) \sum_{k=0}^{+\infty} \frac{t^k}{k!}\begin{pmatrix}
+A_{11} & A_{12} \\
+0 & A_{22}
+\end{pmatrix}^k
+\begin{pmatrix}
+B_1 \\ 0
+\end{pmatrix} = \\
+&= (C_1 \ C_2) \sum_{k=0}^{+\infty} \frac{t^k}{k!}
+\begin{pmatrix}
+A_{11}^k & * \\
+0 & A_{22}^k
+\end{pmatrix}
+\begin{pmatrix}
+B_1 \\ 0
+\end{pmatrix} =
+(C_1 \ C_2) \sum_{k=0}^{+\infty} \frac{t^k}{k!}
+\begin{pmatrix}
+A_{11}^k B_1 \\ 0
+\end{pmatrix} = \\
+&= C_1\left(\sum_{k=0}^{+\infty} \frac{t^k}{k!}
+A_{11}^k\right)B_1 = C_1 e^{A_{11}t}B_1 = w_1(t)
+\end{aligned}
+$$
+La seconda colonna della matrice esponenziale viene moltiplicata per 0, non è
+necessario calcolare il termine $*$.
+Si è ricavato che la risposta all'impulso si può calcolare più rapidamente se
+si usa una matrice più piccola $(A_{11}=3)$ nel caso in cui il sistema non sia
+completamente raggiungibile. Si è dimostrato inoltre che la risposta
+all'impulso dipende solo dalla parte raggiungibile del sistema.
+1:13:01
