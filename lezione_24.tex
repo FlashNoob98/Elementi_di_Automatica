@@ -280,4 +280,51 @@ Si è ricavato che la risposta all'impulso si può calcolare più rapidamente se
 si usa una matrice più piccola $(A_{11}=3)$ nel caso in cui il sistema non sia
 completamente raggiungibile. Si è dimostrato inoltre che la risposta
 all'impulso dipende solo dalla parte raggiungibile del sistema.
-1:13:01
+Eseguendo la trasformata di Laplace si ottiene la funzione di trasferimento e
+si ricavano i poli rispettivi alla parte raggiungibile.
+
+\subsection{Osservabilità}
+Definisce la possibilità di capire l'evoluzione interna di uno stato osservando
+l'uscita.
+Si fornisce la definizione di cosa \textit{non} è osservabile dato che ha una
+struttura di spazio vettoriale mentre l'osservabilità è uno spazio
+algebrico.
+
+Si definiscono due stati inosservabili, o meglio \textit{indistinguibili}.
+Si sottopone un sistema ad un ingresso $u$ e si osserva l'uscita $y$, lo stato
+avrà un'evoluzione nel tempo, la $y=Cx+Du$.
+Lo stesso sistema partendo da uno stato differente $X_0''$, sottoposto allo
+stesso ingresso potrebbe raggiungere la stessa uscita. In tal caso i due stati
+si direbbero \textit{indistinguibili} se le due uscite coincidono.
+
+Si riportano le formule di Lagrange in tale condizione
+$$
+Ce^{A(t-t_0)}x_0' + \cancel{\int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau} =
+Ce^{A(t-t_0)}x_0'' + \cancel{\int_{t_0}^t e^{A(t-\tau)}Bu(\tau)d\tau}
+$$
+La inosservabilità degli stati non dipende dagli ingressi ma solo
+dall'evoluzione libera.
+$$
+Ce^{A(t-t_0)}(x_0'-x_0'') = 0 = \left.y_l(t)
+\right|_{x_0=(x_0'-x_0'')}
+$$
+Lo stato $x_0$ definito come differenza tra gli altri due potrebbe portare ad
+avere un'evoluzione libera nulla, si dirà il generico stato $\overline{x}$
+inosservabile se e solo se
+$$
+Ce^{A(t-t_0)}\overline{x}=0
+$$
+
+Si vuole studiare se un sistema ISU ha stati inosservabili, mediante l'ausilio
+della matrice di osservabilità.
+Si definisce lo spazio di inosservabilità
+$$
+X_I \stackrel{\text{def}}{=}\{x\in X^n:x\text{ è inosservabile}\}
+$$
+La matrice di osservabilità riempita a blocchi per righe invece
+$$
+O = \begin{pmatrix}
+C \\ CA \\ \vdots \\CA^{n-1}
+\end{pmatrix}
+$$
+1:29:29
