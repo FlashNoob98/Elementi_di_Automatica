@@ -167,4 +167,35 @@ dinamica, dipende dallo stato $Z_1$ mentre la matrice $A_{12}$ rappresenta la
 mutua relazione tra il sottosistema $Z_1$ e l'ingresso $Z_2$ fornito dal
 rispettivo sottosistema, dunque $Z_2$ può essere considerato come un ingresso
 per il sottosistema $Z_1$.
-Il sottosistema $Z_2$ è autonomo, non ha ingressi.
+Il sottosistema $Z_2$ è autonomo, non ha ingressi, dunque non è raggiungibile.
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\picwid]{sistema_raggiungibile}
+\end{figure}
+
+Si dimostra che la coppia $(A_{11},B_1)$ è completamente raggiungibile
+$$
+\rho({R}) = \rho\left(B_R,\ A_RB_R\ \dots\ A_R^{n-1}B_R\right) = \rho
+\begin{pmatrix}
+B_1 & A_{11}B_1 & \ldots & A_{11}^{n-1}B_1\\
+ 0  &     0     &        &   0
+\end{pmatrix}
+\stackrel{\text{ipotesi}}{=}n_R
+$$
+
+La prima riga della matrice $R$ contiene $n_R$ righe per costruzione, dato che
+il rango è massimo allora tutte le colonne saranno linearmente indipendenti tra
+loro ma queste colonne formano proprio la matrice di raggiungibilità del
+sottosistema 1, dunque esso è completamente raggiungibile.
+
+La matrice della dinamica è triangolare alta, dunque i suoi autovalori sono gli
+autovalori dei blocchi sulla diagonale, ossia di $A_{11}$ e $A_{22}$ ma i primi
+appartengono alla parte raggiungibile, quelli di $A_{22}$ no.
+
+La matrice $T_R$ deve essere invertibile, si costruisce nel seguente modo: si
+inseriscono $n_R$ colonne linearmente indipendenti tali che siano una base di
+$X_R$ possono essere prese dalla matrice di raggiungibilità $R$ ed
+eventualmente combinarle affinché siano ancora una base, si completa la matrice
+$T_R$ con $n-n_R$ colonne arbitrarie, rispettando sempre il vincolo del
+determinante di $T_R\neq 0$
+57:45
