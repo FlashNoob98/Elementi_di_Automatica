@@ -324,3 +324,146 @@ $$
 I poli del sistema saranno l'unione dei poli se non ci sono cancellazioni
 incrociate tra i termini del numeratore di un sistema con il denominatore
 dell'altro.
+In caso di semplificazioni si sarà sicuramente ridotto il grado del
+denominatore, dunque si saranno persi dei modi, il sistema non sarà più dunque
+completamente raggiungibile e/o completamente osservabile.
+Se uno zero del primo sistema cancella un polo del secondo sistema allora si
+perde raggiungibilità, viceversa un polo del primo sistema con uno zero del
+secondo si perde osservabilità.
+
+Nel caso di perdita di osservabilità infatti il sistema $W_1$ genera un certo
+modo, funzione del suo denominatore che viene eventualmente annullato da uno
+zero del secondo sistema, dunque il modo si perde nell'uscita e quindi non è
+più osservabile.
+
+Viceversa se un modo di $D_2$ viene eliminato da uno zero del primo sistema
+allora il modo non è raggiungibile.
+
+\subsubsection{Sistemi in parallelo}
+Siano due sistemi $W_1$ e $W_2$ in parallelo, si costruisce il modello interno
+$$
+\begin{aligned}
+S_1 &: \left\{\begin{aligned}
+\dot{x}_1 & = A_1x_1 + B_1u_1\\
+y_1 &= C_1 x_1 + D_1u_1
+\end{aligned}\right. \\
+S_2 & : \left\{\begin{aligned}
+\dot{x}_2 & = A_2x_2 + B_2u_2\\
+y_2 &= C_2 x_2 + D_2u_2
+\end{aligned}\right. \\
+\text{Vincoli} &: \left\{\begin{aligned}
+u&=u_1=u_2\\
+y&=y_1+y_2
+\end{aligned}\right.
+\end{aligned}
+$$
+Aggregando lo stato si ottiene
+$$
+\left\{\begin{aligned}
+\dot{x}_1 & = A_1x_1 + B_1u\\
+\dot{x}_2 &= A_2x_2 + Bu \\
+y &= y_1+y_2 = C_1x_1 + C_2x_2 + (D_1+D_2)u
+\end{aligned}\right.
+$$
+In forma vettoriale
+$$
+\left\{\begin{array}{cccc}
+\dot{x}_1 =& \begin{pmatrix}
+A_1 & 0 \\ 0 & A_2
+\end{pmatrix}x& +& \begin{pmatrix}
+B_1 \\ B_2
+\end{pmatrix}u\\ \\
+y =& \begin{pmatrix}
+C_1 & C_2
+\end{pmatrix}x &+& \begin{pmatrix}
+D_1+D_2
+\end{pmatrix}u
+\end{array}\right.
+$$
+Analogamente al sistema serie gli autovalori sono ancora l'unione degli
+autovalori dei due sottosistemi dunque valgono le stesse considerazioni
+riguardo la stabilità.
+
+Si studia la raggiungibilità e l'osservabilità con $W_1 = \frac{N_1}{D_1}$ e
+$W_2 = \frac{N_2}{D_2}$, sommando le due equazioni si ha
+$$
+W(s) = W_1(s) + W_2(s) = \frac{N_1(s)D_2(s) + N_2(s)D_1(s)}
+{D_1(s)D_2(s)}
+$$
+Può esserci una cancellazione solo se $D_1$ e $D_2$ hanno radici in comune, può
+essere messa in evidenza al numeratore,
+la radice al denominatore permane con una molteplicità inferiore.
+Si perdono in questo caso simultaneamente la raggiungibilità e l'osservabilità.
+
+Se i due sistemi forniscono in uscita lo stesso modo, non si può determinare
+con che peso contribuisca uno o l'altro sistema, analogamente la sollecitazione
+che raggiunge quello specifico modo non può essere inviata allo specifico
+sottosistema dato che l'ingresso è lo stesso dunque non si può pilotare lo
+specifico modo dello specifico sottosistema ma reagiranno necessariamente
+entrambi.
+
+\subsubsection{Sistemi in retroazione}
+Sia il sistema $W_1$ retroazionato da $W_2$,
+si sviluppa il modello interno, si suppone per semplicità di trattazione che i
+sistemi siano strettamente propri
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{blocchi_retroazione}
+\end{figure}
+$$
+\begin{aligned}
+S_1 &: \left\{\begin{aligned}
+\dot{x}_1 & = A_1x_1 + B_1u_1\\
+y_1 &= C_1 x_1
+\end{aligned}\right. \\
+S_2 & : \left\{\begin{aligned}
+\dot{x}_2 & = A_2x_2 + B_2u_2\\
+y_2 &= C_2 x_2
+\end{aligned}\right. \\
+\text{Vincoli} &: \left\{\begin{aligned}
+y&=y_1=u_2\\
+u_1 &= u -y_2
+\end{aligned}\right.
+\end{aligned}
+$$
+Aggregando gli stati
+$$
+\left\{\begin{aligned}
+\dot{x}_1 & = A_1x_1 + B_1(u-C_2x_2)\\
+\dot{x}_2 &= A_2x_2 + B_2(C_1x_1) \\
+y &= C_1x_1
+\end{aligned}\right.
+$$
+In forma compatta
+$$
+\left\{\begin{array}{cccc}
+\dot{x}_1 =& \begin{pmatrix}
+A_1 & -B_1C_2 \\ B_2C_1 & A_2
+\end{pmatrix}x& +& \begin{pmatrix}
+B_1 \\ 0
+\end{pmatrix}u\\ \\
+y =& \begin{pmatrix}
+C_1 & 0
+\end{pmatrix}x
+\end{array}\right.
+$$
+
+La matrice $A$ non ha alcuna struttura particolare, dunque in generale gli
+autovalori non hanno nulla a che fare con gli autovalori delle matrici $A_1$ e
+$A_2$. Potrebbe anche accadere che il collegamento in retroazione di due
+sistemi asintoticamente stabili generi un sistema instabile, viceversa due
+sistemi instabili potrebbero diventare stabili, la retroazione è l'unica
+connessione che modifica gli autovalori.
+È l'unica soluzione che permette di stabilizzare un sistema inizialmente
+instabile.
+
+La funzione di trasferimento complessiva
+$$
+W(s) = \frac{N_1(s) D_2(s)}{D_1(s)D_2(s)+N_1(s)N_2(s)}
+$$
+Potrebbero esserci delle cancellazioni se $N_1$ e $D_2$ avessero divisori in
+comune, uno zero del blocco di andata cancella un polo del blocco in ritorno,
+si ottiene una parte del sistema contemporaneamente non raggiungibile e non
+osservabile.
+Se i termini in comune sono invece tra $D_1$ ed $N_2$ non si cancella nulla ma
+il corrispondente autovalore non viene alterato dalla retroazione.
