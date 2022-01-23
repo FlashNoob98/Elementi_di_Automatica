@@ -177,4 +177,38 @@ Da un punto di vista grafico saranno presenti quattro blocchi elementari
 \centering
 \includegraphics[width=\picwid]{blocchi_non_SISO}
 \end{figure}
-42:48
+
+\subsection{Regole di elaborazione}
+Può capitare che in una rete complessa non sia chiaro quali blocchi siano in
+serie o in parallelo, potrebbe essere necessario eseguire delle
+\textit{manovre} di spostamento dei blocchi che coincidono ad operazioni
+algebriche che devono lasciare però inalterata la funzione di trasferimento
+complessiva.
+Durante queste operazioni è molto probabile che si perda il senso fisico delle
+operazioni, l'importante è non variare la funzione di trasferimento.
+
+Si supponga di avere la seguente condizione, per qualche motivo si vuole
+spostare il blocco $W(s)$ a monte del nodo sommatore, sarà equivalente al
+sistema formato da due blocchi.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{blocchi_equivalenza_sommatore}
+\end{figure}
+Algebricamente si ottiene lo stesso risultato
+$$
+Y = W(U_1+U_2) \qquad \equiv \qquad Y= WU_1 + WU_2 = W(U_1+U_2)
+$$
+da un punto di vista fisico il sistema iniziale ha $n$ variabili di stato, il
+secondo ha invece $2n$ variabili di stato, ma sono variabili ``fittizie'' e non
+variabili fisiche.
+
+Il caso duale è il seguente
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{blocchi_equivalenza_sommatore_a_valle}
+\end{figure}
+$$
+Y = U_2 + WU_1 \qquad \equiv \qquad
+Y = W(U_1 + W^{-1}U_2) = WU_1 + U_2
+$$
+51:00
