@@ -178,7 +178,7 @@ Da un punto di vista grafico saranno presenti quattro blocchi elementari
 \includegraphics[width=\picwid]{blocchi_non_SISO}
 \end{figure}
 
-\subsection{Regole di elaborazione}
+\subsection{Regole di riduzione}
 Può capitare che in una rete complessa non sia chiaro quali blocchi siano in
 serie o in parallelo, potrebbe essere necessario eseguire delle
 \textit{manovre} di spostamento dei blocchi che coincidono ad operazioni
@@ -211,4 +211,116 @@ $$
 Y = U_2 + WU_1 \qquad \equiv \qquad
 Y = W(U_1 + W^{-1}U_2) = WU_1 + U_2
 $$
-51:00
+I due sistemi sono ancora algebricamente equivalenti. Il sistema $W^{-1}$ ha un
+ordine inverso rispetto al sistema $W$, se il sistema $W$ fosse un sistema
+reale strettamente proprio, il sistema $W^{-1}$ diventerebbe improprio, il
+numero di radici al numeratore sarebbe maggiore del numero di radici al
+denominatore, dunque rappresenterebbe un sistema anticausale, non fisicamente
+realizzabile.
+
+\newpage
+\subsubsection{Esempio di riduzione schema a blocchi}
+Si riduca il seguente sistema
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{blocchi_sistema_da_ridurre}
+\end{figure}
+
+Ha due ingressi $r$ e $d$ e un'uscita $y$, dunque la funzione di trasferimento
+equivalente deve essere una matrice $(1\times2)$
+$$
+W(s) = \begin{bmatrix}
+W_{y,r}(s) & W_{y,d}(s)
+\end{bmatrix}
+$$
+Per ricavare il primo termine mediante il PSE si pone $d=0$, il nodo sommatore
+in cui incide $d$ si elide, dunque i sottosistemi $W_2$ e $W_3$ si trovano ad
+essere in parallelo, successivamente in serie al sistema $W_1$
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{blocchi_sistema_da_ridurre_Wr}
+\end{figure}
+In questo caso non c'è alcun blocco in retroazione, questo tipo di
+collegamento coincide in realtà con una funzione di trasferimento unitaria, la
+funzione di trasferimento complessiva, applicando la retroazione sarà dunque:
+$$
+W_{y,r}(s) = \frac{W_1(s)(W_2(s) + W_3(s))}{1 + W_1(s)(W_2(s) + W_3(s))}
+$$
+Per calcolare il secondo termine $W_{y,d}$ si deve annullare l'ingresso $r$ e
+considerare solo quello $d$.
+
+\newpage
+\subsection{Analisi della stabilità di un sistema interconnesso}
+\subsubsection{Sistemi in serie}
+Si considerino due sistemi in serie $S_1$ ed $S_2$, si supponga di conoscere i
+modelli ISU dei due sistemi
+$$
+\begin{aligned}
+S_1 &: \left\{\begin{aligned}
+\dot{x}_1 & = A_1x_1 + B_1u_1\\
+y_1 &= C_1 x_1 + D_1u_1
+\end{aligned}\right. \\
+S_2 & : \left\{\begin{aligned}
+\dot{x}_2 & = A_2x_2 + B_2u_2\\
+y_2 &= C_2 x_2 + D_2u_2
+\end{aligned}\right. \\
+\text{Vincoli} &: \left\{\begin{aligned}
+u&=u_1\\
+y&=y_2\\
+u_2 &=y_1
+\end{aligned}\right.
+\end{aligned}
+$$
+Si vuole studiare la stabilità dell'intero sistema dunque si può pensare di
+aggregare le variabili di stato in un unico vettore, lo stato dell'intero
+sistema è l'aggregazione dei due sottosistemi, si sostituiscono i termini
+usando i vincoli
+$$
+x = \begin{pmatrix}
+x_1 \\ x_2
+\end{pmatrix}\qquad
+\left\{\begin{aligned}
+\dot{x}_1 &= A_1 x_1 + B_1u\\
+\dot{x}_2 &= A_2 x_2 + B_2(C_1x_1 + D_1u)\\
+y &= C_2x_2 + D_2(C_1x_1 + D_1u)
+\end{aligned}\right.
+$$
+In forma compatta si realizzano delle matrici a blocchi
+$$
+\left\{\begin{array}{cccc}
+\dot{x}_1 =& \begin{pmatrix}
+A_1 & 0 \\ B_2C_1 & A_2
+\end{pmatrix}x& +& \begin{pmatrix}
+B_1 \\ B_2D_1
+\end{pmatrix}u\\ \\
+y =& \begin{pmatrix}
+D_2C_1 & C_2
+\end{pmatrix}x &+& \begin{pmatrix}
+D_2D_1
+\end{pmatrix}u
+\end{array}\right.
+$$
+
+La stabilità dipende dagli autovalori della matrice della dinamica $A$, matrice
+triangolare bassa, dunque i suoi autovalori saranno l'unione degli autovalori
+dei due sottosistemi, se entrambi sono asintoticamente stabili allora anche il
+sistema serie sarà asintoticamente stabile.
+Viceversa se almeno uno dei suoi blocchi è instabile allora la serie sarà
+instabile, oppure sarà stabile se i blocchi sono tutti stabili oppure tutti
+asintoticamente stabili e almeno uno stabile (se non si creano molteplicità
+sulla frontiera, ovvero ci sono più autovalori identici a parte reale nulla).
+
+Si vuole studiare la raggiungibilità e l'osservabilità, si rappresentano le due
+funzioni di trasferimento in forma minima
+$$
+W_1 = \frac{N_1}{D_1} \quad W_2 = \frac{N_2}{D_2}
+$$
+se i sistemi sono rispettivamente di grado $n_1$ ed $n_2$, la serie dovrà avere
+$n_1+n_2$ stati, ma la serie si ottiene con il prodotto delle funzioni di
+trasferimento
+$$
+W(s) = W_1(s) \cdot W_2(s) = \frac{N_1(s)N_2(s)}{D_1(s)D_2(s)}
+$$
+I poli del sistema saranno l'unione dei poli se non ci sono cancellazioni
+incrociate tra i termini del numeratore di un sistema con il denominatore
+dell'altro.
