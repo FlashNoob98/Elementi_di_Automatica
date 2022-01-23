@@ -60,7 +60,7 @@ Y_1(s) &= W_1(s)U_1(s) \\
 Y_2(s) &= W_2(s) U_2(s) \\
 Y_1(s) &= U_2(s)
 \end{aligned}\right.
-\quad
+\qquad
 \begin{aligned}
 Y(s) &= Y_2(s) = W_2(s)U_2(s) = W_2(s)Y_1(s) =\\
 &=W_2(s)W_1(s)U_1(s) = W_2(s)W_1(s)U(s)
@@ -79,4 +79,102 @@ nodo sommatore.
 \centering
 \includegraphics[width=\picwid]{blocchi_parallelo}
 \end{figure}
+Per ricavare l'unica funzione di trasferimento si procede in maniera analoga al
+caso precedente, scrivendo le relazioni dei blocchi e dei due vincoli
+sull'ingresso e l'uscita
+$$
+\left\{\begin{aligned}
+Y_1(s) &= W_1(s) U_1(s) \\
+Y_2(s) &= W_2(s) U_2(s) \\
+U_1(s) &= U_2(s) = U(s) \\
+Y(s) &= Y_1(s) + Y_2(s)
+\end{aligned}\right.\qquad
+\begin{aligned}
+Y(s) & = Y_1(s) + Y_2(s) = W_1(s)U_1(s) + W_2(s) U_2(s) =\\
+&=\left( W_1(s)+W_2(s)
+\right) U(s)
+\end{aligned}
+$$
+La funzione di trasferimento del blocco in parallelo è pari alla somma
+algebrica delle rispettive funzioni di trasferimento dei sottosistemi.
 
+\subsection{Connessione in retroazione}
+Un sistema in retroazione è composto da due blocchi, il sistema $W_1$ che
+genera l'uscita è chiamato \textit{catena di andata}, il blocco $W_2$ inferiore
+prende il nome di \textit{catena di ritorno (o retroazione)} e chiude un anello
+in cui ``girano'' le informazioni chiamato \textit{anello di retroazione}.
+L'ingresso del sistema principale è dato dal confronto dell'ingresso $u$ di
+riferimento e l'uscita $y_2$ del blocco di retroazione. Si può avere una
+retroazione negativa o positiva a seconda del segno che compare nel blocco
+sommatore in ingresso (quella in figura è negativa).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{blocchi_retroazione}
+\end{figure}
+
+Si analizzano le equazioni dei singoli blocchi e le due relazioni topologiche
+$$
+\left\{\begin{aligned}
+Y_1(s) &= W_1(s) U_1(s) \\
+Y_2(s) &= W_2(s) U_2(s) \\
+U_1(s) &= U(s) - Y_2(s) \\
+Y(s) &= U_2(s) = Y_1(s)
+\end{aligned}\right.
+$$
+
+Sviluppando il sistema a partire dalla funzione in uscita si ricavano le due
+funzioni di trasferimento per i sistemi in retroazione positiva e negativa
+$$
+\begin{aligned}
+Y(s) & = W_1(s) U_1(s) = W_1(s) (U(s) - Y_2(s)) =\\
+&=
+W_1(s) (U(s) - W_2(s)U_2(s)) = W_1(s)(U(s)-W_2(s)Y(s)) \Rightarrow \\
+&(1+W_1(s)W_2(s))Y(s) = W_1(s) U_1(s) \Rightarrow
+Y(s) = \frac{W_1(s)}{1+W_1(s)W_2(s)}U(s)
+\end{aligned}
+$$
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c}
+Retroazione negativa & Retroazione positiva \\
+$W(s) = \frac{W_1(s)}{1+W_1(s)W_2(s)}$ &
+$W(s) = \frac{W_1(s)}{1-W_1(s)W_2(s)}$
+\end{tabular}
+\end{table}
+
+\subsubsection{Esempio non SISO}
+Se il sistema non dovesse essere di tipo SISO come quello in esempio
+$$
+u=\begin{pmatrix}
+u_1 \\ u_2
+\end{pmatrix} \rightarrow
+\begin{matrix}W(s)\\2\times2
+\end{matrix}
+\rightarrow y = \begin{pmatrix}
+y_1 \\ y_2
+\end{pmatrix}
+$$
+Sfruttando la sovrapposizione degli effetti si possono scomporre le uscite,
+ogni termine può essere visto come la somma degli effetti di un singolo
+ingresso alla volta, dunque per calcolare $y_1$ si studia la risposta ad $u_1$
+quando $u_2$ è nulla e viceversa, poi si sommano i due contributi; analogamente
+per $y_2$.
+$$\left\{\begin{aligned}
+Y_1 &= Y_1' + Y_1'' = W_{11}U_1 + W_{12}U_2\\
+Y_2 & = Y_2' + Y_2'' = W_{21}U_1 + W_{22}U_2
+\end{aligned}\right.$$
+
+Dunque la $W(s)$ sarà
+$$
+W(s) = \begin{bmatrix}
+W_{11}(s) & W_{12}(s) \\
+W_{21}(s) & W_{22}(s)
+\end{bmatrix}
+$$
+Da un punto di vista grafico saranno presenti quattro blocchi elementari
+\begin{figure}[h]
+\centering
+\includegraphics[width=\picwid]{blocchi_non_SISO}
+\end{figure}
+42:48
